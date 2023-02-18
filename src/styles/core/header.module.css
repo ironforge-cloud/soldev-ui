@@ -4,8 +4,12 @@
 
 .header {
   @apply text-gray-400;
-  /* @apply bg-transparent; */
-  /* bg-black bg-star-sm; */
+  @apply bg-transparent;
+  @apply bg-black bg-star-sm;
+}
+.withHero {
+  @apply absolute w-full;
+  @apply bg-transparent bg-none !important;
 }
 
 .inner {

@@ -1,16 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "@/styles/header.module.css";
+import styles from "@/styles/core/header.module.css";
+import clsx from "clsx";
 
 type ComponentProps = {
   children?: React.ReactNode;
+  withHero?: boolean;
 };
 
-export default function AppHeader({ children }: ComponentProps) {
+export default function AppHeader({ children, withHero }: ComponentProps) {
   return (
     <header className={styles.header}>
-      <section className={styles.inner}>
+      <section className={clsx(styles.inner, withHero && styles.withHero)}>
         <Link href={"/"} className={styles.logoArea}>
           <Image src={"/logo-light.svg"} alt="Logo" width={124} height={0} />
         </Link>

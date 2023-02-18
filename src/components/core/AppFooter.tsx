@@ -3,7 +3,7 @@ import Link from "next/link";
 import clsx from "clsx";
 
 import { SITE_GITHUB, SITE_NAME, SITE_TWITTER } from "@/lib/constants/general";
-import styles from "@/styles/footer.module.css";
+import styles from "@/styles/core/footer.module.css";
 
 type ComponentProps = {
   children?: React.ReactNode;
