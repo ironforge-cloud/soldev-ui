@@ -1,0 +1,37 @@
+/*
+    Primary styles for the AppFooter
+*/
+
+.footer {
+  @apply text-gray-400 bg-black;
+  @apply bg-star-sm;
+}
+
+.copyright {
+  @apply w-full col-span-full;
+  @apply p-2 text-base text-center;
+  @apply text-gray-500 border-t border-gray-800;
+}
+
+.inner {
+  @apply grid grid-cols-7 gap-8;
+}
+
+.metaArea {
+  @apply col-span-2 space-y-2;
+}
+
+/*
+    Styles for the link listing sections
+*/
+.linkArea {
+  @apply space-y-3;
+}
+.linkArea h4 {
+  @apply text-xl;
+  @apply text-white;
+}
+.linkArea a {
+  @apply hover:text-white;
+  @apply hover:underline;
+}

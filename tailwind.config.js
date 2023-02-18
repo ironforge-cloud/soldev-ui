@@ -94,6 +94,10 @@ module.exports = {
       auto: "auto",
     }),
     extend: {
+      backgroundImage: {
+        "star-sm": "url('/img/bg-stars-sm.svg')",
+        "star-lg": "url('/img/bg-stars-lg.svg')",
+      },
       fontFamily: {
         // sans: ["var(--font-inter)"],
         display: "var(--font-display)",

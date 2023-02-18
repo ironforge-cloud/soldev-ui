@@ -6,7 +6,8 @@
   Core structure and style
 */
 body {
-  @apply text-lg leading-normal tracking-normal font-body;
+  @apply leading-normal tracking-normal font-body;
+  /* @apply text-lg; */
 }
 .container-inner {
   @apply md:max-w-6xl md:mx-auto;
