@@ -1,0 +1,37 @@
+/*
+    Primary styles for the AppHeader
+*/
+
+.header {
+  @apply text-gray-400;
+  /* @apply bg-transparent; */
+  /* bg-black bg-star-sm; */
+}
+
+.inner {
+  /* @apply grid grid-cols-7 gap-8; */
+  @apply px-8 py-3 space-x-8;
+  @apply flex items-center;
+}
+
+.logoArea {
+  @apply flex-shrink-0 block;
+}
+.primaryArea {
+  @apply flex justify-between;
+  @apply flex-grow;
+}
+
+/*
+    Style the links displayed on in the header
+*/
+.linkArea {
+  @apply flex items-center;
+  @apply space-x-0;
+}
+
+.linkArea li > a {
+  @apply px-6 py-3;
+  /* @apply text-lg; */
+  @apply hover:text-white;
+}

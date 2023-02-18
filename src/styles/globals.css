@@ -44,9 +44,15 @@ input[type="button"],
   @apply flex items-center cursor-pointer;
   @apply px-5 py-2 rounded-xl;
   @apply border border-transparent;
+  @apply hover:bg-opacity-80 hover:border-opacity-80;
 }
 .btn-sm {
   @apply px-3 py-1;
+}
+
+.btn-default {
+  @apply text-white;
+  @apply border-gray-600 bg-slate-800;
 }
 
 /*
