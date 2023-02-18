@@ -1,0 +1,27 @@
+/*
+    Primary styles for the Large CTA card
+*/
+
+.container {
+  @apply bg-slate-100;
+  @apply py-10;
+}
+
+.inner {
+  @apply overflow-hidden rounded-2xl;
+  @apply mx-auto text-center;
+  @apply space-y-5 py-28;
+  @apply text-white;
+  @apply bg-gray-400;
+
+  @apply bg-left-bottom bg-no-repeat bg-cover;
+  @apply bg-star-sm;
+}
+
+.inner h2 {
+  @apply text-6xl;
+}
+
+.inner p {
+  @apply text-lg;
+}

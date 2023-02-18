@@ -4,6 +4,7 @@ import PageHero from "@/components/core/PageHero";
 import HomeCategoryCards from "@/components/home/HomeCategoryCards";
 import HomeResourceCards from "@/components/home/HomeResourceCards";
 import HomeFeaturedContent from "@/components/home/HomeFeaturedContent";
+import LargeCTACard from "@/components/core/LargeCTACard";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -25,11 +26,21 @@ export default function Page() {
         </p>
       </PageHero>
 
-      <HomeCategoryCards className="-mt-24" />
+      <section className="space-y-8">
+        <HomeCategoryCards className="-mt-24" />
 
-      <HomeFeaturedContent className="container" />
+        <HomeFeaturedContent className="container" />
 
-      <HomeResourceCards className="" />
+        <LargeCTACard
+          title="Changelog"
+          text="Weekly updates on the Solana ecosystem"
+          ctaLabel="Get caught up"
+          ctaHref="/changelog"
+          backgroundImage="/img/bg-stars-sm.svg"
+        />
+
+        <HomeResourceCards className="" />
+      </section>
     </DefaultLayout>
   );
 }
