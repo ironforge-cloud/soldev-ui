@@ -27,11 +27,7 @@ export default function Page() {
 
       <HomeCategoryCards className="-mt-24" />
 
-      <section className="container">
-        {/* <p>home</p> */}
-
-        <HomeFeaturedContent />
-      </section>
+      <HomeFeaturedContent className="container" />
 
       <HomeResourceCards className="" />
     </DefaultLayout>
