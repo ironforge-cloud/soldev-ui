@@ -20,17 +20,15 @@ export default function ImageCTACard({
 }: ComponentProps) {
   return (
     <section className={styles.card}>
-      <section>
-        <div className="">
-          <img src={imageSrc} alt={title} />
-        </div>
-        <div className={styles.metaArea}>
-          <h3>
-            <Link href={href}>{title}</Link>
-          </h3>
-          <p>{text}</p>
-        </div>
-      </section>
+      <div className="">
+        <img src={imageSrc} alt={title} />
+      </div>
+      <div className={styles.metaArea}>
+        <h3>
+          <Link href={href}>{title}</Link>
+        </h3>
+        <p>{text}</p>
+      </div>
     </section>
   );
 }
