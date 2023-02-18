@@ -1,0 +1,12 @@
+/*
+    Primary styles for the AppHeader
+*/
+
+.hero {
+  @apply bg-black bg-star-sm;
+}
+
+.inner {
+  @apply pt-24;
+  @apply text-white;
+}

@@ -5,16 +5,23 @@ import AppFooter from "@/components/core/AppFooter";
 type LayoutProps = {
   children: React.ReactNode;
   seo?: NextSeoProps;
+  className?: string;
+  withHero?: boolean;
 };
 
-export default function DefaultLayout({ children, seo }: LayoutProps) {
+export default function DefaultLayout({
+  children,
+  seo,
+  className,
+  withHero,
+}: LayoutProps) {
   return (
     <>
       <NextSeo {...seo} />
 
-      <AppHeader />
+      <AppHeader withHero={withHero} />
 
-      <main className="container">{children}</main>
+      <main className={className}>{children}</main>
 
       <AppFooter />
     </>
