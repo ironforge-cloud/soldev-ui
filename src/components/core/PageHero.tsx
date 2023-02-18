@@ -1,4 +1,4 @@
-import styles from "@/styles/pageHero.module.css";
+import styles from "@/styles/PageHero.module.css";
 import clsx from "clsx";
 
 type ComponentProps = {

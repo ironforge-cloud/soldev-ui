@@ -1,0 +1,30 @@
+/*
+    Primary styles for the CTA Cards and their grid
+*/
+
+.container {
+  @apply grid grid-cols-3 gap-5;
+}
+
+.card {
+  @apply overflow-hidden rounded-2xl;
+  @apply relative;
+  @apply bg-gray-500;
+}
+
+.metaArea {
+  @apply absolute bottom-0 left-0 block w-full;
+  @apply px-5 py-5 space-y-1;
+  @apply text-white bg-gray-800 bg-opacity-50;
+}
+.metaArea h3 {
+  @apply text-2xl;
+}
+.metaArea p {
+  @apply text-sm;
+}
+
+/* .inner {
+  @apply py-32;
+  @apply text-white;
+} */
