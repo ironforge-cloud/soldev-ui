@@ -1,5 +1,5 @@
 import styles from "@/styles/ImageCTACard.module.css";
-import ImageCTACard from "./core/ImageCTACard";
+import ImageCTACard from "@/components/core/ImageCTACard";
 
 type ComponentProps = {
   className?: string;

@@ -1,8 +1,8 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
-import HomeCategoryCards from "@/components/HomeCategoryCards";
-import HomeResourceCards from "@/components/HomeResourceCards";
+import HomeCategoryCards from "@/components/home/HomeCategoryCards";
+import HomeResourceCards from "@/components/home/HomeResourceCards";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
