@@ -1,0 +1,72 @@
+/* for the love of tailwind :) */
+@tailwind base;
+@tailwind components;
+
+/*
+  Core structure and style
+*/
+body {
+  @apply text-lg leading-normal tracking-normal font-body;
+}
+.container-inner {
+  @apply md:max-w-6xl md:mx-auto;
+}
+.container {
+  @apply container-inner;
+  @apply gap-8 p-5 mx-auto space-y-4 md:space-y-8 md:py-10 md:px-0;
+  @apply justify-between;
+}
+.flex,
+.inline-flex {
+  @apply items-center;
+}
+
+/*
+  Form elements
+*/
+textarea,
+input[type="number"],
+input[type="number"],
+input[type="text"],
+input[type="email"] {
+  @apply bg-black text-brand-light;
+  @apply px-5 py-2;
+  @apply border rounded-xl;
+  @apply border-transparent;
+  @apply border-slate-700;
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+.btn {
+  @apply flex items-center cursor-pointer;
+  @apply px-5 py-2 rounded-xl;
+  @apply border border-transparent;
+}
+.btn-sm {
+  @apply px-3 py-1;
+}
+
+/*
+  Common, reusable classes
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+  @apply font-semibold tracking-wide;
+}
+
+/*
+  These will likely be moved from this file
+*/
+/* .tag{
+  @apply ;
+} */
+
+/* make the utilities last to force their priority when inline */
+@tailwind utilities;
