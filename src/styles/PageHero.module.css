@@ -3,10 +3,11 @@
 */
 
 .hero {
-  @apply bg-black bg-star-sm;
+  @apply bg-black;
+  @apply bg-left-bottom bg-no-repeat bg-cover;
 }
 
 .inner {
-  @apply pt-24;
+  @apply py-32;
   @apply text-white;
 }

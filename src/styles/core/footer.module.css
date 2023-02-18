@@ -3,7 +3,7 @@
 */
 
 .footer {
-  @apply text-gray-400 bg-black;
+  @apply text-gray-400;
   @apply bg-star-sm;
 }
 

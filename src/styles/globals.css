@@ -21,6 +21,13 @@ body {
 .inline-flex {
   @apply items-center;
 }
+.bg-star-sm,
+.bg-star-lg {
+  @apply bg-left-bottom bg-no-repeat bg-cover;
+}
+.gradient-solana {
+  @apply text-transparent bg-clip-text bg-gradient-to-br from-solana-green to-solana-purple;
+}
 
 /*
   Form elements

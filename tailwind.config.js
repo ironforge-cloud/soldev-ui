@@ -110,7 +110,7 @@ module.exports = {
         xl: ".75rem",
       },
       colors: {
-        black: "#12151E",
+        black: "#0a0a0e",
         twitter: "#1d9bf0",
         "brand-light": "#e3e6ec",
         "brand-dark": "#161622",

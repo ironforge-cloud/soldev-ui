@@ -11,8 +11,15 @@ const seo: NextSeoProps = {
 export default function Page() {
   return (
     <DefaultLayout seo={seo} withHero={true}>
-      <PageHero className="container">
-        <h1>welcome</h1>
+      <PageHero className="container text-center" heroSize="lg">
+        <h1 className="text-6xl tracking-normal">
+          Your <span className="gradient-solana">Solana</span> homepage
+        </h1>
+
+        <p className="max-w-lg mx-auto text-xl text-gray-400">
+          Stay up-to-date with the latest updates, learning, and happenings in
+          the Solana ecosystem.
+        </p>
       </PageHero>
 
       <section className="container">
