@@ -1,0 +1,71 @@
+/*
+    Primary styles for the Content Cards and their grid
+    (e.g. cards in the Library)
+*/
+
+.container {
+  @apply grid grid-cols-4 gap-5;
+}
+
+.card {
+  @apply relative;
+}
+
+.image {
+  @apply relative;
+  @apply overflow-hidden rounded-2xl;
+  @apply mb-3;
+  @apply max-h-32;
+}
+.badge {
+  @apply absolute right-2 bottom-2;
+  @apply text-black bg-solana-green;
+  /* @apply text-white bg-solana-purple; */
+  /* @apply text-white bg-red-500; */
+  @apply px-3 py-1 text-xs font-semibold;
+  @apply rounded-lg;
+}
+
+/* .image img {
+  @apply ;
+} */
+
+.metaArea {
+  @apply space-y-1;
+}
+.metaArea h3 {
+  @apply text-base line-clamp-2;
+  @apply leading-tight;
+}
+.metaArea h3 a {
+  @apply hover:underline;
+}
+
+.author {
+  @apply text-sm text-gray-400;
+}
+.author a {
+  @apply hover:underline hover:text-black;
+}
+
+.description {
+  @apply py-2;
+  @apply text-sm text-gray-700;
+}
+
+.tags {
+  @apply text-sm;
+  @apply line-clamp-1;
+}
+
+.tags a {
+  @apply inline-flex;
+  @apply pr-1;
+  @apply text-solana-purple;
+  @apply hover:underline;
+}
+
+/* .inner {
+  @apply py-32;
+  @apply text-white;
+} */

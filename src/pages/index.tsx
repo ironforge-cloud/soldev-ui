@@ -3,6 +3,7 @@ import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
 import HomeCategoryCards from "@/components/home/HomeCategoryCards";
 import HomeResourceCards from "@/components/home/HomeResourceCards";
+import HomeFeaturedContent from "@/components/home/HomeFeaturedContent";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -27,7 +28,9 @@ export default function Page() {
       <HomeCategoryCards className="-mt-24" />
 
       <section className="container">
-        <p>home</p>
+        {/* <p>home</p> */}
+
+        <HomeFeaturedContent />
       </section>
 
       <HomeResourceCards className="" />
