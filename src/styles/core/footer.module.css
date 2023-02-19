@@ -20,7 +20,7 @@
 }
 
 .metaArea {
-  @apply space-y-2;
+  @apply space-y-5;
   @apply col-span-full md:col-span-2;
 }
 

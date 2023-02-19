@@ -49,7 +49,7 @@ export default function AppHeader({ children }: ComponentProps) {
               <Link href={"#"}>Resources</Link>
             </li>
             <li>
-              <Link href={"#"}>Library</Link>
+              <Link href={"/library"}>Library</Link>
             </li>
           </ul>
 

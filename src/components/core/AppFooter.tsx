@@ -63,13 +63,13 @@ function LibraryFooterLinks() {
         <h4>Library</h4>
       </li>
       <li>
-        <Link href={"#"}>Tutorials</Link>
+        <Link href={"/library/tutorials"}>Tutorials</Link>
       </li>
       <li>
-        <Link href={"#"}>Articles</Link>
+        <Link href={"/library/articles"}>Articles</Link>
       </li>
       <li>
-        <Link href={"#"}>Podcasts</Link>
+        <Link href={"/library/podcasts"}>Podcasts</Link>
       </li>
     </ul>
   );
@@ -82,10 +82,10 @@ function UpdatesFooterLinks() {
         <h4>Updates</h4>
       </li>
       <li>
-        <Link href={"#"}>Newsletter</Link>
+        <Link href={"/newsletter"}>Newsletter</Link>
       </li>
       <li>
-        <Link href={"#"}>Changelog</Link>
+        <Link href={"/changelog"}>Changelog</Link>
       </li>
       <li>
         <Link href={"#"}>Dev Call</Link>
@@ -101,19 +101,34 @@ function ResourcesFooterLinks() {
         <h4>Resources</h4>
       </li>
       <li>
-        <Link href={"#"}>IDL</Link>
+        <Link href={"/registry"}>IDL Registry</Link>
       </li>
       <li>
-        <Link href={"#"}>SIMD</Link>
+        <Link href={"/simd"}>SIMD</Link>
       </li>
       <li>
-        <Link href={"#"}>Jobs</Link>
+        <Link
+          target="_blank"
+          href={"https://earn.superteam.fun/opportunities/category/jobs"}
+        >
+          Jobs
+        </Link>
       </li>
       <li>
-        <Link href={"#"}>Bounties</Link>
+        <Link
+          target="_blank"
+          href={"https://earn.superteam.fun/opportunities/category/bounties"}
+        >
+          Bounties
+        </Link>
       </li>
       <li>
-        <Link href={"#"}>Grants</Link>
+        <Link
+          target="_blank"
+          href={"https://earn.superteam.fun/opportunities/category/grants"}
+        >
+          Grants
+        </Link>
       </li>
     </ul>
   );
