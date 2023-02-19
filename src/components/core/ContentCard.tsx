@@ -52,8 +52,8 @@ export default function ContentCard({
         <p className={styles.description}>{description}</p>
 
         <p className={styles.tags}>
-          {tags?.split(",").map((tag) => (
-            <Link href={"#"}>{`#${tag.trim()}`}</Link>
+          {tags?.split(",").map((tag, id) => (
+            <Link key={id} href={"#"}>{`#${tag.trim()}`}</Link>
           ))}
         </p>
       </div>

@@ -41,8 +41,8 @@ export default function Page() {
 
         <p className="max-w-2xl mx-auto text-xl text-gray-300">
           Welcome to the best starting point for Web Developers looking to learn
-          Web3 development. Solana's high speed, low cost, and energy efficieny
-          makes it the ideal network to learn on.
+          Web3 development. Solana&apos;s high speed, low cost, and energy
+          efficieny makes it the ideal network to learn on.
         </p>
       </PageHero>
 
