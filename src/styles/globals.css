@@ -10,7 +10,10 @@ body {
   /* @apply text-lg; */
 }
 .container-inner {
-  @apply md:max-w-6xl md:mx-auto;
+  @apply mx-auto md:max-w-6xl;
+}
+.container-inner-xl {
+  @apply mx-auto xl:max-w-screen-2xl;
 }
 .container {
   @apply container-inner;
@@ -60,6 +63,11 @@ input[type="button"],
 .btn-default {
   @apply text-white;
   @apply border-gray-600 bg-slate-800;
+}
+.btn-light {
+  @apply text-gray-500;
+  @apply hover:text-black;
+  @apply border-gray-300 hover:bg-slate-100;
 }
 
 /*
