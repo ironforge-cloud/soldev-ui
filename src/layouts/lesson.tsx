@@ -24,7 +24,7 @@ export default function LessonLayout({
     <>
       <NextSeo {...seo} />
 
-      <AppHeader withHero={true} />
+      <AppHeader />
 
       <main className={className}>
         <PageHero className="container text-center">

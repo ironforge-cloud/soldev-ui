@@ -14,7 +14,7 @@ const seo: NextSeoProps = {
 
 export default function Page() {
   return (
-    <DefaultLayout seo={seo} withHero={true}>
+    <DefaultLayout seo={seo}>
       <PageHero className="container text-center" heroSize="lg">
         <h1 className="text-6xl tracking-normal">
           Your <span className="gradient-solana">Solana</span> homepage

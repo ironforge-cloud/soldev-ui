@@ -1,23 +1,43 @@
+import styles from "@/styles/core/header.module.css";
+import { useState } from "react";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-
-import styles from "@/styles/core/header.module.css";
-import clsx from "clsx";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 type ComponentProps = {
   children?: React.ReactNode;
-  withHero?: boolean;
 };
 
-export default function AppHeader({ children, withHero }: ComponentProps) {
+export default function AppHeader({ children }: ComponentProps) {
+  const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <header className={styles.header}>
-      <section className={clsx(styles.inner, withHero && styles.withHero)}>
-        <Link href={"/"} className={styles.logoArea}>
-          <Image src={"/logo-light.svg"} alt="Logo" width={124} height={0} />
-        </Link>
+      <section className={styles.inner}>
+        <section
+          className={clsx(
+            styles.staticNav,
+            // navbarOpen && "bg-black",
+          )}
+        >
+          <Link href={"/"} className={styles.logoArea}>
+            <Image src={"/logo-light.svg"} alt="Logo" width={124} height={0} />
+          </Link>
 
-        <section className={styles.primaryArea}>
+          <button
+            onClick={() => setNavbarOpen(!navbarOpen)}
+            className={styles.burger}
+          >
+            {navbarOpen ? <XMarkIcon /> : <Bars3Icon />}
+          </button>
+        </section>
+
+        <nav
+          className={clsx(
+            styles.primaryArea,
+            navbarOpen ? styles.primaryAreaActive : "hidden",
+          )}
+        >
           <ul className={styles.linkArea}>
             <li>
               <Link href={"#"}>Learn</Link>
@@ -33,15 +53,15 @@ export default function AppHeader({ children, withHero }: ComponentProps) {
             </li>
           </ul>
 
-          <section className="flex space-x-2">
+          <section className={styles.form}>
             <form onSubmit={(e) => e.preventDefault()} className="flex">
               {/* <span>icon</span> */}
               <input type="text" name="k" placeholder="Search" />
             </form>
 
-            <button className="btn-default">Submit Content</button>
+            <button className="lg:btn-default">Submit Content</button>
           </section>
-        </section>
+        </nav>
       </section>
     </header>
   );

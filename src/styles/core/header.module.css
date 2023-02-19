@@ -3,38 +3,78 @@
 */
 
 .header {
-  @apply text-gray-400;
-  @apply bg-black bg-no-repeat bg-cover bg-star-sm;
-}
-.withHero {
-  @apply absolute w-full;
-  @apply bg-transparent bg-none !important;
+  @apply absolute z-10 flex flex-wrap items-center justify-between w-full;
+  @apply text-gray-400 bg-transparent bg-none;
 }
 
 .inner {
-  /* @apply grid grid-cols-7 gap-8; */
-  @apply px-8 py-3 space-x-8;
-  @apply flex items-center;
+  @apply flex flex-wrap items-center justify-between w-full mx-auto;
+  /* @apply lg:space-x-8; */
 }
 
-.logoArea {
-  @apply flex-shrink-0 block;
+.staticNav {
+  @apply relative flex justify-between;
+  @apply w-full lg:w-auto lg:static lg:block lg:justify-start;
+  @apply p-5;
 }
+.logoArea {
+  @apply flex-shrink block;
+}
+
+/*
+  Style the burger menu icon
+*/
+.burger {
+  @apply lg:hidden;
+}
+button.burger {
+  @apply p-0;
+}
+.burger svg {
+  @apply w-8 h-8;
+  @apply text-white;
+}
+
+/*
+  Style the primary container for the links and form area
+*/
 .primaryArea {
-  @apply flex justify-between;
-  @apply flex-grow;
+  @apply items-center justify-between flex-grow lg:flex;
+}
+.primaryAreaActive {
+  @apply block;
+  @apply text-black bg-white lg:text-gray-500 lg:bg-transparent;
 }
 
 /*
     Style the links displayed on in the header
 */
 .linkArea {
-  @apply flex items-center;
-  @apply space-x-0;
+  @apply flex flex-col justify-start list-none lg:flex-row;
+}
+.linkArea li > a {
+  @apply block;
+  @apply px-6 py-3;
+  @apply text-lg lg:text-base;
+  @apply hover:text-white;
 }
 
-.linkArea li > a {
-  @apply px-6 py-3;
-  /* @apply text-lg; */
-  @apply hover:text-white;
+/*
+    Style the form area (containing the search box and the submit button)
+*/
+.form {
+  @apply p-5 mt-3 space-y-4 lg:mt-0;
+  @apply lg:space-y-0 lg:space-x-2 lg:flex;
+  @apply border-t border-gray-300 lg:border-0;
+}
+.form > * {
+  @apply w-full lg:w-auto;
+}
+.form button {
+  @apply inline-block text-center;
+  @apply text-white bg-black border-gray-400;
+}
+.form input[type="text"] {
+  @apply w-full lg:w-auto;
+  @apply text-black bg-white border-gray-400;
 }

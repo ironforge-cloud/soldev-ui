@@ -6,20 +6,18 @@ type LayoutProps = {
   children: React.ReactNode;
   seo?: NextSeoProps;
   className?: string;
-  withHero?: boolean;
 };
 
 export default function DefaultLayout({
   children,
   seo,
   className,
-  withHero,
 }: LayoutProps) {
   return (
     <>
       <NextSeo {...seo} />
 
-      <AppHeader withHero={withHero} />
+      <AppHeader />
 
       <main className={className}>{children}</main>
 

@@ -3,8 +3,7 @@
 */
 
 .hero {
-  @apply bg-black;
-  @apply bg-left-bottom bg-no-repeat bg-cover;
+  @apply bg-black bg-left-bottom bg-no-repeat bg-cover !important;
 }
 
 .inner {
