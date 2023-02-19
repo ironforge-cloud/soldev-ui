@@ -1,0 +1,45 @@
+/*
+    Primary styles for the sidebar style layout pages
+*/
+
+.wrapper {
+  @apply grid grid-cols-4 gap-5 mx-auto;
+  /* container-inner-xl */
+}
+
+.largeContainer {
+  @apply min-h-full col-span-3 p-8 space-y-8;
+}
+.smallContainer {
+  @apply min-h-full col-span-1;
+  @apply border-gray-300 divide-y divide-gray-300 border-x;
+}
+
+/* Small RIGHT sidebar, with primary content in the large LEFT side */
+.leftSideLarge {
+  @apply largeContainer;
+  @apply order-1;
+}
+.rightSideSmall {
+  @apply smallContainer;
+  @apply order-2;
+}
+/* Small LEFT sidebar, with primary content in the large RIGHT side */
+.leftSideSmall {
+  @apply smallContainer;
+  @apply order-1;
+}
+.rightSideLarge {
+  @apply largeContainer;
+  @apply order-2;
+}
+
+/*
+  Style the general sections of a sidebar, usually the small sidebar
+*/
+.section {
+  @apply p-8;
+}
+.section h3 {
+  @apply text-lg;
+}

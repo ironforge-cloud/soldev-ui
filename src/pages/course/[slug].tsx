@@ -1,5 +1,6 @@
 import { NextSeoProps } from "next-seo";
 import LessonLayout from "@/layouts/lesson";
+import styles from "@/styles/core/sidebar.module.css";
 
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
@@ -13,8 +14,8 @@ const seo: NextSeoProps = {
 export default function Page() {
   return (
     <LessonLayout seo={seo} title="Reading data from the network" href="#">
-      <section className="grid grid-cols-4 gap-5 mx-auto container-inner-xl">
-        <section className="min-h-full col-span-3 p-8 space-y-8">
+      <section className={styles.wrapper + " container-inner-xl"}>
+        <section className={styles.leftSideLarge}>
           <article>content</article>
 
           <section className="flex w-full space-x-8 font-semibold">
@@ -35,8 +36,8 @@ export default function Page() {
           </section>
         </section>
 
-        <aside className="min-h-full col-span-1 border-l border-gray-300 divide-y divide-gray-300">
-          <div className="p-8">
+        <aside className={styles.rightSideSmall}>
+          <section className={styles.section}>
             <h3>Objectives</h3>
 
             <p className="py-1 text-sm italic text-gray-500">
@@ -56,11 +57,11 @@ export default function Page() {
                 info, etc.)
               </li>
             </ul>
-          </div>
+          </section>
 
-          <div className="p-8">
+          <section className={styles.section}>
             <h3>Progress</h3>
-          </div>
+          </section>
         </aside>
       </section>
     </LessonLayout>
