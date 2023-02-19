@@ -14,6 +14,10 @@
   @apply min-h-full col-span-1;
   @apply border-gray-300 divide-y divide-gray-300 border-x;
 }
+.gridContainer {
+  @apply grid grid-cols-3 gap-6;
+  @apply space-x-0 space-y-0 !important;
+}
 
 /* Small RIGHT sidebar, with primary content in the large LEFT side */
 .leftSideLarge {
@@ -38,8 +42,28 @@
   Style the general sections of a sidebar, usually the small sidebar
 */
 .section {
-  @apply p-8;
+  @apply p-8 space-y-1;
 }
 .section h3 {
+  @apply flex items-center;
   @apply text-lg;
+}
+.section h3 svg {
+  @apply w-4 h-4 ml-2;
+  /* @apply text-gray-500; */
+}
+.minorText {
+  @apply py-1 text-sm italic text-gray-500;
+}
+
+.listing {
+  @apply text-gray-600;
+  @apply pl-8 space-y-1;
+}
+.listing li {
+  @apply flex items-center;
+  @apply space-x-2;
+}
+.listing li input[type="checkbox"] {
+  @apply border border-gray-400 rounded;
 }

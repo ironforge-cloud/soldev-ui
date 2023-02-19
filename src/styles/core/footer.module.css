@@ -5,7 +5,7 @@
 .footer {
   @apply text-gray-400;
   @apply bg-black bg-no-repeat bg-cover bg-star-sm;
-  @apply mt-8;
+  /* @apply mt-8; */
 }
 
 .copyright {

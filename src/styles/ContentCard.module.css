@@ -17,7 +17,7 @@
   @apply relative;
   @apply overflow-hidden rounded-2xl;
   @apply mb-3;
-  @apply max-h-36 md:max-h-32;
+  @apply max-h-40 md:max-h-40;
 }
 .badge {
   @apply absolute right-2 bottom-2;

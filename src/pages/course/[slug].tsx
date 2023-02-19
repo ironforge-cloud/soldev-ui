@@ -40,7 +40,7 @@ export default function Page() {
           <section className={styles.section}>
             <h3>Objectives</h3>
 
-            <p className="py-1 text-sm italic text-gray-500">
+            <p className={styles.minorText}>
               By the end of this lesson, you&apos;ll be able to:
             </p>
 
