@@ -22,19 +22,17 @@ export default function ImageCTACard({
   imageSrc = DEFAULT_IMG_SRC,
 }: ComponentProps) {
   return (
-    <section className={styles.card}>
-      <div className="">
+    <Link href={href} target={isExternal ? "_blank" : ""}>
+      <span className={styles.card}>
         <img src={imageSrc} alt={title} />
-      </div>
-      <div className={styles.metaArea}>
-        <h3>
-          <Link href={href} target={isExternal ? "_blank" : ""}>
+        <span className={styles.metaArea}>
+          <h3>
             {title}
             {isExternal && <ArrowTopRightOnSquareIcon className="w-4 h-4" />}
-          </Link>
-        </h3>
-        <p>{text}</p>
-      </div>
-    </section>
+          </h3>
+          <p>{text}</p>
+        </span>
+      </span>
+    </Link>
   );
 }

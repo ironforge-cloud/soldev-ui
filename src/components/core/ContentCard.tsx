@@ -29,8 +29,10 @@ export default function ContentCard({
   return (
     <section className={styles.card}>
       <div className={styles.image}>
-        {isHot && <span className={styles.badge}>Hot</span>}
-        <img src={imageSrc} alt={title} />
+        <Link href={href}>
+          {isHot && <span className={styles.badge}>Hot</span>}
+          <img src={imageSrc} alt={title} />
+        </Link>
       </div>
 
       <div className={styles.metaArea}>

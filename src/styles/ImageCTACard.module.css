@@ -10,8 +10,9 @@
 
 .card {
   @apply overflow-hidden rounded-2xl;
-  @apply relative;
+  @apply relative block;
   @apply bg-gray-500;
+  /* @apply hover:-mt-5; */
 }
 
 .metaArea {
@@ -21,12 +22,12 @@
 }
 .metaArea h3 {
   @apply text-2xl;
+  @apply flex items-center;
 }
-.metaArea h3 a {
-  @apply inline-flex items-center;
-}
-.metaArea h3 a svg {
-  @apply ml-1;
+/* .metaArea h3 a {
+} */
+.metaArea h3 svg {
+  @apply ml-2;
 }
 .metaArea p {
   @apply text-sm;
