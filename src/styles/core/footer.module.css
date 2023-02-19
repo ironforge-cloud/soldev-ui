@@ -4,7 +4,7 @@
 
 .footer {
   @apply text-gray-400;
-  @apply bg-star-sm;
+  @apply bg-black bg-no-repeat bg-cover bg-star-sm;
   @apply mt-8;
 }
 
@@ -15,18 +15,20 @@
 }
 
 .inner {
-  @apply grid grid-cols-7 gap-8;
+  @apply grid grid-cols-2 p-8 gap-14;
+  @apply md:grid-cols-7 md:gap-8;
 }
 
 .metaArea {
-  @apply col-span-2 space-y-2;
+  @apply space-y-2;
+  @apply col-span-full md:col-span-2;
 }
 
 /*
     Styles for the link listing sections
 */
 .linkArea {
-  @apply space-y-3;
+  @apply col-span-1 space-y-3;
 }
 .linkArea h4 {
   @apply text-xl;

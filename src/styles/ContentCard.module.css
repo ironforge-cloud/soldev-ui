@@ -4,7 +4,9 @@
 */
 
 .container {
-  @apply grid grid-cols-4 gap-5;
+  @apply grid gap-5;
+  @apply md:grid-cols-4;
+  /* @apply p-5; */
 }
 
 .card {
@@ -15,7 +17,7 @@
   @apply relative;
   @apply overflow-hidden rounded-2xl;
   @apply mb-3;
-  @apply max-h-32;
+  @apply max-h-36 md:max-h-32;
 }
 .badge {
   @apply absolute right-2 bottom-2;
