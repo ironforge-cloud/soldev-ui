@@ -1,0 +1,63 @@
+/*
+    Primary styles for the Course Modules and its line items
+*/
+
+.card {
+  @apply border border-transparent;
+}
+
+.moduleHeader {
+  @apply flex w-full py-3 border-b border-gray-300;
+}
+.moduleHeader h2 {
+  @apply px-5 text-2xl;
+}
+
+.moduleNumber {
+  @apply flex-shrink pr-5 text-xl font-light tracking-tight uppercase;
+  @apply border-r border-gray-300;
+}
+
+.moduleListing {
+  @apply space-y-2;
+}
+
+/*
+  Styles for the individual Course Module Items (aka line items)
+*/
+.lineItem {
+  @apply flex items-center;
+  @apply py-5 space-x-5;
+}
+.lessonStatus {
+  @apply cursor-pointer rounded-xl;
+  @apply p-3 text-xl w-14 h-14;
+  @apply flex items-center text-center justify-self-center place-items-center;
+  @apply bg-white border border-gray-300;
+  @apply hover:bg-solana-green hover:text-white hover:border-transparent;
+}
+.lessonStatus span {
+  @apply justify-center mx-auto text-center justify-self-center;
+}
+
+.metaInfo {
+  @apply text-sm;
+  @apply text-gray-500;
+  @apply space-x-3;
+}
+
+.lineItemMetaArea {
+  @apply w-full;
+}
+
+.lineItemMetaArea h3 {
+  @apply text-xl font-normal;
+}
+
+.lineItemMetaArea h3 a {
+  @apply hover:underline;
+  @apply inline-flex items-center w-full;
+}
+.lineItemMetaArea h3 a svg {
+  @apply w-5 h-5 mx-2;
+}

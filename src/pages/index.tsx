@@ -39,6 +39,8 @@ export default function Page() {
           backgroundImage="/img/bg-stars-sm.svg"
         />
 
+        <HomeFeaturedContent className="container" />
+
         <HomeResourceCards className="" />
       </section>
     </DefaultLayout>
