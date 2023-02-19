@@ -10,19 +10,22 @@ export default function HomeResourceCards({ className }: ComponentProps) {
     <section className={`container-inner ${styles.container} ${className}`}>
       <ImageCTACard
         title="Jobs"
-        href="https://superteam.fun"
+        isExternal={true}
+        href="https://earn.superteam.fun/opportunities/category/jobs"
         imageSrc="/img/cta/4.jpg"
         text="By Superteam"
       />
       <ImageCTACard
         title="Bounties"
-        href="https://superteam.fun"
+        isExternal={true}
+        href="https://earn.superteam.fun/opportunities/category/bounties"
         imageSrc="/img/cta/0.jpg"
         text="By Superteam"
       />
       <ImageCTACard
         title="Grants"
-        href="https://superteam.fun"
+        isExternal={true}
+        href="https://earn.superteam.fun/opportunities/category/grants"
         imageSrc="/img/cta/1.jpg"
         text="By Superteam"
       />

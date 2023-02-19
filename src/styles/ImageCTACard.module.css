@@ -22,6 +22,12 @@
 .metaArea h3 {
   @apply text-2xl;
 }
+.metaArea h3 a {
+  @apply inline-flex items-center;
+}
+.metaArea h3 a svg {
+  @apply ml-1;
+}
 .metaArea p {
   @apply text-sm;
 }

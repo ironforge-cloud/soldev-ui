@@ -7,6 +7,6 @@
 }
 
 .inner {
-  @apply py-36;
+  @apply py-32;
   @apply text-white;
 }
