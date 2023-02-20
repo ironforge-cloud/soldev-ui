@@ -3,7 +3,8 @@
 */
 
 .wrapper {
-  @apply grid grid-cols-4 gap-5 mx-auto;
+  @apply grid grid-cols-4 gap-6 mx-auto;
+  @apply space-x-0 space-y-0 !important;
 }
 
 .largeContainer {
