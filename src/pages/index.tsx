@@ -1,16 +1,21 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
+
 import HomeCategoryCards from "@/components/home/HomeCategoryCards";
 import HomeResourceCards from "@/components/home/HomeResourceCards";
-import HomeFeaturedContent from "@/components/home/HomeFeaturedContent";
 import LargeCTACard from "@/components/core/LargeCTACard";
+import FeaturedContentCards from "@/components/core/FeaturedContentCards";
+import ContentCard from "@/components/core/ContentCard";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
   title: undefined,
   description: "",
 };
+
+// this is a temporary variable used to simulate the serverSideProps
+const posts = [0, 0, 0, 0];
 
 export default function Page() {
   return (
@@ -29,7 +34,22 @@ export default function Page() {
       <section className="py-8 space-y-8">
         <HomeCategoryCards className="-mt-24" />
 
-        <HomeFeaturedContent title="Featured" />
+        <FeaturedContentCards title="Featured">
+          {posts.map((post, id) => (
+            <ContentCard
+              key={id}
+              isExternal={true}
+              isHot={true}
+              href="#"
+              title="A Guide to Full Stack Development on Solana"
+              authorLabel="Nader Dabit"
+              authorHref="#"
+              imageSrc="/img/cta/1.jpg"
+              description="Learn how to build end-to-end products on Solana with this tutorial covering React, Anchor, Rust, and Phantom."
+              tags="beginner, web3.js, anchor, solana, beginner, web3.js, anchor"
+            />
+          ))}
+        </FeaturedContentCards>
 
         <LargeCTACard
           title="Changelog"
@@ -39,7 +59,22 @@ export default function Page() {
           backgroundImage="/img/cta/changelog.svg"
         />
 
-        <HomeFeaturedContent title="Latest" />
+        <FeaturedContentCards title="Latest">
+          {posts.map((post, id) => (
+            <ContentCard
+              key={id}
+              isExternal={true}
+              isHot={true}
+              href="#"
+              title="A Guide to Full Stack Development on Solana"
+              authorLabel="Nader Dabit"
+              authorHref="#"
+              imageSrc="/img/cta/1.jpg"
+              description="Learn how to build end-to-end products on Solana with this tutorial covering React, Anchor, Rust, and Phantom."
+              tags="beginner, web3.js, anchor, solana, beginner, web3.js, anchor"
+            />
+          ))}
+        </FeaturedContentCards>
 
         <HomeResourceCards className="" />
       </section>
