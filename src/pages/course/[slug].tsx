@@ -14,7 +14,7 @@ const seo: NextSeoProps = {
 export default function Page() {
   return (
     <LessonLayout seo={seo} title="Reading data from the network" href="#">
-      <section className={styles.wrapper + " container-inner-xl"}>
+      <section className={styles.wrapper + " container-inner"}>
         <section className={styles.leftSideLarge}>
           <article>content</article>
 

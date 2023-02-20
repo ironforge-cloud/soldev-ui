@@ -24,7 +24,7 @@ export default function Page() {
         </p>
       </PageHero>
 
-      <section className={styles.wrapper + " container-inner-xl"}>
+      <section className={styles.wrapper + " container-inner"}>
         <section className={styles.rightSideLarge}>
           <main className={styles.gridContainer}>
             <ContentCard

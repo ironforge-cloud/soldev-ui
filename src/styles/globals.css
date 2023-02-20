@@ -10,10 +10,7 @@ body {
   /* @apply text-lg; */
 }
 .container-inner {
-  @apply mx-auto md:max-w-6xl;
-}
-.container-inner-xl {
-  @apply mx-auto xl:max-w-screen-2xl;
+  @apply mx-auto max-w-7xl;
 }
 .container {
   @apply container-inner;
