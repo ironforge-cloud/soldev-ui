@@ -3,8 +3,10 @@
 */
 
 .wrapper {
-  @apply grid grid-cols-4 gap-6 mx-auto;
+  @apply grid gap-6 mx-auto;
+  @apply sm:grid-cols-2 lg:grid-cols-4;
   @apply space-x-0 space-y-0 !important;
+  @apply justify-center;
 }
 
 .largeContainer {

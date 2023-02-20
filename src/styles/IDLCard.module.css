@@ -1,0 +1,79 @@
+/*
+    Primary styles for the registry's IDL cards and their grid
+*/
+
+.card {
+  @apply border border-slate-200;
+  @apply overflow-hidden rounded-2xl;
+}
+
+/*
+  Style the primary content area
+*/
+.metaArea {
+  @apply space-y-2;
+  @apply p-4;
+}
+.metaArea h4 {
+  @apply text-lg line-clamp-2;
+  @apply leading-tight line-clamp-1;
+  @apply hover:underline;
+}
+
+.heading {
+  @apply flex items-center justify-between;
+}
+
+/*
+  Style the network moniker
+*/
+.network {
+  @apply text-sm;
+  @apply text-solana-purple;
+}
+/* .mainnet{
+  @apply text-solana-green;
+}
+.devnet{
+  @apply text-solana-purple;
+}
+.testnet{
+  @apply text-solana-purple;
+} */
+
+/*
+  Style the action area for the buttons/links
+*/
+.actionArea {
+  @apply grid items-center grid-cols-2;
+  @apply border-t divide-x border-slate-200 divide-slate-200;
+}
+.actionArea a {
+  @apply inline-flex items-center justify-center w-full mx-auto text-center;
+  @apply hover:bg-slate-100;
+  @apply px-4 py-2;
+  /* @apply text-sm; */
+}
+
+.actionArea a svg {
+  @apply flex-shrink-0 w-4 h-4 mx-2;
+}
+
+/*
+  Style the other miscellaneous components
+*/
+.badge {
+  @apply absolute right-2 bottom-2;
+  @apply text-black bg-solana-green;
+  /* @apply text-white bg-solana-purple; */
+  /* @apply text-white bg-red-500; */
+  @apply px-3 py-1 text-xs font-semibold;
+  @apply rounded-lg;
+}
+
+.address {
+  @apply text-sm text-gray-500 break-all;
+}
+.description {
+  @apply text-sm text-gray-700;
+}
