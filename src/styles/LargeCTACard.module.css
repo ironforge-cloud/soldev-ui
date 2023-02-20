@@ -3,18 +3,16 @@
 */
 
 .container {
-  @apply bg-slate-100;
-  @apply px-5 py-10;
+  @apply bg-slate-50;
+  @apply md:px-5 md:py-10;
 }
 
 .inner {
-  @apply overflow-hidden rounded-2xl;
+  @apply overflow-hidden md:rounded-3xl md:shadow-lg;
   @apply mx-auto text-center;
   @apply px-10 py-20 space-y-5 md:py-28;
   @apply text-white;
-  @apply bg-gray-400;
-
-  @apply bg-black bg-no-repeat bg-cover bg-star-sm;
+  @apply bg-black bg-center bg-no-repeat bg-cover bg-star-sm;
 }
 
 .inner h2 {
@@ -22,5 +20,5 @@
 }
 
 .inner p {
-  @apply text-lg;
+  @apply text-xl;
 }

@@ -77,7 +77,8 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-semibold tracking-wide;
+  @apply font-semibold;
+  /* @apply tracking-wide; */
 }
 
 /*
