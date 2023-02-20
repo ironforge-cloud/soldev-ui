@@ -29,7 +29,7 @@ export default function Page() {
       <section className="py-8 space-y-8">
         <HomeCategoryCards className="-mt-24" />
 
-        <HomeFeaturedContent className="container" />
+        <HomeFeaturedContent title="Featured" />
 
         <LargeCTACard
           title="Changelog"
@@ -39,7 +39,7 @@ export default function Page() {
           backgroundImage="/img/cta/changelog.svg"
         />
 
-        <HomeFeaturedContent className="container" />
+        <HomeFeaturedContent title="Latest" />
 
         <HomeResourceCards className="" />
       </section>

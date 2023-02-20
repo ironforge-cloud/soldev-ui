@@ -3,15 +3,20 @@ import ContentCard from "@/components/core/ContentCard";
 
 type ComponentProps = {
   className?: string;
+  title?: string;
 };
 
-export default function HomeFeaturedContent({ className }: ComponentProps) {
+export default function HomeFeaturedContent({
+  className,
+  title = "Featured",
+}: ComponentProps) {
   return (
-    // <section className={`container-inner ${styles.container} ${className}`}>
-    <section className={`space-y-5 px-5 ${className}`}>
-      <h2 className="text-2xl">Featured</h2>
+    <section
+      className={`${styles.scrollContainer} container-inner ${className}`}
+    >
+      <h2 className={styles.heading}>{title}</h2>
 
-      <div className={`${styles.container} py-5 border-t border-gray-200`}>
+      <section className={`${styles.container}`}>
         <ContentCard
           isExternal={true}
           isHot={true}
@@ -54,7 +59,7 @@ export default function HomeFeaturedContent({ className }: ComponentProps) {
           description="Introductory guide for building a smart contract on Solana using a simple escrow program example."
           tags="beginner, web3.js, rust"
         />
-      </div>
+      </section>
     </section>
   );
 }

@@ -17,8 +17,8 @@
 
 .card {
   @apply overflow-hidden rounded-2xl;
+  @apply bg-gray-500 shadow-lg;
   @apply relative block;
-  @apply bg-gray-500;
 
   /* styles for the horizontal scrolling on mobile */
   @apply snap-center snap-mandatory;

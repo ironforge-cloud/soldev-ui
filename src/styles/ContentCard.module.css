@@ -3,14 +3,34 @@
     (e.g. cards in the Library)
 */
 
+.scrollContainer {
+  @apply flex flex-col hide-scroll-bar;
+
+  @apply space-y-4 lg:space-y-8 lg:py-10;
+}
 .container {
-  @apply grid gap-6;
-  @apply md:grid-cols-4;
-  /* @apply p-5; */
+  @apply md:gap-6 md:flex-none md:grid !important;
+  @apply p-5 md:p-0 md:grid-cols-4;
+
+  /* styles for the horizontal scrolling on mobile */
+  @apply snap-mandatory snap-x;
+  @apply flex flex-row space-x-6 md:space-x-0;
+  @apply overflow-x-scroll hide-scroll-bar;
+}
+
+.heading {
+  @apply text-4xl;
+  @apply py-5 mx-5 md:mx-0;
+
+  @apply block border-b border-gray-200;
 }
 
 .card {
-  @apply relative;
+  @apply relative block;
+
+  /* styles for the horizontal scrolling on mobile */
+  @apply snap-center snap-mandatory;
+  @apply flex-shrink-0 md:max-w-full max-w-[80%];
 }
 
 .image {
@@ -77,3 +97,11 @@
   @apply py-32;
   @apply text-white;
 } */
+
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
