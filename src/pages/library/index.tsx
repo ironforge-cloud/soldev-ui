@@ -18,7 +18,7 @@ export default function Page() {
       <PageHero className="container text-center">
         <h1 className="text-6xl tracking-normal">Library</h1>
 
-        <p className="max-w-lg mx-auto text-xl text-gray-300">
+        <p className="max-w-lg mx-auto text-xl">
           Check out the latest and greatest tutorials, articles, podcasts, and
           more.
         </p>

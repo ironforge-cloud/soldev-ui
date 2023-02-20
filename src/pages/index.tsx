@@ -20,7 +20,7 @@ export default function Page() {
           Your <span className="gradient-solana">Solana</span> homepage
         </h1>
 
-        <p className="max-w-lg mx-auto text-xl text-gray-400">
+        <p className="max-w-lg mx-auto text-xl">
           Stay up-to-date with the latest updates, learning, and happenings in
           the Solana ecosystem.
         </p>
