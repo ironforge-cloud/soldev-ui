@@ -21,14 +21,14 @@ export default function Page() {
           <section className="flex w-full space-x-8 font-semibold">
             <Link
               href={"#"}
-              className="inline-flex justify-start w-1/2 space-x-5 btn btn-light"
+              className="justify-start w-1/2 space-x-5  btn btn-lg btn-light"
             >
               <ArrowLeftIcon className="w-5 h-5" />
               <span>Previous lesson</span>
             </Link>
             <Link
               href={"#"}
-              className="inline-flex justify-end w-1/2 space-x-5 btn btn-light"
+              className="justify-end w-1/2 space-x-5 btn-lg btn btn-light"
             >
               <span>Next lesson</span>
               <ArrowRightIcon className="w-5 h-5" />

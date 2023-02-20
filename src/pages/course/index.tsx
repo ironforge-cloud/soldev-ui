@@ -15,7 +15,7 @@ const seo: NextSeoProps = {
 export default function Page() {
   return (
     <DefaultLayout seo={seo}>
-      <PageHero className="container text-center">
+      <PageHero className="container space-y-3 text-center">
         <h1 className="text-6xl tracking-normal">Intro to Solana</h1>
 
         <p className="text-gray-500">
@@ -41,8 +41,8 @@ export default function Page() {
 
         <p className="max-w-2xl mx-auto text-xl ">
           Welcome to the best starting point for Web Developers looking to learn
-          Web3 development. Solana&apos;s high speed, low cost, and energy
-          efficieny makes it the ideal network to learn on.
+          Web3 Development. Solana&apos;s high speed, low cost, and energy
+          efficiency make it the ideal network to learn on.
         </p>
       </PageHero>
 

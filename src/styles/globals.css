@@ -37,34 +37,41 @@ input[type="number"],
 input[type="number"],
 input[type="text"],
 input[type="email"] {
-  @apply bg-black text-brand-light;
   @apply px-5 py-2;
-  @apply border rounded-xl;
-  @apply border-transparent;
-  @apply border-slate-700;
+  @apply border border-transparent rounded-xl;
+  @apply text-white;
+  @apply bg-gray-900 border-gray-800;
 }
 
 button,
 input[type="submit"],
 input[type="button"],
 .btn {
-  @apply flex items-center cursor-pointer;
-  @apply px-5 py-2 rounded-xl;
-  @apply border border-transparent;
+  @apply inline-flex items-center cursor-pointer;
+  @apply px-5 py-2 border border-transparent rounded-xl;
   @apply hover:bg-opacity-80 hover:border-opacity-80;
 }
 .btn-sm {
-  @apply px-3 py-1;
+  @apply px-3 py-1 !important;
+}
+.btn-lg {
+  @apply px-7 py-4 !important;
 }
 
+.btn-dark {
+  @apply text-white;
+  @apply bg-gray-900 border-gray-800;
+  @apply hover:bg-opacity-70;
+}
 .btn-default {
   @apply text-white;
-  @apply border-gray-600 bg-slate-800;
+  @apply bg-gray-800 border-gray-700;
+  /* @apply hover:bg-opacity-70; */
 }
 .btn-light {
   @apply text-gray-500;
   @apply hover:text-black;
-  @apply border-gray-300 hover:bg-slate-100;
+  @apply border-gray-300 hover:bg-slate-50;
 }
 
 /*

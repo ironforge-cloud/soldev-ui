@@ -44,7 +44,7 @@ export default function LessonLayout({
             <Link href={"/course/#hash-routing"} className="btn btn-default">
               Back to course
             </Link>
-            <Link href={"#"} className="btn btn-default">
+            <Link href={"#"} className="btn btn-dark">
               Share on twitter
             </Link>
           </div>
