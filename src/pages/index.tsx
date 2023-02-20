@@ -26,7 +26,7 @@ export default function Page() {
         </p>
       </PageHero>
 
-      <section className="space-y-8">
+      <section className="py-8 space-y-8">
         <HomeCategoryCards className="-mt-24" />
 
         <HomeFeaturedContent className="container" />
