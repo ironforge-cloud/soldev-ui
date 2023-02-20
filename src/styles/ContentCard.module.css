@@ -4,7 +4,7 @@
 */
 
 .container {
-  @apply grid gap-5;
+  @apply grid gap-6;
   @apply md:grid-cols-4;
   /* @apply p-5; */
 }
@@ -17,7 +17,7 @@
   @apply relative;
   @apply overflow-hidden rounded-2xl;
   @apply mb-3;
-  @apply max-h-40 md:max-h-40 min-h-[10em] w-full;
+  @apply max-h-40 md:max-h-40 md:min-h-[10em] w-full;
   @apply border border-slate-200 bg-slate-50;
 }
 .badge {

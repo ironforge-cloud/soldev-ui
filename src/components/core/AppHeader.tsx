@@ -59,16 +59,18 @@ export default function AppHeader({ children }: ComponentProps) {
 
           <section className={styles.form}>
             <form onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor="site_search">
-                <MagnifyingGlassIcon className="w-4 h-4" />
-              </label>
-              <input
-                type="text"
-                id="site_search"
-                name="k"
-                placeholder="Search"
-                className={navbarOpen ? styles.formInput : ""}
-              />
+              <div className="inputWithIcon">
+                <label htmlFor="site_search">
+                  <MagnifyingGlassIcon />
+                </label>
+                <input
+                  type="text"
+                  id="site_search"
+                  name="k"
+                  placeholder="Search"
+                  className={navbarOpen ? styles.formInput : ""}
+                />
+              </div>
             </form>
 
             <button className={navbarOpen ? styles.formButton : "btn-default"}>

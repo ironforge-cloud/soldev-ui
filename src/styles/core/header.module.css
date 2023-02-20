@@ -78,14 +78,3 @@ button.burger {
   @apply w-full lg:w-auto;
   @apply text-black bg-white border-gray-400 !important;
 }
-
-.form form {
-  @apply flex items-center;
-  @apply relative;
-}
-.form form label {
-  @apply absolute left-4;
-}
-.form input[type="text"] {
-  @apply pl-10;
-}

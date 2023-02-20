@@ -42,6 +42,19 @@ input[type="email"] {
   @apply text-white;
   @apply bg-gray-900 border-gray-800;
 }
+.inputWithIcon {
+  @apply flex items-center;
+  @apply relative;
+}
+.inputWithIcon label {
+  @apply absolute left-4;
+}
+.inputWithIcon label svg {
+  @apply w-4 h-4;
+}
+.inputWithIcon input {
+  @apply w-full pl-10;
+}
 
 button,
 input[type="submit"],
