@@ -36,7 +36,7 @@ export default function Page() {
           text="Weekly updates on the Solana ecosystem"
           ctaLabel="Get caught up"
           ctaHref="/changelog"
-          backgroundImage="/img/bg-stars-sm.svg"
+          backgroundImage="/img/cta/changelog.svg"
         />
 
         <HomeFeaturedContent className="container" />

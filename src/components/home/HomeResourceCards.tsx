@@ -12,21 +12,21 @@ export default function HomeResourceCards({ className }: ComponentProps) {
         title="Jobs"
         isExternal={true}
         href="https://earn.superteam.fun/opportunities/category/jobs"
-        imageSrc="/img/cta/4.jpg"
+        imageSrc="/img/cta/jobs.jpg"
         text="By Superteam"
       />
       <ImageCTACard
         title="Bounties"
         isExternal={true}
         href="https://earn.superteam.fun/opportunities/category/bounties"
-        imageSrc="/img/cta/0.jpg"
+        imageSrc="/img/cta/bounties.jpg"
         text="By Superteam"
       />
       <ImageCTACard
         title="Grants"
         isExternal={true}
         href="https://earn.superteam.fun/opportunities/category/grants"
-        imageSrc="/img/cta/1.jpg"
+        imageSrc="/img/cta/grants.jpg"
         text="By Superteam"
       />
     </section>
