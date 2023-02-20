@@ -40,7 +40,12 @@
   @apply leading-tight;
 }
 .metaArea h3 a {
+  @apply flex justify-between w-full;
   @apply hover:underline;
+}
+
+.metaArea h3 a svg {
+  @apply w-5 h-5 ml-1 flex-shrink-0 !important;
 }
 
 .author {

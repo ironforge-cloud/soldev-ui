@@ -1,5 +1,6 @@
 import styles from "@/styles/ContentCard.module.css";
 import Link from "next/link";
+import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 
 const DEFAULT_IMG_SRC = "/img/cta/0.jpg";
 
@@ -13,6 +14,7 @@ type ComponentProps = {
   authorHref?: string;
   tags?: string;
   isHot?: boolean;
+  isExternal?: boolean;
 };
 
 export default function ContentCard({
@@ -25,11 +27,12 @@ export default function ContentCard({
   authorHref,
   tags,
   isHot,
+  isExternal,
 }: ComponentProps) {
   return (
     <section className={styles.card}>
       <div className={styles.image}>
-        <Link href={href}>
+        <Link href={href} target={isExternal ? "_blank" : ""}>
           {isHot && <span className={styles.badge}>Hot</span>}
           <img src={imageSrc} alt={title} />
         </Link>
@@ -37,14 +40,19 @@ export default function ContentCard({
 
       <div className={styles.metaArea}>
         <h3>
-          <Link href={href}>{title}</Link>
+          <Link href={href} target={isExternal ? "_blank" : ""}>
+            {title}
+            {isExternal && <ArrowUpRightIcon />}
+          </Link>
         </h3>
 
         {authorLabel && (
           <p className={styles.author}>
             by{" "}
             {authorHref ? (
-              <Link href={authorHref}>{authorLabel}</Link>
+              <Link href={authorHref} target="_blank">
+                {authorLabel}
+              </Link>
             ) : (
               authorLabel
             )}

@@ -13,6 +13,7 @@ export default function HomeFeaturedContent({ className }: ComponentProps) {
 
       <div className={`${styles.container} py-5 border-t border-gray-200`}>
         <ContentCard
+          isExternal={true}
           isHot={true}
           href="#"
           title="A Guide to Full Stack Development on Solana"
@@ -24,6 +25,7 @@ export default function HomeFeaturedContent({ className }: ComponentProps) {
         />
         <ContentCard
           isHot={true}
+          isExternal={true}
           href="#"
           title="Create a Solana dApp from Scratch"
           authorLabel="@LORISMATIC"

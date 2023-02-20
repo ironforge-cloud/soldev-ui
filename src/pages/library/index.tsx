@@ -28,6 +28,7 @@ export default function Page() {
         <section className={styles.rightSideLarge}>
           <main className={styles.gridContainer}>
             <ContentCard
+              isExternal={true}
               href="#"
               title="A Guide to Full Stack Development on Solana"
               authorLabel="Nader Dabit"
@@ -38,6 +39,7 @@ export default function Page() {
             />
             <ContentCard
               href="#"
+              isExternal={true}
               isHot={true}
               title="Create a Solana dApp from Scratch"
               authorLabel="@LORISMATIC"
