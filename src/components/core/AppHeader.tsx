@@ -3,7 +3,11 @@ import { useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -54,12 +58,22 @@ export default function AppHeader({ children }: ComponentProps) {
           </ul>
 
           <section className={styles.form}>
-            <form onSubmit={(e) => e.preventDefault()} className="flex">
-              {/* <span>icon</span> */}
-              <input type="text" name="k" placeholder="Search" />
+            <form onSubmit={(e) => e.preventDefault()}>
+              <label htmlFor="site_search">
+                <MagnifyingGlassIcon className="w-4 h-4" />
+              </label>
+              <input
+                type="text"
+                id="site_search"
+                name="k"
+                placeholder="Search"
+                className={navbarOpen ? styles.formInput : ""}
+              />
             </form>
 
-            <button className="lg:btn-default">Submit Content</button>
+            <button className={navbarOpen ? styles.formButton : "btn-default"}>
+              Submit Content
+            </button>
           </section>
         </nav>
       </section>
