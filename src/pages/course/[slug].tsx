@@ -36,7 +36,7 @@ export default function Page() {
           </section>
         </section>
 
-        <aside className={styles.rightSideSmall}>
+        <aside className={styles.rightSideSmall + " " + styles.borderLeft}>
           <section className={styles.section}>
             <h3>Objectives</h3>
 

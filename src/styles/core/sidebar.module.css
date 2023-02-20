@@ -11,11 +11,17 @@
 }
 .smallContainer {
   @apply min-h-full col-span-1;
-  @apply border-gray-300 divide-y divide-gray-300 border-x;
+  @apply divide-y divide-gray-300;
 }
 .gridContainer {
   @apply grid grid-cols-3 gap-6;
   @apply space-x-0 space-y-0 !important;
+}
+.borderRight {
+  @apply border-r border-gray-300;
+}
+.borderLeft {
+  @apply border-l border-gray-300;
 }
 
 /* Small RIGHT sidebar, with primary content in the large LEFT side */
