@@ -29,9 +29,9 @@
 .metaArea h3 svg {
   @apply ml-2;
 }
-.metaArea p {
+/* .metaArea p {
   @apply text-sm;
-}
+} */
 
 /* .inner {
   @apply py-32;

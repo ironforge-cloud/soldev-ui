@@ -19,7 +19,9 @@ export default function PageHero({
         heroSize == "lg" ? "bg-star-lg" : "bg-star-sm",
       )}
     >
-      <section className={clsx(styles.inner, className)}>{children}</section>
+      <section className={styles.inner}>
+        <section className={className}>{children}</section>
+      </section>
     </section>
   );
 }

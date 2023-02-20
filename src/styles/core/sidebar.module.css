@@ -7,10 +7,10 @@
 }
 
 .largeContainer {
-  @apply min-h-full col-span-3 p-8 space-y-8;
+  @apply col-span-3 p-8 space-y-8;
 }
 .smallContainer {
-  @apply min-h-full col-span-1;
+  @apply col-span-1;
   @apply divide-y divide-gray-300;
 }
 .gridContainer {
@@ -22,6 +22,11 @@
 }
 .borderLeft {
   @apply border-l border-gray-300;
+}
+.stickySidebar {
+  @apply sticky top-0 !important;
+  /* @apply overflow-y-scroll; */
+  @apply max-h-screen;
 }
 
 /* Small RIGHT sidebar, with primary content in the large LEFT side */

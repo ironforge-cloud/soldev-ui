@@ -15,7 +15,7 @@ const seo: NextSeoProps = {
 export default function Page() {
   return (
     <DefaultLayout seo={seo}>
-      <PageHero className="container text-center">
+      <PageHero className="container">
         <h1 className="text-6xl tracking-normal">Library</h1>
 
         <p className="max-w-lg mx-auto text-xl">
@@ -104,7 +104,7 @@ export default function Page() {
           </main>
         </section>
 
-        <aside className={styles.leftSideSmall}>
+        <aside className={styles.leftSideSmall + " " + styles.stickySidebar}>
           <section className={styles.section}>
             <h3>
               Type
