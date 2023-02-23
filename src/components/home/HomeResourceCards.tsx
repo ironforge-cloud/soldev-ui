@@ -7,8 +7,10 @@ type ComponentProps = {
 
 export default function HomeResourceCards({ className }: ComponentProps) {
   return (
-    <section className={`container-inner ${styles.container} ${className}`}>
-      <section className={styles.scrollContainer}>
+    <section
+      className={`container-inner hide-scroll-bar ${styles.container} ${className}`}
+    >
+      <section className={`${styles.scrollContainer} hide-scroll-bar`}>
         <ImageCTACard
           title="Jobs"
           isExternal={true}

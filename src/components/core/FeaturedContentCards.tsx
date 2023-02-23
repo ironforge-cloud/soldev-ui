@@ -14,7 +14,7 @@ export default function FeaturedContentCards({
 }: ComponentProps) {
   return (
     <section
-      className={`${styles.scrollContainer} container-inner ${className}`}
+      className={`${styles.scrollContainer} hide-scroll-bar container-inner ${className}`}
     >
       {title && <h2 className={styles.heading}>{title}</h2>}
 
