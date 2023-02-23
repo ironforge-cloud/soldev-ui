@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -99,9 +100,7 @@ module.exports = {
         "star-lg": "url('/img/bg-stars-lg.svg')",
       },
       fontFamily: {
-        // sans: ["var(--font-inter)"],
-        display: "var(--font-display)",
-        body: "var(--font-body)",
+        sans: ["var(--font-inter)", ...fontFamily.sans],
       },
       animation: {
         "spin-slow": "spin 3s linear infinite",

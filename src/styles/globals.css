@@ -6,7 +6,7 @@
   Core structure and style
 */
 body {
-  @apply leading-normal tracking-normal font-body;
+  @apply leading-normal tracking-normal;
   /* @apply text-lg; */
 }
 .container-inner {
