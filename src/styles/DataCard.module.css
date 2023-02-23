@@ -16,21 +16,25 @@
 }
 .metaArea h4 {
   @apply text-lg line-clamp-2;
-  @apply leading-tight line-clamp-1;
+  @apply leading-tight;
   @apply hover:underline;
 }
 
 .heading {
-  @apply flex items-center justify-between;
+  @apply flex items-start justify-between;
+}
+
+/*
+  Style the status indicator (e.g. the SIMD status or IDL network)
+*/
+.statusIndicator {
+  @apply text-sm;
+  @apply text-solana-purple;
 }
 
 /*
   Style the network moniker
 */
-.network {
-  @apply text-sm;
-  @apply text-solana-purple;
-}
 /* .mainnet{
   @apply text-solana-green;
 }

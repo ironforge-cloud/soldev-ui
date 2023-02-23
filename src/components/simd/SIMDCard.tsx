@@ -1,22 +1,35 @@
 import styles from "@/styles/DataCard.module.css";
 import Link from "next/link";
-import { ArrowDownTrayIcon, ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowDownTrayIcon,
+  ArrowTopRightOnSquareIcon,
+  ArrowUpOnSquareIcon,
+  ArrowUpRightIcon,
+} from "@heroicons/react/24/solid";
 
 type ComponentProps = {
   className?: string;
+  id: number;
   href: string;
+  githubLink: string;
   title: string;
-  address: string;
-  network: "mainnet" | "testnet" | "devnet";
+  status: "draft";
+  type: "core";
+  date?: string;
+  authors?: string;
   description?: string;
 };
 
-export default function IDLCard({
+export default function SIMDCard({
   className,
-  href,
+  id,
   title,
-  network,
-  address,
+  href,
+  githubLink,
+  authors,
+  date,
+  type,
+  status,
   description,
 }: ComponentProps) {
   return (
@@ -27,19 +40,24 @@ export default function IDLCard({
             <Link href={href}>{title}</Link>
           </h4>
 
-          <span className={styles.statusIndicator + " " + styles[network]}>
-            {network}
+          <span className={styles.statusIndicator + " " + styles[status]}>
+            {status}
           </span>
         </section>
 
-        <p className={styles.address}>{address}</p>
+        <p className={styles.description}>{authors}</p>
+        <p className={styles.description}>
+          <span>{type}</span>
+          <span className="mx-1">&bull;</span>
+          <span>{date}</span>
+        </p>
 
         {/* <p className={styles.description}>{description}</p> */}
       </div>
       <div className={styles.actionArea}>
-        <Link href={"#"}>
-          <ArrowDownTrayIcon />
-          Download
+        <Link href={githubLink}>
+          <ArrowTopRightOnSquareIcon />
+          GitHub
         </Link>
         <Link href={href}>
           Details
