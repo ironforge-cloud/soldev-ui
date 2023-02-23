@@ -1,4 +1,4 @@
-import styles from "@/styles/IDLCard.module.css";
+import styles from "@/styles/DataCard.module.css";
 import Link from "next/link";
 import { ArrowDownTrayIcon, ArrowUpRightIcon } from "@heroicons/react/24/solid";
 

@@ -20,7 +20,7 @@ export default function Page() {
 
         {/* <p className="max-w-lg text-xl">optional minor text</p> */}
 
-        <form onSubmit={(e) => e.preventDefault()} className="max-w-md">
+        <form onSubmit={(e) => e.preventDefault()} className="max-w-md mx-auto">
           <div className="inputWithIcon">
             <label htmlFor="site_search">
               <MagnifyingGlassIcon />

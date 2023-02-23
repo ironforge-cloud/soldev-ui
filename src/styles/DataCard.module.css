@@ -1,5 +1,5 @@
 /*
-    Primary styles for the registry's IDL cards and their grid
+  Styles for the data cards (e.g. IDL and SIMD cards)
 */
 
 .card {
@@ -51,7 +51,7 @@
 .actionArea a {
   @apply inline-flex items-center justify-center w-full mx-auto text-center;
   @apply hover:bg-slate-100;
-  @apply px-4 py-2;
+  @apply px-4 py-3 text-sm;
   /* @apply text-sm; */
 }
 
