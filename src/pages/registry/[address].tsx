@@ -3,6 +3,8 @@ import DefaultLayout from "@/layouts/default";
 import styles from "@/styles/registry.module.css";
 import Link from "next/link";
 
+import dataTableStyles from "@/styles/core/dataTable.module.css";
+
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 import IDLNav from "@/components/registry/IDLNav";
@@ -67,9 +69,9 @@ export default function Page() {
       </section>
 
       <main
-        className={`container-inner ${styles.scrollContainer} hide-scroll-bar`}
+        className={`container-inner ${dataTableStyles.scrollContainer} hide-scroll-bar`}
       >
-        <table className={`${styles.dataTable} hide-scroll-bar`}>
+        <table className={`${dataTableStyles.dataTable} hide-scroll-bar`}>
           <thead>
             <tr>
               <th>Name</th>
@@ -81,7 +83,7 @@ export default function Page() {
             <tr>
               <td>addUri</td>
               <td>
-                <ul className={styles.dataList}>
+                <ul className={dataTableStyles.dataList}>
                   <li>
                     <span>index</span>
                     <span className={`${styles.badge} ${styles.badge}`}>
@@ -97,7 +99,7 @@ export default function Page() {
                 </ul>
               </td>
               <td>
-                <ul className={styles.dataList}>
+                <ul className={dataTableStyles.dataList}>
                   <li>
                     <span>user</span>
                     <span className={styles.badgeRed}>isSigner</span>
