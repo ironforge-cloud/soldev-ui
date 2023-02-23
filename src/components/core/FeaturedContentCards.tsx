@@ -1,5 +1,4 @@
 import styles from "@/styles/ContentCard.module.css";
-import ContentCard from "@/components/core/ContentCard";
 
 type ComponentProps = {
   children?: React.ReactNode;

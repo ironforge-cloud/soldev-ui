@@ -6,32 +6,36 @@
   @apply flex flex-col;
 }
 .scrollContainer {
-  @apply md:gap-6 md:flex-none md:grid !important;
-  @apply p-5 md:p-0 md:grid-cols-3;
+  @apply lg:gap-6 md:flex-none md:grid !important;
+  @apply p-5 xl:p-0 md:grid-cols-3;
 
   /* styles for the horizontal scrolling on mobile */
   @apply snap-mandatory snap-x;
-  @apply flex flex-row space-x-6 md:space-x-0;
-  @apply overflow-x-scroll;
+  @apply flex flex-row space-x-6 lg:space-x-0;
+  @apply overflow-x-scroll md:overflow-auto;
 }
 
 .card {
   @apply overflow-hidden rounded-2xl;
-  @apply bg-gray-500 shadow-lg;
-  @apply relative block;
+  @apply bg-gray-100 shadow-lg;
+  @apply relative block !important;
 
   /* styles for the horizontal scrolling on mobile */
   @apply snap-center snap-mandatory;
-  @apply flex-shrink-0 md:max-w-full max-w-[90%];
+  @apply flex-shrink-0 md:max-w-full max-w-[90%] w-80 md:w-auto;
+}
+.coverImage {
+  @apply object-cover object-center;
+  @apply w-full h-full;
 }
 
 .metaArea {
   @apply absolute bottom-0 left-0 block w-full;
-  @apply px-5 py-5 space-y-2;
+  @apply p-5 space-y-2;
   @apply text-white bg-gray-800 bg-opacity-50;
 }
 .metaArea h3 {
-  @apply text-2xl;
+  @apply text-xl lg:text-2xl;
   @apply flex items-center;
 }
 /* .metaArea h3 a {
@@ -40,7 +44,7 @@
   @apply ml-2;
 }
 .metaArea p {
-  @apply text-sm md:text-base;
+  @apply text-sm lg:text-base;
 }
 
 /* .inner {

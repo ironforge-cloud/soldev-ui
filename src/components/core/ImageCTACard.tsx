@@ -27,7 +27,7 @@ export default function ImageCTACard({
       target={isExternal ? "_blank" : ""}
       className={styles.card}
     >
-      <img src={imageSrc} alt={title} />
+      <img className={styles.coverImage} src={imageSrc} alt={title} />
       <span className={styles.metaArea}>
         <h3>
           {title}

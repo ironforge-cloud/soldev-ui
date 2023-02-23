@@ -3,34 +3,32 @@
     (e.g. cards in the Library)
 */
 
-.scrollContainer {
-  @apply flex flex-col;
-
-  @apply space-y-4 lg:space-y-8 lg:py-10;
-}
-.container {
-  @apply md:gap-6 md:flex-none md:grid !important;
-  @apply p-5 md:p-0 md:grid-cols-4;
-
-  /* styles for the horizontal scrolling on mobile */
-  @apply snap-mandatory snap-x;
-  @apply flex flex-row space-x-6 md:space-x-0;
-  @apply overflow-x-scroll;
-}
-
 .heading {
   @apply text-4xl;
-  @apply py-5 mx-5 md:mx-0;
-
+  @apply py-5 mx-5;
   @apply block border-b border-gray-200;
 }
 
+.scrollContainer {
+  @apply flex flex-col;
+  @apply space-y-4 lg:space-y-8 lg:py-10;
+}
+.container {
+  @apply lg:gap-6 lg:flex-none lg:grid !important;
+  @apply p-5 xl:p-0 lg:grid-cols-4;
+
+  /* styles for the horizontal scrolling on mobile */
+  @apply snap-mandatory snap-x;
+  @apply flex flex-row space-x-6 lg:space-x-0;
+  @apply overflow-x-scroll lg:overflow-auto;
+}
+
 .card {
-  @apply relative block;
+  @apply relative block !important;
 
   /* styles for the horizontal scrolling on mobile */
   @apply snap-center snap-mandatory;
-  @apply flex-shrink-0 md:max-w-full max-w-[80%];
+  @apply flex-shrink-0 lg:max-w-full max-w-[80%] w-80 lg:w-auto;
 }
 
 .image {
@@ -39,6 +37,7 @@
   @apply mb-3;
   @apply max-h-40 md:max-h-40 md:min-h-[10em] w-full;
   @apply border border-slate-200 bg-slate-50;
+  @apply object-cover object-center;
 }
 .badge {
   @apply absolute right-2 bottom-2;
