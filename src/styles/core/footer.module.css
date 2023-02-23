@@ -3,7 +3,7 @@
 */
 
 .footer {
-  @apply text-gray-400;
+  @apply text-white;
   @apply bg-black bg-no-repeat bg-cover bg-star-sm;
   /* @apply mt-8; */
 }
@@ -32,9 +32,9 @@
 }
 .linkArea h4 {
   @apply text-xl;
-  @apply text-white;
+  @apply text-white !important;
 }
 .linkArea a {
-  @apply hover:text-white;
+  @apply text-gray-400 hover:text-white;
   @apply hover:underline;
 }
