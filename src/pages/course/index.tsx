@@ -16,9 +16,9 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
-        <h1 className="text-6xl tracking-normal">Intro to Solana</h1>
+        <h1>Intro to Solana</h1>
 
-        <p className="text-gray-500">
+        <p className="text-base text-gray-500">
           by{" "}
           <Link
             className="underline"
@@ -39,7 +39,7 @@ export default function Page() {
           </Link>
         </p>
 
-        <p className="max-w-2xl mx-auto text-xl ">
+        <p className="max-w-2xl text-xl">
           Welcome to the best starting point for Web Developers looking to learn
           Web3 Development. Solana&apos;s high speed, low cost, and energy
           efficiency make it the ideal network to learn on.

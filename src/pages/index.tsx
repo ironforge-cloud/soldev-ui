@@ -21,11 +21,11 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container py-20" heroSize="lg">
-        <h1 className="text-6xl tracking-normal">
+        <h1>
           Your <span className="gradient-solana">Solana</span> homepage
         </h1>
 
-        <p className="max-w-lg mx-auto text-xl">
+        <p className="max-w-lg text-xl">
           Stay up-to-date with the latest updates, learning, and happenings in
           the Solana ecosystem.
         </p>

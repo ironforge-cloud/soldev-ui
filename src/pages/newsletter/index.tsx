@@ -15,9 +15,9 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
-        <h1 className="text-6xl tracking-normal">Newsletter</h1>
+        <h1>Newsletter</h1>
 
-        <p className="max-w-lg mx-auto text-xl">
+        <p className="max-w-lg text-xl">
           The latest news and updates from the Solana Foundation.
         </p>
       </PageHero>

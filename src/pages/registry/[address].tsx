@@ -27,11 +27,11 @@ export default function Page() {
       <PageHero className="container">
         <h1>{program.title}</h1>
 
-        {/* <p className="max-w-2xl mx-auto text-xl">
+        {/* <p className="max-w-2xl text-xl">
           optional paragraph text
         </p> */}
 
-        <div className="justify-center mx-auto space-x-3 space-y-2 lg:space-y-0 lg:flex">
+        <div className="justify-center space-x-3 space-y-2 lg:space-y-0 lg:flex">
           <Link href={"/registry"} className="btn btn-default">
             {/* <ArrowLeftIcon className="mr-2 icon" /> */}
             Back to IDL Registry

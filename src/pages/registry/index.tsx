@@ -16,11 +16,11 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-8">
-        <h1 className="text-6xl tracking-normal">IDL Registry</h1>
+        <h1>IDL Registry</h1>
 
-        {/* <p className="max-w-lg mx-auto text-xl">optional minor text</p> */}
+        {/* <p className="max-w-lg text-xl">optional minor text</p> */}
 
-        <form onSubmit={(e) => e.preventDefault()} className="max-w-md mx-auto">
+        <form onSubmit={(e) => e.preventDefault()} className="max-w-md">
           <div className="inputWithIcon">
             <label htmlFor="site_search">
               <MagnifyingGlassIcon />

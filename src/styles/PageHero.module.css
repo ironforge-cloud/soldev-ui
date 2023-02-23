@@ -5,10 +5,16 @@
 .hero {
   @apply bg-black bg-center bg-no-repeat bg-cover !important;
 }
+.hero p {
+  @apply mx-auto text-center;
+}
 
 .hero h1 {
   @apply text-6xl tracking-normal;
 }
+/* .hero p {
+  @apply text-xl;
+} */
 
 .inner {
   @apply min-h-[24rem] py-20;

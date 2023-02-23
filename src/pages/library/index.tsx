@@ -16,9 +16,9 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
-        <h1 className="text-6xl tracking-normal">Library</h1>
+        <h1>Library</h1>
 
-        <p className="max-w-lg mx-auto text-xl">
+        <p className="max-w-lg text-xl">
           Check out the latest and greatest tutorials, articles, podcasts, and
           more.
         </p>
