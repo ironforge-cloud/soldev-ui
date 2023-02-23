@@ -20,7 +20,7 @@ export default function CourseModule({
         <h2>{title}</h2>
       </section>
 
-      <section className="">{children}</section>
+      <section className={styles.moduleListing}>{children}</section>
     </section>
   );
 }

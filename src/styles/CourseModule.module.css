@@ -7,27 +7,27 @@
 }
 
 .moduleHeader {
-  @apply flex w-full py-3 border-b border-gray-300;
+  @apply w-full py-3 border-b border-gray-300 md:flex;
+  @apply px-3 space-y-1;
 }
 .moduleHeader h2 {
-  @apply px-5 text-2xl;
+  @apply text-xl md:text-2xl md:px-5;
 }
-
 .moduleNumber {
-  @apply flex-shrink pr-5 text-xl font-light tracking-tight uppercase;
-  @apply border-r border-gray-300;
+  @apply flex-shrink block pr-5 text-base font-light tracking-tight uppercase md:text-xl;
+  @apply text-gray-500 border-gray-300 md:border-r md:text-black;
 }
 
-.moduleListing {
+/* .moduleListing {
   @apply space-y-2;
-}
+} */
 
 /*
   Styles for the individual Course Module Items (aka line items)
 */
 .lineItem {
-  @apply flex items-center;
-  @apply py-5 space-x-5;
+  @apply flex;
+  @apply py-4 space-x-5;
 }
 .lessonStatus {
   @apply cursor-pointer rounded-xl;
@@ -46,17 +46,18 @@
   @apply space-x-3;
 }
 
+/*
+  Style the content area for the info about each lesson
+*/
 .lineItemMetaArea {
-  @apply w-full;
+  @apply w-full space-y-1;
 }
-
 .lineItemMetaArea h3 {
-  @apply text-xl font-normal;
+  @apply text-lg font-normal md:text-xl;
 }
-
 .lineItemMetaArea h3 a {
   @apply hover:underline;
-  @apply inline-flex items-center w-full;
+  @apply flex md:items-center justify-between md:justify-start w-full !important;
 }
 .lineItemMetaArea h3 a svg {
   @apply w-5 h-5 mx-2;

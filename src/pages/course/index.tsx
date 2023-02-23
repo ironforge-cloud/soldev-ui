@@ -46,7 +46,7 @@ export default function Page() {
         </p>
       </PageHero>
 
-      <section className="container">
+      <section className="container max-w-4xl">
         <CourseModule
           moduleNumber={1}
           title={"Client interaction with the Solana Network"}

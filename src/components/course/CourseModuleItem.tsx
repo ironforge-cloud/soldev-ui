@@ -27,8 +27,10 @@ export default function CourseModuleItem({
       <div className={styles.lineItemMetaArea}>
         <h3>
           <Link href={href}>
-            {title}
-            <ArrowUpRightIcon className="text-xl" />
+            <span>{title}</span>
+            <span>
+              <ArrowUpRightIcon />
+            </span>
           </Link>
         </h3>
 
