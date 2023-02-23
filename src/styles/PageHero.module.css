@@ -10,7 +10,7 @@
 }
 
 .hero h1 {
-  @apply text-4xl tracking-normal md:text-6xl;
+  @apply text-5xl tracking-normal md:text-6xl;
 }
 /* .hero p {
   @apply text-xl;
@@ -20,4 +20,14 @@
   @apply min-h-[24rem] pt-20 pb-10 lg:py-20;
   @apply flex items-center justify-center text-center;
   @apply text-white;
+}
+
+.ctaSection {
+  @apply justify-center max-w-xs py-5 mx-auto space-x-0 space-y-2 md:max-w-none md:space-x-3 md:space-y-0 md:flex;
+}
+.ctaSection .ctaBtn {
+  @apply flex justify-center text-center;
+}
+.ctaSection .ctaBtn svg {
+  @apply ml-2;
 }

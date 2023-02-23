@@ -3,6 +3,7 @@ import DefaultLayout from "@/layouts/default";
 import styles from "@/styles/registry.module.css";
 import Link from "next/link";
 
+import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 import IDLNav from "@/components/registry/IDLNav";
 
@@ -33,23 +34,23 @@ export default function Page() {
           optional paragraph text
         </p> */}
 
-        <div className="justify-center py-5 space-x-0 space-y-2 lg:space-x-3 lg:space-y-0 lg:flex">
+        <section className={heroStyles.ctaSection}>
           <Link
             href={"/registry"}
-            className="block btn btn-default lg:inline-block"
+            className={`btn btn-default ${heroStyles.ctaBtn}`}
           >
-            {/* <ArrowLeftIcon className="mr-2 icon" /> */}
+            {/* <ArrowLeftIcon className="icon" /> */}
             Back to IDL Registry
           </Link>
           <Link
             href={`https://explorer.solana.com/address/${program.address}`}
             target="_blank"
-            className="block btn btn-dark lg:inline-block"
+            className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
             View on Solana Explorer
-            {/* <ArrowTopRightOnSquareIcon className="ml-2 icon" /> */}
+            {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>
-        </div>
+        </section>
       </PageHero>
 
       <section className={"container"}>

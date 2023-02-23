@@ -1,8 +1,9 @@
 import { NextSeo, NextSeoProps } from "next-seo";
 import AppHeader from "@/components/core/AppHeader";
 import AppFooter from "@/components/core/AppFooter";
-
 import Link from "next/link";
+
+import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 import {
   ArrowLeftIcon,
@@ -44,19 +45,19 @@ export default function LessonLayout({
             <span>4 minutes</span>
           </p> */}
 
-          <div className="justify-center py-5 space-x-0 space-y-2 lg:space-x-3 lg:space-y-0 lg:flex">
+          <section className={heroStyles.ctaSection}>
             <Link
               href={"/course/#hash-routing"}
-              className="block btn btn-default lg:inline-block"
+              className={`btn btn-default ${heroStyles.ctaBtn}`}
             >
-              {/* <ArrowLeftIcon className="mr-2 icon" /> */}
+              {/* <ArrowLeftIcon className="icon" /> */}
               Back to course
             </Link>
-            <Link href={"#"} className="block btn btn-dark lg:inline-block">
+            <Link href={"#"} className={`btn btn-dark ${heroStyles.ctaBtn}`}>
               Share on twitter
-              {/* <ArrowTopRightOnSquareIcon className="ml-2 icon" /> */}
+              {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
             </Link>
-          </div>
+          </section>
         </PageHero>
 
         {children}
