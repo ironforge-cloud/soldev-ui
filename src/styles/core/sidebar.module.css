@@ -3,18 +3,20 @@
 */
 
 .wrapper {
-  @apply grid gap-6 mx-auto;
+  @apply gap-6 mx-auto lg:grid;
   @apply sm:grid-cols-2 lg:grid-cols-4;
   @apply space-x-0 space-y-0 !important;
   @apply justify-center;
 }
 
 .largeContainer {
-  @apply col-span-3 p-8 space-y-8;
+  @apply p-5 space-y-8 md:p-8 col-span-full md:col-span-3;
+  @apply w-full;
 }
 .smallContainer {
-  @apply col-span-1;
+  @apply col-span-full md:col-span-1;
   @apply divide-y divide-gray-300;
+  @apply block w-full !important;
 }
 .gridContainer {
   @apply grid grid-cols-3 gap-6;
@@ -55,11 +57,11 @@
   Style the general sections of a sidebar, usually the small sidebar
 */
 .section {
-  @apply p-8 space-y-1;
+  @apply w-full p-5 md:p-8 space-y-1 !important;
 }
 .section h3 {
   @apply flex items-center;
-  @apply text-lg;
+  @apply text-xl md:text-lg;
 }
 .section h3 svg {
   @apply w-4 h-4 ml-2;

@@ -3,11 +3,29 @@
   (e.g. course lesson sections, IDL page content, etc)
 */
 
+.mobileOnly {
+  @apply md:hidden !important;
+}
+.desktopOnly {
+  @apply hidden lg:block;
+}
+.activeTab {
+  @apply block;
+}
+.inActiveTab {
+  @apply hidden lg:block;
+}
+
+/*
+  
+*/
 .subnav {
   @apply flex space-x-0;
   @apply border-b border-gray-300;
+  @apply justify-between w-full md:justify-start !important;
 }
-.subnav a {
+.subnav * {
+  @apply block cursor-pointer;
   @apply text-base font-semibold text-gray-600;
   @apply px-6 py-3;
   @apply border-b-2 border-transparent;
@@ -15,6 +33,7 @@
   /* hover/active style*/
   @apply hover:text-violet-600 hover:border-violet-600;
 }
-.subnav a.active {
+.subnav a.active,
+.subnav .activeButton {
   @apply text-violet-600 border-violet-600;
 }

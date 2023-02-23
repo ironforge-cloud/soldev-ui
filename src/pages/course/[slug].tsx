@@ -1,9 +1,13 @@
 import { NextSeoProps } from "next-seo";
 import LessonLayout from "@/layouts/lesson";
 import styles from "@/styles/core/sidebar.module.css";
+import { useState } from "react";
+
+import subnavStyles from "@/styles/core/subnav.module.css";
 
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -11,11 +15,60 @@ const seo: NextSeoProps = {
   description: "",
 };
 
+// define the indexes for the tabbed page sections
+const TABS = {
+  content: 0,
+  objectives: 1,
+  progress: 2,
+};
+
 export default function Page() {
+  const [selectedTab, setSelectedTab] = useState(TABS.content);
+
   return (
     <LessonLayout seo={seo} title="Reading data from the network" href="#">
+      <nav className={clsx(subnavStyles.subnav, subnavStyles.mobileOnly)}>
+        <Link
+          href={"#content"}
+          onClick={() => setSelectedTab(TABS.content)}
+          className={clsx(
+            subnavStyles.item,
+            selectedTab === TABS.content && subnavStyles.activeButton,
+          )}
+        >
+          Content
+        </Link>
+        <Link
+          href={"#objectives"}
+          onClick={() => setSelectedTab(TABS.objectives)}
+          className={clsx(
+            subnavStyles.item,
+            selectedTab === TABS.objectives && subnavStyles.activeButton,
+          )}
+        >
+          Objectives
+        </Link>
+        <Link
+          href={"#progress"}
+          onClick={() => setSelectedTab(TABS.progress)}
+          className={clsx(
+            subnavStyles.item,
+            selectedTab === TABS.progress && subnavStyles.activeButton,
+          )}
+        >
+          Progress
+        </Link>
+      </nav>
+
       <section className={styles.wrapper + " container-inner"}>
-        <section className={styles.leftSideLarge}>
+        <section
+          className={clsx(
+            styles.leftSideLarge,
+            selectedTab === TABS.content
+              ? subnavStyles.activeTab
+              : subnavStyles.inActiveTab,
+          )}
+        >
           <article>content</article>
 
           <section className="grid w-full font-semibold gap-y-4 lg:gap-8 lg:grid-cols-2">
@@ -37,7 +90,14 @@ export default function Page() {
         </section>
 
         <aside className={styles.rightSideSmall + " " + styles.borderLeft}>
-          <section className={styles.section}>
+          <section
+            className={clsx(
+              styles.section,
+              selectedTab === TABS.objectives
+                ? subnavStyles.activeTab
+                : subnavStyles.inActiveTab,
+            )}
+          >
             <h3>Objectives</h3>
 
             <p className={styles.minorText}>
@@ -59,7 +119,14 @@ export default function Page() {
             </ul>
           </section>
 
-          <section className={styles.section}>
+          <section
+            className={clsx(
+              styles.section,
+              selectedTab === TABS.progress
+                ? subnavStyles.activeTab
+                : subnavStyles.inActiveTab,
+            )}
+          >
             <h3>Progress</h3>
           </section>
         </aside>
