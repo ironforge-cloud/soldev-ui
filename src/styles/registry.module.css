@@ -2,23 +2,6 @@
   General styles for the registry and its various components
 */
 
-/**/
-.registryNav {
-  @apply flex space-x-0;
-  @apply border-b border-gray-300;
-}
-.registryNav a {
-  @apply text-base font-semibold text-gray-600;
-  @apply px-6 py-3;
-  @apply border-b-2 border-transparent;
-
-  /* hover/active style*/
-  @apply hover:text-violet-600 hover:border-violet-600;
-}
-.registryNav a.active {
-  @apply text-violet-600 border-violet-600;
-}
-
 /* Style the badges for the attributes and labels (e.g. `isMut`, `isSigner`, etc) */
 .badge {
   @apply px-2 py-0 mx-1 rounded-md;

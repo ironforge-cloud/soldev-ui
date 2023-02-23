@@ -4,6 +4,7 @@ import styles from "@/styles/registry.module.css";
 import Link from "next/link";
 
 import dataTableStyles from "@/styles/core/dataTable.module.css";
+import subnavStyles from "@/styles/core/subnav.module.css";
 
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
@@ -56,8 +57,8 @@ export default function Page() {
       </PageHero>
 
       <section className={"container"}>
-        <nav className={styles.registryNav}>
-          <Link href={"#idl"} className={` ${styles.active}`}>
+        <nav className={subnavStyles.subnav}>
+          <Link href={"#idl"} className={` ${subnavStyles.active}`}>
             IDL
           </Link>
           <Link href={"#accounts-data"} className={``}>

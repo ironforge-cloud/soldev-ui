@@ -1,0 +1,20 @@
+/*
+  Styles for the subnav components, often used for the tabbed navigation on pages
+  (e.g. course lesson sections, IDL page content, etc)
+*/
+
+.subnav {
+  @apply flex space-x-0;
+  @apply border-b border-gray-300;
+}
+.subnav a {
+  @apply text-base font-semibold text-gray-600;
+  @apply px-6 py-3;
+  @apply border-b-2 border-transparent;
+
+  /* hover/active style*/
+  @apply hover:text-violet-600 hover:border-violet-600;
+}
+.subnav a.active {
+  @apply text-violet-600 border-violet-600;
+}
