@@ -104,7 +104,7 @@ export default function Page() {
               By the end of this lesson, you&apos;ll be able to:
             </p>
 
-            <ul className="pl-8 text-sm text-gray-500 list-disc">
+            <ul className="pl-8 text-gray-500 list-disc md:text-sm">
               <li>Explain accounts</li>
               <li>Explain SOL and lamports</li>
               <li>Explain public keys</li>
