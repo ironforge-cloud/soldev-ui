@@ -1,9 +1,7 @@
 import styles from "@/styles/DataCard.module.css";
 import Link from "next/link";
 import {
-  ArrowDownTrayIcon,
   ArrowTopRightOnSquareIcon,
-  ArrowUpOnSquareIcon,
   ArrowUpRightIcon,
 } from "@heroicons/react/24/solid";
 

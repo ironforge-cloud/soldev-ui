@@ -16,10 +16,15 @@
   @apply text-base font-semibold text-left text-gray-600;
 }
 .dataTable thead th {
+  @apply whitespace-nowrap;
   @apply border-b border-b-gray-400 !important;
   @apply px-5 py-3;
   @apply min-w-52;
 }
+.smallTh {
+  @apply min-w-0 w-min whitespace-nowrap !important;
+}
+
 /* .dataTable tbody tr {
   @apply hover:bg-gray-100;
 } */
@@ -33,6 +38,7 @@
 .dataTable tbody td {
   @apply border-b;
   @apply border-gray-300 lg:border-transparent;
+  @apply border-b-gray-300;
 }
 .dataTable tr th:first-child,
 .dataTable tr td:first-child {

@@ -3,14 +3,52 @@ import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
 import Link from "next/link";
 
+import dataTableStyles from "@/styles/core/dataTable.module.css";
+
 import styles from "@/styles/core/sidebar.module.css";
 import SIMDCard from "@/components/simd/SIMDCard";
+import SIMDTableLineItem, {
+  SIMDTableLineItemProps,
+} from "@/components/simd/SIMDTableLineItem";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
   title: "Solana Improvement Docs (SIMD)",
   description: "",
 };
+
+// this is a temporary variable to scaffold the display functionality
+const records: SIMDTableLineItemProps[] = [
+  {
+    id: 0,
+    title: "Lockout Violation Detection",
+    href: "/simd/000-lockout-violation-detection",
+    githubLink:
+      "https://github.com/solana-foundation/solana-improvement-documents/pull/9",
+    authors: [
+      {
+        name: "carllin",
+        link: "https://github.com/carllin",
+      },
+      "ashwinsekar",
+      "wencoding",
+    ],
+    date: "2022-12-12",
+    type: "core",
+    status: "draft",
+  },
+  {
+    id: 1,
+    title: "Solana Proposal Process",
+    href: "/simd/0001-solana-proposal-process",
+    githubLink:
+      "https://github.com/solana-foundation/solana-improvement-documents/blob/main/proposals/0001-simd-process.md",
+    authors: ["Jacob Creech (Solana Foundation)"],
+    date: "2022-10-18",
+    type: "meta",
+    status: "draft",
+  },
+];
 
 export default function Page() {
   return (
@@ -35,7 +73,30 @@ export default function Page() {
         </p>
       </PageHero>
 
-      <main className={styles.wrapper + " container"}>
+      <main
+        className={`container-inner py-8 ${dataTableStyles.scrollContainer} hide-scroll-bar`}
+      >
+        <table className={`${dataTableStyles.dataTable} hide-scroll-bar`}>
+          <thead>
+            <tr>
+              <th className={dataTableStyles.smallTh}>SIMD #</th>
+              <th>Title</th>
+              <th className={dataTableStyles.smallTh}>Type</th>
+              <th className={dataTableStyles.smallTh}>Status</th>
+              <th>Author</th>
+              <th className={dataTableStyles.smallTh}>Created At</th>
+              <th className={dataTableStyles.smallTh}></th>
+            </tr>
+          </thead>
+          <tbody>
+            {records.map((simd, id) => (
+              <SIMDTableLineItem key={id} {...simd} />
+            ))}
+          </tbody>
+        </table>
+      </main>
+
+      {/* <main className={styles.wrapper + " container"}>
         <SIMDCard
           id={0}
           href="/simd/000-lockout-violation-detection"
@@ -46,7 +107,7 @@ export default function Page() {
           status="draft"
           authors="carlin, ashwinsekar, wencoding"
         />
-      </main>
+      </main> */}
     </DefaultLayout>
   );
 }
