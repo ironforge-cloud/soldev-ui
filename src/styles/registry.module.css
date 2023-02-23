@@ -34,19 +34,27 @@
 }
 
 /**/
+.scrollContainer {
+  @apply mb-6 overflow-x-scroll;
+}
+
+/**/
 .dataTable {
   @apply w-full font-mono;
   @apply border-separate border-spacing-0;
+  @apply mx-5 lg:mx-0 lg:px-5;
 }
 .dataTable thead {
-  /* @apply border-b border-gray-400 !important; */
-  @apply font-semibold text-gray-600;
-  @apply text-left;
+  @apply text-base font-semibold text-left text-gray-600;
 }
 .dataTable thead th {
   @apply border-b border-b-gray-400 !important;
   @apply px-5 py-3;
+  @apply min-w-52;
 }
+/* .dataTable tbody tr {
+  @apply hover:bg-gray-100;
+} */
 .dataTable tbody td {
   @apply p-5;
   @apply text-left align-top;

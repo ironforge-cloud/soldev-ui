@@ -112,5 +112,13 @@ h6,
   @apply ;
 } */
 
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
 /* make the utilities last to force their priority when inline */
 @tailwind utilities;

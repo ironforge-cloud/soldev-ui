@@ -60,7 +60,7 @@ export default function Page() {
           </Link>
         </nav>
 
-        <nav className={styles.idlNav}>
+        {/* <nav className={styles.idlNav}>
           <Link href={"#instructions"} className={`btn ${styles.active}`}>
             Instructions
           </Link>
@@ -79,58 +79,59 @@ export default function Page() {
           <Link href={"#events"} className={`btn`}>
             Events
           </Link>
-        </nav>
-
-        <main className="">
-          <section></section>
-          <table className={styles.dataTable}>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Arguments</th>
-                <th>Accounts</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>addUri</td>
-                <td>
-                  <ul className={styles.dataList}>
-                    <li>
-                      <span>index</span>
-                      <span className={`${styles.badge} ${styles.badge}`}>
-                        u16
-                      </span>
-                    </li>
-                    <li>
-                      <span>relativeUri</span>
-                      <span className={`${styles.badge} ${styles.badge}`}>
-                        string
-                      </span>
-                    </li>
-                  </ul>
-                </td>
-                <td>
-                  <ul className={styles.dataList}>
-                    <li>
-                      <span>user</span>
-                      <span className={styles.badgeRed}>isSigner</span>
-                      <span className={styles.badgeGreen}>isMut</span>
-                    </li>
-                    <li>
-                      <span>uris</span>
-                      <span className={styles.badgeBlue}>isMut</span>
-                    </li>
-                    <li>
-                      <span>systemProgram</span>
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </main>
+        </nav> */}
       </section>
+
+      <main
+        className={`container-inner ${styles.scrollContainer} hide-scroll-bar`}
+      >
+        <table className={`${styles.dataTable} hide-scroll-bar`}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Arguments</th>
+              <th>Accounts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>addUri</td>
+              <td>
+                <ul className={styles.dataList}>
+                  <li>
+                    <span>index</span>
+                    <span className={`${styles.badge} ${styles.badge}`}>
+                      u16
+                    </span>
+                  </li>
+                  <li>
+                    <span>relativeUri</span>
+                    <span className={`${styles.badge} ${styles.badge}`}>
+                      string
+                    </span>
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul className={styles.dataList}>
+                  <li>
+                    <span>user</span>
+                    <span className={styles.badgeRed}>isSigner</span>
+                    <span className={styles.badgeGreen}>isMut</span>
+                  </li>
+                  <li>
+                    <span>uris</span>
+                    <span className={styles.badgeBlue}>isMut</span>
+                  </li>
+                  <li>
+                    <span>systemProgram</span>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
     </DefaultLayout>
   );
 }
