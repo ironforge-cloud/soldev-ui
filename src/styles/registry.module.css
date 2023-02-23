@@ -1,0 +1,115 @@
+/*
+  General styles for the registry and its various components
+*/
+
+/**/
+.registryNav {
+  @apply flex space-x-0;
+  @apply border-b border-gray-300;
+}
+.registryNav a {
+  @apply text-base font-semibold text-gray-600;
+  @apply px-6 py-3;
+  @apply border-b-2 border-transparent;
+
+  /* hover/active style*/
+  @apply hover:text-violet-600 hover:border-violet-600;
+}
+.registryNav a.active {
+  @apply text-violet-600 border-violet-600;
+}
+
+/**/
+.idlNav {
+  @apply flex space-x-4;
+}
+.idlNav a {
+  @apply text-base font-semibold text-gray-600;
+
+  /* hover/active style*/
+  @apply hover:text-violet-600 hover:bg-violet-100;
+}
+.idlNav a.active {
+  @apply text-violet-600 bg-violet-100;
+}
+
+/**/
+.dataTable {
+  @apply w-full font-mono;
+  @apply border-separate border-spacing-0;
+}
+.dataTable thead {
+  /* @apply border-b border-gray-400 !important; */
+  @apply font-semibold text-gray-600;
+  @apply text-left;
+}
+.dataTable thead th {
+  @apply border-b border-b-gray-400 !important;
+  @apply px-5 py-3;
+}
+.dataTable tbody td {
+  @apply p-5;
+  @apply text-left align-top;
+}
+
+/* Style the table borders */
+.dataTable thead th,
+.dataTable tbody td {
+  @apply border-b;
+  @apply border-gray-300 lg:border-transparent;
+}
+.dataTable tr th:first-child,
+.dataTable tr td:first-child {
+  /* table left side border */
+  @apply border-l;
+}
+.dataTable tr th:last-child,
+.dataTable tr td:last-child {
+  /* table right side border */
+  @apply border-r;
+}
+.dataTable tr th {
+  @apply border-t;
+}
+/* Style the rounded corners */
+.dataTable tr:first-child th:first-child {
+  @apply rounded-tl-lg;
+}
+.dataTable tr:first-child th:last-child {
+  @apply rounded-tr-lg;
+}
+.dataTable tr:last-child td:first-child {
+  @apply rounded-bl-lg;
+}
+.dataTable tr:last-child td:last-child {
+  @apply rounded-br-lg;
+}
+
+/* Style the listings of IDL data */
+.dataList {
+  @apply space-y-1;
+}
+.dataList li {
+  @apply flex items-center;
+}
+
+/* Style the badges for the attributes and labels (e.g. `isMut`, `isSigner`, etc) */
+.badge {
+  @apply px-2 py-0 mx-1 rounded-md;
+  @apply bg-gray-200;
+}
+.badgeRed {
+  @apply badge;
+  @apply bg-red-300;
+  @apply text-red-800;
+}
+.badgeBlue {
+  @apply badge;
+  @apply bg-blue-300;
+  @apply text-blue-800;
+}
+.badgeGreen {
+  @apply badge;
+  @apply bg-green-200;
+  @apply text-green-800;
+}

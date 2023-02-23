@@ -50,7 +50,7 @@ input[type="email"] {
   @apply absolute left-4;
 }
 .inputWithIcon label svg {
-  @apply w-4 h-4;
+  @apply icon;
 }
 .inputWithIcon input {
   @apply w-full pl-10;
@@ -99,6 +99,10 @@ h6,
 .heading {
   @apply font-semibold;
   /* @apply tracking-wide; */
+}
+
+.icon {
+  @apply w-4 h-4;
 }
 
 /*

@@ -6,6 +6,10 @@
   @apply bg-black bg-center bg-no-repeat bg-cover !important;
 }
 
+.hero h1 {
+  @apply text-6xl tracking-normal;
+}
+
 .inner {
   @apply min-h-[24rem] py-20;
   @apply flex items-center justify-center text-center;

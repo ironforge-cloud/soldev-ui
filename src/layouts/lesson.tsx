@@ -4,6 +4,10 @@ import AppFooter from "@/components/core/AppFooter";
 
 import Link from "next/link";
 import PageHero from "@/components/core/PageHero";
+import {
+  ArrowLeftIcon,
+  ArrowTopRightOnSquareIcon,
+} from "@heroicons/react/24/solid";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -42,10 +46,12 @@ export default function LessonLayout({
 
           <div className="flex justify-center space-x-3">
             <Link href={"/course/#hash-routing"} className="btn btn-default">
+              {/* <ArrowLeftIcon className="mr-2 icon" /> */}
               Back to course
             </Link>
             <Link href={"#"} className="btn btn-dark">
               Share on twitter
+              {/* <ArrowTopRightOnSquareIcon className="ml-2 icon" /> */}
             </Link>
           </div>
         </PageHero>

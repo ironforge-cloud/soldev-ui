@@ -31,7 +31,7 @@ export default function ImageCTACard({
       <span className={styles.metaArea}>
         <h3>
           {title}
-          {isExternal && <ArrowTopRightOnSquareIcon className="w-4 h-4" />}
+          {isExternal && <ArrowTopRightOnSquareIcon className="icon" />}
         </h3>
         <p>{text}</p>
       </span>
