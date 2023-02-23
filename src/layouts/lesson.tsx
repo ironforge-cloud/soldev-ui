@@ -44,12 +44,15 @@ export default function LessonLayout({
             <span>4 minutes</span>
           </p> */}
 
-          <div className="flex justify-center space-x-3">
-            <Link href={"/course/#hash-routing"} className="btn btn-default">
+          <div className="justify-center py-5 space-x-0 space-y-2 lg:space-x-3 lg:space-y-0 lg:flex">
+            <Link
+              href={"/course/#hash-routing"}
+              className="block btn btn-default lg:inline-block"
+            >
               {/* <ArrowLeftIcon className="mr-2 icon" /> */}
               Back to course
             </Link>
-            <Link href={"#"} className="btn btn-dark">
+            <Link href={"#"} className="block btn btn-dark lg:inline-block">
               Share on twitter
               {/* <ArrowTopRightOnSquareIcon className="ml-2 icon" /> */}
             </Link>

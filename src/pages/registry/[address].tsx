@@ -31,15 +31,18 @@ export default function Page() {
           optional paragraph text
         </p> */}
 
-        <div className="justify-center space-x-3 space-y-2 lg:space-y-0 lg:flex">
-          <Link href={"/registry"} className="btn btn-default">
+        <div className="justify-center py-5 space-x-0 space-y-2 lg:space-x-3 lg:space-y-0 lg:flex">
+          <Link
+            href={"/registry"}
+            className="block btn btn-default lg:inline-block"
+          >
             {/* <ArrowLeftIcon className="mr-2 icon" /> */}
             Back to IDL Registry
           </Link>
           <Link
             href={`https://explorer.solana.com/address/${program.address}`}
             target="_blank"
-            className="btn btn-dark"
+            className="block btn btn-dark lg:inline-block"
           >
             View on Solana Explorer
             {/* <ArrowTopRightOnSquareIcon className="ml-2 icon" /> */}

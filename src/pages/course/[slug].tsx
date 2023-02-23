@@ -18,17 +18,17 @@ export default function Page() {
         <section className={styles.leftSideLarge}>
           <article>content</article>
 
-          <section className="flex w-full space-x-8 font-semibold">
+          <section className="grid w-full font-semibold gap-y-4 lg:gap-8 lg:grid-cols-2">
             <Link
               href={"#"}
-              className="justify-start w-1/2 space-x-5  btn btn-lg btn-light"
+              className="flex justify-between order-2 w-full space-x-5 lg:justify-start lg:order-1 btn btn-lg btn-light"
             >
               <ArrowLeftIcon className="w-5 h-5" />
               <span>Previous lesson</span>
             </Link>
             <Link
               href={"#"}
-              className="justify-end w-1/2 space-x-5 btn-lg btn btn-light"
+              className="flex justify-between order-1 w-full space-x-5 lg:justify-end lg:order-2 btn-lg btn btn-light"
             >
               <span>Next lesson</span>
               <ArrowRightIcon className="w-5 h-5" />
