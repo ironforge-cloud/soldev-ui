@@ -39,7 +39,7 @@ export default function Page() {
           </Link>
         </p>
 
-        <p className="max-w-2xl text-xl">
+        <p className="max-w-2xl md:text-xl">
           Welcome to the best starting point for Web Developers looking to learn
           Web3 Development. Solana&apos;s high speed, low cost, and energy
           efficiency make it the ideal network to learn on.

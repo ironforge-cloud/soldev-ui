@@ -25,7 +25,7 @@ export default function Page() {
           Your <span className="gradient-solana">Solana</span> homepage
         </h1>
 
-        <p className="max-w-lg text-xl">
+        <p className="max-w-lg text-lg md:text-xl">
           Stay up-to-date with the latest updates, learning, and happenings in
           the Solana ecosystem.
         </p>
