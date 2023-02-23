@@ -1,9 +1,11 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import styles from "@/styles/registry.module.css";
-
 import Link from "next/link";
+
 import PageHero from "@/components/core/PageHero";
+import IDLNav from "@/components/registry/IDLNav";
+
 import {
   ArrowLeftIcon,
   ArrowTopRightOnSquareIcon,
@@ -60,26 +62,7 @@ export default function Page() {
           </Link>
         </nav>
 
-        {/* <nav className={styles.idlNav}>
-          <Link href={"#instructions"} className={`btn ${styles.active}`}>
-            Instructions
-          </Link>
-          <Link href={"#accounts"} className={`btn`}>
-            Accounts
-          </Link>
-          <Link href={"#types"} className={`btn`}>
-            Types
-          </Link>
-          <Link href={"#errors"} className={`btn`}>
-            Errors
-          </Link>
-          <Link href={"#constants"} className={`btn`}>
-            Constants
-          </Link>
-          <Link href={"#events"} className={`btn`}>
-            Events
-          </Link>
-        </nav> */}
+        <IDLNav />
       </section>
 
       <main

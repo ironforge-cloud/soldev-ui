@@ -20,20 +20,6 @@
 }
 
 /**/
-.idlNav {
-  @apply flex space-x-4;
-}
-.idlNav a {
-  @apply text-base font-semibold text-gray-600;
-
-  /* hover/active style*/
-  @apply hover:text-violet-600 hover:bg-violet-100;
-}
-.idlNav a.active {
-  @apply text-violet-600 bg-violet-100;
-}
-
-/**/
 .scrollContainer {
   @apply mb-6 overflow-x-scroll;
 }
