@@ -5,7 +5,9 @@ import PageHero from "@/components/core/PageHero";
 import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
 import LibraryFilters from "@/components/library/LibraryFilters";
-// import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import { FunnelIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import clsx from "clsx";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -14,6 +16,8 @@ const seo: NextSeoProps = {
 };
 
 export default function Page() {
+  const [showFilters, setShowFilters] = useState(false);
+
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
@@ -26,6 +30,33 @@ export default function Page() {
       </PageHero>
 
       <section className={styles.wrapper + " container-inner"}>
+        <aside
+          className={clsx(
+            styles.leftSideSmall,
+            !showFilters && styles.stickySidebar,
+          )}
+        >
+          <section className="flex justify-end px-6 mt-6 col-span-full lg:hidden">
+            <button
+              className="space-x-2 btn-dark"
+              onClick={() => setShowFilters(!showFilters)}
+            >
+              <FunnelIcon
+                className={clsx("icon", showFilters && "rotate-180")}
+              />
+              <span>Filters</span>
+            </button>
+          </section>
+
+          <div
+            className={showFilters ? styles.floatingMenu : "hidden lg:block"}
+          >
+            <LibraryFilters
+              className={showFilters ? styles.floatingMenuInner : ""}
+            />
+          </div>
+        </aside>
+
         <section className={styles.rightSideLarge}>
           <main className={styles.gridContainer}>
             <ContentCard
@@ -106,10 +137,6 @@ export default function Page() {
             />
           </main>
         </section>
-
-        <aside className={styles.leftSideSmall + " " + styles.stickySidebar}>
-          <LibraryFilters className="" />
-        </aside>
       </section>
     </DefaultLayout>
   );

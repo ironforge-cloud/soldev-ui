@@ -38,7 +38,7 @@ export default function Page() {
           {posts.map((post, id) => (
             <ContentCard
               key={id}
-              className="lg:max-w-full max-w-[80%]"
+              className="lg:max-w-full w-72 max-w-[70%]"
               isExternal={true}
               isHot={true}
               href="#"

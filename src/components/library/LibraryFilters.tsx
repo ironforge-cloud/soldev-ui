@@ -16,11 +16,11 @@ type ComponentProps = {
 
 export default function LibraryFilters({ className }: ComponentProps) {
   return (
-    <>
+    <div className={className}>
       <LibraryFilterItem name="types" label="Type" items={CONTENT_TYPES} />
       <LibraryFilterItem name="levels" label="Level" items={CONTENT_LEVELS} />
       {/* <LibraryFilterItem name="tags" label="Tag" items={CONTENT_TAGS} /> */}
-    </>
+    </div>
   );
 
   // return (

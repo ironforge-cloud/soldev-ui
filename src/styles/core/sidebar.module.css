@@ -6,7 +6,7 @@
   @apply gap-6 mx-auto lg:grid;
   @apply sm:grid-cols-2 lg:grid-cols-4;
   @apply space-x-0 space-y-0 !important;
-  @apply justify-center;
+  @apply relative justify-center;
 }
 
 .largeContainer {
@@ -16,11 +16,11 @@
 .smallContainer {
   @apply col-span-full md:col-span-1;
   @apply divide-gray-300 lg:divide-y;
-  @apply block w-full !important;
+  @apply w-full;
 }
 .gridContainer {
-  @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
-  @apply mx-auto place-items-center lg:place-items-baseline;
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+  @apply mx-auto lg:place-items-baseline;
   @apply space-x-0 space-y-0 !important;
 }
 .borderRight {
@@ -48,6 +48,7 @@
 .leftSideSmall {
   @apply smallContainer;
   @apply order-1;
+  @apply z-10;
 }
 .rightSideLarge {
   @apply largeContainer;
@@ -58,7 +59,7 @@
   Style the general sections of a sidebar, usually the small sidebar
 */
 .section {
-  @apply w-full py-2 px-5 md:p-8 space-y-2 !important;
+  @apply w-full py-2 px-5 lg:p-8 space-y-2 !important;
 }
 .section h3 {
   @apply flex items-center;
@@ -79,4 +80,16 @@
 .listing li {
   @apply flex items-center;
   @apply space-x-2;
+}
+
+.floatingMenu {
+  @apply absolute right-0 z-10 w-full max-w-xs;
+}
+.floatingMenuInner {
+  @apply right-0;
+  @apply rounded-md;
+  @apply min-h-[50vh] max-h-fit;
+  @apply py-4 mx-6 mt-1;
+  @apply text-sm bg-white border border-gray-300 shadow-xl;
+  @apply ring-1 ring-black ring-opacity-5 focus:outline-none;
 }

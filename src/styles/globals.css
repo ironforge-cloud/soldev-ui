@@ -93,7 +93,7 @@ input[type="button"],
 .btn {
   @apply inline-flex items-center cursor-pointer;
   @apply px-5 py-2 border border-transparent rounded-lg;
-  @apply hover:bg-opacity-80 hover:border-opacity-80;
+  @apply hover:bg-opacity-90 hover:border-opacity-80;
 }
 .btn-sm {
   @apply px-3 py-1 !important;
@@ -109,7 +109,7 @@ input[type="button"],
 .btn-dark {
   @apply text-white;
   @apply bg-gray-900 border-gray-800;
-  @apply hover:bg-opacity-70;
+  @apply hover:bg-opacity-95;
 }
 .btn-default {
   @apply text-white;
