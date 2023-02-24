@@ -27,18 +27,29 @@
 */
 .lineItem {
   @apply flex;
-  @apply py-4 space-x-5;
+  @apply p-4 space-x-3 md:space-x-5;
+  @apply rounded-2xl;
+  @apply md:-mx-4;
 }
 .lessonStatus {
   @apply cursor-pointer rounded-xl;
   @apply p-3 text-xl w-14 h-14;
   @apply flex items-center text-center justify-self-center place-items-center;
+  /* style the active state */
   @apply bg-white border border-gray-300;
   @apply hover:bg-solana-green hover:text-white hover:border-transparent;
 }
-.lessonStatus span {
+.lessonStatus span,
+.lessonStatus svg {
   @apply justify-center mx-auto text-center justify-self-center;
 }
+.lessonComplete {
+  @apply p-2 !important;
+  @apply text-white border-transparent bg-solana-green;
+}
+/* .lessonComplete svg {
+  @apply w-5 h-5 !important;
+} */
 
 .metaInfo {
   @apply text-sm;
@@ -53,7 +64,8 @@
   @apply w-full space-y-1;
 }
 .lineItemMetaArea h3 {
-  @apply text-lg font-normal md:text-xl;
+  @apply font-normal;
+  @apply text-lg md:text-xl;
 }
 .lineItemMetaArea h3 a {
   @apply hover:underline;
@@ -61,4 +73,34 @@
 }
 .lineItemMetaArea h3 a svg {
   @apply w-5 h-5 mx-2;
+}
+
+/* Style the small specific line item */
+.lineItemSmall {
+  @apply lineItem;
+  @apply space-x-3;
+
+  /* style the active state for hover */
+  @apply hover:bg-gray-100;
+}
+.lessonActive {
+  @apply bg-gray-100;
+}
+
+.lineItemSmall .metaInfo {
+  @apply text-xs;
+}
+.lineItemSmall .lineItemMetaArea {
+  @apply space-y-0;
+}
+.lineItemSmall .lineItemMetaArea h3 {
+  @apply text-base font-semibold;
+}
+.lineItemSmall .lineItemMetaArea h3 a svg {
+  @apply hidden;
+}
+
+.lineItemSmall .lessonStatus {
+  @apply rounded-lg;
+  @apply w-8 h-8 p-3 text-sm;
 }

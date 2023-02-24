@@ -8,6 +8,7 @@ import subnavStyles from "@/styles/core/subnav.module.css";
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
+import CourseModuleItem from "@/components/course/CourseModuleItem";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -128,6 +129,30 @@ export default function Page() {
             )}
           >
             <h3>Progress</h3>
+
+            <CourseModuleItem
+              isSmall={true}
+              isActive={true}
+              isComplete={true}
+              title="Read data from the network"
+              href="/course/intro-to-reading-data"
+              lessonNumber={1}
+              minuteCounter={2}
+            />
+            <CourseModuleItem
+              isSmall={true}
+              title="Write data to the network"
+              href="/course/intro-to-writing-data"
+              lessonNumber={2}
+              minuteCounter={9}
+            />
+            <CourseModuleItem
+              isSmall={true}
+              title="Interact with wallets"
+              href="/course/interact-with-wallets"
+              lessonNumber={3}
+              minuteCounter={14}
+            />
           </section>
         </aside>
       </section>

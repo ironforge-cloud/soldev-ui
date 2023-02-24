@@ -1,10 +1,14 @@
 import styles from "@/styles/CourseModule.module.css";
 import Link from "next/link";
+import clsx from "clsx";
 
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 type ComponentProps = {
   className?: string;
+  isActive?: boolean;
+  isComplete?: boolean;
+  isSmall?: boolean;
   title: string;
   href: string;
   lessonNumber?: number;
@@ -13,15 +17,32 @@ type ComponentProps = {
 
 export default function CourseModuleItem({
   className,
+  isComplete,
+  isActive,
+  isSmall,
   title,
   href,
   lessonNumber,
   minuteCounter,
 }: ComponentProps) {
   return (
-    <section className={styles.lineItem}>
-      <div className={styles.lessonStatus}>
-        <span>{lessonNumber}</span>
+    <section
+      className={clsx(
+        isSmall ? styles.lineItemSmall : styles.lineItem,
+        isActive && styles.lessonActive,
+      )}
+    >
+      <div
+        className={clsx(
+          styles.lessonStatus,
+          isComplete && styles.lessonComplete,
+        )}
+      >
+        {isComplete ? (
+          <CheckIcon className="w-4 h-4" />
+        ) : (
+          <span>{lessonNumber}</span>
+        )}
       </div>
 
       <div className={styles.lineItemMetaArea}>
