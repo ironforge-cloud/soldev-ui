@@ -20,7 +20,7 @@
 }
 .subnav * {
   @apply block cursor-pointer;
-  @apply text-base text-gray-600 md:font-semibold;
+  @apply text-base text-gray-600;
   @apply px-6 py-5 md:py-3;
   @apply border-b-2 border-transparent;
 

@@ -59,7 +59,7 @@
   Style the general sections of a sidebar, usually the small sidebar
 */
 .section {
-  @apply w-full py-2 px-5 lg:p-8 space-y-2 !important;
+  @apply w-full py-5 px-5 lg:p-8 space-y-2 !important;
 }
 .section h3 {
   @apply flex items-center;
@@ -86,10 +86,11 @@
   @apply absolute right-0 z-10 w-full max-w-xs;
 }
 .floatingMenuInner {
-  @apply right-0;
-  @apply rounded-md;
-  @apply min-h-[50vh] max-h-fit;
-  @apply py-4 mx-6 mt-1;
-  @apply text-sm bg-white border border-gray-300 shadow-xl;
+  @apply max-h-[80vh];
+  @apply py-3 mx-6 mt-1;
+  @apply bg-white border border-gray-300 rounded-md shadow-xl;
   @apply ring-1 ring-black ring-opacity-5 focus:outline-none;
+}
+.floatingMenuInner > * {
+  @apply py-3 !important;
 }

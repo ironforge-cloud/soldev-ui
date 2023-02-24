@@ -81,7 +81,7 @@
   @apply space-x-3;
 
   /* style the active state for hover */
-  @apply hover:bg-gray-100;
+  /* @apply hover:lg:bg-gray-100; */
 }
 .lessonActive {
   @apply bg-gray-100;
