@@ -15,7 +15,7 @@
 }
 .smallContainer {
   @apply col-span-full md:col-span-1;
-  @apply divide-y divide-gray-300;
+  @apply divide-gray-300 lg:divide-y;
   @apply block w-full !important;
 }
 .gridContainer {
@@ -58,7 +58,7 @@
   Style the general sections of a sidebar, usually the small sidebar
 */
 .section {
-  @apply w-full p-5 md:p-8 space-y-2 !important;
+  @apply w-full py-2 px-5 md:p-8 space-y-2 !important;
 }
 .section h3 {
   @apply flex items-center;

@@ -2,14 +2,25 @@
     Constants related to the submitted content of the site
 */
 
-export const CONTENT_LEVELS = [
+export type ContentDropdownType = {
+  label: string;
+  value?: string | number | boolean;
+  href?: string;
+};
+
+export type ContentTagItem = {
+  label: string;
+  options: Array<ContentDropdownType | string>;
+};
+
+export const CONTENT_LEVELS: Array<ContentDropdownType | string> = [
   // { label: "Beginner", value: 6, href: "/#demo" },
   "Beginner",
   "Intermediate",
   "Advanced",
 ];
 
-export const CONTENT_TYPES = [
+export const CONTENT_TYPES: Array<ContentDropdownType | string> = [
   "Tutorials",
   "Projects",
   "Tools",
@@ -23,7 +34,7 @@ export const CONTENT_TYPES = [
   "Security",
 ];
 
-export const CONTENT_TAGS = [
+export const CONTENT_TAGS: Array<ContentTagItem> = [
   {
     label: "Industry",
     options: ["DeFi", "Gaming", "Governance", "Mobile", "Security"],

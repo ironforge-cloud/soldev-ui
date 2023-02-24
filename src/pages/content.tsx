@@ -113,12 +113,23 @@ export default function Page() {
                     <div className="space-y-2" key={catId}>
                       <h5 className="text-sm">{category.label}</h5>
                       <ul className="checklist">
-                        {category.options.map((option, optionId) => (
-                          <li key={optionId}>
-                            <input type="checkbox" name="" id="industry_defi" />
-                            <label htmlFor="industry_defi">{option}</label>
-                          </li>
-                        ))}
+                        {category.options.map((option, optionId) => {
+                          const label =
+                            typeof option == "string" ? option : option.label;
+
+                          return (
+                            <li key={optionId}>
+                              <input
+                                type="checkbox"
+                                name={category.label}
+                                id={`${category.label}_${label}`}
+                              />
+                              <label htmlFor={`${category.label}_${label}`}>
+                                {label}
+                              </label>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   ),

@@ -26,9 +26,12 @@
 */
 .dropdownOptions {
   @apply absolute z-10 w-full overflow-auto rounded-md max-h-60;
-  @apply py-1 mt-1 text-sm border border-transparent;
-  @apply bg-white shadow-lg;
+  @apply py-1 mt-1 text-sm border border-gray-300;
+  @apply bg-white shadow-xl;
   @apply ring-1 ring-black ring-opacity-5 focus:outline-none;
+}
+.dropdownOptionsInline {
+  @apply relative;
 }
 
 /* 
@@ -46,10 +49,10 @@
 }
 .optionInactive {
   @apply option;
-  @apply text-black;
+  @apply text-gray-500;
 }
 .selectedOption {
-  @apply font-medium;
+  @apply font-medium text-black;
 }
 .selectedIcon {
   @apply absolute inset-y-0 left-0 flex items-center pl-3;

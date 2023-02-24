@@ -4,6 +4,7 @@ import PageHero from "@/components/core/PageHero";
 
 import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
+import LibraryFilters from "@/components/library/LibraryFilters";
 // import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 
 // define the on-page seo metadata
@@ -107,40 +108,7 @@ export default function Page() {
         </section>
 
         <aside className={styles.leftSideSmall + " " + styles.stickySidebar}>
-          <section className={styles.section}>
-            <h3>
-              Type
-              {/* <QuestionMarkCircleIcon /> */}
-            </h3>
-
-            {/* <p className={styles.minorText}>Optional minor content</p> */}
-
-            <ul className={styles.listing}>
-              <li>
-                <input type="checkbox" name="" id="type_tutorials" />
-                <label htmlFor="type_tutorials">Tutorials</label>
-              </li>
-            </ul>
-          </section>
-
-          <section className={styles.section}>
-            <h3>Level</h3>
-
-            <ul className={styles.listing}>
-              <li>
-                <input type="checkbox" name="" id="level_beginner" />
-                <label htmlFor="level_beginner">Beginner</label>
-              </li>
-              <li>
-                <input type="checkbox" name="" id="level_intermediate" />
-                <label htmlFor="level_intermediate">Intermediate</label>
-              </li>
-              <li>
-                <input type="checkbox" name="" id="level_advanced" />
-                <label htmlFor="level_advanced">Advanced</label>
-              </li>
-            </ul>
-          </section>
+          <LibraryFilters className="" />
         </aside>
       </section>
     </DefaultLayout>
