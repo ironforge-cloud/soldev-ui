@@ -150,7 +150,7 @@ export default function Page() {
               fit.
             </p>
 
-            <section className="grid grid-cols-4 pt-6">
+            <section className="grid grid-cols-2 gap-6 pt-6 md:grid-cols-4">
               {TAG_LISTING.map(
                 (category, catId) =>
                   category.options?.length > 0 && (

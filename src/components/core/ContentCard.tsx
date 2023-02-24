@@ -30,7 +30,7 @@ export default function ContentCard({
   isExternal,
 }: ComponentProps) {
   return (
-    <section className={styles.card}>
+    <section className={`${styles.card} ${className}`}>
       <div className={styles.image}>
         <Link href={href} target={isExternal ? "_blank" : ""}>
           {isHot && <span className={styles.badge}>Hot</span>}

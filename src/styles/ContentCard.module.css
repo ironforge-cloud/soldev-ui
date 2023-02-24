@@ -28,7 +28,7 @@
 
   /* styles for the horizontal scrolling on mobile */
   @apply snap-center snap-mandatory;
-  @apply flex-shrink-0 lg:max-w-full max-w-[80%] w-80 lg:w-auto;
+  @apply flex-shrink-0 w-80 lg:w-auto;
 }
 
 .image {
