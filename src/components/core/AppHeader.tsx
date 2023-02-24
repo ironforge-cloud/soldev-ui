@@ -68,14 +68,20 @@ export default function AppHeader({ children }: ComponentProps) {
                   id="site_search"
                   name="k"
                   placeholder="Search"
-                  className={navbarOpen ? styles.formInput : ""}
+                  className={navbarOpen ? styles.formInput : "input-dark"}
                 />
               </div>
             </form>
 
-            <button className={navbarOpen ? styles.formButton : "btn-default"}>
+            <Link
+              href={"/content"}
+              className={clsx(
+                "btn",
+                navbarOpen ? styles.formButton : "btn-default",
+              )}
+            >
               Submit Content
-            </button>
+            </Link>
           </section>
         </nav>
       </section>
