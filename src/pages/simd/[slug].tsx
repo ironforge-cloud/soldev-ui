@@ -84,6 +84,7 @@ export default function Page() {
           className={clsx(
             subnavStyles.item,
             selectedTab === TABS.content && subnavStyles.activeButton,
+            // "w-1/2 text-center",
           )}
         >
           Content
@@ -94,6 +95,7 @@ export default function Page() {
           className={clsx(
             subnavStyles.item,
             selectedTab === TABS.details && subnavStyles.activeButton,
+            // "w-1/2 text-center",
           )}
         >
           Details

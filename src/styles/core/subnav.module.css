@@ -22,7 +22,7 @@
 .subnav {
   @apply flex space-x-0;
   @apply border-b border-gray-300;
-  @apply justify-between w-full md:justify-start !important;
+  @apply w-full md:justify-start !important;
 }
 .subnav * {
   @apply block cursor-pointer;
