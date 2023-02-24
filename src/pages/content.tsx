@@ -4,61 +4,17 @@ import PageHero from "@/components/core/PageHero";
 
 import { FormEvent } from "react";
 import Dropdown from "@/components/core/Dropdown";
+import {
+  CONTENT_LEVELS,
+  CONTENT_TYPES,
+  CONTENT_TAGS,
+} from "@/lib/constants/content";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
   title: "Submit",
   description: "",
 };
-
-// define the allowed listing of selectable items in the form
-const CONTENT_LEVELS = [
-  // { label: "Beginner", value: 6, href: "/#demo" },
-  "Beginner",
-  "Intermediate",
-  "Advanced",
-];
-const CONTENT_TYPES = [
-  "Tutorials",
-  "Projects",
-  "Tools",
-  "SPL",
-  "Articles",
-  "SDK",
-  "Implementations",
-  "Threads",
-  "Podcasts",
-  "Scaffolds",
-  "Security",
-];
-const TAG_LISTING = [
-  {
-    label: "Industry",
-    options: ["DeFi", "Gaming", "Governance", "Mobile", "Security"],
-  },
-  {
-    label: "Protocol",
-    options: ["Serum", "OpenBook", "Metaplex", "Arweave", "SolanaPay"],
-  },
-  {
-    label: "Framework",
-    options: ["Anchor", "Web3.js", "React.js", "Svelte", "Vue.js", "Seahorse"],
-  },
-  {
-    label: "Language",
-    options: [
-      "Rust",
-      "JavaScript",
-      "C#",
-      "Golang",
-      "Python",
-      "Java",
-      "Swift",
-      "CLI/Shell",
-      "Kotlin",
-    ],
-  },
-];
 
 export default function Page() {
   // function to handle form submit
@@ -151,7 +107,7 @@ export default function Page() {
             </p>
 
             <section className="grid grid-cols-2 gap-6 pt-6 md:grid-cols-4">
-              {TAG_LISTING.map(
+              {CONTENT_TAGS.map(
                 (category, catId) =>
                   category.options?.length > 0 && (
                     <div className="space-y-2" key={catId}>
