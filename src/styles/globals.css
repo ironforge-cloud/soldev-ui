@@ -32,15 +32,46 @@ body {
 /*
   Form elements
 */
+.form-item {
+  @apply space-y-1;
+}
+.form-item label {
+  @apply block text-lg font-semibold text-gray-700;
+}
+.form-item .input {
+  @apply block w-full;
+}
+
+.form-item .checklist {
+  /* @apply mx-4; */
+  @apply space-y-2;
+}
+.form-item .checklist li {
+  @apply flex items-center space-x-2;
+}
+.form-item .checklist label {
+  @apply text-sm;
+  @apply font-normal !important;
+}
+
+input[type="checkbox"] {
+  @apply border border-gray-300 rounded;
+}
+
+.input,
 textarea,
 input[type="number"],
 input[type="number"],
 input[type="text"],
+input[type="url"],
 input[type="email"] {
   @apply px-5 py-2;
-  @apply border border-transparent rounded-xl;
-  @apply text-white;
-  @apply bg-gray-900 border-gray-800;
+  @apply border border-transparent rounded-lg;
+  /* @apply text-white bg-gray-900 border-gray-800; */
+  @apply text-black bg-white border-gray-300;
+}
+.input-dark {
+  @apply text-white bg-gray-900 border-gray-800 !important;
 }
 .inputWithIcon {
   @apply flex items-center;
@@ -61,7 +92,7 @@ input[type="submit"],
 input[type="button"],
 .btn {
   @apply inline-flex items-center cursor-pointer;
-  @apply px-5 py-2 border border-transparent rounded-xl;
+  @apply px-5 py-2 border border-transparent rounded-lg;
   @apply hover:bg-opacity-80 hover:border-opacity-80;
 }
 .btn-sm {
@@ -71,6 +102,10 @@ input[type="button"],
   @apply px-7 py-4 !important;
 }
 
+.btn-outline {
+  @apply text-black border-gray-500;
+  @apply hover:bg-opacity-70;
+}
 .btn-dark {
   @apply text-white;
   @apply bg-gray-900 border-gray-800;
@@ -114,12 +149,16 @@ h6,
   @apply w-8 h-8;
 }
 
-/*
-  These will likely be moved from this file
-*/
-/* .tag{
-  @apply ;
-} */
+.mobile-only {
+  @apply md:hidden !important;
+}
+.desktop-only {
+  @apply hidden lg:block;
+}
+
+.minor-text {
+  @apply text-sm text-gray-400;
+}
 
 .hide-scroll-bar {
   -ms-overflow-style: none;

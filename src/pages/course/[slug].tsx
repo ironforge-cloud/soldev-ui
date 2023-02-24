@@ -29,7 +29,7 @@ export default function Page() {
 
   return (
     <LessonLayout seo={seo} title="Reading data from the network" href="#">
-      <nav className={clsx(subnavStyles.subnav, subnavStyles.mobileOnly)}>
+      <nav className={clsx(subnavStyles.subnav, "mobile-only")}>
         <Link
           href={"#content"}
           onClick={() => setSelectedTab(TABS.content)}

@@ -3,12 +3,6 @@
   (e.g. course lesson sections, IDL page content, etc)
 */
 
-.mobileOnly {
-  @apply md:hidden !important;
-}
-.desktopOnly {
-  @apply hidden lg:block;
-}
 .activeTab {
   @apply block;
 }

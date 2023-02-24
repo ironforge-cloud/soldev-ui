@@ -1,0 +1,61 @@
+/*
+  Style the dropdown style select component (aka @headlessui listbox)
+*/
+
+.container {
+  @apply relative block mt-1;
+}
+
+.actionButton {
+  @apply relative w-full text-sm text-left rounded-lg cursor-pointer;
+  @apply px-5 py-3 pr-10;
+  @apply bg-white border border-gray-300;
+}
+.actionButton .actionLabel {
+  @apply block truncate;
+}
+.actionButton .actionIcon {
+  @apply absolute inset-y-0 flex items-center pr-3 pointer-events-none right-1;
+}
+.actionButton .actionIcon svg {
+  @apply w-5 h-5 text-gray-600;
+}
+
+/*
+  Style the dropdown options listing and its children
+*/
+.dropdownOptions {
+  @apply absolute w-full overflow-auto rounded-md max-h-60;
+  @apply py-1 mt-1 text-sm border border-transparent;
+  @apply bg-white shadow-lg;
+  @apply ring-1 ring-black ring-opacity-5 focus:outline-none;
+}
+
+/* 
+  Style the individual option item within the dropdown listing
+*/
+.option {
+  @apply relative py-2 pl-10 pr-4 cursor-pointer select-none;
+  @apply block text-base truncate;
+  @apply text-gray-600;
+}
+.optionActive {
+  @apply option;
+  @apply text-black bg-gray-100;
+  /* @apply bg-violet-100 text-violet-600; */
+}
+.optionInactive {
+  @apply option;
+  @apply text-black;
+}
+.selectedOption {
+  @apply font-medium;
+}
+.selectedIcon {
+  @apply absolute inset-y-0 left-0 flex items-center pl-3;
+  @apply text-black;
+  /* @apply text-violet-600; */
+}
+.selectedIcon svg {
+  @apply w-5 h-5;
+}

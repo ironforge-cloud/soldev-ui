@@ -72,7 +72,7 @@ export default function Page() {
         </section>
       </PageHero>
 
-      <nav className={clsx(subnavStyles.subnav, subnavStyles.mobileOnly)}>
+      <nav className={clsx(subnavStyles.subnav, "mobile-only")}>
         <Link
           href={"#content"}
           onClick={() => setSelectedTab(TABS.content)}
