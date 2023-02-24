@@ -25,7 +25,7 @@
   Style the dropdown options listing and its children
 */
 .dropdownOptions {
-  @apply absolute w-full overflow-auto rounded-md max-h-60;
+  @apply absolute z-10 w-full overflow-auto rounded-md max-h-60;
   @apply py-1 mt-1 text-sm border border-transparent;
   @apply bg-white shadow-lg;
   @apply ring-1 ring-black ring-opacity-5 focus:outline-none;

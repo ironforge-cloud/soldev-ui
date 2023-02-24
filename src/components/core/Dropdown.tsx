@@ -7,10 +7,13 @@ import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 type DropdownOption = {
   label: string;
+  value?: string | number | boolean;
+  href?: string;
 };
 
 type ComponentProps = {
   className?: string;
+  name?: string | undefined;
   items: Array<DropdownOption | string>;
   defaultIndex?: number;
 };
@@ -19,11 +22,12 @@ export default function Dropdown({
   className,
   items,
   defaultIndex = 0,
+  name,
 }: ComponentProps) {
   const [selected, setSelected] = useState(items[defaultIndex]);
 
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={selected} onChange={setSelected} name={name || undefined}>
       <div className={`${styles.container} ${className}`}>
         <Listbox.Button className={styles.actionButton}>
           <span className={styles.actionLabel}>
@@ -47,18 +51,30 @@ export default function Dropdown({
                 className={({ active }) =>
                   active ? styles.optionActive : styles.optionInactive
                 }
-                value={item}
+                value={
+                  typeof item != "string" ? item?.value || item.label : item
+                }
               >
                 {({ selected }) => (
                   <>
-                    <span className={selected ? styles.selectedOption : ""}>
-                      {typeof item != "string" ? item.label : item}
-                    </span>
-                    {selected ? (
-                      <span className={styles.selectedIcon}>
-                        <CheckIcon aria-hidden="true" />
-                      </span>
-                    ) : null}
+                    {typeof item != "string" && item?.href ? (
+                      <Link href={item.href}>
+                        <span className={selected ? styles.selectedOption : ""}>
+                          {typeof item != "string" ? item.label : item}
+                        </span>
+                      </Link>
+                    ) : (
+                      <>
+                        <span className={selected ? styles.selectedOption : ""}>
+                          {typeof item != "string" ? item.label : item}
+                        </span>
+                        {selected ? (
+                          <span className={styles.selectedIcon}>
+                            <CheckIcon aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
                   </>
                 )}
               </Listbox.Option>
