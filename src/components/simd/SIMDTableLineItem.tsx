@@ -49,7 +49,7 @@ export default function SIMDTableLineItem({
       <td>
         <ul className={dataTableStyles.dataList}>
           {authors?.map((author, id) => (
-            <AuthorLineItem key={id} author={author} />
+            <SIMDAuthorLineItem key={id} author={author} />
           )) || <li>no authors found</li>}
         </ul>
       </td>
@@ -73,7 +73,11 @@ export default function SIMDTableLineItem({
   );
 }
 
-function AuthorLineItem({ author }: { author: string | AuthorDetails }) {
+export function SIMDAuthorLineItem({
+  author,
+}: {
+  author: string | AuthorDetails;
+}) {
   if (typeof author == "object")
     return (
       <li>
