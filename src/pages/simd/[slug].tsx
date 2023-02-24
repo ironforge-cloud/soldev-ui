@@ -11,6 +11,7 @@ import PageHero from "@/components/core/PageHero";
 import subnavStyles from "@/styles/core/subnav.module.css";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
+import NextPrevButtons from "@/components/core/NextPrevButtons";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -113,22 +114,12 @@ export default function Page() {
         >
           <article>content</article>
 
-          <section className="grid w-full font-semibold gap-y-4 lg:gap-8 lg:grid-cols-2">
-            <Link
-              href={"#"}
-              className="flex justify-between order-2 w-full space-x-5 lg:justify-start lg:order-1 btn btn-lg btn-light"
-            >
-              <ArrowLeftIcon className="w-5 h-5" />
-              <span>Previous SIMD</span>
-            </Link>
-            <Link
-              href={"#"}
-              className="flex justify-between order-1 w-full space-x-5 lg:justify-end lg:order-2 btn-lg btn btn-light"
-            >
-              <span>Next SIMD</span>
-              <ArrowRightIcon className="w-5 h-5" />
-            </Link>
-          </section>
+          <NextPrevButtons
+            nextHref="#"
+            prevHref="#"
+            nextLabel="Next SIMD"
+            prevLabel="Previous SIMD"
+          />
         </section>
 
         <aside className={styles.rightSideSmall + " " + styles.borderLeft}>
