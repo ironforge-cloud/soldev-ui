@@ -44,6 +44,7 @@ button.burger {
 .primaryAreaActive {
   @apply block;
   @apply text-black bg-white lg:text-gray-500 lg:bg-transparent;
+  @apply border-b shadow-lg lg:shadow-none lg:border-b-transparent;
 }
 
 /*
