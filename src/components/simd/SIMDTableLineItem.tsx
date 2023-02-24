@@ -87,7 +87,7 @@ export function SIMDAuthorLineItem({
           className="inline-flex hover:underline"
         >
           {author.name}
-          <ArrowTopRightOnSquareIcon className="mx-2 icon" />
+          <ArrowTopRightOnSquareIcon className="mx-1 icon-sm" />
         </Link>
       </li>
     );
