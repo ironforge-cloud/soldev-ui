@@ -57,12 +57,6 @@ export default function Page() {
           </Link>
         </h1>
 
-        {/* <p className="max-w-2xl space-x-3 text-base text-gray-500">
-            <span>Lesson 1</span>
-            <span>&bull;</span>
-            <span>4 minutes</span>
-          </p> */}
-
         <section className={heroStyles.ctaSection}>
           <Link
             href={"/simd"}

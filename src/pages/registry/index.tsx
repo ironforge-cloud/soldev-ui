@@ -35,7 +35,7 @@ export default function Page() {
         </form>
       </PageHero>
 
-      <main className={styles.wrapper + " container"}>
+      <main className={styles.wrapper + " container grid"}>
         <IDLCard
           href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
           title="jet_staking"

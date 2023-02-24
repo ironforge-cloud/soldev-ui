@@ -8,7 +8,7 @@
 }
 
 .dataTable {
-  @apply w-full font-mono;
+  @apply w-full;
   @apply border-separate border-spacing-0;
   @apply mx-5 lg:mx-0 lg:px-5;
 }
@@ -34,6 +34,9 @@
 }
 
 /* Style the table borders */
+.dataTable tbody tr:last-of-type td {
+  @apply lg:border-b-transparent;
+}
 .dataTable thead th,
 .dataTable tbody td {
   @apply border-b;

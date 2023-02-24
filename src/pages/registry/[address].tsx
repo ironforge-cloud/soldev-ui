@@ -72,7 +72,9 @@ export default function Page() {
       <main
         className={`container-inner ${dataTableStyles.scrollContainer} hide-scroll-bar`}
       >
-        <table className={`${dataTableStyles.dataTable} hide-scroll-bar`}>
+        <table
+          className={`${dataTableStyles.dataTable} font-mono hide-scroll-bar`}
+        >
           <thead>
             <tr>
               <th>Name</th>
