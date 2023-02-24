@@ -19,8 +19,8 @@
   @apply block w-full !important;
 }
 .gridContainer {
-  @apply grid gap-6 lg:grid-cols-3;
-  @apply mx-auto place-items-center md:place-items-baseline;
+  @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
+  @apply mx-auto place-items-center lg:place-items-baseline;
   @apply space-x-0 space-y-0 !important;
 }
 .borderRight {

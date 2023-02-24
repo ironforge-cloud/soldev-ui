@@ -54,10 +54,10 @@ export default function LibraryFilterItem({
         selected={selectedItems}
         checkedState={checkedState}
         handleCheckChange={handleCheckChange}
-        className="mobile-only"
+        className="lg:hidden"
       />
 
-      <ul className={`${styles.listing} desktop-only`}>
+      <ul className={`${styles.listing} hidden lg:block`}>
         {items.map((item, id) => {
           const label = typeof item == "string" ? item : item?.label;
           return (

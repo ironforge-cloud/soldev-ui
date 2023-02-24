@@ -150,7 +150,7 @@ h6,
 }
 
 .mobile-only {
-  @apply md:hidden !important;
+  @apply lg:hidden !important;
 }
 .desktop-only {
   @apply hidden lg:block;

@@ -3,7 +3,7 @@
 */
 
 .container {
-  @apply relative block mt-1;
+  @apply relative mt-1;
 }
 
 .actionButton {
