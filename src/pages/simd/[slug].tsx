@@ -10,8 +10,13 @@ import PageHero from "@/components/core/PageHero";
 
 import subnavStyles from "@/styles/core/subnav.module.css";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+
 import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
+import { fetchAllSIMD } from "@/utils/fetch-simd";
+import { computeSlugForSIMD } from "@/utils/helpers";
+import { fetchRaw } from "@/utils/fetch-github";
+import markdownToHtml from "@/utils/markdownToHtml";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -25,35 +30,73 @@ const TABS = {
   details: 1,
 };
 
-// this is a temporary data record to simulate getServerSideProps
-const simd = {
-  id: 0,
-  title: "Lockout Violation Detection",
-  href: "/simd/000-lockout-violation-detection",
-  githubLink:
-    "https://github.com/solana-foundation/solana-improvement-documents/pull/9",
-  authors: [
-    {
-      name: "carllin",
-      link: "https://github.com/carllin",
-    },
-    "ashwinsekar",
-    "wencoding",
-  ],
-  date: "2022-12-12",
-  type: "core",
-  status: "draft",
+export async function getStaticPaths() {
+  const records = await fetchAllSIMD();
+
+  // filter out SIMD files in incorrect format (missing title or simd number)
+  const paths = records
+    .filter((item) => item.metadata.title && item.metadata.simd)
+    .map((item) => ({
+      params: {
+        slug: computeSlugForSIMD(item),
+      },
+    }));
+
+  return { paths, fallback: false };
+}
+
+type StaticProps = {
+  params: { slug: string };
 };
 
-export default function Page() {
+export async function getStaticProps({ params: { slug } }: StaticProps) {
+  // fetch all the SIMD records from GitHub
+  const records = await fetchAllSIMD();
+
+  // located the desired record by the `slug`
+  const record = records.find(
+    (item) => item.metadata.simd && computeSlugForSIMD(item) === slug,
+  );
+
+  // handle the 404 when no record was found
+  if (!record) return { notFound: true };
+
+  // fetching markdown and getting rid of document metadata
+  record.content = await fetchRaw(record.download_url[0])
+    .then((res) => res.replace(/^---[\s\S]*?---/m, "").trim())
+    .then(async (markdown) => await markdownToHtml(markdown));
+
+  // define the on-page seo metadata
+  const seo: NextSeoProps = {
+    title: `SIMD-${record.metadata.simd} - ${record.metadata.title}`,
+    // description: record.metadata.title,
+  };
+  // TODO: craft a useful seo description based on the record's data
+  // TODO: determine the next and prev items
+
+  return {
+    props: {
+      record,
+      seo,
+    },
+    revalidate: 300,
+  };
+}
+
+type PageProps = {
+  record: ParsedGitHubPullContent;
+  seo: NextSeoProps;
+};
+
+export default function Page({ record, seo }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container text-center">
         <h1>
-          <Link href={simd.href} className="hover:underline">
-            {simd.title}
+          <Link href={record.metadata.href || "#"} className="hover:underline">
+            {record.metadata.title}
           </Link>
         </h1>
 
@@ -97,7 +140,7 @@ export default function Page() {
         </Link>
       </nav>
 
-      <section className={styles.wrapper + " container-inner"}>
+      <section className={clsx(styles.wrapper, "container-inner")}>
         <section
           className={clsx(
             styles.leftSideLarge,
@@ -106,7 +149,12 @@ export default function Page() {
               : subnavStyles.inActiveTab,
           )}
         >
-          <article>content</article>
+          <article
+            className="prose"
+            dangerouslySetInnerHTML={{
+              __html: record?.content || "[unable to fetch SIMD proposal]",
+            }}
+          ></article>
 
           <NextPrevButtons
             nextHref="#"
@@ -116,7 +164,13 @@ export default function Page() {
           />
         </section>
 
-        <aside className={styles.rightSideSmall + " " + styles.borderLeft}>
+        <aside
+          className={clsx(
+            styles.rightSideSmall,
+            styles.stickySidebar,
+            styles.borderLeft,
+          )}
+        >
           <section
             className={clsx(
               styles.section,
@@ -131,20 +185,22 @@ export default function Page() {
 
             <ul className="text-gray-500 md:text-sm">
               <li>
-                SIMD: #<span>{simd.id}</span>
+                SIMD: #<span>{record.metadata.simd}</span>
               </li>
-              <li>Created: {simd.date}</li>
-              <li>Title: {simd.title}</li>
-              <li>Type: {simd.type}</li>
-              <li>Status: {simd.status}</li>
-              <li>
-                <p>Authors:</p>
-                <ul className="pl-8 list-disc">
-                  {simd.authors.map((author, id) => (
-                    <SIMDAuthorLineItem key={id} author={author} />
-                  )) || <li>no authors found</li>}
-                </ul>
-              </li>
+              <li>Created: {record.metadata.created}</li>
+              {/* <li>Title: {record.metadata.title}</li> */}
+              <li>Type: {record.metadata.type}</li>
+              <li>Status: {record.metadata.status}</li>
+              {record?.metadata?.authors?.length > 0 && (
+                <li>
+                  <p>Authors:</p>
+                  <ul className="pl-8 list-disc">
+                    {record.metadata.authors.map((author, id) => (
+                      <SIMDAuthorLineItem key={id} author={author} />
+                    )) || <li>no authors found</li>}
+                  </ul>
+                </li>
+              )}
             </ul>
           </section>
         </aside>

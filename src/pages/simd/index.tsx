@@ -2,55 +2,36 @@ import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
 import Link from "next/link";
-
+import { fetchAllSIMD } from "@/utils/fetch-simd";
 import dataTableStyles from "@/styles/core/dataTable.module.css";
-
-import styles from "@/styles/core/sidebar.module.css";
-import SIMDCard from "@/components/simd/SIMDCard";
-import SIMDTableLineItem, {
-  SIMDTableLineItemProps,
-} from "@/components/simd/SIMDTableLineItem";
+// import styles from "@/styles/core/sidebar.module.css";
+// import SIMDCard from "@/components/simd/SIMDCard";
+import SIMDTableLineItem from "@/components/simd/SIMDTableLineItem";
+import { computeSlugForSIMD } from "@/utils/helpers";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
   title: "Solana Improvement Docs (SIMD)",
-  description: "",
+  description:
+    "The Solana Improvement Documents (SIMD) describe proposed and accepted changes to the Solana protocol.",
 };
 
-// this is a temporary variable to scaffold the display functionality
-const records: SIMDTableLineItemProps[] = [
-  {
-    id: 0,
-    title: "Lockout Violation Detection",
-    href: "/simd/000-lockout-violation-detection",
-    githubLink:
-      "https://github.com/solana-foundation/solana-improvement-documents/pull/9",
-    authors: [
-      {
-        name: "carllin",
-        link: "https://github.com/carllin",
-      },
-      "ashwinsekar",
-      "wencoding",
-    ],
-    date: "2022-12-12",
-    type: "core",
-    status: "draft",
-  },
-  {
-    id: 1,
-    title: "Solana Proposal Process",
-    href: "/simd/0001-solana-proposal-process",
-    githubLink:
-      "https://github.com/solana-foundation/solana-improvement-documents/blob/main/proposals/0001-simd-process.md",
-    authors: ["Jacob Creech (Solana Foundation)"],
-    date: "2022-10-18",
-    type: "meta",
-    status: "draft",
-  },
-];
+export async function getStaticProps() {
+  const records = await fetchAllSIMD();
 
-export default function Page() {
+  return {
+    props: {
+      records,
+    },
+    revalidate: 3600,
+  };
+}
+
+type PageProps = {
+  records: ParsedGitHubPullContent[];
+};
+
+export default function Page({ records }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-8">
@@ -89,9 +70,21 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
-            {records.map((simd, id) => (
-              <SIMDTableLineItem key={id} {...simd} />
-            ))}
+            {records
+              .filter((item) => item.metadata.title && item.metadata.simd)
+              .map((record, id) => (
+                <SIMDTableLineItem
+                  key={record.id}
+                  href={`/simd/${computeSlugForSIMD(record)}`}
+                  simd={record.metadata.simd}
+                  title={record.metadata.title}
+                  githubLink={record.html_url}
+                  date={record.metadata.created}
+                  type={record.metadata.type}
+                  status={record.metadata.status}
+                  authors={record.metadata.authors}
+                />
+              ))}
           </tbody>
         </table>
       </main>
@@ -105,7 +98,7 @@ export default function Page() {
           type="core"
           date="2022-12-12"
           status="draft"
-          authors="carlin, ashwinsekar, wencoding"
+          authors="carlin"
         />
       </main> */}
     </DefaultLayout>

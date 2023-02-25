@@ -8,25 +8,24 @@ import {
 
 type AuthorDetails = {
   name: string;
-  link: string;
+  org?: string;
+  link?: string;
 };
 
 export type SIMDTableLineItemProps = {
-  className?: string;
-  id: number;
-  href: string;
+  simd: string;
+  href?: string;
   githubLink: string;
   title: string;
-  status: "draft";
-  type: "core" | "meta";
+  status: "draft" | string;
+  type: string;
   date?: string;
   authors?: Array<string | AuthorDetails>;
   description?: string;
 };
 
 export default function SIMDTableLineItem({
-  className,
-  id,
+  simd = "????",
   title,
   href,
   githubLink,
@@ -36,24 +35,28 @@ export default function SIMDTableLineItem({
   status,
   description,
 }: SIMDTableLineItemProps) {
+  // compute the href, if none is provided
+  if (!href)
+    href = `/simd/${simd + "-" + title.toLowerCase().replace(/\s+/g, "-")}`;
+
   return (
     <tr>
-      <td>{("000" + id.toString()).slice(-4)}</td>
+      <td className="uppercase">{("000" + simd.toString()).slice(-4)}</td>
       <td>
         <Link href={href} className="font-semibold underline">
           {title}
         </Link>
       </td>
       <td>{type}</td>
-      <td>{status}</td>
+      <td className="lowercase">{status}</td>
       <td>
         <ul className={dataTableStyles.dataList}>
           {authors?.map((author, id) => (
             <SIMDAuthorLineItem key={id} author={author} />
-          )) || <li>no authors found</li>}
+          )) || <li>[no authors found]</li>}
         </ul>
       </td>
-      <td>{date}</td>
+      <td className="whitespace-nowrap">{date}</td>
       <td>
         <div className="flex space-x-2">
           <Link
@@ -78,17 +81,25 @@ export function SIMDAuthorLineItem({
 }: {
   author: string | AuthorDetails;
 }) {
+  // console.log(author);
   if (typeof author == "object")
     return (
       <li>
-        <Link
-          href={author.link}
-          target="_blank"
-          className="inline-flex hover:underline"
-        >
-          {author.name}
-          <ArrowTopRightOnSquareIcon className="mx-1 icon-sm" />
-        </Link>
+        {author?.link ? (
+          <Link
+            href={author.link}
+            target="_blank"
+            className="inline-flex hover:underline"
+          >
+            {author.name}
+            <ArrowTopRightOnSquareIcon className="mx-1 icon-sm" />
+          </Link>
+        ) : (
+          <span>
+            {author?.name}
+            {author?.org && <span className="mx-1">({author.org})</span>}
+          </span>
+        )}
       </li>
     );
   else return <li>{author}</li>;
