@@ -25,7 +25,7 @@ export default function HomeCategoryCards({ className }: ComponentProps) {
         />
         <ImageCTACard
           title="Newsletter"
-          href="/newsletter"
+          href="/newsletters"
           imageSrc="/img/cta/newsletter.jpg"
           text="The latest news and updates from the Solana Foundation"
         />
