@@ -24,8 +24,6 @@
 }
 
 .card {
-  @apply relative block !important;
-
   /* styles for the horizontal scrolling on mobile */
   @apply snap-center snap-mandatory;
   @apply place-self-center sm:place-self-auto;
@@ -36,10 +34,11 @@
   @apply relative;
   @apply overflow-hidden rounded-2xl;
   @apply mb-3;
-  @apply max-h-40 md:max-h-40 md:min-h-[10em] w-full;
+  @apply max-h-40 md:min-h-[10em] w-full;
   @apply border border-slate-200 bg-slate-50;
   @apply object-cover object-center;
 }
+
 .badge {
   @apply absolute right-2 bottom-2;
   @apply text-black bg-solana-green;
@@ -97,3 +96,32 @@
   @apply py-32;
   @apply text-white;
 } */
+
+/*
+  Style the large card, but only for `md` screen size
+*/
+@media (min-width: 768px) {
+  .largeCard {
+    @apply grid grid-cols-2 gap-8 col-span-full;
+  }
+  .largeCard .image {
+    @apply max-h-max;
+  }
+  .largeCard .metaArea {
+    @apply my-auto space-y-0;
+  }
+  .largeCard .metaArea h3 {
+    @apply text-4xl !important;
+  }
+  .largeCard .metaArea h3 a svg {
+    @apply w-8 h-8 !important;
+  }
+  .largeCard .author,
+  .largeCard .tags,
+  .largeCard .description {
+    @apply text-lg;
+  }
+  .largeCard .tags a {
+    @apply pr-3;
+  }
+}

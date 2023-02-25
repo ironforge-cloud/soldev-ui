@@ -15,6 +15,7 @@ type ComponentProps = {
   tags?: string;
   isHot?: boolean;
   isExternal?: boolean;
+  isLarge?: boolean;
 };
 
 export default function ContentCard({
@@ -28,9 +29,12 @@ export default function ContentCard({
   tags,
   isHot,
   isExternal,
+  isLarge,
 }: ComponentProps) {
   return (
-    <section className={`${styles.card} ${className}`}>
+    <section
+      className={`${styles.card} ${isLarge && styles.largeCard} ${className}`}
+    >
       <div className={styles.image}>
         <Link href={href} target={isExternal ? "_blank" : ""}>
           {isHot && <span className={styles.badge}>Hot</span>}

@@ -31,6 +31,7 @@ export default function Page() {
           // authorHref="#"
           imageSrc="/img/content/newsletter_cover.jpg"
           description="Solana Tech Roundup This past week there has been progress on offline message signing. This highly requested feature."
+          isLarge={true}
         />
         <ContentCard
           href="/newsletter/slug"
