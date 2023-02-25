@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { NAVIGATION_ITEMS } from "@/lib/constants/navigation";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 type ComponentProps = {
   // children?: React.ReactNode;
@@ -78,7 +79,15 @@ export default function AppNavigation({}: ComponentProps) {
                       )}
 
                       <span className={styles.metaArea}>
-                        <p className={styles.label}>{item.label}</p>
+                        <p className={styles.label}>
+                          <span>{item.label}</span>
+                          {item?.isExternal && (
+                            <span>
+                              {/* <ArrowTopRightOnSquareIcon className="ml-2 icon" /> */}
+                              <ArrowUpRightIcon className="ml-2 icon" />
+                            </span>
+                          )}
+                        </p>
                         {item.description && (
                           <p className={styles.description}>
                             {item.description}
@@ -110,7 +119,13 @@ export default function AppNavigation({}: ComponentProps) {
                         href={item?.href || "#"}
                         className={styles.link}
                       >
-                        {item.label}
+                        <span>{item.label}</span>
+                        {item?.isExternal && (
+                          <span>
+                            {/* <ArrowTopRightOnSquareIcon className="ml-1 -mt-1 icon-sm" /> */}
+                            <ArrowUpRightIcon className="ml-2 icon-sm" />
+                          </span>
+                        )}
                       </Link>
                     ))}
                   </div>
