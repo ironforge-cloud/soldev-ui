@@ -1,0 +1,111 @@
+/*
+    Primary styles for the AppNavigation
+*/
+
+.linkArea {
+  @apply flex flex-col items-center justify-start list-none lg:flex-row;
+}
+.linkArea li .linkItemContainer {
+  @apply w-full;
+  @apply flex items-center justify-between;
+}
+.linkArea li .linkItemContainer .arrow {
+  @apply mx-5 lg:hidden;
+}
+
+.linkArea li {
+  @apply relative w-full;
+}
+.linkArea li .linkItem {
+  @apply block cursor-pointer;
+  @apply px-6 py-3;
+  @apply text-lg lg:text-base;
+  @apply text-black lg:text-gray-400 lg:hover:text-white;
+}
+
+.dropdown {
+  @apply z-30 transform;
+  @apply lg:absolute lg:px-4;
+  @apply w-screen max-w-xl -mt-1 min-w-56 sm:px-0;
+}
+.dropdownInner {
+  @apply lg:inline-flex;
+  @apply overflow-hidden rounded-lg lg:shadow-lg;
+}
+
+/*
+  Style the primary list for the navigation
+*/
+.primaryList {
+  @apply relative;
+  @apply lg:space-y-1;
+  @apply py-4 pl-4 pr-6;
+  @apply bg-white;
+}
+/* .primaryList .divider {
+  @apply;
+} */
+.primaryList .link {
+  @apply flex items-center cursor-pointer;
+  @apply transition duration-150 ease-in-out;
+  @apply hover:bg-gray-100;
+  @apply p-2 ml-3 lg:ml-auto lg:rounded-lg;
+  @apply border-l border-gray-300 lg:border-none;
+}
+.primaryList .link .metaArea {
+  @apply ml-4;
+}
+.primaryList .link .metaArea .label {
+  @apply text-sm text-gray-900 lg:font-semibold;
+}
+.primaryList .link .metaArea .description {
+  @apply text-sm text-gray-500;
+  @apply hidden lg:block;
+}
+
+.primaryList .link .iconArea svg {
+  @apply w-full h-full;
+}
+.primaryList .link .iconArea {
+  @apply flex items-center justify-center;
+  @apply w-10 h-10 p-3 rounded-lg shrink-0 sm:h-12 sm:w-12;
+  @apply hidden lg:block;
+}
+.primaryList .link .black {
+  @apply text-black bg-gray-100;
+}
+.primaryList .link .purple {
+  @apply text-purple-600 bg-purple-100;
+}
+.primaryList .link .green {
+  @apply text-green-600 bg-green-100;
+}
+.primaryList .link .blue {
+  @apply text-blue-600 bg-blue-100;
+}
+.primaryList .link .red {
+  @apply text-red-600 bg-red-100;
+}
+.primaryList .link .yellow {
+  @apply text-yellow-600 bg-yellow-100;
+}
+
+/*
+  Style the secondary list for the dropdown navigation
+*/
+.dropdown .secondaryList {
+  @apply py-6 pl-6 pr-10 bg-gray-200;
+  @apply space-y-2;
+  @apply hidden lg:block;
+}
+.dropdown .secondaryList .heading {
+  @apply text-base font-semibold text-black;
+}
+
+.dropdown .secondaryList .link {
+  @apply flow-root transition duration-150 ease-in-out rounded-md cursor-pointer;
+  /* @apply px-2 py-2; */
+  @apply hover:text-black;
+  @apply text-sm font-normal text-gray-500;
+  @apply focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50;
+}

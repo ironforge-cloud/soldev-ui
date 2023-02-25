@@ -8,6 +8,7 @@ import {
   MagnifyingGlassIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
+import AppNavigation from "./AppNavigation";
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -42,20 +43,7 @@ export default function AppHeader({ children }: ComponentProps) {
             navbarOpen ? styles.primaryAreaActive : "hidden",
           )}
         >
-          <ul className={styles.linkArea}>
-            <li>
-              <Link href={"#"}>Learn</Link>
-            </li>
-            <li>
-              <Link href={"#"}>Updates</Link>
-            </li>
-            <li>
-              <Link href={"#"}>Resources</Link>
-            </li>
-            <li>
-              <Link href={"/library"}>Library</Link>
-            </li>
-          </ul>
+          <AppNavigation />
 
           <section className={styles.form}>
             <form onSubmit={(e) => e.preventDefault()}>
@@ -76,7 +64,7 @@ export default function AppHeader({ children }: ComponentProps) {
             <Link
               href={"/content"}
               className={clsx(
-                "btn",
+                "btn whitespace-nowrap",
                 navbarOpen ? styles.formButton : "btn-default",
               )}
             >

@@ -48,7 +48,6 @@
 .leftSideSmall {
   @apply smallContainer;
   @apply order-1;
-  @apply z-10;
 }
 .rightSideLarge {
   @apply largeContainer;

@@ -8,8 +8,8 @@
 }
 
 .inner {
-  @apply flex flex-wrap items-center justify-between w-full mx-auto;
-  /* @apply lg:space-x-8; */
+  @apply flex flex-wrap items-center justify-between w-full mx-auto lg:flex-nowrap;
+  @apply lg:space-x-4 max-w-[110em];
 }
 
 .staticNav {
@@ -45,19 +45,6 @@ button.burger {
   @apply block;
   @apply text-black bg-white lg:text-gray-500 lg:bg-transparent;
   @apply border-b shadow-lg lg:shadow-none lg:border-b-transparent;
-}
-
-/*
-    Style the links displayed on in the header
-*/
-.linkArea {
-  @apply flex flex-col justify-start list-none lg:flex-row;
-}
-.linkArea li > a {
-  @apply block;
-  @apply px-6 py-3;
-  @apply text-lg lg:text-base;
-  @apply hover:text-white;
 }
 
 /*
