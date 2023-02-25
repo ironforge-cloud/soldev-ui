@@ -11,7 +11,32 @@ const seo: NextSeoProps = {
   description: "",
 };
 
-export default function Page() {
+export async function getStaticProps() {
+  // fetch the listing of newsletter records from the API
+  const newsletters: ContentRecord[] = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/solana/newsletters`,
+  )
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+
+  // extract the latest newsletter
+  const lastNewsletter = newsletters?.[0];
+
+  return {
+    props: {
+      newsletters,
+      lastNewsletter,
+    },
+    revalidate: 60,
+  };
+}
+
+type PageProps = {
+  newsletters: ContentRecord[];
+  lastNewsletter: ContentRecord;
+};
+
+export default function Page({ newsletters, lastNewsletter }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
@@ -23,72 +48,18 @@ export default function Page() {
       </PageHero>
 
       <main className={styles.wrapper + " container"}>
-        <ContentCard
-          // isExternal={true}
-          href="/newsletter/slug"
-          title="Solana Tech Roundup"
-          authorLabel="Jacob Creech"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Solana Tech Roundup This past week there has been progress on offline message signing. This highly requested feature."
-          isLarge={true}
-        />
-        <ContentCard
-          href="/newsletter/slug"
-          title="Solana Tech Roundup"
-          authorLabel="Solana Foundation"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Solana Tech Roundup This past week there has been progress on offline message signing. This highly requested feature."
-        />
-        <ContentCard
-          href="/newsletter/slug"
-          title="Solana 101"
-          authorLabel="Solana Foundation"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Getting started with Solana by doing all the basic essentials from setup to deploying a program, to interacting with that program."
-        />
-        <ContentCard
-          href="/newsletter/slug"
-          title="Intro to Programming on Solana"
-          authorLabel="Solana Foundation"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Introductory guide for building a smart contract on Solana using a simple escrow program example."
-        />
-        <ContentCard
-          href="/newsletter/slug"
-          title="Solana Tech Roundup"
-          authorLabel="Nader Dabit"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Solana Tech Roundup This past week there has been progress on offline message signing. This highly requested feature."
-        />
-        <ContentCard
-          href="/newsletter/slug"
-          title="Solana Tech Roundup"
-          authorLabel="Solana Foundation"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Solana Tech Roundup This past week there has been progress on offline message signing. This highly requested feature."
-        />
-        <ContentCard
-          href="/newsletter/slug"
-          title="Solana 101"
-          authorLabel="Solana Foundation"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Getting started with Solana by doing all the basic essentials from setup to deploying a program, to interacting with that program."
-        />
-        <ContentCard
-          href="/newsletter/slug"
-          title="Intro to Programming on Solana"
-          authorLabel="Solana Foundation"
-          // authorHref="#"
-          imageSrc="/img/content/newsletter_cover.jpg"
-          description="Introductory guide for building a smart contract on Solana using a simple escrow program example."
-        />
+        {newsletters.map((item, index) => (
+          <ContentCard
+            isLarge={!index}
+            href={item.Url}
+            title={item.Title}
+            authorLabel={item.Author}
+            // authorHref="#"
+            imageSrc={item.Img}
+            tags={item.Tags}
+            description={item.Description}
+          />
+        ))}
       </main>
     </DefaultLayout>
   );

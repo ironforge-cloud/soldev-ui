@@ -1,6 +1,7 @@
 import styles from "@/styles/ContentCard.module.css";
 import Link from "next/link";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { SITE_ADDR } from "@/lib/constants/general";
 
 const DEFAULT_IMG_SRC = "/img/cta/0.jpg";
 
@@ -12,7 +13,7 @@ type ComponentProps = {
   imageSrc?: string;
   authorLabel?: string;
   authorHref?: string;
-  tags?: string;
+  tags?: string | string[];
   isHot?: boolean;
   isExternal?: boolean;
   isLarge?: boolean;
@@ -31,6 +32,15 @@ export default function ContentCard({
   isExternal,
   isLarge,
 }: ComponentProps) {
+  // auto convert internal links to internal, and external to external
+  if (
+    href.substring(0, SITE_ADDR.length).toLowerCase() ===
+    SITE_ADDR.toLowerCase()
+  ) {
+    href = href.substring(SITE_ADDR.length);
+    isExternal = false;
+  } else if (href.substring(0, 1) !== "/") isExternal = true;
+
   return (
     <section
       className={`${styles.card} ${isLarge && styles.largeCard} ${className}`}
@@ -66,9 +76,10 @@ export default function ContentCard({
         <p className={styles.description}>{description}</p>
 
         <p className={styles.tags}>
-          {tags?.split(",").map((tag, id) => (
-            <Link key={id} href={"#"}>{`#${tag.trim()}`}</Link>
-          ))}
+          {tags &&
+            (Array.isArray(tags) ? tags : tags.split(",")).map((tag) => (
+              <Link key={tag.toString()} href={"#"}>{`#${tag.trim()}`}</Link>
+            ))}
         </p>
       </div>
     </section>

@@ -34,7 +34,8 @@
   @apply relative;
   @apply overflow-hidden rounded-2xl;
   @apply mb-3;
-  @apply max-h-40 md:min-h-[10em] w-full;
+  @apply w-full max-h-40;
+  /* @apply md:min-h-[10em]; */
   @apply border border-slate-200 bg-slate-50;
   @apply object-cover object-center;
 }
@@ -76,7 +77,7 @@
 }
 
 .description {
-  @apply py-2;
+  @apply line-clamp-3;
   @apply text-sm text-gray-700;
 }
 
@@ -108,7 +109,7 @@
     @apply max-h-max;
   }
   .largeCard .metaArea {
-    @apply my-auto space-y-0;
+    @apply my-auto space-y-2;
   }
   .largeCard .metaArea h3 {
     @apply text-4xl !important;
@@ -120,6 +121,9 @@
   .largeCard .tags,
   .largeCard .description {
     @apply text-lg;
+  }
+  .largeCard .description {
+    @apply line-clamp-5;
   }
   .largeCard .tags a {
     @apply pr-3;
