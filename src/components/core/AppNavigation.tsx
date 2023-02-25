@@ -67,6 +67,7 @@ export default function AppNavigation({}: ComponentProps) {
                       key={id}
                       href={item?.href || "#"}
                       className={styles.link}
+                      target={item?.isExternal ? "_blank" : ""}
                     >
                       {item?.icon !== undefined && (
                         <span
@@ -118,6 +119,7 @@ export default function AppNavigation({}: ComponentProps) {
                         key={id}
                         href={item?.href || "#"}
                         className={styles.link}
+                        target={item?.isExternal ? "_blank" : ""}
                       >
                         <span>{item.label}</span>
                         {item?.isExternal && (
