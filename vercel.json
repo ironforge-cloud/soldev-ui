@@ -1,5 +1,6 @@
 {
   "github": {
     "silent": true
-  }
+  },
+  "redirects": [{ "source": "/newsletters", "destination": "/newsletter" }]
 }

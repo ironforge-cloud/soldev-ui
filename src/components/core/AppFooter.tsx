@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 
-import { SITE_GITHUB, SITE_NAME, SITE_TWITTER } from "@/lib/constants/general";
+import {
+  SITE_NAME,
+  SITE_GITHUB_URL,
+  SITE_TWITTER_HANDLE,
+} from "@/lib/constants/general";
 import styles from "@/styles/core/footer.module.css";
 
 type ComponentProps = {
@@ -24,8 +28,10 @@ export default function AppFooter({ children }: ComponentProps) {
           </p>
 
           <section className="flex">
-            <Link href={SITE_GITHUB}>GH</Link>
-            <Link href={SITE_TWITTER}>Twitter</Link>
+            <Link href={SITE_GITHUB_URL}>GH</Link>
+            <Link href={`https://twitter.com/${SITE_TWITTER_HANDLE}`}>
+              Twitter
+            </Link>
           </section>
         </section>
 
