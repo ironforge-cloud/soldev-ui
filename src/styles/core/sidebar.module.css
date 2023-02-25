@@ -3,9 +3,9 @@
 */
 
 .wrapper {
-  @apply gap-6 mx-auto lg:grid;
+  @apply gap-6 mx-auto sm:grid;
   @apply sm:grid-cols-2 lg:grid-cols-4;
-  @apply space-x-0 space-y-0 !important;
+  @apply sm:space-x-0 sm:space-y-0 !important;
   @apply relative justify-center;
 }
 

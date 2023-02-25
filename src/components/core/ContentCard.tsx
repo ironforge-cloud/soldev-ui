@@ -45,7 +45,7 @@ export default function ContentCard({
   if (tags && typeof tags == "string") tags = tags.split(",");
 
   return (
-    <section
+    <div
       className={`${styles.card} ${isLarge && styles.largeCard} ${className}`}
     >
       <div className={styles.image}>
@@ -80,12 +80,12 @@ export default function ContentCard({
 
         {Array.isArray(tags) && tags.length > 0 && (
           <p className={styles.tags}>
-            {tags.map((tag) => (
-              <Link key={tag.toString()} href={"#"}>{`#${tag.trim()}`}</Link>
+            {tags.map((tag, id) => (
+              <Link key={id} href={"#"}>{`#${tag.trim()}`}</Link>
             ))}
           </p>
         )}
       </div>
-    </section>
+    </div>
   );
 }
