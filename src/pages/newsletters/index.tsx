@@ -4,6 +4,7 @@ import PageHero from "@/components/core/PageHero";
 
 import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
+import { getNewsletterRecords } from "@/lib/queries";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -13,11 +14,7 @@ const seo: NextSeoProps = {
 
 export async function getStaticProps() {
   // fetch the listing of newsletter records from the API
-  const newsletters: ContentRecord[] = await fetch(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/solana/newsletters`,
-  )
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+  const newsletters = await getNewsletterRecords();
 
   // extract the latest newsletter
   const lastNewsletter = newsletters?.[0];
