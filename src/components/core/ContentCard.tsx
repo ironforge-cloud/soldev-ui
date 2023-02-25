@@ -41,6 +41,9 @@ export default function ContentCard({
     isExternal = false;
   } else if (href.substring(0, 1) !== "/") isExternal = true;
 
+  // always convert `tags` into an array
+  if (tags && typeof tags == "string") tags = tags.split(",");
+
   return (
     <section
       className={`${styles.card} ${isLarge && styles.largeCard} ${className}`}
@@ -73,14 +76,15 @@ export default function ContentCard({
           </p>
         )}
 
-        <p className={styles.description}>{description}</p>
+        {description && <p className={styles.description}>{description}</p>}
 
-        <p className={styles.tags}>
-          {tags &&
-            (Array.isArray(tags) ? tags : tags.split(",")).map((tag) => (
+        {Array.isArray(tags) && tags.length > 0 && (
+          <p className={styles.tags}>
+            {tags.map((tag) => (
               <Link key={tag.toString()} href={"#"}>{`#${tag.trim()}`}</Link>
             ))}
-        </p>
+          </p>
+        )}
       </div>
     </section>
   );

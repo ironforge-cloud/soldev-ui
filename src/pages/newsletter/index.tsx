@@ -50,6 +50,7 @@ export default function Page({ newsletters, lastNewsletter }: PageProps) {
       <main className={styles.wrapper + " container"}>
         {newsletters.map((item, index) => (
           <ContentCard
+            key={item.SK}
             isLarge={!index}
             href={item.Url}
             title={item.Title}
