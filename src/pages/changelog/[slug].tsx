@@ -1,17 +1,12 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import styles from "@/styles/core/sidebar.module.css";
-import { useState } from "react";
-import clsx from "clsx";
 import Link from "next/link";
-
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 
-import subnavStyles from "@/styles/core/subnav.module.css";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
-
 import { getChangelogRecords } from "@/lib/queries";
 import markdownToHtml from "@/utils/markdownToHtml";
 
@@ -22,12 +17,6 @@ const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 const placeholderSEO: NextSeoProps = {
   title: "Watch the Changelog",
   description: "",
-};
-
-// define the indexes for the tabbed page sections
-const TABS_OPTIONS = {
-  content: 0,
-  details: 1,
 };
 
 export async function getStaticPaths() {
@@ -67,8 +56,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     // TODO: extract the next and previous records
 
     // convert the records markdown to html
-    // record.ContentMarkdown = await markdownToHtml(record.ContentMarkdown);
-    // TODO: handle the h1 element from the markdown
+    record.ContentMarkdown = await markdownToHtml(record.ContentMarkdown);
 
     // auto convert the `PublishedAt` to a usable date
     record.PublishedAt = new Date(record.PublishedAt).toLocaleDateString(
@@ -104,9 +92,6 @@ type PageProps = {
 };
 
 export default function Page({ record, seo }: PageProps) {
-  // track the selected tab for the mobile view
-  const [selectedTab, setSelectedTab] = useState(TABS_OPTIONS.content);
-
   return (
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container text-center">
@@ -131,40 +116,8 @@ export default function Page({ record, seo }: PageProps) {
         </section>
       </PageHero>
 
-      {/* <nav className={clsx(subnavStyles.subnav, "mobile-only")}>
-        <Link
-          href={"#content"}
-          onClick={() => setSelectedTab(TABS_OPTIONS.content)}
-          className={clsx(
-            subnavStyles.item,
-            selectedTab === TABS_OPTIONS.content && subnavStyles.activeButton,
-            // "w-1/2 text-center",
-          )}
-        >
-          Content
-        </Link>
-        <Link
-          href={"#details"}
-          onClick={() => setSelectedTab(TABS_OPTIONS.details)}
-          className={clsx(
-            subnavStyles.item,
-            selectedTab === TABS_OPTIONS.details && subnavStyles.activeButton,
-            // "w-1/2 text-center",
-          )}
-        >
-          Details
-        </Link>
-      </nav> */}
-
       <section className={"container max-w-5xl"}>
-        <section
-          className={clsx(
-            styles.leftSideLarge,
-            selectedTab === TABS_OPTIONS.content
-              ? subnavStyles.activeTab
-              : subnavStyles.inActiveTab,
-          )}
-        >
+        <section className={styles.leftSideLarge}>
           <div className="aspect-[16/9] w-full shadow-lg rounded-3xl overflow-hidden">
             <ReactPlayer
               height="100%"
@@ -178,7 +131,8 @@ export default function Page({ record, seo }: PageProps) {
           </div>
 
           <ul className="text-gray-500 md:text-sm">
-            <li>Published: {record.PublishedAt}</li>
+            <li>Published {record.PublishedAt}</li>
+            <li>By {record.Author}</li>
           </ul>
 
           <article
@@ -193,28 +147,6 @@ export default function Page({ record, seo }: PageProps) {
             prevLabel="Previous Changelog"
           />
         </section>
-
-        {false && (
-          <aside className={styles.rightSideSmall + " " + styles.borderLeft}>
-            <section
-              className={clsx(
-                styles.section,
-                selectedTab === TABS_OPTIONS.details
-                  ? subnavStyles.activeTab
-                  : subnavStyles.inActiveTab,
-              )}
-            >
-              <h3>Details</h3>
-
-              {/* <p className={styles.minorText}>optional minor text</p> */}
-
-              <ul className="text-gray-500 md:text-sm">
-                <li>Published: {record.PublishedAt}</li>
-                {/* <li>Title: {record.Title}</li> */}
-              </ul>
-            </section>
-          </aside>
-        )}
       </section>
     </DefaultLayout>
   );
