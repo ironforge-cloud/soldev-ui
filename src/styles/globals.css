@@ -14,7 +14,7 @@ body {
 }
 .container {
   @apply container-inner;
-  @apply gap-8 p-1 mx-auto space-y-8 lg:py-6;
+  @apply gap-8 p-5 mx-auto space-y-8 lg:py-6;
   @apply justify-between;
 }
 .flex,
@@ -33,10 +33,12 @@ body {
 
 /* Override some `prose` styling */
 .prose {
-  @apply max-w-[75ch];
+  /* @apply max-w-[75ch]; */
+  @apply max-w-full;
 }
 .prose p {
   @apply first-of-type:text-xl;
+  @apply break-words;
 }
 
 /*

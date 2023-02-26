@@ -67,5 +67,6 @@ export const CONTENT_TAGS: Array<ContentTagItem> = [
   Hard coded values for manually overriding the Author field for content records
 */
 export const CONTENT_AUTHOR_OVERRIDES = {
+  newsletter: "Solana Foundation",
   changelog: "Solana Foundation",
 };

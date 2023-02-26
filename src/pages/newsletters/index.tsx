@@ -14,26 +14,26 @@ const seo: NextSeoProps = {
 
 export async function getStaticProps() {
   // fetch the listing of newsletter records from the API
-  const newsletters = await getNewsletterRecords();
+  const records = await getNewsletterRecords();
 
   // extract the latest newsletter
-  const lastNewsletter = newsletters?.[0];
+  // const lastNewsletter = records?.[0];
 
   return {
     props: {
-      newsletters,
-      lastNewsletter,
+      records,
+      // lastNewsletter,
     },
     revalidate: 60,
   };
 }
 
 type PageProps = {
-  newsletters: ContentRecord[];
-  lastNewsletter: ContentRecord;
+  records: ContentRecord[];
+  // lastNewsletter: ContentRecord;
 };
 
-export default function Page({ newsletters, lastNewsletter }: PageProps) {
+export default function Page({ records }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
@@ -45,7 +45,7 @@ export default function Page({ newsletters, lastNewsletter }: PageProps) {
       </PageHero>
 
       <main className={styles.wrapper + " container"}>
-        {newsletters.map((item, index) => (
+        {records.map((item, index) => (
           <ContentCard
             key={item.SK}
             isLarge={!index}

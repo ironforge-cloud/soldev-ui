@@ -28,9 +28,9 @@ const TABS_OPTIONS = {
 };
 
 export async function getStaticPaths() {
-  const newsletters = await getNewsletterRecords();
+  const records = await getNewsletterRecords();
 
-  const paths = newsletters.map((item) => {
+  const paths = records.map((item) => {
     return {
       params: {
         slug: item.SK,
@@ -47,19 +47,19 @@ type StaticProps = {
 };
 
 export async function getStaticProps({ params: { slug } }: StaticProps) {
-  const newsletters = await getNewsletterRecords();
+  const records = await getNewsletterRecords();
 
   // create a placeholder record
   let record: ContentRecord | null = null;
 
   // let content = {};
 
-  for (let i = 0; i < newsletters.length; i++) {
+  for (let i = 0; i < records.length; i++) {
     // search for the provided `slug`, if it doesn't match -> next
-    if (slug !== newsletters[i].SK) continue;
+    if (slug !== records[i].SK) continue;
 
     // save the content record
-    record = newsletters[i];
+    record = records[i];
 
     // TODO: extract the next and previous records
 
@@ -128,86 +128,23 @@ export default function Page({ record, seo }: PageProps) {
         </section>
       </PageHero>
 
-      <nav className={clsx(subnavStyles.subnav, "mobile-only")}>
-        <Link
-          href={"#content"}
-          onClick={() => setSelectedTab(TABS_OPTIONS.content)}
-          className={clsx(
-            subnavStyles.item,
-            selectedTab === TABS_OPTIONS.content && subnavStyles.activeButton,
-            // "w-1/2 text-center",
-          )}
-        >
-          Content
-        </Link>
-        <Link
-          href={"#details"}
-          onClick={() => setSelectedTab(TABS_OPTIONS.details)}
-          className={clsx(
-            subnavStyles.item,
-            selectedTab === TABS_OPTIONS.details && subnavStyles.activeButton,
-            // "w-1/2 text-center",
-          )}
-        >
-          Details
-        </Link>
-      </nav>
+      <main className={"max-w-4xl container"}>
+        {/* <p className="text-gray-500 md:text-sm">
+          Published {record.PublishedAt}
+        </p> */}
 
-      <section className={styles.wrapper + " container-inner"}>
-        <section
-          className={clsx(
-            styles.leftSideLarge,
-            selectedTab === TABS_OPTIONS.content
-              ? subnavStyles.activeTab
-              : subnavStyles.inActiveTab,
-          )}
-        >
-          <article
-            className="prose"
-            dangerouslySetInnerHTML={{ __html: record.ContentMarkdown }}
-          ></article>
+        <article
+          className="prose"
+          dangerouslySetInnerHTML={{ __html: record.ContentMarkdown }}
+        ></article>
 
-          <NextPrevButtons
-            nextHref="#"
-            prevHref="#"
-            nextLabel="Next Newsletter"
-            prevLabel="Previous Newsletter"
-          />
-        </section>
-
-        <aside className={styles.rightSideSmall + " " + styles.borderLeft}>
-          <section
-            className={clsx(
-              styles.section,
-              selectedTab === TABS_OPTIONS.details
-                ? subnavStyles.activeTab
-                : subnavStyles.inActiveTab,
-            )}
-          >
-            <h3>Details</h3>
-
-            {/* <p className={styles.minorText}>optional minor text</p> */}
-
-            <ul className="text-gray-500 md:text-sm">
-              <li>Published: {record.PublishedAt}</li>
-              {/* <li>Title: {record.Title}</li> */}
-              {/* {record?.Author?.trim() && (
-                <li>
-                  <p>Authors:</p>
-                  <ul className="pl-8 list-disc">
-                    {record.Author.split(",").map(
-                      (author, id) =>
-                        author.trim() && (
-                          <SIMDAuthorLineItem key={id} author={author.trim()} />
-                        ),
-                    ) || <li>no authors found</li>}
-                  </ul>
-                </li>
-              )} */}
-            </ul>
-          </section>
-        </aside>
-      </section>
+        <NextPrevButtons
+          nextHref="#"
+          prevHref="#"
+          nextLabel="Next Newsletter"
+          prevLabel="Previous Newsletter"
+        />
+      </main>
     </DefaultLayout>
   );
 }
