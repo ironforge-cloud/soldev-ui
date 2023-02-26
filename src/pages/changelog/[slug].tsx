@@ -116,38 +116,36 @@ export default function Page({ record, seo }: PageProps) {
         </section>
       </PageHero>
 
-      <section className={"container max-w-5xl"}>
-        <section className={styles.leftSideLarge}>
-          <div className="aspect-[16/9] w-full shadow-lg rounded-3xl overflow-hidden">
-            <ReactPlayer
-              height="100%"
-              width="100%"
-              style={{ aspectRatio: "16/9" }}
-              url={record.Url}
-              controls
-              pip
-              stopOnUnmount={false}
-            />
-          </div>
-
-          <ul className="text-gray-500 md:text-sm">
-            <li>Published {record.PublishedAt}</li>
-            <li>By {record.Author}</li>
-          </ul>
-
-          <article
-            className="prose"
-            dangerouslySetInnerHTML={{ __html: record.ContentMarkdown }}
-          ></article>
-
-          <NextPrevButtons
-            nextHref="#"
-            prevHref="#"
-            nextLabel="Next Changelog"
-            prevLabel="Previous Changelog"
+      <main className={"max-w-4xl container"}>
+        <div className="aspect-[16/9] w-full border border-gray-200 bg-gray-50 rounded-2xl overflow-hidden mx-auto">
+          <ReactPlayer
+            height="100%"
+            width="100%"
+            style={{ aspectRatio: "16/9" }}
+            url={record.Url}
+            controls
+            pip
+            stopOnUnmount={false}
           />
-        </section>
-      </section>
+        </div>
+
+        <ul className="text-gray-500 md:text-sm">
+          <li>Published {record.PublishedAt}</li>
+          <li>By {record.Author}</li>
+        </ul>
+
+        <article
+          className="prose"
+          dangerouslySetInnerHTML={{ __html: record.ContentMarkdown }}
+        ></article>
+
+        <NextPrevButtons
+          nextHref="#"
+          prevHref="#"
+          nextLabel="Next Changelog"
+          prevLabel="Previous Changelog"
+        />
+      </main>
     </DefaultLayout>
   );
 }
