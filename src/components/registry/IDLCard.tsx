@@ -1,6 +1,7 @@
 import styles from "@/styles/DataCard.module.css";
 import Link from "next/link";
 import { ArrowDownTrayIcon, ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { downloadIDL } from "@/utils/registry";
 
 type ComponentProps = {
   className?: string;
@@ -37,10 +38,10 @@ export default function IDLCard({
         {/* <p className={styles.description}>{description}</p> */}
       </div>
       <div className={styles.actionArea}>
-        <Link href={"#"}>
+        <span className={styles.link} onClick={() => downloadIDL(address)}>
           <ArrowDownTrayIcon />
           Download
-        </Link>
+        </span>
         <Link href={href}>
           Details
           <ArrowUpRightIcon />

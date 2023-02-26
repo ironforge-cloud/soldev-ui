@@ -5,16 +5,66 @@ import PageHero from "@/components/core/PageHero";
 import styles from "@/styles/core/sidebar.module.css";
 import IDLCard from "@/components/registry/IDLCard";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { getIDLRecordByAddress, getIDLRecords } from "@/lib/queries";
+import { useState } from "react";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
   title: "IDL Registry",
-  description: "",
+  description: "Solana program registry of IDLs.",
 };
 
-export default function Page() {
+export async function getStaticProps() {
+  // fetch the listing of IDK from the API
+  const records = await getIDLRecords();
+
+  console.log("records:", records.length);
+  console.log(records[0]);
+
+  const record = await getIDLRecordByAddress(records[0].address);
+  console.log("full record:");
+  console.log(record);
+
+  return {
+    props: {
+      records,
+    },
+    revalidate: 3600,
+  };
+}
+
+type PageProps = {
+  records: IDLRecord[];
+};
+
+export default function Page({ records }: PageProps) {
+  const [searchText, setSearchText] = useState("");
+
+  // define the filter props for on page searching
+  let filter = {
+    start: 0,
+    perPage: 24,
+  };
+
+  // handler to filter the on page records
+  function parseFilters(records: IDLRecord[]) {
+    return records.filter((program) => {
+      if (program.programName.toLowerCase().includes(searchText.toLowerCase()))
+        return true;
+      else if (program.address.includes(searchText)) return true;
+      return false;
+    });
+  }
+
+  // run all the filters and pagination on the records
+  let filteredRecords = parseFilters(records);
+  // .slice(
+  //   filter.start,
+  //   filter.perPage,
+  // );
+
   return (
-    <DefaultLayout seo={seo}>
+    <DefaultLayout seo={seo} className="min-h-screen">
       <PageHero className="container space-y-8">
         <h1>IDL Registry</h1>
 
@@ -27,57 +77,34 @@ export default function Page() {
             </label>
             <input
               type="text"
+              className="input-dark"
               id="site_search"
-              name="k"
               placeholder="Search programs by name or address"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
             />
           </div>
         </form>
       </PageHero>
 
       <main className={styles.wrapper + " container grid"}>
-        <IDLCard
-          href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-          title="jet_staking"
-          network="mainnet"
-          address="9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-        />
-        <IDLCard
-          href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-          title="jet_staking"
-          network="mainnet"
-          address="9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-        />
-        <IDLCard
-          href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-          title="jet_staking"
-          network="mainnet"
-          address="9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-        />
-        <IDLCard
-          href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-          title="jet_staking"
-          network="mainnet"
-          address="9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-        />
-        <IDLCard
-          href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-          title="jet_staking"
-          network="mainnet"
-          address="9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-        />
-        <IDLCard
-          href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-          title="jet_staking"
-          network="mainnet"
-          address="9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-        />
-        <IDLCard
-          href="/registry/9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-          title="jet_staking"
-          network="mainnet"
-          address="9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF"
-        />
+        {filteredRecords.length > 0 ? (
+          filteredRecords.map((item) => (
+            <IDLCard
+              key={item.address}
+              href={`/registry/${item.address}`}
+              title={item.programName}
+              address={item.address}
+              network="mainnet"
+            />
+          ))
+        ) : (
+          <p className="my-10 text-center col-span-full">
+            No results found for &ldquo;
+            <span className="italic underline">{searchText}</span>
+            &rdquo;
+          </p>
+        )}
       </main>
     </DefaultLayout>
   );

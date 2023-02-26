@@ -52,14 +52,15 @@
   @apply grid items-center grid-cols-2;
   @apply border-t divide-x border-slate-200 divide-slate-200;
 }
-.actionArea a {
-  @apply inline-flex items-center justify-center w-full mx-auto text-center;
+.actionArea a,
+.actionArea .link {
+  @apply inline-flex items-center justify-center w-full mx-auto text-center cursor-pointer;
   @apply hover:bg-slate-100;
   @apply px-4 py-3 text-sm;
   /* @apply text-sm; */
 }
 
-.actionArea a svg {
+.actionArea svg {
   @apply flex-shrink-0 w-4 h-4 mx-2;
 }
 

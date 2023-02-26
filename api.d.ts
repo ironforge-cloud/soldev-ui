@@ -38,3 +38,9 @@ type ContentRecord = {
 
   PlaylistTitle: string;
 };
+
+type IDLRecord = {
+  programName: string;
+  address: string;
+  idl?: object;
+};

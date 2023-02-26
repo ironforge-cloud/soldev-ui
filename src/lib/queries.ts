@@ -75,3 +75,25 @@ export async function getSuperteamCommunityCallRecords() {
 
   return records;
 }
+
+// fetch all IDL records from the Ironforge API
+export async function getIDLRecords() {
+  let records: IDLRecord[] = await fetch(
+    `${process.env.NEXT_PUBLIC_IRONFORGE_API}/idl/all`,
+  )
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+
+  return records;
+}
+
+// fetch a specific IDL record data from the Ironforge API
+export async function getIDLRecordByAddress(address: string) {
+  const record: IDLRecord = await fetch(
+    `${process.env.NEXT_PUBLIC_IRONFORGE_API}/idl/${address}`,
+  )
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+
+  return record;
+}
