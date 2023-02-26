@@ -26,7 +26,9 @@ body {
   @apply bg-left-bottom bg-no-repeat bg-cover;
 }
 .gradient-solana {
-  @apply text-transparent bg-clip-text bg-gradient-to-br from-solana-green to-solana-purple;
+  @apply text-transparent bg-clip-text bg-gradient-to-br;
+  /* @apply from-solana-green to-solana-purple; */
+  @apply bg-gradient-to-br from-green-600 to-violet-600;
 }
 
 /* Override some `prose` styling */

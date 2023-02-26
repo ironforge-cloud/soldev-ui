@@ -29,20 +29,20 @@
 */
 .statusIndicator {
   @apply text-sm;
-  @apply text-solana-purple;
+  @apply text-violet-600;
 }
 
 /*
   Style the network moniker
 */
 /* .mainnet{
-  @apply text-solana-green;
+  @apply text-green-600;
 }
 .devnet{
-  @apply text-solana-purple;
+  @apply text-violet-600;
 }
 .testnet{
-  @apply text-solana-purple;
+  @apply text-violet-600;
 } */
 
 /*

@@ -54,22 +54,22 @@
 } */
 
 .metaArea {
-  @apply space-y-1;
+  @apply space-y-3;
+}
+.metaArea h3 a {
+  @apply flex justify-between w-full hover:underline;
+  @apply text-gray-900;
 }
 .metaArea h3 a span {
   @apply text-base line-clamp-2;
   @apply leading-tight;
-}
-.metaArea h3 a {
-  @apply flex justify-between w-full;
-  @apply hover:underline;
 }
 .metaArea h3 a svg {
   @apply w-5 h-5 ml-1 flex-shrink-0 !important;
 }
 
 .author {
-  @apply text-sm text-gray-400;
+  @apply text-sm text-gray-600;
 }
 .author a {
   @apply hover:underline hover:text-black;
@@ -77,19 +77,14 @@
 
 .description {
   @apply line-clamp-3;
-  @apply text-sm text-gray-700;
+  @apply text-sm text-gray-800;
 }
-
 .tags {
-  @apply text-sm;
-  @apply line-clamp-1;
+  @apply text-sm line-clamp-1;
 }
-
 .tags a {
-  @apply inline-flex;
-  @apply pr-1;
-  @apply text-solana-purple;
-  @apply hover:underline;
+  @apply inline-flex pr-1;
+  @apply text-violet-600 hover:underline;
 }
 
 /* .inner {
@@ -108,7 +103,8 @@
     @apply max-h-max;
   }
   .largeCard .metaArea {
-    @apply my-auto space-y-2;
+    @apply my-auto;
+    /* @apply space-y-2; */
   }
   .largeCard .metaArea h3 a span {
     @apply line-clamp-4;
@@ -117,11 +113,11 @@
   .largeCard .metaArea h3 a svg {
     @apply w-8 h-8 !important;
   }
-  .largeCard .author,
+  /* .largeCard .author,
   .largeCard .tags,
   .largeCard .description {
     @apply text-lg;
-  }
+  } */
   .largeCard .description {
     @apply line-clamp-4;
   }
