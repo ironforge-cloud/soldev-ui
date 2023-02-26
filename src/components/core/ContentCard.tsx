@@ -2,6 +2,7 @@ import styles from "@/styles/ContentCard.module.css";
 import Link from "next/link";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { SITE_ADDR } from "@/lib/constants/general";
+import Image from "next/image";
 
 const DEFAULT_IMG_SRC = "/img/cta/0.jpg";
 
@@ -48,17 +49,19 @@ export default function ContentCard({
     <div
       className={`${styles.card} ${isLarge && styles.largeCard} ${className}`}
     >
-      <div className={styles.image}>
-        <Link href={href} target={isExternal ? "_blank" : ""}>
-          {isHot && <span className={styles.badge}>Hot</span>}
-          <img src={imageSrc} alt={title} />
-        </Link>
-      </div>
+      <Link
+        href={href}
+        target={isExternal ? "_blank" : ""}
+        className={styles.image}
+      >
+        {isHot && <span className={styles.badge}>Hot</span>}
+        <Image src={imageSrc} alt={title} fill={true} />
+      </Link>
 
       <div className={styles.metaArea}>
         <h3>
           <Link href={href} target={isExternal ? "_blank" : ""}>
-            {title}
+            <span>{title}</span>
             {isExternal && <ArrowUpRightIcon />}
           </Link>
         </h3>

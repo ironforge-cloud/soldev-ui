@@ -31,13 +31,13 @@
 }
 
 .image {
-  @apply relative;
-  @apply overflow-hidden rounded-2xl;
-  @apply mb-3;
-  @apply w-full max-h-40;
-  /* @apply md:min-h-[10em]; */
-  @apply border border-slate-200 bg-slate-50;
-  @apply object-cover object-center;
+  @apply relative flex items-center place-items-center;
+  @apply mb-3 overflow-hidden rounded-2xl;
+  @apply w-full max-h-60 min-h-[10rem];
+  @apply border border-slate-200 bg-slate-50 aspect-video;
+}
+.image img {
+  @apply relative object-cover object-center w-full h-full;
 }
 
 .badge {
@@ -56,7 +56,7 @@
 .metaArea {
   @apply space-y-1;
 }
-.metaArea h3 {
+.metaArea h3 a span {
   @apply text-base line-clamp-2;
   @apply leading-tight;
 }
@@ -64,7 +64,6 @@
   @apply flex justify-between w-full;
   @apply hover:underline;
 }
-
 .metaArea h3 a svg {
   @apply w-5 h-5 ml-1 flex-shrink-0 !important;
 }
@@ -111,7 +110,8 @@
   .largeCard .metaArea {
     @apply my-auto space-y-2;
   }
-  .largeCard .metaArea h3 {
+  .largeCard .metaArea h3 a span {
+    @apply line-clamp-4;
     @apply text-4xl !important;
   }
   .largeCard .metaArea h3 a svg {
@@ -123,7 +123,7 @@
     @apply text-lg;
   }
   .largeCard .description {
-    @apply line-clamp-5;
+    @apply line-clamp-4;
   }
   .largeCard .tags a {
     @apply pr-3;
