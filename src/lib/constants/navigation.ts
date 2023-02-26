@@ -17,6 +17,7 @@ import {
   MegaphoneIcon,
   MicrophoneIcon,
   NewspaperIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
 type NavigationSection = {
@@ -161,12 +162,18 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
         className: styles.green,
       },
       {
-        label: "Dev Call",
-        href: "#",
-        description: "Monthly updates from the Solana Team",
+        label: "Core Community Calls",
+        href: "/core-community-calls",
+        description: "Monthly discussions around protocol changes",
         icon: MegaphoneIcon,
-        isExternal: true,
         className: styles.blue,
+      },
+      {
+        label: "Superteam Ecosystem Calls",
+        href: "/superteam-ecosystem-calls",
+        description: "Monthly ecosystem updates from Superteam",
+        icon: UserGroupIcon,
+        className: styles.red,
       },
     ],
   },

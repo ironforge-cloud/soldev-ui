@@ -94,7 +94,10 @@ function UpdatesFooterLinks() {
         <Link href={"/changelog"}>Changelog</Link>
       </li>
       <li>
-        <Link href={"#"}>Dev Call</Link>
+        <Link href={"/core-community-calls"}>Community Calls</Link>
+      </li>
+      <li>
+        <Link href={"/superteam-ecosystem-calls"}>Ecosystem Calls</Link>
       </li>
     </ul>
   );
