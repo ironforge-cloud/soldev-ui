@@ -10,14 +10,14 @@
 }
 
 .hero h1 {
-  @apply text-5xl tracking-normal md:text-6xl;
+  @apply text-4xl tracking-normal md:text-6xl;
 }
 /* .hero p {
   @apply text-xl;
 } */
 
 .inner {
-  @apply min-h-[24rem] pt-20 pb-10 lg:py-20;
+  @apply min-h-[24rem] pt-20 pb-0 lg:pt-20 lg:pb-0;
   @apply flex items-center justify-center text-center;
   @apply text-white;
 }

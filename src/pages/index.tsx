@@ -20,7 +20,7 @@ const posts = [0, 0, 0, 0];
 export default function Page() {
   return (
     <DefaultLayout seo={seo}>
-      <PageHero className="container py-20" heroSize="lg">
+      <PageHero className="container py-20 mb-16" heroSize="lg">
         <h1>
           Your <span className="gradient-solana">Solana</span> homepage
         </h1>

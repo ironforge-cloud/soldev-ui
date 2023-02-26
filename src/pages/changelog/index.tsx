@@ -58,7 +58,7 @@ export default function Page({ records }: PageProps) {
             <ContentCard
               key={item.SK}
               isLarge={!index}
-              href={item.Url}
+              href={`/changelog/${item.SK}`}
               title={item.Title}
               authorLabel={item.Author}
               // authorHref="#"
