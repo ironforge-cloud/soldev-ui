@@ -149,7 +149,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
     links: [
       {
         label: "Newsletter",
-        href: "/newsletters",
+        href: "/newsletter",
         description: "The latest from the Solana Foundation",
         icon: EnvelopeIcon,
         className: styles.purple,

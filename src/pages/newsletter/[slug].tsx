@@ -1,16 +1,10 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
-import styles from "@/styles/core/sidebar.module.css";
-import { useState } from "react";
-import clsx from "clsx";
 import Link from "next/link";
-
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 
-import subnavStyles from "@/styles/core/subnav.module.css";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
 import { getNewsletterRecords } from "@/lib/queries";
 import markdownToHtml from "@/utils/markdownToHtml";
@@ -19,12 +13,6 @@ import markdownToHtml from "@/utils/markdownToHtml";
 const placeholderSEO: NextSeoProps = {
   title: "Read the newsletter",
   description: "",
-};
-
-// define the indexes for the tabbed page sections
-const TABS_OPTIONS = {
-  content: 0,
-  details: 1,
 };
 
 export async function getStaticPaths() {
@@ -101,9 +89,6 @@ type PageProps = {
 };
 
 export default function Page({ record, seo }: PageProps) {
-  // track the selected tab for the mobile view
-  const [selectedTab, setSelectedTab] = useState(TABS_OPTIONS.content);
-
   return (
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container text-center">
@@ -115,7 +100,7 @@ export default function Page({ record, seo }: PageProps) {
 
         <section className={heroStyles.ctaSection}>
           <Link
-            href={"/newsletters"}
+            href={"/newsletter"}
             className={`btn btn-default ${heroStyles.ctaBtn}`}
           >
             {/* <ArrowLeftIcon className="icon" /> */}
@@ -129,9 +114,9 @@ export default function Page({ record, seo }: PageProps) {
       </PageHero>
 
       <main className={"max-w-4xl container"}>
-        {/* <p className="text-gray-500 md:text-sm">
+        <p className="text-gray-500 md:text-sm">
           Published {record.PublishedAt}
-        </p> */}
+        </p>
 
         <article
           className="prose"

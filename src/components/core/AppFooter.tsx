@@ -88,7 +88,7 @@ function UpdatesFooterLinks() {
         <h4>Updates</h4>
       </li>
       <li>
-        <Link href={"/newsletters"}>Newsletter</Link>
+        <Link href={"/newsletter"}>Newsletter</Link>
       </li>
       <li>
         <Link href={"/changelog"}>Changelog</Link>
