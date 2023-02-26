@@ -8,6 +8,7 @@ import {
   SITE_TWITTER_HANDLE,
 } from "@/lib/constants/general";
 import styles from "@/styles/core/footer.module.css";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -56,7 +57,20 @@ function LearnFooterLinks() {
         <h4>Learn</h4>
       </li>
       <li>
-        <Link href={"#"}>Intro to Solana</Link>
+        <Link href={"/course"}>Intro to Solana</Link>
+      </li>
+      <li>
+        <Link href={"#"}>Solana Bootcamp</Link>
+      </li>
+      <li>
+        <Link target="_blank" href={"https://buildspace.so/solana-core"}>
+          buildspace Solana Core
+        </Link>
+      </li>
+      <li>
+        <Link target="_blank" href={"https://solanacookbook.com/"}>
+          Solana Cookbook
+        </Link>
       </li>
     </ul>
   );

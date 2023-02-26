@@ -54,12 +54,12 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
         href: "#",
         description: "Intro bootcamp on Solana with Jarry Xiao",
         icon: BoltIcon,
-        isExternal: true,
+        // isExternal: true,
         className: styles.green,
       },
       {
         label: "buildspace Solana Core",
-        href: "#",
+        href: "https://buildspace.so/solana-core",
         description: "A 6-week course on building on Solana",
         icon: AcademicCapIcon,
         isExternal: true,
@@ -67,7 +67,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       },
       {
         label: "Solana Cookbook",
-        href: "#",
+        href: "https://solanacookbook.com/",
         description: "Recipes for building on Solana",
         icon: BookOpenIcon,
         isExternal: true,
