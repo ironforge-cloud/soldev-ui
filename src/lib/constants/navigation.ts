@@ -155,10 +155,9 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       },
       {
         label: "Changelog",
-        href: "#",
+        href: "/changelog",
         description: "The latest updates for the protocol",
         icon: CodeBracketIcon,
-        isExternal: true,
         className: styles.green,
       },
       {

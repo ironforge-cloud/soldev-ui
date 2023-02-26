@@ -29,6 +29,14 @@ body {
   @apply text-transparent bg-clip-text bg-gradient-to-br from-solana-green to-solana-purple;
 }
 
+/* Override some `prose` styling */
+.prose {
+  @apply max-w-[75ch];
+}
+.prose p {
+  @apply first-of-type:text-xl;
+}
+
 /*
   Form elements
 */
