@@ -18,13 +18,6 @@ export async function getStaticProps() {
   // fetch the listing of IDK from the API
   const records = await getIDLRecords();
 
-  console.log("records:", records.length);
-  console.log(records[0]);
-
-  const record = await getIDLRecordByAddress(records[0].address);
-  console.log("full record:");
-  console.log(record);
-
   return {
     props: {
       records,
