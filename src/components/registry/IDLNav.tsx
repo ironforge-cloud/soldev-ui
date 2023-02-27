@@ -2,36 +2,29 @@ import styles from "@/styles/registry/IDLNav.module.css";
 import Dropdown from "@/components/core/Dropdown";
 import Link from "next/link";
 
-// define the listing of navigation items to be displayed
-const LINK_OPTIONS = [
-  { label: "Instructions" },
-  { label: "Accounts" },
-  { label: "Types" },
-  { label: "Errors" },
-  { label: "Constants" },
-  { label: "Events" },
-];
-
 type ComponentProps = {
-  className?: string;
+  options: { label: string; href?: string }[];
+  selected: string;
 };
 
-export default function IDLNav(props: ComponentProps) {
+export default function IDLNav({ options, selected }: ComponentProps) {
   return (
     <>
       <nav className={styles.desktopNav}>
-        {LINK_OPTIONS.map((item, id) => (
+        {options.map((item, id) => (
           <Link
             key={id}
             href={`#${item.label.toLowerCase()}`}
-            className={`btn ${id == 0 ? styles.active : ""}`}
+            className={`btn ${
+              selected === item.label.toLocaleLowerCase() ? styles.active : ""
+            }`}
           >
             {item.label}
           </Link>
         ))}
       </nav>
 
-      <Dropdown items={LINK_OPTIONS} className="mobile-only" />
+      <Dropdown items={options} className="mobile-only" />
     </>
   );
 }

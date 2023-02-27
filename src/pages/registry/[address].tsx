@@ -4,14 +4,26 @@ import Link from "next/link";
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 
-import {
-  ArrowLeftIcon,
-  ArrowTopRightOnSquareIcon,
-} from "@heroicons/react/24/solid";
+// import {
+//   ArrowLeftIcon,
+//   ArrowTopRightOnSquareIcon,
+// } from "@heroicons/react/24/solid";
 
 import IDLNav from "@/components/registry/IDLNav";
 import { getIDLRecords, getIDLRecordByAddress } from "@/lib/queries";
 import IDLInstructionsTable from "@/components/registry/IDLInstructionsTable";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+// define the listing of navigation items to be displayed
+const SUBNAV_OPTIONS = [
+  { label: "Instructions", href: "#instructions" },
+  { label: "Accounts", href: "#accounts" },
+  { label: "Types", href: "#types" },
+  { label: "Errors", href: "#errors" },
+  { label: "Constants", href: "#constants" },
+  { label: "Events", href: "#events" },
+];
 
 // define the placeholder on-page seo metadata
 const placeholderSEO: NextSeoProps = {
@@ -26,7 +38,6 @@ export async function getStaticPaths() {
     return {
       params: {
         address: item.address,
-        tab: "",
       },
     };
   });
@@ -45,7 +56,7 @@ export async function getStaticProps({ params: { address } }: StaticProps) {
   // handle the 404 when no record was found
   if (!record || !record.idl) return { notFound: true };
 
-  console.log(record.idl);
+  // console.log(record.idl);
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
@@ -68,6 +79,15 @@ type PageProps = {
 };
 
 export default function Page({ record, seo }: PageProps) {
+  const { asPath } = useRouter();
+  const [selectedTab, setSelectedTab] = useState("instructions");
+
+  // track and auto update the selected tab by the hash based routing
+  useEffect(() => {
+    // console.log("change hash");
+    setSelectedTab(asPath.split("#")[1] || "instructions");
+  }, [asPath]);
+
   return (
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container">
@@ -97,14 +117,26 @@ export default function Page({ record, seo }: PageProps) {
       </PageHero>
 
       <section className={"container"}>
-        <IDLNav />
+        <IDLNav options={SUBNAV_OPTIONS} selected={selectedTab} />
       </section>
 
-      {record?.idl ? (
-        <>
-          <IDLInstructionsTable data={record.idl.instructions} />
-        </>
-      ) : null}
+      {record?.idl ? <RenderTable record={record} tab={selectedTab} /> : null}
     </DefaultLayout>
   );
+}
+
+/*
+  Component function to switch case render the correct data table for view 
+*/
+function RenderTable({ tab, record }: { tab: string; record: IDLRecord }) {
+  switch (tab) {
+    case "instructions":
+      return <IDLInstructionsTable data={(record.idl as Idl).instructions} />;
+    default:
+      return (
+        <p className="p-8 text-2xl text-center">
+          Unknown page. Please select a valid option.
+        </p>
+      );
+  }
 }

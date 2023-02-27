@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
+import { useRouter } from "next/router";
 
 type DropdownOption = {
   label: string;
@@ -25,6 +26,8 @@ export default function Dropdown({
   name,
 }: ComponentProps) {
   const [selected, setSelected] = useState(items[defaultIndex]);
+
+  const router = useRouter();
 
   return (
     <Listbox value={selected} onChange={setSelected} name={name || undefined}>
@@ -54,11 +57,17 @@ export default function Dropdown({
                 value={
                   typeof item != "string" ? item?.value || item.label : item
                 }
+                onClick={(e: any) => {
+                  if (typeof item != "string" && item?.href) {
+                    setSelected(item);
+                    router.push(item.href);
+                  }
+                }}
               >
                 {({ selected }) => (
                   <>
                     {typeof item != "string" && item?.href ? (
-                      <Link href={item.href}>
+                      <Link href={item.href} onClick={() => setSelected(item)}>
                         <span className={selected ? styles.selectedOption : ""}>
                           {typeof item != "string" ? item.label : item}
                         </span>
