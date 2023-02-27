@@ -42,5 +42,5 @@ type ContentRecord = {
 type IDLRecord = {
   programName: string;
   address: string;
-  idl?: object;
+  idl?: Idl;
 };

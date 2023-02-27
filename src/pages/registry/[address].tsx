@@ -1,36 +1,77 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
-import styles from "@/styles/registry.module.css";
 import Link from "next/link";
-
-import dataTableStyles from "@/styles/core/dataTable.module.css";
-
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
-import IDLNav from "@/components/registry/IDLNav";
 
 import {
   ArrowLeftIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/solid";
 
-// define the on-page seo metadata
-const seo: NextSeoProps = {
-  title: "Registry page",
+import IDLNav from "@/components/registry/IDLNav";
+import { getIDLRecords, getIDLRecordByAddress } from "@/lib/queries";
+import IDLInstructionsTable from "@/components/registry/IDLInstructionsTable";
+
+// define the placeholder on-page seo metadata
+const placeholderSEO: NextSeoProps = {
+  title: "Explore this Solana Program's IDL",
   description: "",
 };
 
-export default function Page() {
-  const program = {
-    title: "jet_staking",
-    network: "mainnet",
-    address: "9mn9Z2qWndBPr6qGyFbXJUEUHvjGFgmUUz5CrpBZ9WF",
+export async function getStaticPaths() {
+  const records = await getIDLRecords();
+
+  const paths = records.map((item) => {
+    return {
+      params: {
+        address: item.address,
+        tab: "",
+      },
+    };
+  });
+
+  // All missing paths are going to be server-side rendered and cached
+  return { paths, fallback: "blocking" };
+}
+
+type StaticProps = {
+  params: { address: string };
+};
+
+export async function getStaticProps({ params: { address } }: StaticProps) {
+  const record = await getIDLRecordByAddress(address);
+
+  // handle the 404 when no record was found
+  if (!record || !record.idl) return { notFound: true };
+
+  console.log(record.idl);
+
+  // define the on-page seo metadata
+  const seo: NextSeoProps = {
+    title: `${record.programName} IDL`,
+    // description: "",
   };
 
+  return {
+    props: {
+      record,
+      seo,
+    },
+    revalidate: 60,
+  };
+}
+
+type PageProps = {
+  record: IDLRecord;
+  seo: NextSeoProps;
+};
+
+export default function Page({ record, seo }: PageProps) {
   return (
-    <DefaultLayout seo={seo}>
+    <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container">
-        <h1>{program.title}</h1>
+        <h1>{record.programName}</h1>
 
         {/* <p className="max-w-2xl text-xl">
           optional paragraph text
@@ -45,7 +86,7 @@ export default function Page() {
             Back to IDL Registry
           </Link>
           <Link
-            href={`https://explorer.solana.com/address/${program.address}`}
+            href={`https://explorer.solana.com/address/${record.address}`}
             target="_blank"
             className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
@@ -59,58 +100,11 @@ export default function Page() {
         <IDLNav />
       </section>
 
-      <main
-        className={`container-inner ${dataTableStyles.scrollContainer} hide-scroll-bar`}
-      >
-        <table
-          className={`${dataTableStyles.dataTable} font-mono hide-scroll-bar`}
-        >
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Arguments</th>
-              <th>Accounts</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>addUri</td>
-              <td>
-                <ul className={dataTableStyles.dataList}>
-                  <li>
-                    <span>index</span>
-                    <span className={`${styles.badge} ${styles.badge}`}>
-                      u16
-                    </span>
-                  </li>
-                  <li>
-                    <span>relativeUri</span>
-                    <span className={`${styles.badge} ${styles.badge}`}>
-                      string
-                    </span>
-                  </li>
-                </ul>
-              </td>
-              <td>
-                <ul className={dataTableStyles.dataList}>
-                  <li>
-                    <span>user</span>
-                    <span className={styles.badgeRed}>isSigner</span>
-                    <span className={styles.badgeGreen}>isMut</span>
-                  </li>
-                  <li>
-                    <span>uris</span>
-                    <span className={styles.badgeBlue}>isMut</span>
-                  </li>
-                  <li>
-                    <span>systemProgram</span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </main>
+      {record?.idl ? (
+        <>
+          <IDLInstructionsTable data={record.idl.instructions} />
+        </>
+      ) : null}
     </DefaultLayout>
   );
 }

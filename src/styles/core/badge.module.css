@@ -1,0 +1,29 @@
+/*
+  Style the badges for the attributes and labels 
+  (i.g. those used within the registry for `isMut`, `isSigner`, etc)
+*/
+
+.default {
+  @apply px-2 py-0 mx-1 rounded-md;
+  @apply bg-gray-200;
+}
+.red {
+  @apply default;
+  @apply bg-red-300;
+  @apply text-red-800;
+}
+.blue {
+  @apply default;
+  @apply bg-blue-300;
+  @apply text-blue-800;
+}
+.green {
+  @apply default;
+  @apply bg-green-200;
+  @apply text-green-800;
+}
+.purple {
+  @apply default;
+  @apply bg-green-200;
+  @apply text-violet-800;
+}
