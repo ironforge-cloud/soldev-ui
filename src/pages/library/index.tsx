@@ -8,6 +8,7 @@ import LibraryFilters from "@/components/library/LibraryFilters";
 import { FunnelIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import clsx from "clsx";
+import { computeImage } from "@/utils/content";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -15,7 +16,42 @@ const seo: NextSeoProps = {
   description: "",
 };
 
-export default function Page() {
+export async function getStaticProps() {
+  // fetch the records from the API
+
+  // const contentTypes = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/types`,
+  // ).then((res) => res.json());
+  // console.log("--- contentTypes ---");
+  // console.log(contentTypes);
+
+  // const playlists = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_ENDPOINT}/playlists/Solana`,
+  // ).then((res) => res.json());
+  // console.log(playlists);
+
+  const type = "tutorials";
+
+  const records = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/Solana/${type}`,
+  ).then((res) => res.json());
+  // console.log("--- records ---");
+  // console.log(records.length);
+  // console.log(records);
+
+  return {
+    props: {
+      records,
+    },
+    revalidate: 60,
+  };
+}
+
+type PageProps = {
+  records: ContentRecord[];
+};
+
+export default function Page({ records }: PageProps) {
   const [showFilters, setShowFilters] = useState(false);
 
   return (
@@ -59,82 +95,18 @@ export default function Page() {
 
         <section className={styles.rightSideLarge}>
           <main className={styles.gridContainer}>
-            <ContentCard
-              isExternal={true}
-              href="#"
-              title="A Guide to Full Stack Development on Solana"
-              authorLabel="Nader Dabit"
-              authorHref="#"
-              imageSrc="/img/cta/1.jpg"
-              description="Learn how to build end-to-end products on Solana with this tutorial covering React, Anchor, Rust, and Phantom."
-              tags="beginner, web3.js, anchor, solana, beginner, web3.js, anchor"
-            />
-            <ContentCard
-              href="#"
-              isExternal={true}
-              isHot={true}
-              title="Create a Solana dApp from Scratch"
-              authorLabel="@LORISMATIC"
-              authorHref="#"
-              imageSrc="/img/cta/0.jpg"
-              description="In this series, we'll implement a simplified version of Twitter as a Solana dApp. We'll write our own program and use it in a custom VueJS app."
-              tags="beginner, anchor, javascript"
-            />
-            <ContentCard
-              href="#"
-              title="Solana 101"
-              authorLabel="Figment"
-              authorHref="#"
-              imageSrc="/img/cta/4.jpg"
-              description="Getting started with Solana by doing all the basic essentials from setup to deploying a program, to interacting with that program."
-              tags="beginner, web3.js, solana, javascript, rust"
-            />
-            <ContentCard
-              href="#"
-              isHot={true}
-              title="Intro to Programming on Solana"
-              authorLabel="paulx"
-              authorHref="#"
-              imageSrc="/img/cta/5.jpg"
-              description="Introductory guide for building a smart contract on Solana using a simple escrow program example."
-              tags="beginner, web3.js, rust"
-            />
-            <ContentCard
-              href="#"
-              title="A Guide to Full Stack Development on Solana"
-              authorLabel="Nader Dabit"
-              authorHref="#"
-              imageSrc="/img/cta/1.jpg"
-              description="Learn how to build end-to-end products on Solana with this tutorial covering React, Anchor, Rust, and Phantom."
-              tags="beginner, web3.js, anchor, solana, beginner, web3.js, anchor"
-            />
-            <ContentCard
-              href="#"
-              title="Create a Solana dApp from Scratch"
-              authorLabel="@LORISMATIC"
-              authorHref="#"
-              imageSrc="/img/cta/0.jpg"
-              description="In this series, we'll implement a simplified version of Twitter as a Solana dApp. We'll write our own program and use it in a custom VueJS app."
-              tags="beginner, anchor, javascript"
-            />
-            <ContentCard
-              href="#"
-              title="Solana 101"
-              authorLabel="Figment"
-              authorHref="#"
-              imageSrc="/img/cta/4.jpg"
-              description="Getting started with Solana by doing all the basic essentials from setup to deploying a program, to interacting with that program."
-              tags="beginner, web3.js, solana, javascript, rust"
-            />
-            <ContentCard
-              href="#"
-              title="Intro to Programming on Solana"
-              authorLabel="paulx"
-              authorHref="#"
-              imageSrc="/img/cta/5.jpg"
-              description="Introductory guide for building a smart contract on Solana using a simple escrow program example."
-              tags="beginner, web3.js, rust"
-            />
+            {records.map((item) => (
+              <ContentCard
+                key={item.PK}
+                href={item.Url}
+                title={item.Title}
+                authorLabel={item.Author}
+                // authorHref={"#"}
+                imageSrc={computeImage(item)}
+                description={item.Description}
+                tags={item.Tags}
+              />
+            ))}
           </main>
         </section>
       </section>

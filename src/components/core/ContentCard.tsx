@@ -4,7 +4,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { SITE_ADDR } from "@/lib/constants/general";
 import Image from "next/image";
 
-const DEFAULT_IMG_SRC = "/img/cta/0.jpg";
+const DEFAULT_IMG_SRC = "/placeholder.webp";
 
 type ComponentProps = {
   className?: string;
@@ -55,7 +55,13 @@ export default function ContentCard({
         className={styles.image}
       >
         {isHot && <span className={styles.badge}>Hot</span>}
-        <Image src={imageSrc} alt={title} fill={true} />
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill={true}
+          placeholder={"blur"}
+          blurDataURL={imageSrc}
+        />
       </Link>
 
       <div className={styles.metaArea}>
