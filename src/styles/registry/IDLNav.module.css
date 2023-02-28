@@ -14,3 +14,8 @@
 .desktopNav a.active {
   @apply text-violet-600 bg-violet-100;
 }
+.desktopNav .disabled {
+  @apply cursor-default;
+  @apply text-gray-300 bg-transparent hover:bg-transparent;
+  @apply hover:bg-none hover:text-gray-300;
+}

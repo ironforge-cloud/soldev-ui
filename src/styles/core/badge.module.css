@@ -7,6 +7,10 @@
   @apply px-2 py-0 mx-1 rounded-md;
   @apply bg-gray-200;
 }
+.bold {
+  @apply default;
+  @apply font-semibold;
+}
 .red {
   @apply default;
   @apply bg-red-300;
@@ -24,6 +28,6 @@
 }
 .purple {
   @apply default;
-  @apply bg-green-200;
+  @apply bg-violet-200;
   @apply text-violet-800;
 }

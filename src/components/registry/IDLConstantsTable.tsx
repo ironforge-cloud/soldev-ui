@@ -1,11 +1,11 @@
 import styles from "@/styles/core/dataTable.module.css";
-import { renderAccounts, renderArguments } from "@/utils/registry/render-idl";
+import badge from "@/styles/core/badge.module.css";
 
 type ComponentProps = {
-  data?: IdlInstruction[];
+  data?: IdlConstant[];
 };
 
-export default function IDLInstructionsTable({ data }: ComponentProps) {
+export default function IDLConstantsTable({ data }: ComponentProps) {
   if (!data) <></>;
   return (
     <main
@@ -15,8 +15,8 @@ export default function IDLInstructionsTable({ data }: ComponentProps) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Arguments</th>
-            <th>Accounts</th>
+            <th>Fields</th>
+            <th>Value</th>
           </tr>
         </thead>
         <tbody>
@@ -24,14 +24,12 @@ export default function IDLInstructionsTable({ data }: ComponentProps) {
             <tr key={index}>
               <td>{item.name}</td>
               <td>
-                <ul className={styles.dataList}>
-                  {renderArguments(item.args)}
-                </ul>
+                <span className={badge.default}>
+                  {(item.type as IdlType).toString()}
+                </span>
               </td>
               <td>
-                <ul className={styles.dataList}>
-                  {renderAccounts(item.accounts)}
-                </ul>
+                <span className={badge.default}>{item.value}</span>
               </td>
             </tr>
           ))}

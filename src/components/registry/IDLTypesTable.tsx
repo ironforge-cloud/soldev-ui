@@ -1,11 +1,12 @@
 import styles from "@/styles/core/dataTable.module.css";
-import { renderAccounts, renderArguments } from "@/utils/registry/render-idl";
+import badge from "@/styles/core/badge.module.css";
+import { renderArguments } from "@/utils/registry/render-idl";
 
 type ComponentProps = {
-  data?: IdlInstruction[];
+  data?: IdlTypeDef[];
 };
 
-export default function IDLInstructionsTable({ data }: ComponentProps) {
+export default function IDLTypesTable({ data }: ComponentProps) {
   if (!data) <></>;
   return (
     <main
@@ -15,22 +16,24 @@ export default function IDLInstructionsTable({ data }: ComponentProps) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Arguments</th>
-            <th>Accounts</th>
+            <th>Fields</th>
           </tr>
         </thead>
         <tbody>
           {data?.map((item, index) => (
             <tr key={index}>
-              <td>{item.name}</td>
               <td>
-                <ul className={styles.dataList}>
-                  {renderArguments(item.args)}
-                </ul>
+                <div className="inline-flex space-x-1">
+                  <span className={badge.bold}>{item.type.kind}</span>
+                  <span>{item.name}</span>
+                </div>
               </td>
               <td>
                 <ul className={styles.dataList}>
-                  {renderAccounts(item.accounts)}
+                  {renderArguments(
+                    (item.type as IdlTypeDefTyStruct)?.fields ||
+                      (item.type as IdlTypeDefTyEnum)?.variants,
+                  )}
                 </ul>
               </td>
             </tr>

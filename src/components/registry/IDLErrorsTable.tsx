@@ -1,11 +1,10 @@
 import styles from "@/styles/core/dataTable.module.css";
-import { renderAccounts, renderArguments } from "@/utils/registry/render-idl";
 
 type ComponentProps = {
-  data?: IdlInstruction[];
+  data?: IdlErrorCode[];
 };
 
-export default function IDLInstructionsTable({ data }: ComponentProps) {
+export default function IDLErrorsTable({ data }: ComponentProps) {
   if (!data) <></>;
   return (
     <main
@@ -14,25 +13,17 @@ export default function IDLInstructionsTable({ data }: ComponentProps) {
       <table className={`${styles.dataTable} font-mono hide-scroll-bar`}>
         <thead>
           <tr>
+            <th>Code</th>
             <th>Name</th>
-            <th>Arguments</th>
-            <th>Accounts</th>
+            <th>Message</th>
           </tr>
         </thead>
         <tbody>
           {data?.map((item, index) => (
             <tr key={index}>
+              <td>{item.code}</td>
               <td>{item.name}</td>
-              <td>
-                <ul className={styles.dataList}>
-                  {renderArguments(item.args)}
-                </ul>
-              </td>
-              <td>
-                <ul className={styles.dataList}>
-                  {renderAccounts(item.accounts)}
-                </ul>
-              </td>
+              <td>{item.msg}</td>
             </tr>
           ))}
         </tbody>

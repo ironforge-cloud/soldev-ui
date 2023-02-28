@@ -30,19 +30,19 @@ export function renderAccounts(accounts: IdlAccountItem[]) {
 export function renderArguments(args: any[]) {
   let components: React.ReactNode[] = [];
 
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0; i < args?.length; i++) {
     let type = "";
 
     // string constants
     if (typeof args[i].type === "string") type = args[i].type.toString();
     // IdlTypeArray
-    else if ((args[i].type as IdlTypeArray).array) {
+    else if ((args[i].type as IdlTypeArray)?.array) {
       type = `[${(args[i].type as IdlTypeArray).array[0]}; ${
         (args[i].type as IdlTypeArray).array[1]
       }]`;
     }
     // IdlTypeVec
-    else if ((args[i].type as IdlTypeVec).vec) {
+    else if ((args[i].type as IdlTypeVec)?.vec) {
       // coerce into `any` for type checking
       const vec: any = args[i].type;
 
@@ -60,19 +60,19 @@ export function renderArguments(args: any[]) {
       }
     }
     // IdlTypeDefined
-    else if ((args[i].type as IdlTypeDefined).defined) {
+    else if ((args[i].type as IdlTypeDefined)?.defined) {
       type = (args[i].type as IdlTypeDefined).defined;
     }
     // IdlTypeOption
-    else if ((args[i].type as IdlTypeOption).option) {
+    else if ((args[i].type as IdlTypeOption)?.option) {
       type = `Option<${(args[i].type as IdlTypeOption).option}>`;
     }
     // IdlTypeCOption
-    else if ((args[i].type as IdlTypeCOption).coption) {
+    else if ((args[i].type as IdlTypeCOption)?.coption) {
       type = `COption<${(args[i].type as IdlTypeCOption).coption}>`;
     }
     // final catch all (normally string constants)
-    else type = args[i].type.toString();
+    else type = args[i].type?.toString() || args[i].type;
 
     // add the current argument into the returnable array
     components.push(

@@ -5,9 +5,10 @@ import Link from "next/link";
 type ComponentProps = {
   options: { label: string; href?: string }[];
   selected: string;
+  idl?: Idl;
 };
 
-export default function IDLNav({ options, selected }: ComponentProps) {
+export default function IDLNav({ options, selected, idl }: ComponentProps) {
   return (
     <>
       <nav className={styles.desktopNav}>
@@ -17,6 +18,8 @@ export default function IDLNav({ options, selected }: ComponentProps) {
             href={`#${item.label.toLowerCase()}`}
             className={`btn ${
               selected === item.label.toLocaleLowerCase() ? styles.active : ""
+            } ${
+              (idl as any)?.[item.label.toLowerCase()] ? "" : styles.disabled
             }`}
           >
             {item.label}

@@ -5,7 +5,7 @@ import PageHero from "@/components/core/PageHero";
 import styles from "@/styles/core/sidebar.module.css";
 import IDLCard from "@/components/registry/IDLCard";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { getIDLRecordByAddress, getIDLRecords } from "@/lib/queries";
+import { getIDLRecords } from "@/lib/queries";
 import { useState } from "react";
 
 // define the on-page seo metadata

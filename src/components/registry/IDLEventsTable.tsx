@@ -1,11 +1,11 @@
 import styles from "@/styles/core/dataTable.module.css";
-import { renderAccounts, renderArguments } from "@/utils/registry/render-idl";
+import { renderArguments } from "@/utils/registry/render-idl";
 
 type ComponentProps = {
-  data?: IdlInstruction[];
+  data?: IdlEvent[];
 };
 
-export default function IDLInstructionsTable({ data }: ComponentProps) {
+export default function IDLEventsTable({ data }: ComponentProps) {
   if (!data) <></>;
   return (
     <main
@@ -15,8 +15,7 @@ export default function IDLInstructionsTable({ data }: ComponentProps) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Arguments</th>
-            <th>Accounts</th>
+            <th>Fields</th>
           </tr>
         </thead>
         <tbody>
@@ -25,12 +24,7 @@ export default function IDLInstructionsTable({ data }: ComponentProps) {
               <td>{item.name}</td>
               <td>
                 <ul className={styles.dataList}>
-                  {renderArguments(item.args)}
-                </ul>
-              </td>
-              <td>
-                <ul className={styles.dataList}>
-                  {renderAccounts(item.accounts)}
+                  {renderArguments(item.fields)}
                 </ul>
               </td>
             </tr>

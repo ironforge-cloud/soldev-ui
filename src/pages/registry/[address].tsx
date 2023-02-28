@@ -14,6 +14,11 @@ import { getIDLRecords, getIDLRecordByAddress } from "@/lib/queries";
 import IDLInstructionsTable from "@/components/registry/IDLInstructionsTable";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import IDLAccountsTable from "@/components/registry/IDLAccountsTable";
+import IDLTypesTable from "@/components/registry/IDLTypesTable";
+import IDLErrorsTable from "@/components/registry/IDLErrorsTable";
+import IDLConstantsTable from "@/components/registry/IDLConstantsTable";
+import IDLEventsTable from "@/components/registry/IDLEventsTable";
 
 // define the listing of navigation items to be displayed
 const SUBNAV_OPTIONS = [
@@ -55,8 +60,6 @@ export async function getStaticProps({ params: { address } }: StaticProps) {
 
   // handle the 404 when no record was found
   if (!record || !record.idl) return { notFound: true };
-
-  // console.log(record.idl);
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
@@ -117,10 +120,34 @@ export default function Page({ record, seo }: PageProps) {
       </PageHero>
 
       <section className={"container"}>
-        <IDLNav options={SUBNAV_OPTIONS} selected={selectedTab} />
+        <IDLNav
+          idl={record?.idl}
+          options={SUBNAV_OPTIONS}
+          selected={selectedTab}
+        />
       </section>
 
-      {record?.idl ? <RenderTable record={record} tab={selectedTab} /> : null}
+      {(record?.idl as Idl) ? (
+        <>
+          {selectedTab == "instructions" && (
+            <IDLInstructionsTable data={record.idl?.instructions} />
+          )}
+          {selectedTab == "accounts" && (
+            <IDLAccountsTable data={record.idl?.accounts} />
+          )}
+          {selectedTab == "types" && <IDLTypesTable data={record.idl?.types} />}
+          {selectedTab == "errors" && (
+            <IDLErrorsTable data={record.idl?.errors} />
+          )}
+          {selectedTab == "constants" && (
+            <IDLConstantsTable data={record.idl?.constants} />
+          )}
+          {selectedTab == "events" && (
+            <IDLEventsTable data={record.idl?.events} />
+          )}
+        </>
+      ) : // <RenderTable record={record} tab={selectedTab} />
+      null}
     </DefaultLayout>
   );
 }
@@ -132,6 +159,8 @@ function RenderTable({ tab, record }: { tab: string; record: IDLRecord }) {
   switch (tab) {
     case "instructions":
       return <IDLInstructionsTable data={(record.idl as Idl).instructions} />;
+    case "accounts":
+      return <IDLAccountsTable data={(record.idl as Idl).accounts} />;
     default:
       return (
         <p className="p-8 text-2xl text-center">
