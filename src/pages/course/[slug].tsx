@@ -3,11 +3,12 @@ import LessonLayout from "@/layouts/lesson";
 import Link from "next/link";
 import styles from "@/styles/core/sidebar.module.css";
 import clsx from "clsx";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import fs from "fs";
 import path from "path";
 import * as matter from "gray-matter";
+import { COURSE_MODULES } from "@/lib/constants/course";
 
 import subnavStyles from "@/styles/core/subnav.module.css";
 
@@ -102,6 +103,15 @@ type PageProps = {
 
 export default function Page({ markdown, metadata, seo, slug }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
+
+  // memo-ize the current module
+  const currentModule = useMemo(() => {
+    return COURSE_MODULES.filter(
+      (item) =>
+        item.lessons.flat().filter((item) => item.slug.toLowerCase() == slug)
+          .length > 0,
+    )?.[0];
+  }, []);
 
   return (
     <LessonLayout
@@ -201,29 +211,17 @@ export default function Page({ markdown, metadata, seo, slug }: PageProps) {
           >
             <h3>Progress</h3>
 
-            <CourseModuleItem
-              isSmall={true}
-              isActive={true}
-              isComplete={true}
-              title="Read data from the network"
-              href="/course/intro-to-reading-data"
-              lessonNumber={1}
-              minuteCounter={2}
-            />
-            <CourseModuleItem
-              isSmall={true}
-              title="Write data to the network"
-              href="/course/intro-to-writing-data"
-              lessonNumber={2}
-              minuteCounter={9}
-            />
-            <CourseModuleItem
-              isSmall={true}
-              title="Interact with wallets"
-              href="/course/interact-with-wallets"
-              lessonNumber={3}
-              minuteCounter={14}
-            />
+            {currentModule?.lessons?.map((item, id) => (
+              <CourseModuleItem
+                isSmall={true}
+                // isComplete={true}
+                isActive={slug == item.slug}
+                title={item.title}
+                href={`/course/${item.slug}`}
+                lessonNumber={item.number || id + 1}
+                // minuteCounter={2}
+              />
+            ))}
           </section>
         </aside>
       </section>
