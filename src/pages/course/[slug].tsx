@@ -1,19 +1,30 @@
 import { NextSeoProps } from "next-seo";
 import LessonLayout from "@/layouts/lesson";
+import Link from "next/link";
 import styles from "@/styles/core/sidebar.module.css";
+import clsx from "clsx";
 import { useState } from "react";
+
+import fs from "fs";
+import path from "path";
+import * as matter from "gray-matter";
 
 import subnavStyles from "@/styles/core/subnav.module.css";
 
-import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import clsx from "clsx";
 import CourseModuleItem from "@/components/course/CourseModuleItem";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
+import ArticleContent from "@/components/ArticleContent";
+
+type LessonMetadata = {
+  title?: string;
+  description?: string;
+  objectives?: string[];
+};
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
-  title: "Course lesson page",
+  title: "Learn Solana Development",
   description: "",
 };
 
@@ -24,11 +35,80 @@ const TABS = {
   progress: 2,
 };
 
-export default function Page() {
+// define the placeholder on-page seo metadata
+const placeholderSEO: NextSeoProps = {
+  title: "Learn Solana Development",
+  description: "",
+};
+
+// define the base directory to search for the course content for
+const directory = path.join(process.cwd(), "content", "course");
+
+export async function getStaticPaths() {
+  const fileNames = fs.readdirSync(directory);
+
+  const paths = fileNames.map((fileName) => {
+    return {
+      params: {
+        slug: fileName.replace(/\.md$/, ""),
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+type StaticProps = {
+  params: { slug: string };
+};
+
+export async function getStaticProps({ params: { slug } }: StaticProps) {
+  const filePath = path.join(directory, `${slug}.md`);
+
+  // load the lesson's markdown file, with YAML front matter support
+  const lesson = matter.read(filePath);
+
+  // handle the 404 when no record was found
+  if (!lesson) return { notFound: true };
+
+  // TODO: determine the next/prev lessons
+
+  // define the on-page seo metadata
+  const seo: NextSeoProps = {
+    title: lesson.data.title || "Learn Solana Development",
+    description: lesson.data.description || "Learn Solana Development",
+  };
+
+  return {
+    props: {
+      markdown: lesson.content,
+      metadata: lesson.data,
+      slug,
+      seo,
+    },
+    revalidate: 60,
+  };
+}
+
+type PageProps = {
+  markdown: string;
+  metadata: LessonMetadata;
+  slug: string;
+  seo: NextSeoProps;
+};
+
+export default function Page({ markdown, metadata, seo, slug }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   return (
-    <LessonLayout seo={seo} title="Reading data from the network" href="#">
+    <LessonLayout
+      seo={{ ...placeholderSEO, ...seo }}
+      title={metadata.title || seo.title || "d"}
+      href={`/course/${slug?.toLowerCase()}`}
+    >
       <nav className={clsx(subnavStyles.subnav, "mobile-only")}>
         <Link
           href={"#content"}
@@ -71,7 +151,7 @@ export default function Page() {
               : subnavStyles.inActiveTab,
           )}
         >
-          <article>content</article>
+          <ArticleContent markdown={markdown} className="prose" />
 
           <NextPrevButtons
             nextHref="#"
@@ -92,23 +172,23 @@ export default function Page() {
           >
             <h3>Objectives</h3>
 
-            <p className={styles.minorText}>
-              By the end of this lesson, you&apos;ll be able to:
-            </p>
+            {metadata?.objectives && metadata.objectives.length > 0 ? (
+              <>
+                <p className={styles.minorText}>
+                  By the end of this lesson, you&apos;ll be able to:
+                </p>
 
-            <ul className="pl-8 text-gray-500 list-disc md:text-sm">
-              <li>Explain accounts</li>
-              <li>Explain SOL and lamports</li>
-              <li>Explain public keys</li>
-              <li>Explain the JSON RPC API</li>
-              <li>Explain web3.js</li>
-              <li>Install web3.js</li>
-              <li>Use web3.js to create a connection to a Solana node</li>
-              <li>
-                Use web3.js to read data from the blockchain (balance, account
-                info, etc.)
-              </li>
-            </ul>
+                <ul className="pl-8 text-gray-500 list-disc md:text-sm">
+                  {metadata.objectives.map((obj, id) => (
+                    <li key={id}>{obj}</li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <p className={styles.minorText}>
+                This lesson has written no objectives.
+              </p>
+            )}
           </section>
 
           <section

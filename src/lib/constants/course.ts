@@ -4,7 +4,7 @@
 
 type CourseModuleItem = {
   title: string;
-  href: string;
+  slug: string;
   number?: number;
   hidden?: boolean;
 };
@@ -22,27 +22,27 @@ export const COURSE_MODULES: CourseModule[] = [
     lessons: [
       {
         title: "Read data from the network",
-        href: "/course/intro-to-reading-data",
+        slug: "intro-to-reading-data",
       },
       {
         title: "Write data to the network",
-        href: "/course/intro-to-writing-data",
+        slug: "intro-to-writing-data",
       },
       {
         title: "Interact with wallets",
-        href: "/course/interact-with-wallets",
+        slug: "interact-with-wallets",
       },
       {
         title: "Serialize custom instruction data",
-        href: "/course/serialize-instruction-data",
+        slug: "serialize-instruction-data",
       },
       {
         title: "Deserialize custom account data",
-        href: "/course/deserialize-custom-data",
+        slug: "deserialize-custom-data",
       },
       {
         title: "Page, Order, and Filter custom account data",
-        href: "/course/paging-ordering-filtering-data",
+        slug: "paging-ordering-filtering-data",
       },
     ],
   },
@@ -52,15 +52,15 @@ export const COURSE_MODULES: CourseModule[] = [
     lessons: [
       {
         title: "Create tokens with the Token Program",
-        href: "/course/token-program",
+        slug: "token-program",
       },
       {
         title: "Swap tokens with the Token Swap Program",
-        href: "/course/token-swap",
+        slug: "token-swap",
       },
       {
         title: "Create Solana NFTs With Metaplex",
-        href: "/course/nfts-with-metaplex",
+        slug: "nfts-with-metaplex",
       },
     ],
   },
@@ -70,19 +70,19 @@ export const COURSE_MODULES: CourseModule[] = [
     lessons: [
       {
         title: "Hello World",
-        href: "/course/hello-world-program",
+        slug: "hello-world-program",
       },
       {
         title: "Create a Basic Program, Part 1 - Handle Instruction Data",
-        href: "/course/deserialize-instruction-data",
+        slug: "deserialize-instruction-data",
       },
       {
         title: "Create a Basic Program, Part 2 - State Management",
-        href: "/course/program-state-management",
+        slug: "program-state-management",
       },
       {
         title: "Create a Basic Program, Part 3 - Basic Security and Validation",
-        href: "/course/program-security",
+        slug: "program-security",
       },
     ],
   },
@@ -92,19 +92,19 @@ export const COURSE_MODULES: CourseModule[] = [
     lessons: [
       {
         title: "Local Program Development",
-        href: "/course/local-setup",
+        slug: "local-setup",
       },
       {
         title: "Program Derived Addresses",
-        href: "/course/pda",
+        slug: "pda",
       },
       {
         title: "Cross Program Invocations",
-        href: "/course/cpi",
+        slug: "cpi",
       },
       {
         title: "Program Testing - COMING SOON",
-        href: "",
+        slug: "",
         hidden: true,
       },
     ],
@@ -115,19 +115,19 @@ export const COURSE_MODULES: CourseModule[] = [
     lessons: [
       {
         title: "Intro to Anchor development",
-        href: "/course/intro-to-anchor",
+        slug: "intro-to-anchor",
       },
       {
         title: "Intro to client-side Anchor development",
-        href: "/course/intro-to-anchor-frontend",
+        slug: "intro-to-anchor-frontend",
       },
       {
         title: "Anchor PDAs and accounts",
-        href: "/course/anchor-pdas",
+        slug: "anchor-pdas",
       },
       {
         title: "Anchor CPIs and errors",
-        href: "/course/anchor-cpi",
+        slug: "anchor-cpi",
       },
     ],
   },
@@ -137,20 +137,20 @@ export const COURSE_MODULES: CourseModule[] = [
     lessons: [
       {
         title: "Environment variables in Solana programs",
-        href: "/course/env-variables",
+        slug: "env-variables",
       },
       {
         title: "Solana Pay",
-        href: "/course/solana-pay",
+        slug: "solana-pay",
       },
       {
         title: "Lesson 3",
-        href: "",
+        slug: "",
         hidden: true,
       },
       {
         title: "Lesson 4",
-        href: "",
+        slug: "",
         hidden: true,
       },
     ],
@@ -161,47 +161,47 @@ export const COURSE_MODULES: CourseModule[] = [
     lessons: [
       {
         title: "How to approach the Program Security module",
-        href: "/course/security-intro",
+        slug: "security-intro",
       },
       {
         title: "Signer authorization",
-        href: "/course/signer-auth",
+        slug: "signer-auth",
       },
       {
         title: "Owner checks",
-        href: "/course/owner-checks",
+        slug: "owner-checks",
       },
       {
         title: "Account data matching",
-        href: "/course/account-data-matching",
+        slug: "account-data-matching",
       },
       {
         title: "Reinitialization attacks",
-        href: "/course/reinitialization-attacks",
+        slug: "reinitialization-attacks",
       },
       {
         title: "Duplicate mutable accounts",
-        href: "/course/duplicate-mutable-accounts",
+        slug: "duplicate-mutable-accounts",
       },
       {
         title: "Type cosplay",
-        href: "/course/type-cosplay",
+        slug: "type-cosplay",
       },
       {
         title: "Arbitrary CPIs",
-        href: "/course/arbitrary-cpi",
+        slug: "arbitrary-cpi",
       },
       {
         title: "Bump seed canonicalization",
-        href: "/course/bump-seed-canonicalization",
+        slug: "bump-seed-canonicalization",
       },
       {
         title: "Closing accounts and revival attacks",
-        href: "/course/closing-accounts",
+        slug: "closing-accounts",
       },
       {
         title: "PDA sharing",
-        href: "/course/pda-sharing",
+        slug: "pda-sharing",
       },
     ],
   },

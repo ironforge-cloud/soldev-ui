@@ -58,7 +58,7 @@ export default function Page() {
               <CourseModuleItem
                 key={id}
                 title={lesson.title}
-                href={lesson.href}
+                href={`/course/${lesson.slug}`}
                 lessonNumber={
                   lesson?.number && lesson.number > 0 ? lesson.number : id + 1
                 }

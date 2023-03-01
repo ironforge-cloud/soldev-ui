@@ -5,6 +5,5 @@
   "bracketSpacing": true,
   "semi": true,
   "trailingComma": "all",
-  "proseWrap": "always",
   "printWidth": 80
 }
