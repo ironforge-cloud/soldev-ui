@@ -13,6 +13,7 @@ type ComponentProps = {
   href: string;
   lessonNumber?: number;
   minuteCounter?: number;
+  isHidden?: boolean;
 };
 
 export default function CourseModuleItem({
@@ -24,12 +25,14 @@ export default function CourseModuleItem({
   href,
   lessonNumber,
   minuteCounter,
+  isHidden,
 }: ComponentProps) {
   return (
     <section
       className={clsx(
         isSmall ? styles.lineItemSmall : styles.lineItem,
         isActive && styles.lessonActive,
+        isHidden === true && "blur-sm",
       )}
     >
       <div
@@ -47,7 +50,7 @@ export default function CourseModuleItem({
 
       <div className={styles.lineItemMetaArea}>
         <h3>
-          <Link href={href}>
+          <Link href={isHidden === true ? "/course" : href}>
             <span>{title}</span>
             <span>
               <ArrowUpRightIcon />
@@ -57,8 +60,12 @@ export default function CourseModuleItem({
 
         <p className={styles.metaInfo}>
           <span>Lesson {lessonNumber}</span>
-          <span>&bull;</span>
-          <span>{minuteCounter} minutes</span>
+          {minuteCounter && minuteCounter > 0 && (
+            <>
+              <span>&bull;</span>
+              <span>{minuteCounter} minutes</span>
+            </>
+          )}
         </p>
       </div>
     </section>

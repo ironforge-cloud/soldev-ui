@@ -5,6 +5,7 @@ import Link from "next/link";
 import PageHero from "@/components/core/PageHero";
 import CourseModule from "@/components/course/CourseModule";
 import CourseModuleItem from "@/components/course/CourseModuleItem";
+import { COURSE_MODULES } from "@/lib/constants/course";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -47,53 +48,26 @@ export default function Page() {
       </PageHero>
 
       <section className="container max-w-4xl">
-        <CourseModule
-          moduleNumber={1}
-          title={"Client interaction with the Solana Network"}
-        >
-          <CourseModuleItem
-            title="Read data from the network"
-            href="/course/intro-to-reading-data"
-            lessonNumber={1}
-            minuteCounter={2}
-          />
-          <CourseModuleItem
-            title="Write data to the network"
-            href="/course/intro-to-writing-data"
-            lessonNumber={2}
-            minuteCounter={9}
-          />
-          <CourseModuleItem
-            title="Interact with wallets"
-            href="/course/interact-with-wallets"
-            lessonNumber={3}
-            minuteCounter={14}
-          />
-        </CourseModule>
-
-        <CourseModule
-          moduleNumber={2}
-          title={"Client interaction with common Solana programs"}
-        >
-          <CourseModuleItem
-            title="Create tokens with the Token Program"
-            href="/course/token-program"
-            lessonNumber={1}
-            minuteCounter={2}
-          />
-          <CourseModuleItem
-            title="Swap tokens with the Token Swap Program"
-            href="/course/token-swap"
-            lessonNumber={2}
-            minuteCounter={9}
-          />
-          <CourseModuleItem
-            title="Create Solana NFTs With Metaplex"
-            href="/course/nfts-with-metaplex"
-            lessonNumber={3}
-            minuteCounter={14}
-          />
-        </CourseModule>
+        {COURSE_MODULES.map((module, id) => (
+          <CourseModule
+            key={id}
+            moduleNumber={module.number}
+            title={module.title}
+          >
+            {module.lessons.map((lesson, id) => (
+              <CourseModuleItem
+                key={id}
+                title={lesson.title}
+                href={lesson.href}
+                lessonNumber={
+                  lesson?.number && lesson.number > 0 ? lesson.number : id + 1
+                }
+                isHidden={lesson?.hidden}
+                // minuteCounter={2}
+              />
+            ))}
+          </CourseModule>
+        ))}
       </section>
     </DefaultLayout>
   );
