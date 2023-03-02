@@ -75,7 +75,20 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   // handle the 404 when no record was found
   if (!lesson) return { notFound: true };
 
-  // TODO: determine the next/prev lessons
+  // determine the next/prev lessons
+  let nextSlug: string | null = null;
+  let prevSlug: string | null = null;
+
+  const lessonListing = COURSE_MODULES.flatMap((item) => item.lessons.flat());
+  // console.log(lessonListing);
+
+  for (let i = 0; i < lessonListing.length; i++) {
+    if (slug !== lessonListing[i].slug) continue;
+
+    // extract the next/prev records
+    if (i > 0) prevSlug = lessonListing[i - 1].slug;
+    if (lessonListing.length > i + 1) nextSlug = lessonListing[i + 1].slug;
+  }
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
@@ -89,6 +102,8 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
       metadata: lesson.data,
       slug,
       seo,
+      nextSlug,
+      prevSlug,
     },
     revalidate: 60,
   };
@@ -99,9 +114,18 @@ type PageProps = {
   metadata: LessonMetadata;
   slug: string;
   seo: NextSeoProps;
+  nextSlug?: string;
+  prevSlug?: string;
 };
 
-export default function Page({ markdown, metadata, seo, slug }: PageProps) {
+export default function Page({
+  markdown,
+  metadata,
+  seo,
+  slug,
+  nextSlug,
+  prevSlug,
+}: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   // memo-ize the current module
@@ -163,11 +187,12 @@ export default function Page({ markdown, metadata, seo, slug }: PageProps) {
         >
           <ArticleContent markdown={markdown} className="prose" />
 
+          {/* TODO: make the next button mark the current module as completed? */}
           <NextPrevButtons
-            nextHref="#"
-            prevHref="#"
-            nextLabel="Next lesson"
-            prevLabel="Previous lesson"
+            nextHref={`/course/${nextSlug || ""}`}
+            prevHref={`/course/${prevSlug || ""}`}
+            nextLabel={nextSlug ? "Next Lesson" : "All Lessons"}
+            prevLabel={prevSlug ? "Previous Lesson" : "All Lessons"}
           />
         </section>
 

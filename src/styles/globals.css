@@ -40,6 +40,10 @@ body {
   @apply first-of-type:text-xl;
   @apply break-words;
 }
+/* class override for the code blocks prose */
+.prose :where(pre):not(:where([class~="not-prose"] *)) {
+  @apply px-0 bg-transparent;
+}
 
 /*
   Form elements

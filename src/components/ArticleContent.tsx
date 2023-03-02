@@ -86,8 +86,8 @@ const CodeBlock = ({
           <CopyToClipboard text={children}>
             <button
               type="button"
-              className="mr-4 inline-flex items-center rounded-t-lg bg-[#464646] px-2.5 py-1 text-center text-sm font-medium
-             text-white hover:bg-[#464646]/90 dark:hover:bg-[#464646]/60 dark:focus:ring-gray-500"
+              className="lg:mr-2 inline-flex items-center rounded-t-lg bg-gray-600 px-2.5 py-1 mb-1 lg:-mb-12 text-center text-sm font-medium
+             text-white hover:bg-gray-700"
               onClick={() => {
                 changeText("Copied!");
               }}
