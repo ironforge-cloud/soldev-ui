@@ -32,20 +32,22 @@
   @apply md:-mx-4;
 }
 .lessonStatus {
-  @apply cursor-pointer rounded-xl;
+  @apply relative cursor-pointer rounded-xl;
   @apply p-3 text-xl w-14 h-14;
-  @apply flex items-center text-center justify-self-center place-items-center;
+  @apply inline-flex items-center text-center justify-self-center place-items-center;
   /* style the active state */
   @apply bg-white border border-gray-300;
-  @apply hover:bg-solana-green hover:text-white hover:border-transparent;
+  /* @apply hover:bg-green-600 hover:text-white hover:border-transparent; */
 }
 .lessonStatus span,
 .lessonStatus svg {
-  @apply justify-center mx-auto text-center justify-self-center;
+  @apply block;
+  /* @apply block w-12 text-xl h-14; */
+  @apply justify-center mx-auto text-center place-items-center justify-self-center !important;
 }
 .lessonComplete {
-  @apply p-2 !important;
-  @apply text-white border-transparent bg-solana-green;
+  /* @apply p-2 !important; */
+  @apply text-white bg-green-600 border-transparent;
 }
 /* .lessonComplete svg {
   @apply w-5 h-5 !important;
@@ -102,5 +104,13 @@
 
 .lineItemSmall .lessonStatus {
   @apply rounded-lg;
-  @apply w-8 h-8 p-3 text-sm;
+  @apply w-8 h-8 text-sm;
+  @apply p-2;
+}
+
+.lineItemSmall .lessonStatus span,
+.lineItemSmall .lessonStatus svg {
+  @apply w-8 h-8 !important;
+  @apply justify-center block mx-auto text-center place-items-center justify-self-center !important;
+  @apply leading-[2.3];
 }

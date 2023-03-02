@@ -240,7 +240,6 @@ export default function Page({
               <CourseModuleItem
                 key={id}
                 isSmall={true}
-                // isComplete={true}
                 isActive={slug == item.slug}
                 title={item.title}
                 href={`/course/${item.slug}`}

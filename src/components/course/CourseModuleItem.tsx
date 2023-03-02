@@ -3,11 +3,15 @@ import Link from "next/link";
 import clsx from "clsx";
 
 import { ArrowUpRightIcon, CheckIcon } from "@heroicons/react/24/solid";
+import { useEffect, useState } from "react";
+import {
+  getCourseLessonProgress,
+  saveCourseLessonProgress,
+} from "@/utils/course";
 
 type ComponentProps = {
   className?: string;
   isActive?: boolean;
-  isComplete?: boolean;
   isSmall?: boolean;
   title: string;
   href: string;
@@ -18,7 +22,6 @@ type ComponentProps = {
 
 export default function CourseModuleItem({
   className,
-  isComplete,
   isActive,
   isSmall,
   title,
@@ -27,6 +30,15 @@ export default function CourseModuleItem({
   minuteCounter,
   isHidden,
 }: ComponentProps) {
+  // track the completion state of the checkmark for the ui
+  const [isComplete, setIsComplete] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // set the completed status via the local storage value
+  useEffect(() => {
+    setIsComplete(getCourseLessonProgress(href));
+  }, [href]);
+
   return (
     <section
       className={clsx(
@@ -35,18 +47,24 @@ export default function CourseModuleItem({
         isHidden === true && "blur-sm",
       )}
     >
-      <div
+      <button
         className={clsx(
           styles.lessonStatus,
           isComplete && styles.lessonComplete,
         )}
+        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onClick={() => {
+          if (isHidden) return;
+          setIsComplete(saveCourseLessonProgress(href, !isComplete));
+        }}
       >
-        {isComplete ? (
-          <CheckIcon className="w-4 h-4" />
+        {isComplete || isHovered ? (
+          <CheckIcon className="w-5 h-5" />
         ) : (
           <span>{lessonNumber}</span>
         )}
-      </div>
+      </button>
 
       <div className={styles.lineItemMetaArea}>
         <h3>
