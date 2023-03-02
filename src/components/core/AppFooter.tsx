@@ -28,10 +28,22 @@ export default function AppFooter({ children }: ComponentProps) {
             the Solana ecosystem.
           </p>
 
-          <section className="flex">
-            <Link href={SITE_GITHUB_URL}>GH</Link>
+          <section className="inline-flex space-x-3">
+            <Link href={SITE_GITHUB_URL}>
+              <Image
+                src={"/img/icons/github.svg"}
+                width={24}
+                height={24}
+                alt={"SolDev on GitHub"}
+              />
+            </Link>
             <Link href={`https://twitter.com/${SITE_TWITTER_HANDLE}`}>
-              Twitter
+              <Image
+                src={"/img/icons/twitter.svg"}
+                width={24}
+                height={24}
+                alt={"SolDev on Twitter"}
+              />
             </Link>
           </section>
         </section>
