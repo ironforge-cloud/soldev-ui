@@ -44,8 +44,8 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   // create a placeholder record
   let record: ContentRecord | null = null;
-
-  // let content = {};
+  let nextSlug: string | null = null;
+  let prevSlug: string | null = null;
 
   for (let i = 0; i < records.length; i++) {
     // search for the provided `slug`, if it doesn't match -> next
@@ -54,7 +54,9 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     // save the content record
     record = records[i];
 
-    // TODO: extract the next and previous records
+    // extract the next/prev records
+    if (i > 0) prevSlug = records[i - 1].SK;
+    if (records.length > i + 1) nextSlug = records[i + 1].SK;
 
     // convert the records markdown to html
     record.ContentMarkdown = await markdownToHtml(record.ContentMarkdown);
@@ -82,6 +84,8 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     props: {
       record,
       seo,
+      nextSlug,
+      prevSlug,
     },
     revalidate: 60,
   };
@@ -90,9 +94,11 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 type PageProps = {
   record: ContentRecord;
   seo: NextSeoProps;
+  nextSlug?: string;
+  prevSlug?: string;
 };
 
-export default function Page({ record, seo }: PageProps) {
+export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
   return (
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container text-center">
@@ -148,10 +154,10 @@ export default function Page({ record, seo }: PageProps) {
         ></article>
 
         <NextPrevButtons
-          nextHref="#"
-          prevHref="#"
-          nextLabel="Next Changelog"
-          prevLabel="Previous Changelog"
+          nextHref={`/changelog/${nextSlug || ""}`}
+          prevHref={`/changelog/${prevSlug || ""}`}
+          nextLabel={nextSlug ? "Next Changelog" : "All Changelogs"}
+          prevLabel={prevSlug ? "Previous Changelog" : "All Changelogs"}
         />
       </main>
     </DefaultLayout>

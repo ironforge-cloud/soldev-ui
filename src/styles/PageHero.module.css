@@ -28,6 +28,3 @@
 .ctaSection .ctaBtn {
   @apply flex justify-center text-center;
 }
-.ctaSection .ctaBtn svg {
-  @apply ml-2;
-}
