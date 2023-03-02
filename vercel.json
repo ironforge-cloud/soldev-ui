@@ -5,7 +5,7 @@
   "redirects": [
     { "source": "/newsletters", "destination": "/newsletter" },
     {
-      "source": "/library/PLilwLeBwGuK5-Qri7Pg9zd-Vvhz9kX2-R/video/(?<slug>[^/]*)",
+      "source": "/library/PLilwLeBwGuK5-Qri7Pg9zd-Vvhz9kX2-R/video/:slug",
       "destination": "/changelog/:slug"
     }
   ]
