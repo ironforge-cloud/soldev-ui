@@ -213,6 +213,7 @@ export default function Page({ markdown, metadata, seo, slug }: PageProps) {
 
             {currentModule?.lessons?.map((item, id) => (
               <CourseModuleItem
+                key={id}
                 isSmall={true}
                 // isComplete={true}
                 isActive={slug == item.slug}
