@@ -10,6 +10,7 @@ import { getCoreCommunityCallRecords } from "@/lib/queries";
 import markdownToHtml from "@/utils/markdownToHtml";
 
 import dynamic from "next/dynamic";
+import { shareOnTwitterUrl } from "@/utils/helpers";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 // define the placeholder on-page seo metadata
@@ -106,7 +107,14 @@ export default function Page({ record, seo }: PageProps) {
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to Community Calls
           </Link>
-          <Link href={"#"} className={`btn btn-dark ${heroStyles.ctaBtn}`}>
+          <Link
+            target="_blank"
+            href={shareOnTwitterUrl({
+              href: `/core-community-calls/${record.SK}`,
+              message: `Checkout the @solana Core Community Call from ${record.PublishedAt}`,
+            })}
+            className={`btn btn-dark ${heroStyles.ctaBtn}`}
+          >
             Share on twitter
             {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>

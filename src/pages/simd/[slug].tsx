@@ -14,7 +14,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
 import { fetchAllSIMD } from "@/utils/fetch-simd";
-import { computeSlugForSIMD } from "@/utils/helpers";
+import { computeSlugForSIMD, shareOnTwitterUrl } from "@/utils/helpers";
 import { fetchRaw } from "@/utils/fetch-github";
 import markdownToHtml from "@/utils/markdownToHtml";
 
@@ -77,6 +77,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   return {
     props: {
       record,
+      slug,
       seo,
     },
     revalidate: 300,
@@ -86,9 +87,10 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 type PageProps = {
   record: ParsedGitHubPullContent;
   seo: NextSeoProps;
+  slug: string;
 };
 
-export default function Page({ record, seo }: PageProps) {
+export default function Page({ record, seo, slug }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   return (
@@ -108,7 +110,14 @@ export default function Page({ record, seo }: PageProps) {
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to SIMD
           </Link>
-          <Link href={"#"} className={`btn btn-dark ${heroStyles.ctaBtn}`}>
+          <Link
+            target="_blank"
+            href={shareOnTwitterUrl({
+              href: `/simd/${slug}`,
+              message: `Checkout SIMD-${record.metadata.simd} - ${record.metadata.title}`,
+            })}
+            className={`btn btn-dark ${heroStyles.ctaBtn}`}
+          >
             Share on twitter
             {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>

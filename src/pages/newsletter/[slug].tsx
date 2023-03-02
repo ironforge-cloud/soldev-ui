@@ -8,6 +8,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
 import { getNewsletterRecords } from "@/lib/queries";
 import markdownToHtml from "@/utils/markdownToHtml";
+import { shareOnTwitterUrl } from "@/utils/helpers";
 
 // define the placeholder on-page seo metadata
 const placeholderSEO: NextSeoProps = {
@@ -106,7 +107,14 @@ export default function Page({ record, seo }: PageProps) {
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to Newsletter
           </Link>
-          <Link href={"#"} className={`btn btn-dark ${heroStyles.ctaBtn}`}>
+          <Link
+            target="_blank"
+            href={shareOnTwitterUrl({
+              href: `/newsletter/${record.SK}`,
+              message: `Checkout the @solana newsletter from ${record.PublishedAt}`,
+            })}
+            className={`btn btn-dark ${heroStyles.ctaBtn}`}
+          >
             Share on twitter
             {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>

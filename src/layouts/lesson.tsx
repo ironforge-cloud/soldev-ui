@@ -9,6 +9,7 @@ import {
   ArrowLeftIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/solid";
+import { shareOnTwitterUrl } from "@/utils/helpers";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -47,13 +48,20 @@ export default function LessonLayout({
 
           <section className={heroStyles.ctaSection}>
             <Link
-              href={"/course/#hash-routing"}
+              href={"/course"}
               className={`btn btn-default ${heroStyles.ctaBtn}`}
             >
               {/* <ArrowLeftIcon className="icon" /> */}
               Back to course
             </Link>
-            <Link href={"#"} className={`btn btn-dark ${heroStyles.ctaBtn}`}>
+            <Link
+              target="_blank"
+              href={shareOnTwitterUrl({
+                href: href,
+                message: `Checkout this lesson "${title}" from the Solana Development Course`,
+              })}
+              className={`btn btn-dark ${heroStyles.ctaBtn}`}
+            >
               Share on twitter
               {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
             </Link>

@@ -4,12 +4,13 @@ import Link from "next/link";
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 
+import { shareOnTwitterUrl } from "@/utils/helpers";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
 import { getSuperteamCommunityCallRecords } from "@/lib/queries";
 import markdownToHtml from "@/utils/markdownToHtml";
-
 import dynamic from "next/dynamic";
+
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 // define the placeholder on-page seo metadata
@@ -106,7 +107,14 @@ export default function Page({ record, seo }: PageProps) {
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to Ecosystem Calls
           </Link>
-          <Link href={"#"} className={`btn btn-dark ${heroStyles.ctaBtn}`}>
+          <Link
+            target="_blank"
+            href={shareOnTwitterUrl({
+              href: `/superteam-ecosystem-calls/${record.SK}`,
+              message: `Checkout this @SuperteamDAO Ecosystem Call`,
+            })}
+            className={`btn btn-dark ${heroStyles.ctaBtn}`}
+          >
             Share on twitter
             {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>

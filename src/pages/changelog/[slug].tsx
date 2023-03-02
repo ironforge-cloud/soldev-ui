@@ -11,6 +11,7 @@ import { getChangelogRecords } from "@/lib/queries";
 import markdownToHtml from "@/utils/markdownToHtml";
 
 import dynamic from "next/dynamic";
+import { shareOnTwitterUrl } from "@/utils/helpers";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 // define the placeholder on-page seo metadata
@@ -109,7 +110,14 @@ export default function Page({ record, seo }: PageProps) {
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to Changelog
           </Link>
-          <Link href={"#"} className={`btn btn-dark ${heroStyles.ctaBtn}`}>
+          <Link
+            target="_blank"
+            href={shareOnTwitterUrl({
+              href: `/changelog/${record.SK}`,
+              message: `Checkout this @solana Changelog video from ${record.PublishedAt}`,
+            })}
+            className={`btn btn-dark ${heroStyles.ctaBtn}`}
+          >
             Share on twitter
             {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>
