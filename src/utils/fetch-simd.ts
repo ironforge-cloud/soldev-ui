@@ -94,8 +94,9 @@ export async function fetchAllSIMD() {
         // attempt to compute the local route
         const slug = computeSlugForSIMD(item as ParsedGitHubPullContent);
         if (slug) item.metadata.href = `/simd/${slug}`;
-      } catch (e) {
+      } catch (err) {
         console.error("Failed to parse metadata");
+        console.error(err);
       }
       return item as ParsedGitHubPullContent;
     }),

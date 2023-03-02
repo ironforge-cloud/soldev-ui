@@ -113,7 +113,7 @@ export default function Page({ record, seo, slug }: PageProps) {
           <Link
             target="_blank"
             href={shareOnTwitterUrl({
-              href: `/simd/${slug}`,
+              href: record.metadata?.href || "/simd",
               message: `Checkout SIMD-${record.metadata.simd} - ${record.metadata.title}`,
             })}
             className={`btn btn-dark ${heroStyles.ctaBtn}`}

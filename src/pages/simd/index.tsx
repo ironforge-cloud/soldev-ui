@@ -75,7 +75,7 @@ export default function Page({ records }: PageProps) {
               .map((record, id) => (
                 <SIMDTableLineItem
                   key={record.id}
-                  href={`/simd/${computeSlugForSIMD(record)}`}
+                  href={record.metadata.href}
                   simd={record.metadata.simd}
                   title={record.metadata.title}
                   githubLink={record.html_url}
@@ -88,19 +88,6 @@ export default function Page({ records }: PageProps) {
           </tbody>
         </table>
       </main>
-
-      {/* <main className={styles.wrapper + " container"}>
-        <SIMDCard
-          id={0}
-          href="/simd/000-lockout-violation-detection"
-          githubLink="https://github.com/solana-foundation/solana-improvement-documents/pull/9"
-          title="#000 Lockout Violation Detection"
-          type="core"
-          date="2022-12-12"
-          status="draft"
-          authors="carlin"
-        />
-      </main> */}
     </DefaultLayout>
   );
 }

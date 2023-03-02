@@ -13,7 +13,7 @@ export function computeSlugForSIMD(simd: ParsedGitHubPullContent) {
   return (
     simd?.metadata?.simd +
     "-" +
-    simd?.metadata?.title.toLowerCase().replace(/\s+/g, "-")
+    simd?.metadata?.title?.toLowerCase().replace(/\s+/g, "-")
   );
 }
 
