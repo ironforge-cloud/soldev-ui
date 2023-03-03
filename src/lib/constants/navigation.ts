@@ -17,6 +17,7 @@ import {
   MegaphoneIcon,
   MicrophoneIcon,
   NewspaperIcon,
+  Square3Stack3DIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
@@ -196,11 +197,19 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
         className: styles.green,
       },
       {
+        label: "Stack Exchange",
+        href: "https://solana.stackexchange.com/",
+        description: "Find questions and answers about Solana",
+        icon: Square3Stack3DIcon,
+        className: styles.blue,
+        isExternal: true,
+      },
+      {
         label: "Jobs",
         href: "https://earn.superteam.fun/opportunities/category/jobs",
         description: "Find a job in the Solana ecosystem",
         icon: BriefcaseIcon,
-        className: styles.blue,
+        className: styles.red,
         isExternal: true,
       },
       {
@@ -208,7 +217,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
         href: "https://earn.superteam.fun/opportunities/category/bounties",
         description: "Find a bounty in the Solana ecosystem",
         icon: CurrencyDollarIcon,
-        className: styles.red,
+        className: styles.yellow,
         isExternal: true,
       },
       {
@@ -216,7 +225,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
         href: "https://earn.superteam.fun/opportunities/category/grants",
         description: "Find a grant in the Solana ecosystem",
         icon: BuildingLibraryIcon,
-        className: styles.yellow,
+        className: styles.purple,
         isExternal: true,
       },
     ],

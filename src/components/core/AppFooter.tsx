@@ -55,7 +55,7 @@ export default function AppFooter({ children }: ComponentProps) {
         <TeamFooterLinks />
 
         <section className={styles.copyright}>
-          &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+          &copy; {new Date().getFullYear()} Ironforge, Inc. All rights reserved.
         </section>
       </section>
     </footer>
@@ -140,6 +140,11 @@ function ResourcesFooterLinks() {
       </li>
       <li>
         <Link href={"/simd"}>SIMD</Link>
+      </li>
+      <li>
+        <Link target="_blank" href={"https://solana.stackexchange.com/"}>
+          Stack Exchange
+        </Link>
       </li>
       <li>
         <Link
