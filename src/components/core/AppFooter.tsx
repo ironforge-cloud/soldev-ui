@@ -123,6 +123,11 @@ function UpdatesFooterLinks() {
         <Link href={"/core-community-calls"}>Community Calls</Link>
       </li>
       <li>
+        <Link href={"/validator-community-discussions"}>
+          Validator Discussions
+        </Link>
+      </li>
+      <li>
         <Link href={"/superteam-ecosystem-calls"}>Ecosystem Calls</Link>
       </li>
     </ul>

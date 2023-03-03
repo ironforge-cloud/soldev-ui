@@ -58,6 +58,24 @@ export async function getCoreCommunityCallRecords() {
   return records;
 }
 
+// fetch all Solana Validator Community Call records from the API
+export async function getValidatorCallRecords() {
+  let records: ContentRecord[] = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/Solana/PLilwLeBwGuK78yjGBZwYhTf7rao0t13Zw`,
+  )
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+
+  // force update the Author to the desired value
+  if (Array.isArray(records))
+    records = records.map((item) => {
+      item.Author = CONTENT_AUTHOR_OVERRIDES.validatorCall;
+      return item;
+    });
+
+  return records;
+}
+
 // fetch all Superteam Community Call records from the API
 export async function getSuperteamCommunityCallRecords() {
   let records: ContentRecord[] = await fetch(
