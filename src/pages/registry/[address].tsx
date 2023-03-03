@@ -109,11 +109,11 @@ export default function Page({ record, seo }: PageProps) {
             Back to IDL Registry
           </Link>
           <Link
-            href={`https://explorer.solana.com/address/${record.address}`}
+            href={`https://solana.fm/address/${record.address}`}
             target="_blank"
             className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
-            View on Solana Explorer
+            View on Explorer
             {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>
         </section>
