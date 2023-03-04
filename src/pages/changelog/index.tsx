@@ -5,6 +5,7 @@ import PageHero from "@/components/core/PageHero";
 import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
 import { getChangelogRecords } from "@/lib/queries";
+import { computeImage } from "@/utils/content";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -62,7 +63,7 @@ export default function Page({ records }: PageProps) {
               title={item.Title}
               authorLabel={item.Author}
               // authorHref="#"
-              imageSrc={item.Img}
+              imageSrc={computeImage(item)}
               tags={item.Tags}
               description={item.Description}
             />

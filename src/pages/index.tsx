@@ -15,6 +15,7 @@ import {
   getNewsletterRecords,
   getRecordsFromSlug,
 } from "@/lib/queries";
+import { computeImage } from "@/utils/content";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -125,7 +126,7 @@ export default function Page({ latestPosts }: PageProps) {
                 title={post.Title}
                 authorLabel={post.Author}
                 // authorHref="#"
-                imageSrc={post.Img}
+                imageSrc={computeImage(post)}
                 description={post.Description}
                 // tags=""
               />
