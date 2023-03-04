@@ -72,16 +72,16 @@ function LearnFooterLinks() {
         <Link href={"/course"}>Intro to Solana</Link>
       </li>
       <li>
+        <Link target="_blank" href={"https://solanacookbook.com/"}>
+          Solana Cookbook
+        </Link>
+      </li>
+      <li>
         <Link href={"#"}>Solana Bootcamp</Link>
       </li>
       <li>
         <Link target="_blank" href={"https://buildspace.so/solana-core"}>
           buildspace Solana Core
-        </Link>
-      </li>
-      <li>
-        <Link target="_blank" href={"https://solanacookbook.com/"}>
-          Solana Cookbook
         </Link>
       </li>
     </ul>
@@ -120,15 +120,19 @@ function UpdatesFooterLinks() {
         <Link href={"/changelog"}>Changelog</Link>
       </li>
       <li>
-        <Link href={"/core-community-calls"}>Community Calls</Link>
-      </li>
-      <li>
-        <Link href={"/validator-community-discussions"}>
-          Validator Discussions
+        <Link href={"/library/playlist/core-community-calls"}>
+          Community Calls
         </Link>
       </li>
       <li>
-        <Link href={"/superteam-ecosystem-calls"}>Ecosystem Calls</Link>
+        <Link href={"/library/playlist/superteam-ecosystem-calls"}>
+          Ecosystem Calls
+        </Link>
+      </li>
+      <li>
+        <Link href={"/library/playlist/validator-community-discussions"}>
+          Validator Discussions
+        </Link>
       </li>
     </ul>
   );

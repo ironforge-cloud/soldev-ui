@@ -3,11 +3,7 @@ import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
 import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
-import {
-  getCoreCommunityCallRecords,
-  getRecordsForPlaylist,
-} from "@/lib/queries";
-
+import { getRecordsForPlaylist } from "@/lib/queries";
 import { PLAYLIST_LISTING } from "@/lib/constants/playlists";
 
 // define the on-page seo metadata

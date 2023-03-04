@@ -66,8 +66,6 @@ export async function getServerSideProps({
   // fetch the listing of all the records from the API
   let records = await getRecordsForPlaylist(playlist.key);
 
-  // console.log(records);
-
   // create a placeholder record
   let record: ContentRecord | null = null;
   let nextSlug: string | null = null;
@@ -151,7 +149,7 @@ export default function Page({
             className={`btn btn-default ${heroStyles.ctaBtn}`}
           >
             {/* <ArrowLeftIcon className="icon" /> */}
-            Back to Community Calls
+            Back to Playlist
           </Link>
           <Link
             target="_blank"

@@ -53,7 +53,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       },
       {
         label: "Solana Bootcamp",
-        href: "#",
+        href: "/library/playlist/solana-bootcamp",
         description: "Intro bootcamp on Solana with Jarry Xiao",
         icon: BoltIcon,
         // isExternal: true,
@@ -79,7 +79,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
   },
   {
     label: "Library",
-    // href: "/library",
+    href: "/library",
     links: [
       {
         label: "Tutorials",
@@ -165,21 +165,21 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       },
       {
         label: "Core Community Calls",
-        href: "/core-community-calls",
+        href: "/library/playlist/core-community-calls",
         description: "Monthly discussions around protocol changes",
         icon: MegaphoneIcon,
         className: styles.blue,
       },
       {
         label: "Community Validator Discussions",
-        href: "/validator-community-discussions",
+        href: "/library/playlist/validator-community-discussions",
         description: "Monthly discussions around validator operations",
         icon: ChatBubbleLeftRightIcon,
         className: styles.red,
       },
       {
         label: "Superteam Ecosystem Calls",
-        href: "/superteam-ecosystem-calls",
+        href: "/library/playlist/superteam-ecosystem-calls",
         description: "Monthly ecosystem updates from Superteam",
         icon: UserGroupIcon,
         className: styles.yellow,
