@@ -24,7 +24,7 @@ export const FEATURED_CONTENT_CARDS = [
       "Become a Solana builder in 4 weeks. Build your own staking app with loot crates.",
   },
   {
-    href: "https://www.youtube.com/playlist?list=PLilwLeBwGuK7Z2dXft_pmLZ675fuPgkA0",
+    href: "/library/playlist/solana-bootcamp",
     title: "Solana Bootcamp",
     authorLabel: "Jarry Xiao",
     // authorHref: "#",

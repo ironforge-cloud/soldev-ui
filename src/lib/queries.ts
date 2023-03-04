@@ -40,6 +40,17 @@ export async function getChangelogRecords() {
   return records;
 }
 
+// fetch all the records for the given playlist from the API
+export async function getRecordsForPlaylist(slug: string) {
+  let records: ContentRecord[] = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/Solana/${slug}`,
+  )
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+
+  return records;
+}
+
 // fetch all Solana Core Community Call records from the API
 export async function getCoreCommunityCallRecords() {
   let records: ContentRecord[] = await fetch(
