@@ -1,7 +1,6 @@
 import { NextSeoProps } from "next-seo";
 import LessonLayout from "@/layouts/lesson";
-import Link from "next/link";
-import styles from "@/styles/core/sidebar.module.css";
+import dynamic from "next/dynamic";
 import clsx from "clsx";
 import { useMemo, useState } from "react";
 
@@ -10,12 +9,16 @@ import path from "path";
 import * as matter from "gray-matter";
 import { COURSE_MODULES } from "@/lib/constants/course";
 
+import Link from "next/link";
+import styles from "@/styles/core/sidebar.module.css";
 import subnavStyles from "@/styles/core/subnav.module.css";
-
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import CourseModuleItem from "@/components/course/CourseModuleItem";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
-import ArticleContent from "@/components/ArticleContent";
+
+const ArticleContent = dynamic(() => import("@/components/ArticleContent"), {
+  ssr: false,
+});
 
 type LessonMetadata = {
   title?: string;

@@ -14,6 +14,7 @@ type ArticleContentProps = {
 
 /*
   Define a component to render the react friendly markdown parser
+  NOTE: `ArticleContent` should be imported using `dynamic` due to to the `remarkMermaid`
 */
 function ArticleContent({ markdown, className = "" }: ArticleContentProps) {
   return (

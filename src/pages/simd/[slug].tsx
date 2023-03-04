@@ -1,20 +1,21 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
-import styles from "@/styles/core/sidebar.module.css";
+import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
+
+import { fetchAllSIMD } from "@/utils/fetch-simd";
+import { fetchRaw } from "@/utils/fetch-github";
+
+import styles from "@/styles/core/sidebar.module.css";
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
 import subnavStyles from "@/styles/core/subnav.module.css";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
 import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
-import { fetchAllSIMD } from "@/utils/fetch-simd";
 import { computeSlugForSIMD, shareOnTwitterUrl } from "@/utils/helpers";
-import { fetchRaw } from "@/utils/fetch-github";
-import dynamic from "next/dynamic";
-// import markdownToHtml from "@/utils/markdownToHtml";
 
 const ArticleContent = dynamic(() => import("@/components/ArticleContent"), {
   ssr: false,
@@ -68,7 +69,6 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   record.content = await fetchRaw(record.download_url[0]).then((res) =>
     res.replace(/^---[\s\S]*?---/m, "").trim(),
   );
-  // .then(async (markdown) => await markdownToHtml(markdown));
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
