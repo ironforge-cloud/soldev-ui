@@ -43,8 +43,19 @@ export async function getChangelogRecords() {
   return records;
 }
 
-// fetch all the records for the given playlist from the API
-export async function getRecordsForPlaylist(slug: string) {
+// fetch all the available library content `types` from the API
+export async function getContentTypes() {
+  let records: string[] = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/types`,
+  )
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+
+  return records;
+}
+
+// fetch all the records for the given slug the API
+export async function getRecordsFromSlug(slug: string) {
   let records: ContentRecord[] = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/Solana/${slug}`,
   )

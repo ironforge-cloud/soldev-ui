@@ -6,7 +6,7 @@ import PageHero from "@/components/core/PageHero";
 
 // import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
-import { getRecordsForPlaylist } from "@/lib/queries";
+import { getRecordsFromSlug } from "@/lib/queries";
 import markdownToHtml from "@/utils/markdownToHtml";
 
 import dynamic from "next/dynamic";
@@ -32,7 +32,7 @@ const placeholderSEO: NextSeoProps = {
 //   });
 
 //   // fetch the listing of all the records from the API
-//   // let records = await getRecordsForPlaylist(playlist.key);
+//   // let records = await getRecordsFromSlug(playlist.key);
 
 //   // const paths = records.map((item) => {
 //   //   return {
@@ -64,7 +64,7 @@ export async function getServerSideProps({
   if (!playlist) return { notFound: true };
 
   // fetch the listing of all the records from the API
-  let records = await getRecordsForPlaylist(playlist.key);
+  let records = await getRecordsFromSlug(playlist.key);
 
   // create a placeholder record
   let record: ContentRecord | null = null;

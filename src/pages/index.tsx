@@ -13,7 +13,7 @@ import { PLAYLIST_KEYS } from "@/lib/constants/playlists";
 import {
   getChangelogRecords,
   getNewsletterRecords,
-  getRecordsForPlaylist,
+  getRecordsFromSlug,
 } from "@/lib/queries";
 
 // define the on-page seo metadata
@@ -36,9 +36,9 @@ export async function getStaticProps() {
   ] = await Promise.all([
     await getNewsletterRecords(),
     await getChangelogRecords(),
-    await getRecordsForPlaylist(PLAYLIST_KEYS.coreCommunityCalls),
-    await getRecordsForPlaylist(PLAYLIST_KEYS.superteamEcosystemCalls),
-    // await getRecordsForPlaylist(PLAYLIST_KEYS.validatorCommunityCalls),
+    await getRecordsFromSlug(PLAYLIST_KEYS.coreCommunityCalls),
+    await getRecordsFromSlug(PLAYLIST_KEYS.superteamEcosystemCalls),
+    // await getRecordsFromSlug(PLAYLIST_KEYS.validatorCommunityCalls),
   ]);
   // TODO: update API to allow for better filtering and pagination
 

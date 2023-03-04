@@ -3,7 +3,7 @@ import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
 import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
-import { getRecordsForPlaylist } from "@/lib/queries";
+import { getRecordsFromSlug } from "@/lib/queries";
 import { PLAYLIST_LISTING } from "@/lib/constants/playlists";
 
 // define the on-page seo metadata
@@ -61,7 +61,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   };
 
   // fetch the listing of all the records from the API
-  let records = await getRecordsForPlaylist(playlist.key);
+  let records = await getRecordsFromSlug(playlist.key);
 
   // force update the Author to the desired value (when the `playlist.authorOverride` is set)
   if (playlist?.authorOverride && Array.isArray(records))
