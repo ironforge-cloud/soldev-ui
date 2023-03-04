@@ -13,11 +13,13 @@ export default function FeaturedContentCards({
 }: ComponentProps) {
   return (
     <section
-      className={`${styles.scrollContainer} hide-scroll-bar container-inner ${className}`}
+      className={`${styles.scrollContainer} hide-scroll-bar container-inner`}
     >
       {title && <h2 className={styles.heading}>{title}</h2>}
 
-      <section className={`${styles.container}`}>{children}</section>
+      <section className={`${styles.container} ${className}`}>
+        {children}
+      </section>
     </section>
   );
 }

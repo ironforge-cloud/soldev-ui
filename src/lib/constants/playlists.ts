@@ -2,9 +2,17 @@
     Constants related to specific playlists
 */
 
+// define the important playlist keys for easily retrieving their content
+export const PLAYLIST_KEYS = {
+  coreCommunityCalls: "PLilwLeBwGuK7e_mH_sFwTytYQxalh7xd5",
+  validatorCommunityCalls: "PLilwLeBwGuK78yjGBZwYhTf7rao0t13Zw",
+  superteamEcosystemCalls: "PL3lU6B-N55SorbjvAYTFL6svTu6hfjKH8",
+};
+
+// hard code a listing of the important playlists to use within the `library/playlist/[slug]` page
 export const PLAYLIST_LISTING: PlaylistItem[] = [
   {
-    key: "PLilwLeBwGuK7e_mH_sFwTytYQxalh7xd5",
+    key: PLAYLIST_KEYS.coreCommunityCalls,
     slug: "core-community-calls",
     title: "Core Community Calls",
     description:
@@ -13,7 +21,7 @@ export const PLAYLIST_LISTING: PlaylistItem[] = [
     titleFilter: "solana core community call - ",
   },
   {
-    key: "PLilwLeBwGuK78yjGBZwYhTf7rao0t13Zw",
+    key: PLAYLIST_KEYS.validatorCommunityCalls,
     slug: "validator-community-discussions",
     title: "Community Validator Discussions",
     description:
@@ -23,7 +31,7 @@ export const PLAYLIST_LISTING: PlaylistItem[] = [
     titleFilter: "solana community",
   },
   {
-    key: "PL3lU6B-N55SorbjvAYTFL6svTu6hfjKH8",
+    key: PLAYLIST_KEYS.superteamEcosystemCalls,
     slug: "superteam-ecosystem-calls",
     title: "Superteam's Ecosystem Calls",
     description:

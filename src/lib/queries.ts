@@ -15,6 +15,9 @@ export async function getNewsletterRecords() {
   // force update the Author to the desired value
   if (Array.isArray(records))
     records = records.map((item) => {
+      // always update the newsletter Url to help with redirects (from `/newsletters` to `/newsletter`)
+      item.Url = item.Url.replace("/newsletters/", "/newsletter/");
+      // update
       item.Author = CONTENT_AUTHOR_OVERRIDES.newsletter;
       return item;
     });
