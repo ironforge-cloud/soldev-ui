@@ -69,7 +69,4 @@ export const CONTENT_TAGS: Array<ContentTagItem> = [
 export const CONTENT_AUTHOR_OVERRIDES = {
   newsletter: "Solana Foundation",
   changelog: "Solana Foundation",
-  communityCall: "Solana Foundation",
-  validatorCall: "Solana Foundation",
-  ecosystemCall: "Superteam",
 };
