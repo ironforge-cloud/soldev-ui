@@ -1,22 +1,24 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import styles from "@/styles/core/sidebar.module.css";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
-
 import heroStyles from "@/styles/PageHero.module.css";
 import PageHero from "@/components/core/PageHero";
-
 import subnavStyles from "@/styles/core/subnav.module.css";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-
-import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
 import NextPrevButtons from "@/components/core/NextPrevButtons";
+import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
 import { fetchAllSIMD } from "@/utils/fetch-simd";
 import { computeSlugForSIMD, shareOnTwitterUrl } from "@/utils/helpers";
 import { fetchRaw } from "@/utils/fetch-github";
-import markdownToHtml from "@/utils/markdownToHtml";
+import dynamic from "next/dynamic";
+// import markdownToHtml from "@/utils/markdownToHtml";
+
+const ArticleContent = dynamic(() => import("@/components/ArticleContent"), {
+  ssr: false,
+});
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -28,6 +30,7 @@ const seo: NextSeoProps = {
 const TABS = {
   content: 0,
   details: 1,
+  toc: 2,
 };
 
 export async function getStaticPaths() {
@@ -62,9 +65,10 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   if (!record) return { notFound: true };
 
   // fetching markdown and getting rid of document metadata
-  record.content = await fetchRaw(record.download_url[0])
-    .then((res) => res.replace(/^---[\s\S]*?---/m, "").trim())
-    .then(async (markdown) => await markdownToHtml(markdown));
+  record.content = await fetchRaw(record.download_url[0]).then((res) =>
+    res.replace(/^---[\s\S]*?---/m, "").trim(),
+  );
+  // .then(async (markdown) => await markdownToHtml(markdown));
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
@@ -92,6 +96,15 @@ type PageProps = {
 
 export default function Page({ record, seo, slug }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
+
+  //
+  const tableOfContents = useMemo(
+    () =>
+      (record?.content?.match(/^## .*$/gm) || []).map((line) => line.slice(3)),
+    [],
+  );
+
+  // console.log(tableOfContents);
 
   return (
     <DefaultLayout seo={seo}>
@@ -147,6 +160,17 @@ export default function Page({ record, seo, slug }: PageProps) {
         >
           Details
         </Link>
+        <Link
+          href={"#toc"}
+          onClick={() => setSelectedTab(TABS.toc)}
+          className={clsx(
+            subnavStyles.item,
+            selectedTab === TABS.toc && subnavStyles.activeButton,
+            // "w-1/2 text-center",
+          )}
+        >
+          Table of Contents
+        </Link>
       </nav>
 
       <section className={clsx(styles.wrapper, "container-inner")}>
@@ -158,12 +182,16 @@ export default function Page({ record, seo, slug }: PageProps) {
               : subnavStyles.inActiveTab,
           )}
         >
-          <article
+          {/* <article
             className="prose"
             dangerouslySetInnerHTML={{
               __html: record?.content || "[unable to fetch SIMD proposal]",
             }}
-          ></article>
+          ></article> */}
+          <ArticleContent
+            markdown={record.content || "[unable to fetch SIMD proposal]"}
+            className="prose"
+          />
 
           <NextPrevButtons
             nextHref="#"
@@ -210,6 +238,31 @@ export default function Page({ record, seo, slug }: PageProps) {
                   </ul>
                 </li>
               )}
+            </ul>
+          </section>
+
+          <section
+            className={clsx(
+              styles.section,
+              selectedTab === TABS.toc
+                ? subnavStyles.activeTab
+                : subnavStyles.inActiveTab,
+            )}
+          >
+            <h3>Table of Contents</h3>
+
+            <ul className="text-gray-500 md:text-sm">
+              {tableOfContents.length > 0 &&
+                tableOfContents.map((item, id) => (
+                  <li key={id}>
+                    <Link
+                      href={`#${item.toLowerCase().replace(/\W/g, "-")}`}
+                      className="underline"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </section>
         </aside>

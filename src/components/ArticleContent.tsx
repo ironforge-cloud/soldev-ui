@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkGfm from "remark-gfm";
+import remarkMermaid from "remark-mermaidjs";
 
 type ArticleContentProps = {
   markdown: string;
@@ -18,7 +19,7 @@ function ArticleContent({ markdown, className = "" }: ArticleContentProps) {
   return (
     <article className={className}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkMermaid]}
         components={{
           h2: HeadingRenderer,
           code: CodeBlock as any,
