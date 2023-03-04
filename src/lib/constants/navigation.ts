@@ -83,28 +83,28 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
     links: [
       {
         label: "Tutorials",
-        href: "/library/tutorials",
+        href: "/library?types=tutorials",
         description: "Learn how to code for Solana",
         icon: AcademicCapIcon,
         className: styles.purple,
       },
       {
         label: "Articles",
-        href: "/library/articles",
+        href: "/library?types=articles",
         description: "Insights and inspiration for Solana fans",
         icon: NewspaperIcon,
         className: styles.green,
       },
       {
         label: "Podcasts",
-        href: "/library/podcasts",
+        href: "/library?types=podcasts",
         description: "Stay ahead by tuning in to the latest",
         icon: MicrophoneIcon,
         className: styles.blue,
       },
       {
         label: "Projects",
-        href: "/library/projects",
+        href: "/library?types=projects",
         description: "Guides to building your first Solana Apps",
         icon: CpuChipIcon,
         className: styles.red,
@@ -116,31 +116,31 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       links: [
         {
           label: "SDK",
-          href: "/library/sdk",
+          href: "/library?types=sdk",
         },
         {
           label: "Scaffolds",
-          href: "/library/scaffolds",
+          href: "/library?types=scaffolds",
         },
         {
           label: "Tools",
-          href: "/library/tools",
+          href: "/library?types=tools",
         },
         {
           label: "Implementations",
-          href: "/library/implementations",
+          href: "/library?types=implementations",
         },
         {
           label: "Security",
-          href: "/library/security",
+          href: "/library?types=security",
         },
         {
           label: "SPL",
-          href: "/library/spl",
+          href: "/library?types=spl",
         },
         {
           label: "Threads",
-          href: "/library/threads",
+          href: "/library?types=threads",
         },
       ],
     },
