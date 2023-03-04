@@ -32,3 +32,13 @@ export function shareOnTwitterUrl({
     includeHandle ? ` on @${SITE_TWITTER_HANDLE}` : ""
   }%0A%0A`;
 }
+
+/*
+  Parse the given comma-separated string into an array, with de-blanking
+  (e.g. for parsing url arrays)
+*/
+export function computeFilterFromUrlParam(val: string): string[] {
+  return decodeURIComponent(val)
+    .split(",")
+    .filter((item) => item && item);
+}

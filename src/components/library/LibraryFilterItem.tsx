@@ -1,6 +1,8 @@
 import styles from "@/styles/core/sidebar.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import DropdownFilterItem from "@/components/library/DropdownFilterItem";
+import { computeFilterFromUrlParam } from "@/utils/helpers";
 
 type ComponentProps = {
   name: string;
@@ -13,12 +15,37 @@ export default function LibraryFilterItem({
   label,
   items,
 }: ComponentProps) {
+  const router = useRouter();
+
   // track the state of the checked checkboxes
   const [checkedState, setCheckedState] = useState(
     new Array(items.length).fill(false),
   );
   // track the state of the selected items for the multi-select dropdown
   const [selectedItems, setSelectedItems] = useState([]);
+
+  // use the router's query to track the state of selected items
+  useEffect(() => {
+    const urlData = computeFilterFromUrlParam(
+      (router.query[name] as string) ?? "",
+    );
+
+    // compute the updated checked states for the checkboxes
+    const updatedCheckedState = checkedState.map(
+      (_item, id) =>
+        urlData.filter((k) => k.toLowerCase() == items[id].toLowerCase())
+          .length > 0,
+    );
+
+    // compute the updated selected states for multi selects
+    const updatedSelectedState = items.filter(
+      (_item, index) => updatedCheckedState[index],
+    );
+
+    // finally update the state
+    setSelectedItems(updatedSelectedState as any);
+    setCheckedState(updatedCheckedState);
+  }, [router.query]);
 
   /*
     onChange handler function to update both states together
@@ -31,7 +58,25 @@ export default function LibraryFilterItem({
 
     // compute the updated selected states
     const updatedSelectedState = items.filter(
-      (item, index) => updatedCheckedState[index],
+      (_item, index) => updatedCheckedState[index],
+    );
+
+    // construct the new url query params
+    const urlQuery = {
+      ...router.query, //only update the current key
+    };
+    urlQuery[name.toLowerCase()] = encodeURIComponent(
+      updatedSelectedState.join(",").toLowerCase(),
+    );
+
+    // update the url query path for the changed value
+    router.push(
+      {
+        pathname: router.pathname, // use the current path
+        query: urlQuery,
+      },
+      undefined,
+      { shallow: true },
     );
 
     // actually update the state

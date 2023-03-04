@@ -1,14 +1,17 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
+import { useMemo, useState } from "react";
+import clsx from "clsx";
+import { useRouter } from "next/router";
+import { getContentTypes, getRecordsFromSlug } from "@/lib/queries";
 
 import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
 import LibraryFilters from "@/components/library/LibraryFilters";
 import { FunnelIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import clsx from "clsx";
 import { computeImage } from "@/utils/content";
+import { computeFilterFromUrlParam } from "@/utils/helpers";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -17,27 +20,22 @@ const seo: NextSeoProps = {
 };
 
 export async function getStaticProps() {
-  // fetch the records from the API
+  // fetch the content types
+  const contentTypes = await getContentTypes();
 
-  // const contentTypes = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/types`,
-  // ).then((res) => res.json());
-  // console.log("--- contentTypes ---");
-  // console.log(contentTypes);
+  // fetch the records from the API via the Promise.all()
+  const records = await Promise.all(
+    contentTypes
+      .filter((item) => item != "newsletters")
+      .map((item) => getRecordsFromSlug(item)),
+  )
+    .then((res) => res.flat())
+    // sort from newest to oldest
+    .then((res) =>
+      res.sort((a, b) => parseInt(b.PublishedAt) - parseInt(a.PublishedAt)),
+    );
 
-  // const playlists = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_ENDPOINT}/playlists/Solana`,
-  // ).then((res) => res.json());
-  // console.log(playlists);
-
-  const type = "tutorials";
-
-  const records = await fetch(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/Solana/${type}`,
-  ).then((res) => res.json());
-  // console.log("--- records ---");
-  // console.log(records.length);
-  // console.log(records);
+  console.log(records[0]);
 
   return {
     props: {
@@ -52,7 +50,81 @@ type PageProps = {
 };
 
 export default function Page({ records }: PageProps) {
+  const router = useRouter();
   const [showFilters, setShowFilters] = useState(false);
+
+  // construct the filter options
+  const [filterOptions, setFilterOptions] = useState<{
+    limit: number;
+    page: number;
+    descSort: boolean;
+  }>({
+    limit: 18,
+    page: 1,
+    descSort: true,
+  });
+
+  // memo-ize the filtered records less compute
+  const filteredRecords = useMemo(() => {
+    // compute the filter `type`
+    let filterValues: string[];
+
+    // handle the record `type` filtering
+    if (
+      (filterValues = computeFilterFromUrlParam(
+        (router.query.types as string) ?? "",
+      )) &&
+      filterValues.length > 0
+    )
+      records = records.filter((item) => {
+        return (
+          filterValues.filter(
+            (type: string) =>
+              item.ContentType.toLowerCase() == type.toLowerCase(),
+          )?.length > 0
+        );
+      });
+
+    // handle the record `level` filtering
+    // NOTE: the records's `level` value is stored in the `Tags` attribute
+    if (
+      (filterValues = computeFilterFromUrlParam(
+        (router.query.levels as string) ?? "",
+      )) &&
+      filterValues.length > 0
+    )
+      records = records.filter((item) => {
+        return (
+          filterValues.filter(
+            (filter: string) =>
+              item.Tags.filter(
+                (tag) => tag.toLowerCase() == filter.toLowerCase(),
+              )?.length > 0,
+          )?.length > 0
+        );
+      });
+
+    // handle the record `tag` filtering
+    if (
+      (filterValues = computeFilterFromUrlParam(
+        (router.query.tags as string) ?? "",
+      )) &&
+      filterValues.length > 0
+    )
+      records = records.filter((item) => {
+        return (
+          filterValues.filter(
+            (filter: string) =>
+              item.Tags.filter(
+                (tag) => tag.toLowerCase() == filter.toLowerCase(),
+              )?.length > 0,
+          )?.length > 0
+        );
+      });
+
+    // always paginate
+    return records.slice(0, filterOptions.limit * filterOptions.page);
+  }, [records, filterOptions, router.query]);
 
   return (
     <DefaultLayout seo={seo}>
@@ -95,16 +167,16 @@ export default function Page({ records }: PageProps) {
 
         <section className={styles.rightSideLarge}>
           <main className={styles.gridContainer}>
-            {records.map((item) => (
+            {filteredRecords.map((item) => (
               <ContentCard
-                key={item.PK}
+                key={item.SK}
                 href={item.Url}
                 title={item.Title}
                 authorLabel={item.Author}
                 // authorHref={"#"}
                 imageSrc={computeImage(item)}
                 description={item.Description}
-                tags={item.Tags}
+                // tags={item.Tags}
               />
             ))}
           </main>
