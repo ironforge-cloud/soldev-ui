@@ -7,6 +7,7 @@ import HomeResourceCards from "@/components/home/HomeResourceCards";
 import LargeCTACard from "@/components/core/LargeCTACard";
 import FeaturedContentCards from "@/components/core/FeaturedContentCards";
 import ContentCard from "@/components/core/ContentCard";
+import { FEATURED_CONTENT_CARDS } from "@/lib/constants/home";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -35,19 +36,15 @@ export default function Page() {
         <HomeCategoryCards className="-mt-24" />
 
         <FeaturedContentCards title="Featured">
-          {posts.map((post, id) => (
+          {FEATURED_CONTENT_CARDS.map((item, id) => (
             <ContentCard
               key={id}
               className="lg:max-w-full w-72 max-w-[70%]"
-              isExternal={true}
-              isHot={true}
-              href="#"
-              title="A Guide to Full Stack Development on Solana"
-              authorLabel="Nader Dabit"
-              authorHref="#"
-              imageSrc="/img/cta/1.jpg"
-              description="Learn how to build end-to-end products on Solana with this tutorial covering React, Anchor, Rust, and Phantom."
-              tags="beginner, web3.js, anchor, solana, beginner, web3.js, anchor"
+              href={item.href}
+              title={item.title}
+              authorLabel={item.authorLabel}
+              imageSrc={item.imageSrc}
+              description={item.description}
             />
           ))}
         </FeaturedContentCards>
