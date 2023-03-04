@@ -12,6 +12,7 @@ import LibraryFilters from "@/components/library/LibraryFilters";
 import { FunnelIcon } from "@heroicons/react/24/outline";
 import { computeImage } from "@/utils/content";
 import { computeFilterFromUrlParam } from "@/utils/helpers";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -35,8 +36,6 @@ export async function getStaticProps() {
       res.sort((a, b) => parseInt(b.PublishedAt) - parseInt(a.PublishedAt)),
     );
 
-  console.log(records[0]);
-
   return {
     props: {
       records,
@@ -55,10 +54,12 @@ export default function Page({ records }: PageProps) {
 
   // construct the filter options
   const [filterOptions, setFilterOptions] = useState<{
+    perPage: number;
     limit: number;
     page: number;
     descSort: boolean;
   }>({
+    perPage: 18,
     limit: 18,
     page: 1,
     descSort: true,
@@ -123,7 +124,7 @@ export default function Page({ records }: PageProps) {
       });
 
     // always paginate
-    return records.slice(0, filterOptions.limit * filterOptions.page);
+    return records.slice(0, filterOptions.page * filterOptions.perPage);
   }, [records, filterOptions, router.query]);
 
   return (
@@ -166,20 +167,36 @@ export default function Page({ records }: PageProps) {
         </aside>
 
         <section className={styles.rightSideLarge}>
-          <main className={styles.gridContainer}>
-            {filteredRecords.map((item) => (
-              <ContentCard
-                key={item.SK}
-                href={item.Url}
-                title={item.Title}
-                authorLabel={item.Author}
-                // authorHref={"#"}
-                imageSrc={computeImage(item)}
-                description={item.Description}
-                // tags={item.Tags}
-              />
-            ))}
-          </main>
+          <InfiniteScroll
+            //This is important field to render the next data
+            dataLength={filterOptions.page * filterOptions.perPage}
+            next={() =>
+              setFilterOptions({
+                ...filterOptions,
+                page: filterOptions.page + 1,
+              })
+            }
+            hasMore={
+              filterOptions.page * filterOptions.perPage < records.length
+            }
+            loader={<></>} // show nothing since all records are loaded at once
+            endMessage={<></>} // show nothing on complete
+          >
+            <main className={styles.gridContainer}>
+              {filteredRecords.map((item) => (
+                <ContentCard
+                  key={item.SK}
+                  href={item.Url}
+                  title={item.Title}
+                  authorLabel={item.Author}
+                  // authorHref={"#"}
+                  imageSrc={computeImage(item)}
+                  description={item.Description}
+                  // tags={item.Tags}
+                />
+              ))}
+            </main>
+          </InfiniteScroll>
         </section>
       </section>
     </DefaultLayout>
