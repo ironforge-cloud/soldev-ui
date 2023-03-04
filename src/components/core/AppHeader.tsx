@@ -46,7 +46,7 @@ export default function AppHeader({ children }: ComponentProps) {
           <AppNavigation />
 
           <section className={styles.form}>
-            <form onSubmit={(e) => e.preventDefault()}>
+            {/* <form onSubmit={(e) => e.preventDefault()}>
               <div className="inputWithIcon">
                 <label htmlFor="site_search">
                   <MagnifyingGlassIcon />
@@ -59,7 +59,7 @@ export default function AppHeader({ children }: ComponentProps) {
                   className={navbarOpen ? styles.formInput : "input-dark"}
                 />
               </div>
-            </form>
+            </form> */}
 
             <Link
               href={"/content"}
