@@ -138,13 +138,6 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
         ></article>
 
         <NextPrevButtons
-          nextHref="#"
-          prevHref="#"
-          nextLabel="Next Newsletter"
-          prevLabel="Previous Newsletter"
-        />
-
-        <NextPrevButtons
           nextHref={`/newsletter/${nextSlug || ""}`}
           prevHref={`/newsletter/${prevSlug || ""}`}
           nextLabel={nextSlug ? "Next Newsletter" : "All Newsletters"}
