@@ -154,7 +154,7 @@ export default function Page({ records }: PageProps) {
         <aside
           className={clsx(
             styles.leftSideSmall,
-            !showFilters && styles.stickySidebar,
+            // !showFilters && styles.stickySidebar,
           )}
         >
           <section className="flex justify-end px-6 mt-6 col-span-full lg:hidden">

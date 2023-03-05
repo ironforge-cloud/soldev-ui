@@ -125,13 +125,10 @@ export default function Page({ record, seo, slug }: PageProps) {
           </Link>
           <Link
             target="_blank"
-            href={shareOnTwitterUrl({
-              href: record.metadata?.href || "/simd",
-              message: `Checkout SIMD-${record.metadata.simd} - ${record.metadata.title}`,
-            })}
+            href={"#"}
             className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
-            Share on twitter
+            Discuss on GitHub
             {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
           </Link>
         </section>
@@ -204,7 +201,7 @@ export default function Page({ record, seo, slug }: PageProps) {
         <aside
           className={clsx(
             styles.rightSideSmall,
-            styles.stickySidebar,
+            // styles.stickySidebar,
             styles.borderLeft,
           )}
         >
