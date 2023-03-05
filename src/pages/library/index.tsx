@@ -13,6 +13,7 @@ import { FunnelIcon } from "@heroicons/react/24/outline";
 import { computeImage } from "@/utils/content";
 import { computeFilterFromUrlParam } from "@/utils/helpers";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { CONTENT_TAGS } from "@/lib/constants/content";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -86,32 +87,43 @@ export default function Page({ records }: PageProps) {
         );
       });
 
+    // // handle the record `level` filtering
+    // // NOTE: the records's `level` value is stored in the `Tags` attribute
+    // if (
+    //   (filterValues = computeFilterFromUrlParam(
+    //     (router.query.levels as string) ?? "",
+    //   )) &&
+    //   filterValues.length > 0
+    // )
+    //   records = records.filter((item) => {
+    //     return (
+    //       filterValues.filter(
+    //         (filter: string) =>
+    //           item.Tags.filter(
+    //             (tag) => tag.toLowerCase() == filter.toLowerCase(),
+    //           )?.length > 0,
+    //       )?.length > 0
+    //     );
+    //   });
+
+    // combine all the `tag` style items and search for them
+    filterValues = CONTENT_TAGS.flat()
+      .map((item) =>
+        computeFilterFromUrlParam(
+          (router.query[item.label.toLowerCase()] as string) ?? "",
+        ),
+      )
+      .flat();
+
     // handle the record `level` filtering
     // NOTE: the records's `level` value is stored in the `Tags` attribute
-    if (
-      (filterValues = computeFilterFromUrlParam(
-        (router.query.levels as string) ?? "",
-      )) &&
-      filterValues.length > 0
-    )
-      records = records.filter((item) => {
-        return (
-          filterValues.filter(
-            (filter: string) =>
-              item.Tags.filter(
-                (tag) => tag.toLowerCase() == filter.toLowerCase(),
-              )?.length > 0,
-          )?.length > 0
-        );
-      });
+    if (router.query["levels"])
+      filterValues.push(
+        ...computeFilterFromUrlParam((router.query["levels"] as string) ?? ""),
+      );
 
     // handle the record `tag` filtering
-    if (
-      (filterValues = computeFilterFromUrlParam(
-        (router.query.tags as string) ?? "",
-      )) &&
-      filterValues.length > 0
-    )
+    if (filterValues.length > 0)
       records = records.filter((item) => {
         return (
           filterValues.filter(

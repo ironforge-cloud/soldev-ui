@@ -1,7 +1,3 @@
-import clsx from "clsx";
-import styles from "@/styles/core/sidebar.module.css";
-import { useState } from "react";
-
 import {
   CONTENT_LEVELS,
   CONTENT_TYPES,
@@ -19,17 +15,14 @@ export default function LibraryFilters({ className }: ComponentProps) {
     <div className={className}>
       <LibraryFilterItem name="types" label="Type" items={CONTENT_TYPES} />
       <LibraryFilterItem name="levels" label="Level" items={CONTENT_LEVELS} />
-      {/* <LibraryFilterItem name="tags" label="Tag" items={CONTENT_TAGS} /> */}
+      {CONTENT_TAGS.map((section, id) => (
+        <LibraryFilterItem
+          key={id}
+          name={section.label.toLowerCase()}
+          label={section.label}
+          items={section.options}
+        />
+      ))}
     </div>
   );
-
-  // return (
-  //   <aside
-  //     className={clsx(styles.leftSideSmall, styles.stickySidebar, "order-1")}
-  //   >
-  //     <LibraryFilterItem name="types" label="Type" items={CONTENT_TYPES} />
-  //     <LibraryFilterItem name="levels" label="Level" items={CONTENT_LEVELS} />
-  //     {/* <LibraryFilterItem name="tags" label="Tag" items={CONTENT_TAGS} /> */}
-  //   </aside>
-  // );
 }

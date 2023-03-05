@@ -27,7 +27,7 @@ export default function LibraryFilterItem({
   // use the router's query to track the state of selected items
   useEffect(() => {
     const urlData = computeFilterFromUrlParam(
-      (router.query[name] as string) ?? "",
+      (router.query[name.toLowerCase()] as string) ?? "",
     );
 
     // compute the updated checked states for the checkboxes
