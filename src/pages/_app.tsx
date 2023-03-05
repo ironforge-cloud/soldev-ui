@@ -5,6 +5,7 @@ import { DefaultSeo } from "next-seo";
 import SEO from "@@/next-seo.config";
 
 import { Inter } from "@next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,9 +24,23 @@ export default function App({ Component, pageProps }: AppProps) {
       </style>
 
       <DefaultSeo {...SEO} />
-      {/* <body className={`${inter.variable} font-sans`}> */}
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+      />
+
       <Component {...pageProps} />
-      {/* </body> */}
     </>
   );
 }

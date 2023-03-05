@@ -1,7 +1,7 @@
 import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
-
+import { toast } from "react-hot-toast";
 import { FormEvent, useState } from "react";
 import Dropdown from "@/components/core/Dropdown";
 import {
@@ -50,7 +50,6 @@ export default function Page() {
       SpecialTag: "New",
       ContentStatus: "submitted",
     };
-    console.log(payload);
 
     (async () => {
       const res = await submitContent(payload)
@@ -62,13 +61,13 @@ export default function Page() {
           form.reset();
 
           // give the success message
-          alert("great success!");
+          toast.success("Successfully submitted!");
 
           return res;
         })
         .catch((err) => {
           console.error(err);
-          alert("Unable to submit content");
+          toast.error("An unknown error occurred");
         });
     })();
   }
