@@ -13,21 +13,33 @@ export default function IDLNav({ options, selected, idl }: ComponentProps) {
     <>
       <nav className={styles.desktopNav}>
         {options.map((item, id) => (
-          <Link
-            key={id}
-            href={`#${item.label.toLowerCase()}`}
-            className={`btn ${
-              selected === item.label.toLocaleLowerCase() ? styles.active : ""
-            } ${
-              (idl as any)?.[item.label.toLowerCase()] ? "" : styles.disabled
-            }`}
-          >
-            {item.label}
-          </Link>
+          <span key={id}>
+            {(idl as any)?.[item.label.toLowerCase()] ? (
+              <Link
+                href={`#${item.label.toLowerCase()}`}
+                className={`btn ${
+                  selected === item.label.toLocaleLowerCase()
+                    ? styles.active
+                    : ""
+                }`}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span key={id} className={`btn ${styles.disabled}`}>
+                {item.label}
+              </span>
+            )}
+          </span>
         ))}
       </nav>
 
-      <Dropdown items={options} className="mobile-only" />
+      <Dropdown
+        items={options.filter(
+          (item) => (idl as any)?.[item.label.toLowerCase()],
+        )}
+        className="mobile-only"
+      />
     </>
   );
 }
