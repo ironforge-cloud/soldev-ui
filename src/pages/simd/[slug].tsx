@@ -97,14 +97,12 @@ type PageProps = {
 export default function Page({ record, seo, slug }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
-  //
+  // extract all the h2 (i.e. `##` from markdown) tags to generate the table of contents
   const tableOfContents = useMemo(
     () =>
       (record?.content?.match(/^## .*$/gm) || []).map((line) => line.slice(3)),
     [],
   );
-
-  // console.log(tableOfContents);
 
   return (
     <DefaultLayout seo={seo}>
@@ -125,7 +123,7 @@ export default function Page({ record, seo, slug }: PageProps) {
           </Link>
           <Link
             target="_blank"
-            href={"#"}
+            href={record.html_url}
             className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
             Discuss on GitHub
@@ -217,7 +215,7 @@ export default function Page({ record, seo, slug }: PageProps) {
 
             {/* <p className={styles.minorText}>optional minor text</p> */}
 
-            <ul className="text-gray-500 md:text-sm">
+            <ul className="space-y-1 text-gray-500 md:text-sm">
               <li>
                 SIMD: #<span>{record.metadata.simd}</span>
               </li>
@@ -248,13 +246,13 @@ export default function Page({ record, seo, slug }: PageProps) {
           >
             <h3>Table of Contents</h3>
 
-            <ul className="text-gray-500 md:text-sm">
+            <ul className="space-y-2 text-gray-500 md:text-sm">
               {tableOfContents.length > 0 &&
                 tableOfContents.map((item, id) => (
                   <li key={id}>
                     <Link
                       href={`#${item.toLowerCase().replace(/\W/g, "-")}`}
-                      className="underline"
+                      className="underline hover:text-gray-700"
                     >
                       {item}
                     </Link>
