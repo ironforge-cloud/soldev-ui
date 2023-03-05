@@ -10,6 +10,7 @@ import {
   CONTENT_TAGS,
 } from "@/lib/constants/content";
 import { submitContent } from "@/lib/queries";
+import Link from "next/link";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -75,7 +76,9 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
-        <h1>Submit new content</h1>
+        <h1>
+          <Link href={"/content"}>Submit new content</Link>
+        </h1>
 
         <p className="max-w-lg text-lg md:text-xl">
           Propose new content for the platform. Submissions are manually

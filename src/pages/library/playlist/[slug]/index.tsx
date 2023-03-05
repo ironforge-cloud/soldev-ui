@@ -6,6 +6,7 @@ import ContentCard from "@/components/core/ContentCard";
 import { getRecordsFromSlug } from "@/lib/queries";
 import { PLAYLIST_LISTING } from "@/lib/constants/playlists";
 import { computeImage } from "@/utils/content";
+import Link from "next/link";
 
 // define the on-page seo metadata
 const placeholderSEO: NextSeoProps = {
@@ -91,7 +92,11 @@ export default function Page({ playlist, records, seo }: PageProps) {
   return (
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container">
-        <h1>{playlist.title}</h1>
+        <h1>
+          <Link href={`/library/playlist/${playlist?.slug ?? playlist.key}`}>
+            {playlist.title}
+          </Link>
+        </h1>
 
         <p className="max-w-lg text-xl">{playlist.description}</p>
       </PageHero>

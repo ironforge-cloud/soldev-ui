@@ -14,6 +14,7 @@ import { computeImage } from "@/utils/content";
 import { computeFilterFromUrlParam } from "@/utils/helpers";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CONTENT_TAGS } from "@/lib/constants/content";
+import Link from "next/link";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -142,7 +143,9 @@ export default function Page({ records }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
-        <h1>Library</h1>
+        <h1>
+          <Link href={"/library"}>Library</Link>
+        </h1>
 
         <p className="max-w-lg text-xl">
           Check out the latest and greatest tutorials, articles, podcasts, and

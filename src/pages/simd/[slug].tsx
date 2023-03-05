@@ -110,7 +110,7 @@ export default function Page({ record, seo, slug }: PageProps) {
     <DefaultLayout seo={seo}>
       <PageHero className="container text-center">
         <h1>
-          <Link href={record.metadata.href || "#"} className="hover:underline">
+          <Link href={record.metadata.href || "#"}>
             {record.metadata.title}
           </Link>
         </h1>

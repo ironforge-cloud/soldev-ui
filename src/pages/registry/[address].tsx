@@ -94,7 +94,9 @@ export default function Page({ record, seo }: PageProps) {
   return (
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container">
-        <h1>{record.programName}</h1>
+        <h1>
+          <Link href={`/registry/${record.address}`}>{record.programName}</Link>
+        </h1>
 
         {/* <p className="max-w-2xl text-xl">
           optional paragraph text

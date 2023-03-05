@@ -7,6 +7,7 @@ import IDLCard from "@/components/registry/IDLCard";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { getIDLRecords } from "@/lib/queries";
 import { useState } from "react";
+import Link from "next/link";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -59,7 +60,9 @@ export default function Page({ records }: PageProps) {
   return (
     <DefaultLayout seo={seo} className="min-h-screen">
       <PageHero className="container space-y-8">
-        <h1>IDL Registry</h1>
+        <h1>
+          <Link href={"/registry"}>IDL Registry</Link>
+        </h1>
 
         {/* <p className="max-w-lg text-xl">optional minor text</p> */}
 

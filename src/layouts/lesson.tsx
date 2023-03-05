@@ -35,9 +35,7 @@ export default function LessonLayout({
       <main className={className}>
         <PageHero className="container text-center">
           <h1>
-            <Link href={href} className="hover:underline">
-              {title}
-            </Link>
+            <Link href={href}>{title}</Link>
           </h1>
 
           {/* <p className="max-w-2xl space-x-3 text-base text-gray-500">

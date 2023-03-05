@@ -6,6 +6,7 @@ import styles from "@/styles/core/sidebar.module.css";
 import ContentCard from "@/components/core/ContentCard";
 import { getChangelogRecords } from "@/lib/queries";
 import { computeImage } from "@/utils/content";
+import Link from "next/link";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -39,7 +40,9 @@ export default function Page({ records }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container">
-        <h1>Changelog</h1>
+        <h1>
+          <Link href={"/changelog"}>Changelog</Link>
+        </h1>
 
         <p className="max-w-lg text-xl">
           Weekly updates on the Solana ecosystem from the Solana Foundation

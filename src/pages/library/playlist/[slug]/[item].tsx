@@ -138,7 +138,11 @@ export default function Page({
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container text-center">
         <h1>
-          <Link href={record.Url} className="hover:underline">
+          <Link
+            href={`/library/playlist/${playlist?.slug ?? playlist.key}/${
+              record.SK
+            }`}
+          >
             {record.Title}
           </Link>
         </h1>

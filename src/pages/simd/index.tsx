@@ -41,7 +41,9 @@ export default function Page({ records }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-8">
-        <h1>Solana Improvement Docs</h1>
+        <h1>
+          <Link href={"/simd"}>Solana Improvement Docs</Link>
+        </h1>
 
         <p className="max-w-4xl text-base text-gray-300 md:text-lg">
           This section hosts the Solana Improvement Documents (SIMD) assembled

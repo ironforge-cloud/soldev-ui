@@ -17,7 +17,9 @@ export default function Page() {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
-        <h1>Intro to Solana</h1>
+        <h1>
+          <Link href={"/course"}>Intro to Solana</Link>
+        </h1>
 
         <p className="text-base text-gray-500">
           by{" "}

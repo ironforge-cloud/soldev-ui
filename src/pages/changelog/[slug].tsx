@@ -103,9 +103,7 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container text-center">
         <h1>
-          <Link href={record.Url} className="hover:underline">
-            {record.Title}
-          </Link>
+          <Link href={`/changelog/${record.SK}`}>{record.Title}</Link>
         </h1>
 
         <section className={heroStyles.ctaSection}>
