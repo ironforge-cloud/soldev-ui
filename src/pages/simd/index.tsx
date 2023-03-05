@@ -14,7 +14,16 @@ const seo: NextSeoProps = {
 };
 
 export async function getStaticProps() {
-  const records = await fetchAllSIMD();
+  const records = await fetchAllSIMD()
+    .then((res) =>
+      // auto filter out records by their computed SIMD proposal number
+      // (i.e. no `simd` value => invalid proposal/not a real proposal)
+      res.filter((record) => record?.metadata?.simd),
+    )
+    // sort from higher to lower SIMD number
+    .then((res) =>
+      res.sort((a, b) => parseInt(b.metadata.simd) - parseInt(a.metadata.simd)),
+    );
 
   return {
     props: {
@@ -38,6 +47,7 @@ export default function Page({ records }: PageProps) {
           This section hosts the Solana Improvement Documents (SIMD) assembled
           in{" "}
           <Link
+            target="_blank"
             href={
               "https://github.com/solana-foundation/solana-improvement-documents"
             }

@@ -92,7 +92,7 @@ export async function fetchAllSIMD() {
         );
 
         // always convert simd to uppercase
-        item.metadata.simd = item?.metadata?.simd?.toUpperCase() ?? "[err]";
+        item.metadata.simd = item?.metadata?.simd?.toUpperCase();
 
         // attempt to compute the local route
         const slug = computeSlugForSIMD(

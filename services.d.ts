@@ -33,6 +33,7 @@ type RawGitHubPullContent = {
 
 type ParsedGitHubPullContent = {
   id: string;
+  number: number;
   name: string;
   html_url: string;
   download_url: string;
