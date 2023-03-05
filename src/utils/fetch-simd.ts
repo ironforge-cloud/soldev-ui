@@ -91,8 +91,14 @@ export async function fetchAllSIMD() {
           JSON.stringify(parseMetadata(dataArray.join(""))),
         );
 
+        // always convert simd to uppercase
+        item.metadata.simd = item?.metadata?.simd?.toUpperCase() ?? "[err]";
+
         // attempt to compute the local route
-        const slug = computeSlugForSIMD(item as ParsedGitHubPullContent);
+        const slug = computeSlugForSIMD(
+          item.metadata.simd,
+          item.metadata.title,
+        );
         if (slug) item.metadata.href = `/simd/${slug}`;
       } catch (err) {
         console.error("Failed to parse metadata");

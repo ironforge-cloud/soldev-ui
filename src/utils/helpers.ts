@@ -9,12 +9,8 @@ import { SITE_ADDR, SITE_TWITTER_HANDLE } from "@/lib/constants/general";
  * @param simd record item
  * @returns `string` slug
  */
-export function computeSlugForSIMD(simd: ParsedGitHubPullContent) {
-  return (
-    simd?.metadata?.simd +
-    "-" +
-    simd?.metadata?.title?.toLowerCase().replace(/\s+/g, "-")
-  );
+export function computeSlugForSIMD(simd: string, title: string) {
+  return ((simd ?? "") + "-" + title?.replace(/\s+/g, "-")).toLowerCase();
 }
 
 /*

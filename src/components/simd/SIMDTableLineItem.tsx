@@ -5,6 +5,7 @@ import {
   ArrowTopRightOnSquareIcon,
   ArrowUpRightIcon,
 } from "@heroicons/react/24/solid";
+import { computeSlugForSIMD } from "@/utils/helpers";
 
 type AuthorDetails = {
   name: string;
@@ -37,7 +38,7 @@ export default function SIMDTableLineItem({
 }: SIMDTableLineItemProps) {
   // compute the href, if none is provided
   if (!href)
-    href = `/simd/${simd + "-" + title.toLowerCase().replace(/\s+/g, "-")}`;
+    href = `/simd/${encodeURIComponent(computeSlugForSIMD(simd, title))}`;
 
   return (
     <tr>

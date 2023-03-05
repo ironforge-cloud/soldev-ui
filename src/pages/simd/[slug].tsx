@@ -42,7 +42,7 @@ export async function getStaticPaths() {
     .filter((item) => item.metadata.title && item.metadata.simd)
     .map((item) => ({
       params: {
-        slug: computeSlugForSIMD(item),
+        slug: computeSlugForSIMD(item.metadata.simd, item.metadata.title),
       },
     }));
 
@@ -59,7 +59,9 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   // located the desired record by the `slug`
   const record = records.find(
-    (item) => item.metadata.simd && computeSlugForSIMD(item) === slug,
+    (item) =>
+      item.metadata.simd &&
+      computeSlugForSIMD(item.metadata.simd, item.metadata.title) === slug,
   );
 
   // handle the 404 when no record was found

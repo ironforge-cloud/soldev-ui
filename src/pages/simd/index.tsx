@@ -4,10 +4,7 @@ import PageHero from "@/components/core/PageHero";
 import Link from "next/link";
 import { fetchAllSIMD } from "@/utils/fetch-simd";
 import dataTableStyles from "@/styles/core/dataTable.module.css";
-// import styles from "@/styles/core/sidebar.module.css";
-// import SIMDCard from "@/components/simd/SIMDCard";
 import SIMDTableLineItem from "@/components/simd/SIMDTableLineItem";
-import { computeSlugForSIMD } from "@/utils/helpers";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
