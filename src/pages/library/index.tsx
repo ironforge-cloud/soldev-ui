@@ -173,7 +173,7 @@ export default function Page({ records }: PageProps) {
             className={showFilters ? styles.floatingMenu : "hidden lg:block"}
           >
             <LibraryFilters
-              className={showFilters ? styles.floatingMenuInner : ""}
+              className={showFilters ? styles.floatingMenuInner : "divide-y"}
             />
           </div>
         </aside>

@@ -71,7 +71,7 @@ body {
 }
 
 input[type="checkbox"] {
-  @apply border border-gray-400 rounded;
+  @apply border border-gray-300 rounded;
 }
 
 .input,

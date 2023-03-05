@@ -74,7 +74,7 @@
 
 .listing {
   @apply text-gray-600;
-  @apply pl-8 space-y-1;
+  @apply pl-8 space-y-3;
 }
 .listing li {
   @apply flex items-center;
