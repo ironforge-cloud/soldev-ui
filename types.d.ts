@@ -16,3 +16,17 @@ type PlaylistItem = {
   titleFilter?: string;
   authorOverride?: string;
 };
+
+// type for use with the content submission form
+type SubmitContentData = {
+  Title?: string;
+  Author?: string;
+  Description?: string;
+  Url?: string;
+  Tags?: string[];
+  ContentType?: string;
+  Position?: number;
+  Vertical: "Solana";
+  SpecialTag: "New";
+  ContentStatus: "submitted";
+};

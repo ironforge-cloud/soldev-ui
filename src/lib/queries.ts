@@ -86,3 +86,23 @@ export async function getIDLRecordByAddress(address: string) {
 
   return record;
 }
+
+// submit content to the API
+export async function submitContent(
+  data: SubmitContentData,
+  httpMethod: "POST" | "PUT" = "POST",
+) {
+  const record = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content`,
+    {
+      method: httpMethod,
+      mode: "no-cors",
+      // headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...data }),
+    },
+  );
+  // .then((res) => res.json())
+  // .catch((err) => console.error(err));
+
+  return record;
+}

@@ -9,6 +9,7 @@ import {
   CONTENT_TYPES,
   CONTENT_TAGS,
 } from "@/lib/constants/content";
+import { submitContent } from "@/lib/queries";
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -17,7 +18,7 @@ const seo: NextSeoProps = {
 };
 
 export default function Page() {
-  const [data, setData] = useState({
+  const [data, setData] = useState<SubmitContentData>({
     Title: "",
     Author: "",
     Description: "",
@@ -37,11 +38,39 @@ export default function Page() {
     const form = document.getElementById("submitForm") as HTMLFormElement;
     const formData = new FormData(form);
 
-    for (const [key, value] of formData) {
-      console.log(`${key}: ${value}`);
-    }
+    // construct the message payload to submit to the api
+    const payload: SubmitContentData = {
+      Title: formData.get("title")?.toString().trim(),
+      Author: formData.get("author")?.toString().trim(),
+      Description: formData.get("description")?.toString().trim(),
+      Url: formData.get("url")?.toString().trim(),
+      ContentType: formData.get("type")?.toString().trim().toLowerCase(),
+      Tags: formData.getAll("tags") as string[],
+      Vertical: "Solana",
+      SpecialTag: "New",
+      ContentStatus: "submitted",
+    };
+    console.log(payload);
 
-    // alert("handle submit");
+    (async () => {
+      const res = await submitContent(payload)
+        // .then((res) => res?.ok && res)
+        .then((res) => {
+          // NOTE: if here, then a non-failure response was returned. assume success
+
+          // reset the form
+          form.reset();
+
+          // give the success message
+          alert("great success!");
+
+          return res;
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Unable to submit content");
+        });
+    })();
   }
 
   return (
@@ -60,6 +89,7 @@ export default function Page() {
           <div className="form-item">
             <label htmlFor="title">Title</label>
             <input
+              required={true}
               type="text"
               name="title"
               id="title"
@@ -70,6 +100,7 @@ export default function Page() {
           <div className="form-item">
             <label htmlFor="author">Author</label>
             <input
+              required={true}
               type="text"
               name="author"
               id="author"
@@ -81,6 +112,7 @@ export default function Page() {
           <div className="form-item">
             <label htmlFor="url">Content URL</label>
             <input
+              required={true}
               type="url"
               name="url"
               id="url"
@@ -91,6 +123,7 @@ export default function Page() {
           <div className="form-item">
             <label htmlFor="description">Description</label>
             <textarea
+              required={true}
               name="description"
               id="description"
               placeholder=""
@@ -99,13 +132,13 @@ export default function Page() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="url">Content Type</label>
+            <label htmlFor="type">Content Type</label>
             <Dropdown items={CONTENT_TYPES} name="type" />
             {/* <p className="minor-text">this is optional minor text</p> */}
           </div>
           <div className="form-item">
-            <label htmlFor="url">Level</label>
-            <Dropdown items={CONTENT_LEVELS} name="level" />
+            <label htmlFor="level">Level</label>
+            <Dropdown items={CONTENT_LEVELS} name="tags" />
             <p className="minor-text">
               Select content difficulty for optimal discovery.
             </p>
@@ -133,7 +166,9 @@ export default function Page() {
                             <li key={optionId}>
                               <input
                                 type="checkbox"
-                                name={category.label}
+                                name="tags"
+                                multiple={true}
+                                value={label}
                                 id={`${category.label}_${label}`}
                               />
                               <label htmlFor={`${category.label}_${label}`}>
