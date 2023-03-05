@@ -2,7 +2,7 @@ import { NextSeoProps } from "next-seo";
 import DefaultLayout from "@/layouts/default";
 import PageHero from "@/components/core/PageHero";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Dropdown from "@/components/core/Dropdown";
 import {
   CONTENT_LEVELS,
@@ -12,11 +12,23 @@ import {
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
-  title: "Submit",
+  title: "Submit New Content",
   description: "",
 };
 
 export default function Page() {
+  const [data, setData] = useState({
+    Title: "",
+    Author: "",
+    Description: "",
+    Url: "",
+    Vertical: "Solana",
+    Tags: [],
+    ContentType: "",
+    SpecialTag: "New",
+    ContentStatus: "submitted",
+  });
+
   // function to handle form submit
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
