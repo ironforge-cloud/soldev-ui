@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import PlausibleProvider from "next-plausible";
 
 import { DefaultSeo } from "next-seo";
 import SEO from "@@/next-seo.config";
@@ -14,7 +15,7 @@ const inter = Inter({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <PlausibleProvider domain="soldev.app">
       <style jsx global>
         {`
           :root {
@@ -41,6 +42,6 @@ export default function App({ Component, pageProps }: AppProps) {
       />
 
       <Component {...pageProps} />
-    </>
+    </PlausibleProvider>
   );
 }

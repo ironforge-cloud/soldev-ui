@@ -1,5 +1,7 @@
+const { withPlausibleProxy } = require("next-plausible");
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withPlausibleProxy()({
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
@@ -13,6 +15,6 @@ const nextConfig = {
       },
     ],
   },
-};
+});
 
 module.exports = nextConfig;
