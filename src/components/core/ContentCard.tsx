@@ -15,7 +15,7 @@ type ComponentProps = {
   authorLabel?: string;
   authorHref?: string;
   tags?: string | string[];
-  isHot?: boolean;
+  badgeText?: string;
   isExternal?: boolean;
   isLarge?: boolean;
 };
@@ -29,7 +29,7 @@ export default function ContentCard({
   authorLabel,
   authorHref,
   tags,
-  isHot,
+  badgeText,
   isExternal,
   isLarge,
 }: ComponentProps) {
@@ -54,7 +54,7 @@ export default function ContentCard({
         target={isExternal ? "_blank" : ""}
         className={styles.image}
       >
-        {isHot && <span className={styles.badge}>Hot</span>}
+        {badgeText && <span className={styles.badge}>{badgeText}</span>}
         <Image
           src={imageSrc}
           alt={title}
