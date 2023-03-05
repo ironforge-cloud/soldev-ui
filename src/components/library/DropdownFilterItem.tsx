@@ -41,9 +41,15 @@ export default function DropdownFilterItem({
       <div className={`${styles.container} ${className}`}>
         <Listbox.Button className={styles.actionButton}>
           <span className={styles.actionLabel}>
-            {selected.length > 0
-              ? `Multiple (${selected.length})`
-              : "None selected"}
+            {selected.length > 0 ? (
+              <>
+                {selected.length == 1
+                  ? selected
+                  : `Multiple (${selected.length})`}
+              </>
+            ) : (
+              "None selected"
+            )}
           </span>
           <span className={styles.actionIcon}>
             <ChevronDownIcon aria-hidden="true" />
