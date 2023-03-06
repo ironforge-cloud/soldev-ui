@@ -57,12 +57,37 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   // fetch all the SIMD records from GitHub
   const records = await fetchAllSIMD();
 
-  // located the desired record by the `slug`
-  const record = records.find(
-    (item) =>
-      item.metadata.simd &&
-      computeSlugForSIMD(item.metadata.simd, item.metadata.title) === slug,
-  );
+  // create a placeholder record
+  let record: ParsedGitHubPullContent | null = null;
+  let nextSlug: string | null = null;
+  let prevSlug: string | null = null;
+
+  for (let i = 0; i < records.length; i++) {
+    // search for the current record
+    if (
+      !records[i].metadata.simd ||
+      computeSlugForSIMD(
+        records[i].metadata.simd,
+        records[i].metadata.title,
+      ) !== slug
+    )
+      continue;
+
+    // save the content record
+    record = records[i];
+
+    // extract the next/prev records
+    if (i > 0)
+      prevSlug = computeSlugForSIMD(
+        records[i - 1].metadata.simd,
+        records[i - 1].metadata.title,
+      );
+    if (records.length > i + 1)
+      nextSlug = computeSlugForSIMD(
+        records[i + 1].metadata.simd,
+        records[i + 1].metadata.title,
+      );
+  }
 
   // handle the 404 when no record was found
   if (!record) return { notFound: true };
@@ -82,9 +107,11 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   return {
     props: {
+      seo,
       record,
       slug,
-      seo,
+      nextSlug,
+      prevSlug,
     },
     revalidate: 300,
   };
@@ -94,9 +121,17 @@ type PageProps = {
   record: ParsedGitHubPullContent;
   seo: NextSeoProps;
   slug: string;
+  nextSlug?: string;
+  prevSlug?: string;
 };
 
-export default function Page({ record, seo, slug }: PageProps) {
+export default function Page({
+  record,
+  seo,
+  slug,
+  nextSlug,
+  prevSlug,
+}: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   // extract all the h2 (i.e. `##` from markdown) tags to generate the table of contents
@@ -191,10 +226,10 @@ export default function Page({ record, seo, slug }: PageProps) {
           />
 
           <NextPrevButtons
-            nextHref="#"
-            prevHref="#"
-            nextLabel="Next SIMD"
-            prevLabel="Previous SIMD"
+            nextHref={`/simd/${nextSlug || ""}`}
+            prevHref={`/simd/${prevSlug || ""}`}
+            nextLabel={nextSlug ? "Next SIMD" : "All SIMD"}
+            prevLabel={prevSlug ? "Previous SIMD" : "All SIMD"}
           />
         </section>
 

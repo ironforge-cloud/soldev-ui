@@ -14,16 +14,7 @@ const seo: NextSeoProps = {
 };
 
 export async function getStaticProps() {
-  const records = await fetchAllSIMD()
-    .then((res) =>
-      // auto filter out records by their computed SIMD proposal number
-      // (i.e. no `simd` value => invalid proposal/not a real proposal)
-      res.filter((record) => record?.metadata?.simd),
-    )
-    // sort from higher to lower SIMD number
-    .then((res) =>
-      res.sort((a, b) => parseInt(b.metadata.simd) - parseInt(a.metadata.simd)),
-    );
+  const records = await fetchAllSIMD();
 
   return {
     props: {

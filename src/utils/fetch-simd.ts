@@ -75,7 +75,7 @@ export async function fetchAllSIMD() {
     fetchRepoSIMD(),
   ]);
 
-  return await Promise.all(
+  const records = await Promise.all(
     [...pullRequests, ...repo].map(async (item) => {
       if (!Array.isArray(item.download_url)) {
         item.download_url = [item.download_url];
@@ -106,5 +106,16 @@ export async function fetchAllSIMD() {
       }
       return item as ParsedGitHubPullContent;
     }),
-  );
+  )
+    .then((res) =>
+      // auto filter out records by their computed SIMD proposal number
+      // (i.e. no `simd` value => invalid proposal/not a real proposal)
+      res.filter((record) => record?.metadata?.simd),
+    )
+    // sort from higher to lower SIMD number
+    .then((res) =>
+      res.sort((a, b) => parseInt(b.metadata.simd) - parseInt(a.metadata.simd)),
+    );
+
+  return records;
 }
