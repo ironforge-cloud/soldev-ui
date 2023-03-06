@@ -1,10 +1,10 @@
-import styles from "@/styles/ContentCard.module.css";
-import Link from "next/link";
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import { SITE_ADDR } from "@/lib/constants/general";
-import Image from "next/image";
+import styles from '@/styles/ContentCard.module.css';
+import Link from 'next/link';
+import { ArrowUpRightIcon } from '@heroicons/react/24/solid';
+import { SITE_ADDR } from '@/lib/constants/general';
+import Image from 'next/image';
 
-const DEFAULT_IMG_SRC = "/placeholder.webp";
+const DEFAULT_IMG_SRC = '/placeholder.webp';
 
 type ComponentProps = {
   className?: string;
@@ -21,7 +21,7 @@ type ComponentProps = {
 };
 
 export default function ContentCard({
-  className = "",
+  className = '',
   imageSrc = DEFAULT_IMG_SRC,
   title,
   href,
@@ -31,44 +31,36 @@ export default function ContentCard({
   tags,
   badgeText,
   isExternal,
-  isLarge,
+  isLarge
 }: ComponentProps) {
   // auto convert internal links to internal, and external to external
-  if (
-    href.substring(0, SITE_ADDR.length).toLowerCase() ===
-    SITE_ADDR.toLowerCase()
-  ) {
+  if (href.substring(0, SITE_ADDR.length).toLowerCase() === SITE_ADDR.toLowerCase()) {
     href = href.substring(SITE_ADDR.length);
     isExternal = false;
-  } else if (href.substring(0, 1) !== "/") isExternal = true;
+  } else if (href.substring(0, 1) !== '/') isExternal = true;
 
   // always convert `tags` into an array
-  if (tags && typeof tags == "string") tags = tags.split(",");
+  if (tags && typeof tags == 'string') tags = tags.split(',');
 
   return (
-    <div
-      className={`${styles.card} ${
-        isLarge ? styles.largeCard : ""
-      } ${className}`}
-    >
-      <Link
-        href={href}
-        target={isExternal ? "_blank" : ""}
-        className={styles.image}
-      >
+    <div className={`${styles.card} ${isLarge ? styles.largeCard : ''} ${className}`}>
+      <Link href={href} target={isExternal ? '_blank' : ''} className={styles.image}>
         {badgeText && <span className={styles.badge}>{badgeText}</span>}
         <Image
           src={imageSrc}
           alt={title}
           fill={true}
-          placeholder={"blur"}
+          placeholder={'blur'}
           blurDataURL={imageSrc}
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 500px) 50vw,
+              33vw"
         />
       </Link>
 
       <div className={styles.metaArea}>
         <h3>
-          <Link href={href} target={isExternal ? "_blank" : ""}>
+          <Link href={href} target={isExternal ? '_blank' : ''}>
             <span>{title}</span>
             {isExternal && <ArrowUpRightIcon />}
           </Link>
@@ -76,7 +68,7 @@ export default function ContentCard({
 
         {authorLabel && (
           <p className={styles.author}>
-            by{" "}
+            by{' '}
             {authorHref ? (
               <Link href={authorHref} target="_blank">
                 {authorLabel}
@@ -92,7 +84,7 @@ export default function ContentCard({
         {Array.isArray(tags) && tags.length > 0 && (
           <p className={styles.tags}>
             {tags.map((tag, id) => (
-              <Link key={id} href={"#"}>{`#${tag.trim()}`}</Link>
+              <Link key={id} href={'#'}>{`#${tag.trim()}`}</Link>
             ))}
           </p>
         )}

@@ -6,7 +6,6 @@ const nextConfig = withPlausibleProxy()({
   eslint: {
     ignoreDuringBuilds: true,
   },
-
   images: {
     remotePatterns: [
       {

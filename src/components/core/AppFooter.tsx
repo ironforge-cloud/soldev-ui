@@ -1,14 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import clsx from "clsx";
+import Image from 'next/image';
+import Link from 'next/link';
+import clsx from 'clsx';
 
-import {
-  SITE_NAME,
-  SITE_GITHUB_URL,
-  SITE_TWITTER_HANDLE,
-} from "@/lib/constants/general";
-import styles from "@/styles/core/footer.module.css";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { SITE_GITHUB_URL, SITE_TWITTER_HANDLE } from '@/lib/constants/general';
+import styles from '@/styles/core/footer.module.css';
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -17,32 +12,32 @@ type ComponentProps = {
 export default function AppFooter({ children }: ComponentProps) {
   return (
     <footer className={styles.footer}>
-      <section className={clsx("container", styles.inner)}>
+      <section className={clsx('container', styles.inner)}>
         <section className={styles.metaArea}>
-          <Link href={"/"}>
-            <Image src={"/logo-light.svg"} alt="Logo" width={124} height={0} />
+          <Link href={'/'}>
+            <Image src={'/logo-light.svg'} alt="Logo" width={124} height={0} />
           </Link>
 
           <p className="">
-            Stay up-to-date with the latest updates, learning, and happenings in
-            the Solana ecosystem.
+            Stay up-to-date with the latest updates, learning, and happenings in the Solana
+            ecosystem.
           </p>
 
           <section className="inline-flex space-x-3">
             <Link href={SITE_GITHUB_URL}>
               <Image
-                src={"/img/icons/github.svg"}
+                src={'/img/icons/github.svg'}
                 width={24}
                 height={24}
-                alt={"SolDev on GitHub"}
+                alt={'SolDev on GitHub'}
               />
             </Link>
             <Link href={`https://twitter.com/${SITE_TWITTER_HANDLE}`}>
               <Image
-                src={"/img/icons/twitter.svg"}
+                src={'/img/icons/twitter.svg'}
                 width={24}
                 height={24}
-                alt={"SolDev on Twitter"}
+                alt={'SolDev on Twitter'}
               />
             </Link>
           </section>
@@ -69,18 +64,18 @@ function LearnFooterLinks() {
         <h4>Learn</h4>
       </li>
       <li>
-        <Link href={"/course"}>Intro to Solana</Link>
+        <Link href={'/course'}>Intro to Solana</Link>
       </li>
       <li>
-        <Link target="_blank" href={"https://solanacookbook.com/"}>
+        <Link target="_blank" href={'https://solanacookbook.com/'}>
           Solana Cookbook
         </Link>
       </li>
       <li>
-        <Link href={"/library/playlist/solana-bootcamp"}>Solana Bootcamp</Link>
+        <Link href={'/library/playlist/solana-bootcamp'}>Solana Bootcamp</Link>
       </li>
       <li>
-        <Link target="_blank" href={"https://buildspace.so/solana-core"}>
+        <Link target="_blank" href={'https://buildspace.so/solana-core'}>
           buildspace Solana Core
         </Link>
       </li>
@@ -95,13 +90,13 @@ function LibraryFooterLinks() {
         <h4>Library</h4>
       </li>
       <li>
-        <Link href={"/library?types=tutorials"}>Tutorials</Link>
+        <Link href={'/library?types=tutorials'}>Tutorials</Link>
       </li>
       <li>
-        <Link href={"/library?types=articles"}>Articles</Link>
+        <Link href={'/library?types=articles'}>Articles</Link>
       </li>
       <li>
-        <Link href={"/library?types=podcasts"}>Podcasts</Link>
+        <Link href={'/library?types=podcasts'}>Podcasts</Link>
       </li>
     </ul>
   );
@@ -114,23 +109,19 @@ function UpdatesFooterLinks() {
         <h4>Updates</h4>
       </li>
       <li>
-        <Link href={"/newsletter"}>Newsletter</Link>
+        <Link href={'/newsletter'}>Newsletter</Link>
       </li>
       <li>
-        <Link href={"/changelog"}>Changelog</Link>
+        <Link href={'/changelog'}>Changelog</Link>
       </li>
       <li>
-        <Link href={"/library/playlist/core-community-calls"}>
-          Community Calls
-        </Link>
+        <Link href={'/library/playlist/core-community-calls'}>Community Calls</Link>
       </li>
       <li>
-        <Link href={"/library/playlist/superteam-ecosystem-calls"}>
-          Ecosystem Calls
-        </Link>
+        <Link href={'/library/playlist/superteam-ecosystem-calls'}>Ecosystem Calls</Link>
       </li>
       <li>
-        <Link href={"/library/playlist/validator-community-discussions"}>
+        <Link href={'/library/playlist/validator-community-discussions'}>
           Validator Discussions
         </Link>
       </li>
@@ -145,37 +136,28 @@ function ResourcesFooterLinks() {
         <h4>Resources</h4>
       </li>
       <li>
-        <Link href={"/registry"}>IDL Registry</Link>
+        <Link href={'/registry'}>IDL Registry</Link>
       </li>
       <li>
-        <Link href={"/simd"}>SIMD</Link>
+        <Link href={'/simd'}>SIMD</Link>
       </li>
       <li>
-        <Link target="_blank" href={"https://solana.stackexchange.com/"}>
+        <Link target="_blank" href={'https://solana.stackexchange.com/'}>
           Stack Exchange
         </Link>
       </li>
       <li>
-        <Link
-          target="_blank"
-          href={"https://earn.superteam.fun/opportunities/category/jobs"}
-        >
+        <Link target="_blank" href={'https://earn.superteam.fun/opportunities/category/jobs'}>
           Jobs
         </Link>
       </li>
       <li>
-        <Link
-          target="_blank"
-          href={"https://earn.superteam.fun/opportunities/category/bounties"}
-        >
+        <Link target="_blank" href={'https://earn.superteam.fun/opportunities/category/bounties'}>
           Bounties
         </Link>
       </li>
       <li>
-        <Link
-          target="_blank"
-          href={"https://earn.superteam.fun/opportunities/category/grants"}
-        >
+        <Link target="_blank" href={'https://earn.superteam.fun/opportunities/category/grants'}>
           Grants
         </Link>
       </li>
@@ -190,7 +172,7 @@ function TeamFooterLinks() {
         <h4>Team</h4>
       </li>
       <li>
-        <Link href={"#"}>Wallet Connect</Link>
+        <Link href={'#'}>Wallet Connect</Link>
       </li>
     </ul>
   );

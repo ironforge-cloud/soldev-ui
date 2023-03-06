@@ -4,50 +4,52 @@
 */
 
 .heading {
-  @apply text-4xl;
-  @apply py-5 mx-5;
-  @apply block border-b border-gray-200;
+    @apply text-4xl;
+    @apply py-5 mx-5;
+    @apply block border-b border-gray-200;
 }
 
 .scrollContainer {
-  @apply flex flex-col;
-  @apply space-y-4 lg:space-y-8 lg:py-10;
+    @apply flex flex-col;
+    @apply space-y-4 lg:space-y-8 lg:py-10;
 }
-.container {
-  @apply lg:gap-6 lg:flex-none lg:grid !important;
-  @apply p-5 xl:p-0 lg:grid-cols-4;
 
-  /* styles for the horizontal scrolling on mobile */
-  @apply snap-mandatory snap-x;
-  @apply flex flex-row space-x-6 lg:space-x-0;
-  @apply overflow-x-scroll lg:overflow-auto;
+.container {
+    @apply lg:gap-6 lg:flex-none lg:grid !important;
+    @apply p-5 xl:p-0 lg:grid-cols-4;
+
+    /* styles for the horizontal scrolling on mobile */
+    @apply snap-mandatory snap-x;
+    @apply flex flex-row space-x-6 lg:space-x-0;
+    @apply overflow-x-scroll lg:overflow-auto;
 }
 
 .card {
-  /* @apply w-full; */
-  /* styles for the horizontal scrolling on mobile */
-  @apply snap-center snap-mandatory;
-  @apply place-self-center sm:place-self-auto;
-  @apply flex-shrink-0 max-w-sm md:max-w-full lg:w-auto;
+    /* @apply w-full; */
+    /* styles for the horizontal scrolling on mobile */
+    @apply snap-center snap-mandatory;
+    @apply place-self-center sm:place-self-auto;
+    @apply flex-shrink-0 max-w-sm md:max-w-full lg:w-auto;
 }
 
 .image {
-  @apply relative flex items-center place-items-center;
-  @apply mb-3 overflow-hidden rounded-2xl;
-  @apply w-full max-h-60 min-h-[10rem];
-  @apply border border-slate-200 bg-slate-50 aspect-video;
+    @apply relative flex items-center place-items-center;
+    @apply mb-3 overflow-hidden rounded-2xl;
+    @apply w-full max-h-60 min-h-[10rem];
+    @apply border border-slate-200 bg-slate-50 aspect-video;
 }
+
 .image img {
-  @apply relative object-cover object-center w-full h-full;
+    @apply relative object-cover object-center w-full h-full;
 }
 
 .badge {
-  @apply absolute right-2 bottom-2;
-  @apply text-black bg-solana-green;
-  /* @apply text-white bg-solana-purple; */
-  /* @apply text-white bg-red-500; */
-  @apply px-3 py-1 text-xs font-semibold;
-  @apply rounded-lg;
+    @apply absolute right-2 bottom-2;
+    @apply text-black bg-solana-green;
+    /* @apply text-white bg-solana-purple; */
+    /* @apply text-white bg-red-500; */
+    @apply px-3 py-1 text-xs font-semibold;
+    @apply rounded-lg;
 }
 
 /* .image img {
@@ -55,37 +57,43 @@
 } */
 
 .metaArea {
-  @apply space-y-3;
+    @apply space-y-1.5;
 }
+
 .metaArea h3 a {
-  @apply flex justify-between w-full hover:underline;
-  @apply text-gray-900;
+    @apply flex justify-between w-full hover:underline;
+    @apply text-gray-900;
 }
+
 .metaArea h3 a span {
-  @apply text-base line-clamp-2;
-  @apply leading-tight;
+    @apply text-base line-clamp-2;
+    @apply leading-tight;
 }
+
 .metaArea h3 a svg {
-  @apply w-5 h-5 ml-1 flex-shrink-0 !important;
+    @apply w-5 h-5 ml-1 flex-shrink-0 !important;
 }
 
 .author {
-  @apply text-sm text-gray-600;
+    @apply text-sm text-gray-600;
 }
+
 .author a {
-  @apply hover:underline hover:text-black;
+    @apply hover:underline hover:text-black;
 }
 
 .description {
-  @apply line-clamp-3;
-  @apply text-sm text-gray-800;
+    @apply line-clamp-3 pt-2;
+    @apply text-sm text-gray-800;
 }
+
 .tags {
-  @apply text-sm line-clamp-1;
+    @apply text-sm line-clamp-1;
 }
+
 .tags a {
-  @apply inline-flex pr-1;
-  @apply text-violet-600 hover:underline;
+    @apply inline-flex pr-1;
+    @apply text-violet-600 hover:underline;
 }
 
 /* .inner {
@@ -97,32 +105,38 @@
   Style the large card, but only for `md` screen size
 */
 @media (min-width: 768px) {
-  .largeCard {
-    @apply grid grid-cols-2 gap-8 col-span-full;
-  }
-  .largeCard .image {
-    @apply max-h-max;
-  }
-  .largeCard .metaArea {
-    @apply my-auto;
-    /* @apply space-y-2; */
-  }
-  .largeCard .metaArea h3 a span {
-    @apply line-clamp-4;
-    @apply text-4xl !important;
-  }
-  .largeCard .metaArea h3 a svg {
-    @apply w-8 h-8 !important;
-  }
-  /* .largeCard .author,
-  .largeCard .tags,
-  .largeCard .description {
-    @apply text-lg;
-  } */
-  .largeCard .description {
-    @apply line-clamp-4;
-  }
-  .largeCard .tags a {
-    @apply pr-3;
-  }
+    .largeCard {
+        @apply grid grid-cols-2 gap-8 col-span-full;
+    }
+
+    .largeCard .image {
+        @apply max-h-max;
+    }
+
+    .largeCard .metaArea {
+        @apply my-auto;
+        /* @apply space-y-2; */
+    }
+
+    .largeCard .metaArea h3 a span {
+        @apply line-clamp-4;
+        @apply text-4xl !important;
+    }
+
+    .largeCard .metaArea h3 a svg {
+        @apply w-8 h-8 !important;
+    }
+
+    /* .largeCard .author,
+    .largeCard .tags,
+    .largeCard .description {
+      @apply text-lg;
+    } */
+    .largeCard .description {
+        @apply line-clamp-4;
+    }
+
+    .largeCard .tags a {
+        @apply pr-3;
+    }
 }

@@ -1,15 +1,11 @@
-import styles from "@/styles/core/header.module.css";
-import { useEffect, useState } from "react";
-import clsx from "clsx";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
-import AppNavigation from "./AppNavigation";
-import { useRouter } from "next/router";
+import styles from '@/styles/core/header.module.css';
+import { useEffect, useState } from 'react';
+import clsx from 'clsx';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import AppNavigation from './AppNavigation';
+import { useRouter } from 'next/router';
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -29,28 +25,20 @@ export default function AppHeader({ children }: ComponentProps) {
       <section className={styles.inner}>
         <section
           className={clsx(
-            styles.staticNav,
+            styles.staticNav
             // navbarOpen && "bg-black",
           )}
         >
-          <Link href={"/"} className={styles.logoArea}>
-            <Image src={"/logo-light.svg"} alt="Logo" width={124} height={0} />
+          <Link href={'/'} className={styles.logoArea}>
+            <Image src={'/logo-light.svg'} alt="Logo" width={124} height={0} />
           </Link>
 
-          <button
-            onClick={() => setNavbarOpen(!navbarOpen)}
-            className={styles.burger}
-          >
+          <button onClick={() => setNavbarOpen(!navbarOpen)} className={styles.burger}>
             {navbarOpen ? <XMarkIcon /> : <Bars3Icon />}
           </button>
         </section>
 
-        <nav
-          className={clsx(
-            styles.primaryArea,
-            navbarOpen ? styles.primaryAreaActive : "hidden",
-          )}
-        >
+        <nav className={clsx(styles.primaryArea, navbarOpen ? styles.primaryAreaActive : 'hidden')}>
           <AppNavigation />
 
           <section className={styles.form}>
@@ -70,10 +58,10 @@ export default function AppHeader({ children }: ComponentProps) {
             </form> */}
 
             <Link
-              href={"/content"}
+              href={'/content'}
               className={clsx(
-                "btn whitespace-nowrap",
-                navbarOpen ? styles.formButton : "btn-default",
+                'btn whitespace-nowrap',
+                navbarOpen ? styles.formButton : 'btn-default'
               )}
             >
               Submit Content

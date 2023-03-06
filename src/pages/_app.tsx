@@ -32,7 +32,6 @@ export default function App({ Component, pageProps }: AppProps) {
         containerClassName=""
         containerStyle={{}}
         toastOptions={{
-          // className: "",
           duration: 5000,
           style: {
             background: "#363636",
