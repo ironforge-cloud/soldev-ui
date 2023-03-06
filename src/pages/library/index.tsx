@@ -201,6 +201,7 @@ export default function Page({ records }: PageProps) {
               {filteredRecords.map((item) => (
                 <ContentCard
                   key={item.SK}
+                  className="w-full"
                   href={item.Url}
                   title={item.Title}
                   authorLabel={item.Author}

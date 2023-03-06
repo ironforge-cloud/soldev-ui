@@ -21,7 +21,7 @@ type ComponentProps = {
 };
 
 export default function ContentCard({
-  className,
+  className = "",
   imageSrc = DEFAULT_IMG_SRC,
   title,
   href,
@@ -47,7 +47,9 @@ export default function ContentCard({
 
   return (
     <div
-      className={`${styles.card} ${isLarge && styles.largeCard} ${className}`}
+      className={`${styles.card} ${
+        isLarge ? styles.largeCard : ""
+      } ${className}`}
     >
       <Link
         href={href}

@@ -122,6 +122,7 @@ export default function Page({ latestPosts }: PageProps) {
             latestPosts.map((post, id: number) => (
               <ContentCard
                 key={id}
+                className="lg:max-w-full w-72 max-w-[70%]"
                 href={post.Url}
                 title={post.Title}
                 authorLabel={post.Author}

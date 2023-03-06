@@ -24,6 +24,7 @@
 }
 
 .card {
+  /* @apply w-full; */
   /* styles for the horizontal scrolling on mobile */
   @apply snap-center snap-mandatory;
   @apply place-self-center sm:place-self-auto;
