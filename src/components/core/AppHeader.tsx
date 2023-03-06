@@ -1,5 +1,5 @@
 import styles from "@/styles/core/header.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,13 +9,21 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import AppNavigation from "./AppNavigation";
+import { useRouter } from "next/router";
 
 type ComponentProps = {
   children?: React.ReactNode;
 };
 
 export default function AppHeader({ children }: ComponentProps) {
+  const router = useRouter();
   const [navbarOpen, setNavbarOpen] = useState(false);
+
+  // auto close the nav menu when the page navigates away
+  useEffect(() => {
+    setNavbarOpen(false);
+  }, [router.query]);
+
   return (
     <header className={styles.header}>
       <section className={styles.inner}>
