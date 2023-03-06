@@ -29,7 +29,7 @@ export default function Page() {
             target="_blank"
             rel="noreferrer"
           >
-            James Pachenco
+            James Pacheco
           </Link>{" "}
           and{" "}
           <Link

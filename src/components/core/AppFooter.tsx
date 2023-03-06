@@ -95,13 +95,13 @@ function LibraryFooterLinks() {
         <h4>Library</h4>
       </li>
       <li>
-        <Link href={"/library/tutorials"}>Tutorials</Link>
+        <Link href={"/library?types=tutorials"}>Tutorials</Link>
       </li>
       <li>
-        <Link href={"/library/articles"}>Articles</Link>
+        <Link href={"/library?types=articles"}>Articles</Link>
       </li>
       <li>
-        <Link href={"/library/podcasts"}>Podcasts</Link>
+        <Link href={"/library?types=podcasts"}>Podcasts</Link>
       </li>
     </ul>
   );
