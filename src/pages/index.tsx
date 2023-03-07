@@ -1,17 +1,17 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import PageHero from "@/components/core/PageHero";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import PageHero from '@/components/core/PageHero';
 
-import HomeCategoryCards from "@/components/home/HomeCategoryCards";
-import HomeResourceCards from "@/components/home/HomeResourceCards";
-import LargeCTACard from "@/components/core/LargeCTACard";
-import FeaturedContentCards from "@/components/core/FeaturedContentCards";
-import ContentCard from "@/components/core/ContentCard";
+import HomeCategoryCards from '@/components/home/HomeCategoryCards';
+import HomeResourceCards from '@/components/home/HomeResourceCards';
+import LargeCTACard from '@/components/core/LargeCTACard';
+import FeaturedContentCards from '@/components/core/FeaturedContentCards';
+import ContentCard from '@/components/core/ContentCard';
 
-import { FEATURED_CONTENT_CARDS } from "@/lib/constants/home";
-import { PLAYLIST_KEYS } from "@/lib/constants/playlists";
-import { getChangelogRecords, getNewsletterRecords, getRecordsFromSlug } from "@/lib/queries";
-import { computeImage } from "@/utils/content";
+import { FEATURED_CONTENT_CARDS } from '@/lib/constants/home';
+import { PLAYLIST_KEYS } from '@/lib/constants/playlists';
+import { getChangelogRecords, getNewsletterRecords, getRecordsFromSlug } from '@/lib/queries';
+import { computeImage } from '@/utils/content';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -55,9 +55,9 @@ export async function getStaticProps() {
   // extract the latest record from each of the datasets
   // NOTE: the order of these will be the order they will be displayed on the page
   latestPosts.push(
-    changelog[0],
+    // changelog[0],
+    superteamEcosystemCalls[0],
     newsletters[0],
-    // superteamEcosystemCalls[0],
     validatorCommunityCalls[0],
     coreCommunityCalls[0]
   );
