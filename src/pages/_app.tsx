@@ -1,21 +1,21 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import PlausibleProvider from "next-plausible";
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+import PlausibleProvider from 'next-plausible';
 
-import { DefaultSeo } from "next-seo";
-import SEO from "@@/next-seo.config";
+import { DefaultSeo } from 'next-seo';
+import SEO from '@@/next-seo.config';
 
-import { Inter } from "@next/font/google";
-import { Toaster } from "react-hot-toast";
+import { Inter } from '@next/font/google';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  subsets: ['latin'],
+  variable: '--font-inter'
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <PlausibleProvider domain="soldev.app">
+    <PlausibleProvider domain="soldev.app" trackOutboundLinks={true}>
       <style jsx global>
         {`
           :root {
@@ -34,9 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
         toastOptions={{
           duration: 5000,
           style: {
-            background: "#363636",
-            color: "#fff",
-          },
+            background: '#363636',
+            color: '#fff'
+          }
         }}
       />
 
