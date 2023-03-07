@@ -1,32 +1,32 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import PageHero from "@/components/core/PageHero";
-import styles from "@/styles/core/sidebar.module.css";
-import ContentCard from "@/components/core/ContentCard";
-import { getRecordsFromSlug } from "@/lib/queries";
-import { PLAYLIST_LISTING } from "@/lib/constants/playlists";
-import { computeImage } from "@/utils/content";
-import Link from "next/link";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import PageHero from '@/components/core/PageHero';
+import styles from '@/styles/core/sidebar.module.css';
+import ContentCard from '@/components/core/ContentCard';
+import { getRecordsFromSlug } from '@/lib/queries';
+import { PLAYLIST_LISTING } from '@/lib/constants/playlists';
+import { computeImage } from '@/utils/content';
+import Link from 'next/link';
 
 // define the on-page seo metadata
 const placeholderSEO: NextSeoProps = {
-  title: "Explore the playlist",
-  description: "",
+  title: 'Explore the playlist',
+  description: ''
 };
 
 //
 export async function getStaticPaths() {
-  const paths = PLAYLIST_LISTING.flat().map((item) => {
+  const paths = PLAYLIST_LISTING.flat().map(item => {
     return {
       params: {
-        slug: item?.slug || item.key,
-      },
+        slug: item?.slug || item.key
+      }
     };
   });
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   };
 }
 
@@ -38,7 +38,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   // only allow `slug`s from the `PLAYLIST_LISTING`
   // NOTE: not case sensitive (i.e. `==` vs `===`)
   const playlist = PLAYLIST_LISTING.flat().filter(
-    (item) => item?.slug == slug || item.key == slug,
+    item => item?.slug == slug || item.key == slug
   )?.[0];
 
   // ensure a playlist was found
@@ -52,14 +52,14 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   if (playlist?.slug && playlist.slug !== slug)
     return {
       redirect: {
-        destination: `/library/playlist/${playlist.slug}`,
-      },
+        destination: `/library/playlist/${playlist.slug}`
+      }
     };
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
     title: playlist.title || placeholderSEO.title,
-    description: playlist.description || placeholderSEO.description,
+    description: playlist.description || placeholderSEO.description
   };
 
   // fetch the listing of all the records from the API
@@ -67,8 +67,8 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   // force update the Author to the desired value (when the `playlist.authorOverride` is set)
   if (playlist?.authorOverride && Array.isArray(records))
-    records = records.map((item) => {
-      item.Author = playlist.authorOverride ?? "";
+    records = records.map(item => {
+      item.Author = playlist.authorOverride ?? '';
       return item;
     });
 
@@ -76,9 +76,9 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     props: {
       seo,
       playlist,
-      records,
+      records
     },
-    revalidate: 60,
+    revalidate: 60
   };
 }
 
@@ -93,38 +93,29 @@ export default function Page({ playlist, records, seo }: PageProps) {
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container">
         <h1>
-          <Link href={`/library/playlist/${playlist?.slug ?? playlist.key}`}>
-            {playlist.title}
-          </Link>
+          <Link href={`/library/playlist/${playlist?.slug ?? playlist.key}`}>{playlist.title}</Link>
         </h1>
 
         <p className="max-w-lg text-xl">{playlist.description}</p>
       </PageHero>
 
-      <main className={styles.wrapper + " container"}>
+      <main className={styles.wrapper + ' container'}>
         {records.map((item, index) => {
           // auto remove the `preText` text from the displayed title
           if (
             playlist?.titleFilter &&
-            item.Title.toLowerCase().substring(
-              0,
-              playlist.titleFilter.length,
-            ) == playlist.titleFilter
+            item.Title.toLowerCase().substring(0, playlist.titleFilter.length) ==
+              playlist.titleFilter
           )
-            item.Title = item.Title.substring(
-              playlist.titleFilter.length,
-            ).trim();
+            item.Title = item.Title.substring(playlist.titleFilter.length).trim();
 
           return (
             <ContentCard
               key={item.SK}
               isLarge={!index}
-              href={`/library/playlist/${playlist?.slug ?? playlist.key}/${
-                item.SK
-              }`}
+              href={`/library/playlist/${playlist?.slug ?? playlist.key}/${item.SK}`}
               title={item.Title}
               authorLabel={item.Author}
-              // authorHref="#"
               imageSrc={computeImage(item)}
               tags={item.Tags}
               description={item.Description}

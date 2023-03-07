@@ -24,13 +24,7 @@ export async function getStaticProps() {
   const latestPosts: ContentRecord[] = [];
 
   // fetch all the latest content from each of the major content sections
-  const [
-    newsletters,
-    changelog,
-    coreCommunityCalls,
-    superteamEcosystemCalls,
-    validatorCommunityCalls
-  ] = await Promise.all([
+  const [newsletters, changelog, coreCommunityCalls, validatorCommunityCalls] = await Promise.all([
     await getNewsletterRecords(),
     await getChangelogRecords(),
     await getRecordsFromSlug(PLAYLIST_KEYS.coreCommunityCalls),
@@ -45,22 +39,13 @@ export async function getStaticProps() {
   coreCommunityCalls[0].Url = `/library/playlist/${'core-community-calls'}/${
     coreCommunityCalls[0].SK
   }`;
-  superteamEcosystemCalls[0].Url = `/library/playlist/${'superteam-ecosystem-calls'}/${
-    superteamEcosystemCalls[0].SK
-  }`;
   validatorCommunityCalls[0].Url = `/library/playlist/${'validator-community-discussions'}/${
     validatorCommunityCalls[0].SK
   }`;
 
   // extract the latest record from each of the datasets
   // NOTE: the order of these will be the order they will be displayed on the page
-  latestPosts.push(
-    // changelog[0],
-    superteamEcosystemCalls[0],
-    newsletters[0],
-    validatorCommunityCalls[0],
-    coreCommunityCalls[0]
-  );
+  latestPosts.push(changelog[0], newsletters[0], validatorCommunityCalls[0], coreCommunityCalls[0]);
 
   return {
     props: {
