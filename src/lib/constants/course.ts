@@ -144,14 +144,12 @@ export const COURSE_MODULES: CourseModule[] = [
         slug: "solana-pay",
       },
       {
-        title: "Lesson 3",
-        slug: "",
-        hidden: true,
+        title: "Versioned transactions and lookup tables",
+        slug: "versioned-transaction",
       },
       {
-        title: "Lesson 4",
-        slug: "",
-        hidden: true,
+        title: "Rust procedural macros",
+        slug: "rust-macros",
       },
     ],
   },
