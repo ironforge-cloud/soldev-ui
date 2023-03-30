@@ -1,37 +1,37 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import dynamic from "next/dynamic";
-import { useMemo, useState } from "react";
-import clsx from "clsx";
-import Link from "next/link";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import dynamic from 'next/dynamic';
+import { useMemo, useState } from 'react';
+import clsx from 'clsx';
+import Link from 'next/link';
 
-import { fetchAllSIMD } from "@/utils/fetch-simd";
-import { fetchRaw } from "@/utils/fetch-github";
+import { fetchAllSIMD } from '@/utils/fetch-simd';
+import { fetchRaw } from '@/utils/fetch-github';
 
-import styles from "@/styles/core/sidebar.module.css";
-import heroStyles from "@/styles/PageHero.module.css";
-import PageHero from "@/components/core/PageHero";
-import subnavStyles from "@/styles/core/subnav.module.css";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import NextPrevButtons from "@/components/core/NextPrevButtons";
-import { SIMDAuthorLineItem } from "@/components/simd/SIMDTableLineItem";
-import { computeSlugForSIMD, shareOnTwitterUrl } from "@/utils/helpers";
+import styles from '@/styles/core/sidebar.module.css';
+import heroStyles from '@/styles/PageHero.module.css';
+import PageHero from '@/components/core/PageHero';
+import subnavStyles from '@/styles/core/subnav.module.css';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+import NextPrevButtons from '@/components/core/NextPrevButtons';
+import { SIMDAuthorLineItem } from '@/components/simd/SIMDTableLineItem';
+import { computeSlugForSIMD, shareOnTwitterUrl } from '@/utils/helpers';
 
-const ArticleContent = dynamic(() => import("@/components/ArticleContent"), {
-  ssr: false,
+const ArticleContent = dynamic(() => import('@/components/ArticleContent'), {
+  ssr: false
 });
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
-  title: "SIMD doc page",
-  description: "",
+  title: 'SIMD doc page',
+  description: ''
 };
 
 // define the indexes for the tabbed page sections
 const TABS = {
   content: 0,
   details: 1,
-  toc: 2,
+  toc: 2
 };
 
 export async function getStaticPaths() {
@@ -39,14 +39,14 @@ export async function getStaticPaths() {
 
   // filter out SIMD files in incorrect format (missing title or simd number)
   const paths = records
-    .filter((item) => item.metadata.title && item.metadata.simd)
-    .map((item) => ({
+    .filter(item => item.metadata.title && item.metadata.simd)
+    .map(item => ({
       params: {
-        slug: computeSlugForSIMD(item.metadata.simd, item.metadata.title),
-      },
+        slug: computeSlugForSIMD(item.metadata.simd, item.metadata.title)
+      }
     }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 }
 
 type StaticProps = {
@@ -66,10 +66,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     // search for the current record
     if (
       !records[i].metadata.simd ||
-      computeSlugForSIMD(
-        records[i].metadata.simd,
-        records[i].metadata.title,
-      ) !== slug
+      computeSlugForSIMD(records[i].metadata.simd, records[i].metadata.title) !== slug
     )
       continue;
 
@@ -78,28 +75,22 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
     // extract the next/prev records
     if (i > 0)
-      prevSlug = computeSlugForSIMD(
-        records[i - 1].metadata.simd,
-        records[i - 1].metadata.title,
-      );
+      prevSlug = computeSlugForSIMD(records[i - 1].metadata.simd, records[i - 1].metadata.title);
     if (records.length > i + 1)
-      nextSlug = computeSlugForSIMD(
-        records[i + 1].metadata.simd,
-        records[i + 1].metadata.title,
-      );
+      nextSlug = computeSlugForSIMD(records[i + 1].metadata.simd, records[i + 1].metadata.title);
   }
 
   // handle the 404 when no record was found
   if (!record) return { notFound: true };
 
   // fetching markdown and getting rid of document metadata
-  record.content = await fetchRaw(record.download_url[0]).then((res) =>
-    res.replace(/^---[\s\S]*?---/m, "").trim(),
+  record.content = await fetchRaw(record.download_url[0]).then(res =>
+    res.replace(/^---[\s\S]*?---/m, '').trim()
   );
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
-    title: `SIMD-${record.metadata.simd} - ${record.metadata.title}`,
+    title: `SIMD-${record.metadata.simd} - ${record.metadata.title}`
     // description: record.metadata.title,
   };
   // TODO: craft a useful seo description based on the record's data
@@ -111,9 +102,9 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
       record,
       slug,
       nextSlug,
-      prevSlug,
+      prevSlug
     },
-    revalidate: 300,
+    revalidate: 300
   };
 }
 
@@ -125,36 +116,24 @@ type PageProps = {
   prevSlug?: string;
 };
 
-export default function Page({
-  record,
-  seo,
-  slug,
-  nextSlug,
-  prevSlug,
-}: PageProps) {
+export default function Page({ record, seo, slug, nextSlug, prevSlug }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   // extract all the h2 (i.e. `##` from markdown) tags to generate the table of contents
   const tableOfContents = useMemo(
-    () =>
-      (record?.content?.match(/^## .*$/gm) || []).map((line) => line.slice(3)),
-    [],
+    () => (record?.content?.match(/^## .*$/gm) || []).map(line => line.slice(3)),
+    []
   );
 
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container text-center">
         <h1>
-          <Link href={record.metadata.href || "#"}>
-            {record.metadata.title}
-          </Link>
+          <Link href={record.metadata.href || '#'}>{record.metadata.title}</Link>
         </h1>
 
         <section className={heroStyles.ctaSection}>
-          <Link
-            href={"/simd"}
-            className={`btn btn-default ${heroStyles.ctaBtn}`}
-          >
+          <Link href={'/simd'} className={`btn btn-default ${heroStyles.ctaBtn}`}>
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to SIMD
           </Link>
@@ -169,35 +148,35 @@ export default function Page({
         </section>
       </PageHero>
 
-      <nav className={clsx(subnavStyles.subnav, "mobile-only")}>
+      <nav className={clsx(subnavStyles.subnav, 'mobile-only')}>
         <Link
-          href={"#content"}
+          href={'#content'}
           onClick={() => setSelectedTab(TABS.content)}
           className={clsx(
             subnavStyles.item,
-            selectedTab === TABS.content && subnavStyles.activeButton,
+            selectedTab === TABS.content && subnavStyles.activeButton
             // "w-1/2 text-center",
           )}
         >
           Content
         </Link>
         <Link
-          href={"#details"}
+          href={'#details'}
           onClick={() => setSelectedTab(TABS.details)}
           className={clsx(
             subnavStyles.item,
-            selectedTab === TABS.details && subnavStyles.activeButton,
+            selectedTab === TABS.details && subnavStyles.activeButton
             // "w-1/2 text-center",
           )}
         >
           Details
         </Link>
         <Link
-          href={"#toc"}
+          href={'#toc'}
           onClick={() => setSelectedTab(TABS.toc)}
           className={clsx(
             subnavStyles.item,
-            selectedTab === TABS.toc && subnavStyles.activeButton,
+            selectedTab === TABS.toc && subnavStyles.activeButton
             // "w-1/2 text-center",
           )}
         >
@@ -205,13 +184,11 @@ export default function Page({
         </Link>
       </nav>
 
-      <section className={clsx(styles.wrapper, "container-inner")}>
+      <section className={clsx(styles.wrapper, 'container-inner')}>
         <section
           className={clsx(
             styles.leftSideLarge,
-            selectedTab === TABS.content
-              ? subnavStyles.activeTab
-              : subnavStyles.inActiveTab,
+            selectedTab === TABS.content ? subnavStyles.activeTab : subnavStyles.inActiveTab
           )}
         >
           {/* <article
@@ -221,15 +198,15 @@ export default function Page({
             }}
           ></article> */}
           <ArticleContent
-            markdown={record.content || "[unable to fetch SIMD proposal]"}
+            markdown={record.content || '[unable to fetch SIMD proposal]'}
             className="prose"
           />
 
           <NextPrevButtons
-            nextHref={`/simd/${nextSlug || ""}`}
-            prevHref={`/simd/${prevSlug || ""}`}
-            nextLabel={nextSlug ? "Next SIMD" : "All SIMD"}
-            prevLabel={prevSlug ? "Previous SIMD" : "All SIMD"}
+            nextHref={`/simd/${nextSlug || ''}`}
+            prevHref={`/simd/${prevSlug || ''}`}
+            nextLabel={nextSlug ? 'Next SIMD' : 'All SIMD'}
+            prevLabel={prevSlug ? 'Previous SIMD' : 'All SIMD'}
           />
         </section>
 
@@ -237,15 +214,13 @@ export default function Page({
           className={clsx(
             styles.rightSideSmall,
             // styles.stickySidebar,
-            styles.borderLeft,
+            styles.borderLeft
           )}
         >
           <section
             className={clsx(
               styles.section,
-              selectedTab === TABS.details
-                ? subnavStyles.activeTab
-                : subnavStyles.inActiveTab,
+              selectedTab === TABS.details ? subnavStyles.activeTab : subnavStyles.inActiveTab
             )}
           >
             <h3>Details</h3>
@@ -263,7 +238,7 @@ export default function Page({
               {record?.metadata?.authors?.length > 0 && (
                 <li>
                   <p>Authors:</p>
-                  <ul className="pl-8 list-disc">
+                  <ul className="list-disc pl-8">
                     {record.metadata.authors.map((author, id) => (
                       <SIMDAuthorLineItem key={id} author={author} />
                     )) || <li>no authors found</li>}
@@ -276,9 +251,7 @@ export default function Page({
           <section
             className={clsx(
               styles.section,
-              selectedTab === TABS.toc
-                ? subnavStyles.activeTab
-                : subnavStyles.inActiveTab,
+              selectedTab === TABS.toc ? subnavStyles.activeTab : subnavStyles.inActiveTab
             )}
           >
             <h3>Table of Contents</h3>
@@ -288,7 +261,7 @@ export default function Page({
                 tableOfContents.map((item, id) => (
                   <li key={id}>
                     <Link
-                      href={`#${item.toLowerCase().replace(/\W/g, "-")}`}
+                      href={`#${item.toLowerCase().replace(/\W/g, '-')}`}
                       className="underline hover:text-gray-700"
                     >
                       {item}

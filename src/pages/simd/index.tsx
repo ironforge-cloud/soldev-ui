@@ -1,16 +1,16 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import PageHero from "@/components/core/PageHero";
-import Link from "next/link";
-import { fetchAllSIMD } from "@/utils/fetch-simd";
-import dataTableStyles from "@/styles/core/dataTable.module.css";
-import SIMDTableLineItem from "@/components/simd/SIMDTableLineItem";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import PageHero from '@/components/core/PageHero';
+import Link from 'next/link';
+import { fetchAllSIMD } from '@/utils/fetch-simd';
+import dataTableStyles from '@/styles/core/dataTable.module.css';
+import SIMDTableLineItem from '@/components/simd/SIMDTableLineItem';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
-  title: "Solana Improvement Docs (SIMD)",
+  title: 'Solana Improvement Docs (SIMD)',
   description:
-    "The Solana Improvement Documents (SIMD) describe proposed and accepted changes to the Solana protocol.",
+    'The Solana Improvement Documents (SIMD) describe proposed and accepted changes to the Solana protocol.'
 };
 
 export async function getStaticProps() {
@@ -18,9 +18,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      records,
+      records
     },
-    revalidate: 3600,
+    revalidate: 600
   };
 }
 
@@ -33,30 +33,24 @@ export default function Page({ records }: PageProps) {
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-8">
         <h1>
-          <Link href={"/simd"}>Solana Improvement Docs</Link>
+          <Link href={'/simd'}>Solana Improvement Docs</Link>
         </h1>
 
         <p className="max-w-4xl text-base text-gray-300 md:text-lg">
-          This section hosts the Solana Improvement Documents (SIMD) assembled
-          in{" "}
+          This section hosts the Solana Improvement Documents (SIMD) assembled in{' '}
           <Link
             target="_blank"
-            href={
-              "https://github.com/solana-foundation/solana-improvement-documents"
-            }
+            href={'https://github.com/solana-foundation/solana-improvement-documents'}
             className="underline"
           >
             this repository
           </Link>
-          . The improvement documents describe proposed and accepted changes to
-          the Solana protocol.The latest news and updates from the Solana
-          Foundation.
+          . The improvement documents describe proposed and accepted changes to the Solana
+          protocol.The latest news and updates from the Solana Foundation.
         </p>
       </PageHero>
 
-      <main
-        className={`container-inner py-8 ${dataTableStyles.scrollContainer} hide-scroll-bar`}
-      >
+      <main className={`container-inner py-8 ${dataTableStyles.scrollContainer} hide-scroll-bar`}>
         <table className={`${dataTableStyles.dataTable} hide-scroll-bar`}>
           <thead>
             <tr>
@@ -71,7 +65,7 @@ export default function Page({ records }: PageProps) {
           </thead>
           <tbody>
             {records
-              .filter((item) => item.metadata.title && item.metadata.simd)
+              .filter(item => item.metadata.title && item.metadata.simd)
               .map((record, id) => (
                 <SIMDTableLineItem
                   key={record.id}
