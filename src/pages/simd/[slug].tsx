@@ -12,10 +12,9 @@ import styles from '@/styles/core/sidebar.module.css';
 import heroStyles from '@/styles/PageHero.module.css';
 import PageHero from '@/components/core/PageHero';
 import subnavStyles from '@/styles/core/subnav.module.css';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 import NextPrevButtons from '@/components/core/NextPrevButtons';
 import { SIMDAuthorLineItem } from '@/components/simd/SIMDTableLineItem';
-import { computeSlugForSIMD, shareOnTwitterUrl } from '@/utils/helpers';
+import { computeSlugForSIMD } from '@/utils/helpers';
 
 const ArticleContent = dynamic(() => import('@/components/ArticleContent'), {
   ssr: false
@@ -40,7 +39,7 @@ export async function getStaticPaths() {
       }
     }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 }
 
 type StaticProps = {
@@ -84,9 +83,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
-    title: `SIMD-${record.metadata.simd} - ${record.metadata.title}`,
-    description:
-      'The Solana Improvement Documents (SIMD) describe proposed and accepted changes to the Solana protocol.'
+    title: `SIMD-${record.metadata.simd} - ${record.metadata.title}`
     // description: record.metadata.title,
   };
   // TODO: craft a useful seo description based on the record's data
