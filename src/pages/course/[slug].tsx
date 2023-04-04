@@ -1,23 +1,20 @@
-import { NextSeoProps } from "next-seo";
-import LessonLayout from "@/layouts/lesson";
-import dynamic from "next/dynamic";
-import clsx from "clsx";
-import { useMemo, useState } from "react";
+import { NextSeoProps } from 'next-seo';
+import LessonLayout from '@/layouts/lesson';
+import dynamic from 'next/dynamic';
+import clsx from 'clsx';
+import { useMemo, useState } from 'react';
 
-import fs from "fs";
-import path from "path";
-import * as matter from "gray-matter";
-import { COURSE_MODULES } from "@/lib/constants/course";
+import matter from 'gray-matter';
 
-import Link from "next/link";
-import styles from "@/styles/core/sidebar.module.css";
-import subnavStyles from "@/styles/core/subnav.module.css";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import CourseModuleItem from "@/components/course/CourseModuleItem";
-import NextPrevButtons from "@/components/core/NextPrevButtons";
+import Link from 'next/link';
+import styles from '@/styles/core/sidebar.module.css';
+import subnavStyles from '@/styles/core/subnav.module.css';
+import NextPrevButtons from '@/components/core/NextPrevButtons';
+import { CourseModule, fetchLesson, fetchModuleMap } from '@/utils/fetch-course';
+import CourseModuleItem from '@/components/course/CourseModuleItem';
 
-const ArticleContent = dynamic(() => import("@/components/ArticleContent"), {
-  ssr: false,
+const ArticleContent = dynamic(() => import('@/components/ArticleContent'), {
+  ssr: false
 });
 
 type LessonMetadata = {
@@ -26,42 +23,43 @@ type LessonMetadata = {
   objectives?: string[];
 };
 
-// define the on-page seo metadata
-const seo: NextSeoProps = {
-  title: "Learn Solana Development",
-  description: "",
-};
-
 // define the indexes for the tabbed page sections
 const TABS = {
   content: 0,
   objectives: 1,
-  progress: 2,
+  progress: 2
 };
 
 // define the placeholder on-page seo metadata
 const placeholderSEO: NextSeoProps = {
-  title: "Learn Solana Development",
-  description: "",
+  title: 'Learn Solana Development',
+  description: ''
 };
 
-// define the base directory to search for the course content for
-const directory = path.join(process.cwd(), "content", "course");
-
 export async function getStaticPaths() {
-  const fileNames = fs.readdirSync(directory);
+  const courseModules = await fetchModuleMap().then(res => res.data);
 
-  const paths = fileNames.map((fileName) => {
+  // handle the 404 when course modules were not found
+  if (courseModules === undefined) return { notFound: true };
+
+  const fileNames = courseModules
+    .map(module => {
+      return module.lessons.map(lesson => lesson.slug);
+    })
+    .flat()
+    .filter(fileName => fileName !== '');
+
+  const paths = fileNames.map(fileName => {
     return {
       params: {
-        slug: fileName.replace(/\.md$/, ""),
-      },
+        slug: fileName.replace(/\.md$/, '')
+      }
     };
   });
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   };
 }
 
@@ -70,20 +68,21 @@ type StaticProps = {
 };
 
 export async function getStaticProps({ params: { slug } }: StaticProps) {
-  const filePath = path.join(directory, `${slug}.md`);
+  const courseModules = await fetchModuleMap().then(res => res.data);
+
+  const lesson = await fetchLesson(slug.concat('.md'));
+
+  // handle the 404 when no lesson or course module was found
+  if (lesson.data === undefined || courseModules === undefined) return { notFound: true };
 
   // load the lesson's markdown file, with YAML front matter support
-  const lesson = matter.read(filePath);
-
-  // handle the 404 when no record was found
-  if (!lesson) return { notFound: true };
+  const lessonContent = matter(lesson.data);
 
   // determine the next/prev lessons
   let nextSlug: string | null = null;
   let prevSlug: string | null = null;
 
-  const lessonListing = COURSE_MODULES.flatMap((item) => item.lessons.flat());
-  // console.log(lessonListing);
+  const lessonListing = courseModules.flatMap(item => item.lessons.flat());
 
   for (let i = 0; i < lessonListing.length; i++) {
     if (slug !== lessonListing[i].slug) continue;
@@ -95,20 +94,23 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
-    title: lesson.data.title || "Learn Solana Development",
-    description: lesson.data.description || "Learn Solana Development",
+    title: lessonContent.data.title || 'Learn Solana Development',
+    description:
+      lessonContent.data.description ||
+      'This course is designed to be the absolute best starting point for Web Developers looking to learn Web3 Development. Solana is the ideal network for starting your Web3 journey because of its high speed, low cost, energy efficiency, and more.'
   };
 
   return {
     props: {
-      markdown: lesson.content,
-      metadata: lesson.data,
+      markdown: lessonContent.content,
+      metadata: lessonContent.data,
       slug,
       seo,
       nextSlug,
       prevSlug,
+      courseModules
     },
-    revalidate: 60,
+    revalidate: 60
   };
 }
 
@@ -119,6 +121,7 @@ type PageProps = {
   seo: NextSeoProps;
   nextSlug?: string;
   prevSlug?: string;
+  courseModules: CourseModule[];
 };
 
 export default function Page({
@@ -128,84 +131,79 @@ export default function Page({
   slug,
   nextSlug,
   prevSlug,
+  courseModules
 }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   // memo-ize the current module
   const currentModule = useMemo(() => {
-    return COURSE_MODULES.filter(
-      (item) =>
-        item.lessons.flat().filter((item) => item.slug.toLowerCase() == slug)
-          .length > 0,
+    return courseModules.filter(
+      item => item.lessons.flat().filter(item => item.slug.toLowerCase() == slug).length > 0
     )?.[0];
-  }, []);
+  }, [courseModules, slug]);
 
   return (
     <LessonLayout
       seo={{ ...placeholderSEO, ...seo }}
-      title={metadata.title || seo.title || "d"}
+      title={metadata.title || seo.title || 'd'}
       href={`/course/${slug?.toLowerCase()}`}
     >
-      <nav className={clsx(subnavStyles.subnav, "mobile-only")}>
+      <nav className={clsx(subnavStyles.subnav, 'mobile-only')}>
         <Link
-          href={"#content"}
+          href={'#content'}
           onClick={() => setSelectedTab(TABS.content)}
           className={clsx(
             subnavStyles.item,
-            selectedTab === TABS.content && subnavStyles.activeButton,
+            selectedTab === TABS.content && subnavStyles.activeButton
           )}
         >
           Content
         </Link>
         <Link
-          href={"#objectives"}
+          href={'#objectives'}
           onClick={() => setSelectedTab(TABS.objectives)}
           className={clsx(
             subnavStyles.item,
-            selectedTab === TABS.objectives && subnavStyles.activeButton,
+            selectedTab === TABS.objectives && subnavStyles.activeButton
           )}
         >
           Objectives
         </Link>
         <Link
-          href={"#progress"}
+          href={'#progress'}
           onClick={() => setSelectedTab(TABS.progress)}
           className={clsx(
             subnavStyles.item,
-            selectedTab === TABS.progress && subnavStyles.activeButton,
+            selectedTab === TABS.progress && subnavStyles.activeButton
           )}
         >
           Progress
         </Link>
       </nav>
 
-      <section className={styles.wrapper + " container-inner"}>
+      <section className={styles.wrapper + ' container-inner'}>
         <section
           className={clsx(
             styles.leftSideLarge,
-            selectedTab === TABS.content
-              ? subnavStyles.activeTab
-              : subnavStyles.inActiveTab,
+            selectedTab === TABS.content ? subnavStyles.activeTab : subnavStyles.inActiveTab
           )}
         >
           <ArticleContent markdown={markdown} className="prose" />
 
           {/* TODO: make the next button mark the current module as completed? */}
           <NextPrevButtons
-            nextHref={`/course/${nextSlug || ""}`}
-            prevHref={`/course/${prevSlug || ""}`}
-            nextLabel={nextSlug ? "Next Lesson" : "All Lessons"}
-            prevLabel={prevSlug ? "Previous Lesson" : "All Lessons"}
+            nextHref={`/course/${nextSlug || ''}`}
+            prevHref={`/course/${prevSlug || ''}`}
+            nextLabel={nextSlug ? 'Next Lesson' : 'All Lessons'}
+            prevLabel={prevSlug ? 'Previous Lesson' : 'All Lessons'}
           />
         </section>
 
-        <aside className={styles.rightSideSmall + " " + styles.borderLeft}>
+        <aside className={styles.rightSideSmall + ' ' + styles.borderLeft}>
           <section
             className={clsx(
               styles.section,
-              selectedTab === TABS.objectives
-                ? subnavStyles.activeTab
-                : subnavStyles.inActiveTab,
+              selectedTab === TABS.objectives ? subnavStyles.activeTab : subnavStyles.inActiveTab
             )}
           >
             <h3>Objectives</h3>
@@ -216,25 +214,21 @@ export default function Page({
                   By the end of this lesson, you&apos;ll be able to:
                 </p>
 
-                <ul className="pl-8 text-gray-500 list-disc md:text-sm">
+                <ul className="list-disc pl-8 text-gray-500 md:text-sm">
                   {metadata.objectives.map((obj, id) => (
                     <li key={id}>{obj}</li>
                   ))}
                 </ul>
               </>
             ) : (
-              <p className={styles.minorText}>
-                This lesson has written no objectives.
-              </p>
+              <p className={styles.minorText}>This lesson has written no objectives.</p>
             )}
           </section>
 
           <section
             className={clsx(
               styles.section,
-              selectedTab === TABS.progress
-                ? subnavStyles.activeTab
-                : subnavStyles.inActiveTab,
+              selectedTab === TABS.progress ? subnavStyles.activeTab : subnavStyles.inActiveTab
             )}
           >
             <h3>Progress</h3>

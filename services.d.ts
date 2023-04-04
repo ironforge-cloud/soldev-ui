@@ -41,7 +41,7 @@ type ParsedGitHubPullContent = {
   content?: string;
 };
 
-type ParsedGitHubData = {
+type ParsedGitHubSIMDData = {
   id: number;
   html_url: string;
   number: number;
@@ -63,4 +63,12 @@ type ParsedGitHubMetaData = {
   status: string;
   created: string;
   href?: string;
+};
+
+type ParsedGitHubContent = {
+  id: string;
+  name: string;
+  html_url: string;
+  download_url: string;
+  content?: string;
 };
