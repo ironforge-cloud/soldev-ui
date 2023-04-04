@@ -1,8 +1,8 @@
-import styles from "@/styles/core/sidebar.module.css";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import DropdownFilterItem from "@/components/library/DropdownFilterItem";
-import { computeFilterFromUrlParam } from "@/utils/helpers";
+import styles from '@/styles/core/sidebar.module.css';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import DropdownFilterItem from '@/components/library/DropdownFilterItem';
+import { computeFilterFromUrlParam } from '@/utils/helpers';
 
 type ComponentProps = {
   name: string;
@@ -10,37 +10,25 @@ type ComponentProps = {
   items: any[];
 };
 
-export default function LibraryFilterItem({
-  name,
-  label,
-  items,
-}: ComponentProps) {
+export default function LibraryFilterItem({ name, label, items }: ComponentProps) {
   const router = useRouter();
 
   // track the state of the checked checkboxes
-  const [checkedState, setCheckedState] = useState(
-    new Array(items.length).fill(false),
-  );
+  const [checkedState, setCheckedState] = useState(new Array(items.length).fill(false));
   // track the state of the selected items for the multi-select dropdown
   const [selectedItems, setSelectedItems] = useState([]);
 
   // use the router's query to track the state of selected items
   useEffect(() => {
-    const urlData = computeFilterFromUrlParam(
-      (router.query[name.toLowerCase()] as string) ?? "",
-    );
+    const urlData = computeFilterFromUrlParam((router.query[name.toLowerCase()] as string) ?? '');
 
     // compute the updated checked states for the checkboxes
     const updatedCheckedState = checkedState.map(
-      (_item, id) =>
-        urlData.filter((k) => k.toLowerCase() == items[id].toLowerCase())
-          .length > 0,
+      (_item, id) => urlData.filter(k => k.toLowerCase() == items[id].toLowerCase()).length > 0
     );
 
     // compute the updated selected states for multi selects
-    const updatedSelectedState = items.filter(
-      (_item, index) => updatedCheckedState[index],
-    );
+    const updatedSelectedState = items.filter((_item, index) => updatedCheckedState[index]);
 
     // finally update the state
     setSelectedItems(updatedSelectedState as any);
@@ -53,30 +41,26 @@ export default function LibraryFilterItem({
   function handleCheckChange(position: number) {
     // compute the updated checked states
     const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item,
+      index === position ? !item : item
     );
 
     // compute the updated selected states
-    const updatedSelectedState = items.filter(
-      (_item, index) => updatedCheckedState[index],
-    );
+    const updatedSelectedState = items.filter((_item, index) => updatedCheckedState[index]);
 
     // construct the new url query params
     const urlQuery = {
-      ...router.query, //only update the current key
+      ...router.query //only update the current key
     };
-    urlQuery[name.toLowerCase()] = encodeURIComponent(
-      updatedSelectedState.join(",").toLowerCase(),
-    );
+    urlQuery[name.toLowerCase()] = encodeURIComponent(updatedSelectedState.join(',').toLowerCase());
 
     // update the url query path for the changed value
     router.push(
       {
         pathname: router.pathname, // use the current path
-        query: urlQuery,
+        query: urlQuery
       },
       undefined,
-      { shallow: true },
+      { shallow: true }
     );
 
     // actually update the state
@@ -104,7 +88,7 @@ export default function LibraryFilterItem({
 
       <ul className={`${styles.listing} hidden lg:block`}>
         {items.map((item, id) => {
-          const label = typeof item == "string" ? item : item?.label;
+          const label = typeof item == 'string' ? item : item?.label;
           return (
             <li key={id}>
               <input

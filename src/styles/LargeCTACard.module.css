@@ -10,9 +10,9 @@
 .inner {
   @apply overflow-hidden md:rounded-3xl md:shadow-lg;
   @apply mx-auto text-center;
-  @apply px-10 py-20 space-y-5 md:py-28;
+  @apply space-y-5 px-10 py-20 md:py-28;
   @apply text-white;
-  @apply bg-black bg-center bg-no-repeat bg-cover bg-star-sm;
+  @apply bg-black bg-star-sm bg-cover bg-center bg-no-repeat;
 }
 
 .inner h2 {

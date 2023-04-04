@@ -4,18 +4,18 @@
 
 .footer {
   @apply text-white;
-  @apply bg-black bg-no-repeat bg-cover bg-star-sm;
+  @apply bg-black bg-star-sm bg-cover bg-no-repeat;
   /* @apply mt-8; */
 }
 
 .copyright {
-  @apply w-full col-span-full;
-  @apply p-2 text-base text-center;
-  @apply text-gray-500 border-t border-gray-800;
+  @apply col-span-full w-full;
+  @apply p-2 text-center text-base;
+  @apply border-t border-gray-800 text-gray-500;
 }
 
 .inner {
-  @apply grid grid-cols-2 p-8 gap-14;
+  @apply grid grid-cols-2 gap-14 p-8;
   @apply md:grid-cols-7 md:gap-8;
 }
 

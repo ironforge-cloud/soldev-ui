@@ -1,5 +1,5 @@
-import styles from "@/styles/ImageCTACard.module.css";
-import ImageCTACard from "@/components/core/ImageCTACard";
+import styles from '@/styles/ImageCTACard.module.css';
+import ImageCTACard from '@/components/core/ImageCTACard';
 
 type ComponentProps = {
   className?: string;
@@ -7,9 +7,7 @@ type ComponentProps = {
 
 export default function HomeCategoryCards({ className }: ComponentProps) {
   return (
-    <section
-      className={`container-inner hide-scroll-bar ${styles.container} ${className}`}
-    >
+    <section className={`container-inner hide-scroll-bar ${styles.container} ${className}`}>
       <section className={`${styles.scrollContainer} hide-scroll-bar`}>
         <ImageCTACard
           title="Library"

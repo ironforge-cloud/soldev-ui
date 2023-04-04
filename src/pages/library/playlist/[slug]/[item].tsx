@@ -1,24 +1,24 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import Link from "next/link";
-import heroStyles from "@/styles/PageHero.module.css";
-import PageHero from "@/components/core/PageHero";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import Link from 'next/link';
+import heroStyles from '@/styles/PageHero.module.css';
+import PageHero from '@/components/core/PageHero';
 
 // import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import NextPrevButtons from "@/components/core/NextPrevButtons";
-import { getRecordsFromSlug } from "@/lib/queries";
-import markdownToHtml from "@/utils/markdownToHtml";
+import NextPrevButtons from '@/components/core/NextPrevButtons';
+import { getRecordsFromSlug } from '@/lib/queries';
+import markdownToHtml from '@/utils/markdownToHtml';
 
-import dynamic from "next/dynamic";
-import { shareOnTwitterUrl } from "@/utils/helpers";
-import { PLAYLIST_LISTING } from "@/lib/constants/playlists";
+import dynamic from 'next/dynamic';
+import { shareOnTwitterUrl } from '@/utils/helpers';
+import { PLAYLIST_LISTING } from '@/lib/constants/playlists';
 
-const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
 // define the placeholder on-page seo metadata
 const placeholderSEO: NextSeoProps = {
-  title: "Watch this video",
-  description: "",
+  title: 'Watch this video',
+  description: ''
 };
 
 // export async function getStaticPaths() {
@@ -51,13 +51,11 @@ type StaticProps = {
   params: { slug: string; item: string };
 };
 
-export async function getServerSideProps({
-  params: { slug, item },
-}: StaticProps) {
+export async function getServerSideProps({ params: { slug, item } }: StaticProps) {
   // only allow content from `slug`s within `PLAYLIST_LISTING`
   // NOTE: not case sensitive (i.e. `==` vs `===`)
   const playlist = PLAYLIST_LISTING.flat().filter(
-    (item) => item?.slug == slug || item.key == slug,
+    item => item?.slug == slug || item.key == slug
   )?.[0];
 
   // ensure a playlist was found
@@ -86,13 +84,14 @@ export async function getServerSideProps({
     record.ContentMarkdown = await markdownToHtml(record.ContentMarkdown);
 
     // auto convert the `PublishedAt` to a usable date
-    record.PublishedAt = new Date(record.PublishedAt).toLocaleDateString(
-      "en-US",
-      { year: "numeric", month: "long", day: "numeric" },
-    );
+    record.PublishedAt = new Date(record.PublishedAt).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
 
     // force update the Author to the desired value (when the `playlist.authorOverride` is set)
-    if (playlist?.authorOverride) record.Author = playlist.authorOverride ?? "";
+    if (playlist?.authorOverride) record.Author = playlist.authorOverride ?? '';
 
     // stop the loop
     break;
@@ -104,7 +103,7 @@ export async function getServerSideProps({
   // define the on-page seo metadata
   const seo: NextSeoProps = {
     title: record.Title,
-    description: record.Description,
+    description: record.Description
   };
 
   return {
@@ -113,8 +112,8 @@ export async function getServerSideProps({
       playlist,
       record,
       nextSlug,
-      prevSlug,
-    },
+      prevSlug
+    }
     // revalidate: 60, // only allowed in getStaticProps
   };
 }
@@ -127,22 +126,12 @@ type PageProps = {
   prevSlug?: string;
 };
 
-export default function Page({
-  seo,
-  playlist,
-  record,
-  nextSlug,
-  prevSlug,
-}: PageProps) {
+export default function Page({ seo, playlist, record, nextSlug, prevSlug }: PageProps) {
   return (
     <DefaultLayout seo={{ ...placeholderSEO, ...seo }}>
       <PageHero className="container text-center">
         <h1>
-          <Link
-            href={`/library/playlist/${playlist?.slug ?? playlist.key}/${
-              record.SK
-            }`}
-          >
+          <Link href={`/library/playlist/${playlist?.slug ?? playlist.key}/${record.SK}`}>
             {record.Title}
           </Link>
         </h1>
@@ -158,10 +147,8 @@ export default function Page({
           <Link
             target="_blank"
             href={shareOnTwitterUrl({
-              href: `/library/playlist/${playlist?.slug ?? playlist.key}/${
-                record.SK
-              }`,
-              message: `Checkout this @solana video`,
+              href: `/library/playlist/${playlist?.slug ?? playlist.key}/${record.SK}`,
+              message: `Checkout this @solana video`
             })}
             className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
@@ -171,12 +158,12 @@ export default function Page({
         </section>
       </PageHero>
 
-      <main className={"max-w-4xl container"}>
-        <div className="aspect-[16/9] w-full border border-gray-200 bg-gray-50 rounded-2xl overflow-hidden mx-auto">
+      <main className={'container max-w-4xl'}>
+        <div className="mx-auto aspect-[16/9] w-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
           <ReactPlayer
             height="100%"
             width="100%"
-            style={{ aspectRatio: "16/9" }}
+            style={{ aspectRatio: '16/9' }}
             url={record.Url}
             controls
             pip
@@ -197,14 +184,10 @@ export default function Page({
         ) : null}
 
         <NextPrevButtons
-          nextHref={`/library/playlist/${playlist?.slug ?? playlist.key}/${
-            nextSlug ?? ""
-          }`}
-          prevHref={`/library/playlist/${playlist?.slug ?? playlist.key}/${
-            prevSlug ?? ""
-          }`}
-          nextLabel={nextSlug ? "Next Video in Playlist" : "Full Playlist"}
-          prevLabel={prevSlug ? "Previous Video in Playlist" : "Full Playlist"}
+          nextHref={`/library/playlist/${playlist?.slug ?? playlist.key}/${nextSlug ?? ''}`}
+          prevHref={`/library/playlist/${playlist?.slug ?? playlist.key}/${prevSlug ?? ''}`}
+          nextLabel={nextSlug ? 'Next Video in Playlist' : 'Full Playlist'}
+          prevLabel={prevSlug ? 'Previous Video in Playlist' : 'Full Playlist'}
         />
       </main>
     </DefaultLayout>

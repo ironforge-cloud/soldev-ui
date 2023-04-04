@@ -1,4 +1,4 @@
-import { NextSeo, NextSeoProps } from "next-seo";
+import { NextSeo, NextSeoProps } from 'next-seo';
 
 type LayoutProps = {
   children: React.ReactNode;

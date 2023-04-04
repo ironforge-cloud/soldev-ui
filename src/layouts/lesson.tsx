@@ -1,15 +1,11 @@
-import { NextSeo, NextSeoProps } from "next-seo";
-import AppHeader from "@/components/core/AppHeader";
-import AppFooter from "@/components/core/AppFooter";
-import Link from "next/link";
+import { NextSeo, NextSeoProps } from 'next-seo';
+import AppHeader from '@/components/core/AppHeader';
+import AppFooter from '@/components/core/AppFooter';
+import Link from 'next/link';
 
-import heroStyles from "@/styles/PageHero.module.css";
-import PageHero from "@/components/core/PageHero";
-import {
-  ArrowLeftIcon,
-  ArrowTopRightOnSquareIcon,
-} from "@heroicons/react/24/solid";
-import { shareOnTwitterUrl } from "@/utils/helpers";
+import heroStyles from '@/styles/PageHero.module.css';
+import PageHero from '@/components/core/PageHero';
+import { shareOnTwitterUrl } from '@/utils/helpers';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -19,13 +15,7 @@ type LayoutProps = {
   href: string;
 };
 
-export default function LessonLayout({
-  children,
-  seo,
-  className,
-  title,
-  href,
-}: LayoutProps) {
+export default function LessonLayout({ children, seo, className, title, href }: LayoutProps) {
   return (
     <>
       <NextSeo {...seo} />
@@ -45,10 +35,7 @@ export default function LessonLayout({
           </p> */}
 
           <section className={heroStyles.ctaSection}>
-            <Link
-              href={"/course"}
-              className={`btn btn-default ${heroStyles.ctaBtn}`}
-            >
+            <Link href={'/course'} className={`btn btn-default ${heroStyles.ctaBtn}`}>
               {/* <ArrowLeftIcon className="icon" /> */}
               Back to course
             </Link>
@@ -56,7 +43,7 @@ export default function LessonLayout({
               target="_blank"
               href={shareOnTwitterUrl({
                 href: href,
-                message: `Checkout this lesson "${title}" from the Solana Development Course`,
+                message: `Checkout this lesson "${title}" from the Solana Development Course`
               })}
               className={`btn btn-dark ${heroStyles.ctaBtn}`}
             >

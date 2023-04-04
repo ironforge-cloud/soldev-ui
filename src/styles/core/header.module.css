@@ -3,22 +3,22 @@
 */
 
 .header {
-  @apply absolute z-10 flex flex-wrap items-center justify-between w-full;
-  @apply text-gray-400 bg-transparent bg-none;
+  @apply absolute z-10 flex w-full flex-wrap items-center justify-between;
+  @apply bg-transparent bg-none text-gray-400;
 }
 
 .inner {
-  @apply flex flex-wrap items-center justify-between w-full mx-auto lg:flex-nowrap;
-  @apply lg:space-x-4 max-w-[110em];
+  @apply mx-auto flex w-full flex-wrap items-center justify-between lg:flex-nowrap;
+  @apply max-w-[110em] lg:space-x-4;
 }
 
 .staticNav {
   @apply relative flex justify-between;
-  @apply w-full lg:w-auto lg:static lg:block lg:justify-start;
+  @apply w-full lg:static lg:block lg:w-auto lg:justify-start;
   @apply p-5;
 }
 .logoArea {
-  @apply flex-shrink block;
+  @apply block flex-shrink;
 }
 
 /*
@@ -31,7 +31,7 @@ button.burger {
   @apply p-0;
 }
 .burger svg {
-  @apply w-8 h-8;
+  @apply h-8 w-8;
   @apply text-white;
 }
 
@@ -39,20 +39,20 @@ button.burger {
   Style the primary container for the links and form area
 */
 .primaryArea {
-  @apply items-center justify-between flex-grow lg:flex;
+  @apply flex-grow items-center justify-between lg:flex;
 }
 .primaryAreaActive {
   @apply block;
-  @apply text-black bg-white lg:text-gray-500 lg:bg-transparent;
-  @apply border-b shadow-lg lg:shadow-none lg:border-b-transparent;
+  @apply bg-white text-black lg:bg-transparent lg:text-gray-500;
+  @apply border-b shadow-lg lg:border-b-transparent lg:shadow-none;
 }
 
 /*
     Style the form area (containing the search box and the submit button)
 */
 .form {
-  @apply p-5 mt-3 space-y-4 lg:mt-0;
-  @apply lg:space-y-0 lg:space-x-2 lg:flex;
+  @apply mt-3 space-y-4 p-5 lg:mt-0;
+  @apply lg:flex lg:space-x-2 lg:space-y-0;
   @apply border-t border-gray-300 lg:border-0;
 }
 .form > * {
@@ -60,9 +60,9 @@ button.burger {
 }
 .formButton {
   @apply inline-block text-center;
-  @apply text-white bg-black border-gray-400 !important;
+  @apply border-gray-400 bg-black text-white !important;
 }
 .formInput {
   @apply w-full lg:w-auto;
-  @apply text-black bg-white border-gray-400 !important;
+  @apply border-gray-400 bg-white text-black !important;
 }

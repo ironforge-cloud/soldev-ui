@@ -1,4 +1,4 @@
-import styles from "@/styles/core/dataTable.module.css";
+import styles from '@/styles/core/dataTable.module.css';
 
 type ComponentProps = {
   data?: IdlErrorCode[];
@@ -7,10 +7,8 @@ type ComponentProps = {
 export default function IDLErrorsTable({ data }: ComponentProps) {
   if (!data) <></>;
   return (
-    <main
-      className={`container-inner ${styles.scrollContainer} hide-scroll-bar`}
-    >
-      <table className={`${styles.dataTable} font-mono hide-scroll-bar`}>
+    <main className={`container-inner ${styles.scrollContainer} hide-scroll-bar`}>
+      <table className={`${styles.dataTable} hide-scroll-bar font-mono`}>
         <thead>
           <tr>
             <th>Code</th>

@@ -4,7 +4,7 @@
 */
 
 .default {
-  @apply px-2 py-0 mx-1 rounded-md;
+  @apply mx-1 rounded-md px-2 py-0;
   @apply bg-gray-200;
 }
 .bold {

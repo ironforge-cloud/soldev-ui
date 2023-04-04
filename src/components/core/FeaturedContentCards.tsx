@@ -1,4 +1,4 @@
-import styles from "@/styles/ContentCard.module.css";
+import styles from '@/styles/ContentCard.module.css';
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -6,20 +6,12 @@ type ComponentProps = {
   title?: string;
 };
 
-export default function FeaturedContentCards({
-  children,
-  className,
-  title,
-}: ComponentProps) {
+export default function FeaturedContentCards({ children, className, title }: ComponentProps) {
   return (
-    <section
-      className={`${styles.scrollContainer} hide-scroll-bar container-inner`}
-    >
+    <section className={`${styles.scrollContainer} hide-scroll-bar container-inner`}>
       {title && <h2 className={styles.heading}>{title}</h2>}
 
-      <section className={`${styles.container} ${className}`}>
-        {children}
-      </section>
+      <section className={`${styles.container} ${className}`}>{children}</section>
     </section>
   );
 }

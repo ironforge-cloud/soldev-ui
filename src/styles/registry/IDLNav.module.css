@@ -9,13 +9,13 @@
   @apply text-base font-semibold text-gray-600;
 
   /* hover/active style*/
-  @apply hover:text-violet-600 hover:bg-violet-100;
+  @apply hover:bg-violet-100 hover:text-violet-600;
 }
 .desktopNav a.active {
-  @apply text-violet-600 bg-violet-100;
+  @apply bg-violet-100 text-violet-600;
 }
 .desktopNav .disabled {
   @apply cursor-default;
-  @apply text-gray-300 bg-transparent hover:bg-transparent;
+  @apply bg-transparent text-gray-300 hover:bg-transparent;
   @apply hover:bg-none hover:text-gray-300;
 }
