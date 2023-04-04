@@ -32,7 +32,7 @@ export const fetchLesson: (lessonName: string) => Promise<Result<string | undefi
   lessonName: string
 ) => {
   const response = await fetchFile<Result<ParsedGitHubContent>>(
-    'cdhiraj40',
+    'Unboxed-Software',
     'solana-course',
     `content/${lessonName}`
   );
@@ -57,7 +57,7 @@ export const fetchLesson: (lessonName: string) => Promise<Result<string | undefi
  */
 export const fetchModuleMap: () => Promise<Result<CourseModule[]>> = async () => {
   const response = await fetchFile<Result<ParsedGitHubContent>>(
-    'cdhiraj40',
+    'Unboxed-Software',
     'solana-course',
     `course-module.json`
   );
