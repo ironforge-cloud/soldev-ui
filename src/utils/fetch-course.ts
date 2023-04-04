@@ -59,7 +59,7 @@ export const fetchModuleMap: () => Promise<Result<CourseModule[]>> = async () =>
   const response = await fetchFile<Result<ParsedGitHubContent>>(
     'Unboxed-Software',
     'solana-course',
-    `course-module.json`
+    'course-structure.json'
   );
 
   const { data, error } = response;
