@@ -4,16 +4,14 @@ import dynamic from 'next/dynamic';
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 
-import fs from 'fs';
-import path from 'path';
-import * as matter from 'gray-matter';
-import { COURSE_MODULES } from '@/lib/constants/course';
+import matter from 'gray-matter';
 
 import Link from 'next/link';
 import styles from '@/styles/core/sidebar.module.css';
 import subnavStyles from '@/styles/core/subnav.module.css';
-import CourseModuleItem from '@/components/course/CourseModuleItem';
 import NextPrevButtons from '@/components/core/NextPrevButtons';
+import { CourseModule, fetchLesson, fetchModuleMap } from '@/utils/fetch-course';
+import CourseModuleItem from '@/components/course/CourseModuleItem';
 
 const ArticleContent = dynamic(() => import('@/components/ArticleContent'), {
   ssr: false
@@ -23,12 +21,6 @@ type LessonMetadata = {
   title?: string;
   description?: string;
   objectives?: string[];
-};
-
-// define the on-page seo metadata
-const seo: NextSeoProps = {
-  title: 'Learn Solana Development',
-  description: ''
 };
 
 // define the indexes for the tabbed page sections
@@ -44,11 +36,18 @@ const placeholderSEO: NextSeoProps = {
   description: ''
 };
 
-// define the base directory to search for the course content for
-const directory = path.join(process.cwd(), 'content', 'course');
-
 export async function getStaticPaths() {
-  const fileNames = fs.readdirSync(directory);
+  const courseModules = await fetchModuleMap().then(res => res.data);
+
+  // handle the 404 when course modules were not found
+  if (courseModules === undefined) return { notFound: true };
+
+  const fileNames = courseModules
+    .map(module => {
+      return module.lessons.map(lesson => lesson.slug);
+    })
+    .flat()
+    .filter(fileName => fileName !== '');
 
   const paths = fileNames.map(fileName => {
     return {
@@ -69,20 +68,21 @@ type StaticProps = {
 };
 
 export async function getStaticProps({ params: { slug } }: StaticProps) {
-  const filePath = path.join(directory, `${slug}.md`);
+  const courseModules = await fetchModuleMap().then(res => res.data);
+
+  const lesson = await fetchLesson(slug.concat('.md'));
+
+  // handle the 404 when no lesson or course module was found
+  if (lesson.data === undefined || courseModules === undefined) return { notFound: true };
 
   // load the lesson's markdown file, with YAML front matter support
-  const lesson = matter.read(filePath);
-
-  // handle the 404 when no record was found
-  if (!lesson) return { notFound: true };
+  const lessonContent = matter(lesson.data);
 
   // determine the next/prev lessons
   let nextSlug: string | null = null;
   let prevSlug: string | null = null;
 
-  const lessonListing = COURSE_MODULES.flatMap(item => item.lessons.flat());
-  // console.log(lessonListing);
+  const lessonListing = courseModules.flatMap(item => item.lessons.flat());
 
   for (let i = 0; i < lessonListing.length; i++) {
     if (slug !== lessonListing[i].slug) continue;
@@ -94,18 +94,21 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
-    title: lesson.data.title || 'Learn Solana Development',
-    description: lesson.data.description || 'Learn Solana Development'
+    title: lessonContent.data.title || 'Learn Solana Development',
+    description:
+      lessonContent.data.description ||
+      'This course is designed to be the absolute best starting point for Web Developers looking to learn Web3 Development. Solana is the ideal network for starting your Web3 journey because of its high speed, low cost, energy efficiency, and more.'
   };
 
   return {
     props: {
-      markdown: lesson.content,
-      metadata: lesson.data,
+      markdown: lessonContent.content,
+      metadata: lessonContent.data,
       slug,
       seo,
       nextSlug,
-      prevSlug
+      prevSlug,
+      courseModules
     },
     revalidate: 60
   };
@@ -118,17 +121,26 @@ type PageProps = {
   seo: NextSeoProps;
   nextSlug?: string;
   prevSlug?: string;
+  courseModules: CourseModule[];
 };
 
-export default function Page({ markdown, metadata, seo, slug, nextSlug, prevSlug }: PageProps) {
+export default function Page({
+  markdown,
+  metadata,
+  seo,
+  slug,
+  nextSlug,
+  prevSlug,
+  courseModules
+}: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
   // memo-ize the current module
   const currentModule = useMemo(() => {
-    return COURSE_MODULES.filter(
+    return courseModules.filter(
       item => item.lessons.flat().filter(item => item.slug.toLowerCase() == slug).length > 0
     )?.[0];
-  }, []);
+  }, [courseModules, slug]);
 
   return (
     <LessonLayout

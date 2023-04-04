@@ -12,20 +12,13 @@ import styles from '@/styles/core/sidebar.module.css';
 import heroStyles from '@/styles/PageHero.module.css';
 import PageHero from '@/components/core/PageHero';
 import subnavStyles from '@/styles/core/subnav.module.css';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 import NextPrevButtons from '@/components/core/NextPrevButtons';
 import { SIMDAuthorLineItem } from '@/components/simd/SIMDTableLineItem';
-import { computeSlugForSIMD, shareOnTwitterUrl } from '@/utils/helpers';
+import { computeSlugForSIMD } from '@/utils/helpers';
 
 const ArticleContent = dynamic(() => import('@/components/ArticleContent'), {
   ssr: false
 });
-
-// define the on-page seo metadata
-const seo: NextSeoProps = {
-  title: 'SIMD doc page',
-  description: ''
-};
 
 // define the indexes for the tabbed page sections
 const TABS = {

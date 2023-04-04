@@ -3,9 +3,10 @@ import DefaultLayout from '@/layouts/default';
 
 import Link from 'next/link';
 import PageHero from '@/components/core/PageHero';
-import CourseModule from '@/components/course/CourseModule';
 import CourseModuleItem from '@/components/course/CourseModuleItem';
-import { COURSE_MODULES } from '@/lib/constants/course';
+import { fetchModuleMap } from '@/utils/fetch-course';
+import CourseModule from '@/components/course/CourseModule';
+import { CourseModule as CourseModuleType } from '@/utils/fetch-course';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -13,7 +14,21 @@ const seo: NextSeoProps = {
   description: ''
 };
 
-export default function Page() {
+type PageProps = {
+  courseModules: CourseModuleType[];
+};
+
+export async function getStaticProps() {
+  const courseModules = await fetchModuleMap().then(res => res.data);
+
+  return {
+    props: {
+      courseModules
+    }
+  };
+}
+
+export default function Page({ courseModules }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
@@ -50,7 +65,7 @@ export default function Page() {
       </PageHero>
 
       <section className="container max-w-4xl">
-        {COURSE_MODULES.map((module, id) => (
+        {courseModules.map((module, id) => (
           <CourseModule key={id} moduleNumber={module.number} title={module.title}>
             {module.lessons.map((lesson, id) => (
               <CourseModuleItem
