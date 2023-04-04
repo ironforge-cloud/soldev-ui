@@ -1,6 +1,6 @@
-import styles from "@/styles/registry/IDLNav.module.css";
-import Dropdown from "@/components/core/Dropdown";
-import Link from "next/link";
+import styles from '@/styles/registry/IDLNav.module.css';
+import Dropdown from '@/components/core/Dropdown';
+import Link from 'next/link';
 
 type ComponentProps = {
   options: { label: string; href?: string }[];
@@ -18,9 +18,7 @@ export default function IDLNav({ options, selected, idl }: ComponentProps) {
               <Link
                 href={`#${item.label.toLowerCase()}`}
                 className={`btn ${
-                  selected === item.label.toLocaleLowerCase()
-                    ? styles.active
-                    : ""
+                  selected === item.label.toLocaleLowerCase() ? styles.active : ''
                 }`}
               >
                 {item.label}
@@ -35,9 +33,7 @@ export default function IDLNav({ options, selected, idl }: ComponentProps) {
       </nav>
 
       <Dropdown
-        items={options.filter(
-          (item) => (idl as any)?.[item.label.toLowerCase()],
-        )}
+        items={options.filter(item => (idl as any)?.[item.label.toLowerCase()])}
         className="mobile-only"
       />
     </>

@@ -1,38 +1,36 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import styles from "@/styles/core/sidebar.module.css";
-import Link from "next/link";
-import heroStyles from "@/styles/PageHero.module.css";
-import PageHero from "@/components/core/PageHero";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import Link from 'next/link';
+import heroStyles from '@/styles/PageHero.module.css';
+import PageHero from '@/components/core/PageHero';
 
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import NextPrevButtons from "@/components/core/NextPrevButtons";
-import { getChangelogRecords } from "@/lib/queries";
-import markdownToHtml from "@/utils/markdownToHtml";
+import NextPrevButtons from '@/components/core/NextPrevButtons';
+import { getChangelogRecords } from '@/lib/queries';
+import markdownToHtml from '@/utils/markdownToHtml';
 
-import dynamic from "next/dynamic";
-import { shareOnTwitterUrl } from "@/utils/helpers";
-const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
+import dynamic from 'next/dynamic';
+import { shareOnTwitterUrl } from '@/utils/helpers';
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
 // define the placeholder on-page seo metadata
 const placeholderSEO: NextSeoProps = {
-  title: "Watch the Changelog",
-  description: "",
+  title: 'Watch the Changelog',
+  description: ''
 };
 
 export async function getStaticPaths() {
   const records = await getChangelogRecords();
 
-  const paths = records.map((item) => {
+  const paths = records.map(item => {
     return {
       params: {
-        slug: item.SK,
-      },
+        slug: item.SK
+      }
     };
   });
 
   // All missing paths are going to be server-side rendered and cached
-  return { paths, fallback: "blocking" };
+  return { paths, fallback: 'blocking' };
 }
 
 type StaticProps = {
@@ -62,10 +60,11 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     record.ContentMarkdown = await markdownToHtml(record.ContentMarkdown);
 
     // auto convert the `PublishedAt` to a usable date
-    record.PublishedAt = new Date(record.PublishedAt).toLocaleDateString(
-      "en-US",
-      { year: "numeric", month: "long", day: "numeric" },
-    );
+    record.PublishedAt = new Date(record.PublishedAt).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
 
     // stop the loop
     break;
@@ -77,7 +76,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   // define the on-page seo metadata
   const seo: NextSeoProps = {
     title: record.Title,
-    description: record.Description,
+    description: record.Description
   };
 
   return {
@@ -85,9 +84,9 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
       record,
       seo,
       nextSlug,
-      prevSlug,
+      prevSlug
     },
-    revalidate: 60,
+    revalidate: 60
   };
 }
 
@@ -107,10 +106,7 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
         </h1>
 
         <section className={heroStyles.ctaSection}>
-          <Link
-            href={"/changelog"}
-            className={`btn btn-default ${heroStyles.ctaBtn}`}
-          >
+          <Link href={'/changelog'} className={`btn btn-default ${heroStyles.ctaBtn}`}>
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to Changelog
           </Link>
@@ -118,7 +114,7 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
             target="_blank"
             href={shareOnTwitterUrl({
               href: `/changelog/${record.SK}`,
-              message: `Checkout this @solana Changelog video from ${record.PublishedAt}`,
+              message: `Checkout this @solana Changelog video from ${record.PublishedAt}`
             })}
             className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
@@ -128,12 +124,12 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
         </section>
       </PageHero>
 
-      <main className={"max-w-4xl container"}>
-        <div className="aspect-[16/9] w-full border border-gray-200 bg-gray-50 rounded-2xl overflow-hidden mx-auto">
+      <main className={'container max-w-4xl'}>
+        <div className="mx-auto aspect-[16/9] w-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
           <ReactPlayer
             height="100%"
             width="100%"
-            style={{ aspectRatio: "16/9" }}
+            style={{ aspectRatio: '16/9' }}
             url={record.Url}
             controls
             pip
@@ -152,10 +148,10 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
         ></article>
 
         <NextPrevButtons
-          nextHref={`/changelog/${nextSlug || ""}`}
-          prevHref={`/changelog/${prevSlug || ""}`}
-          nextLabel={nextSlug ? "Next Changelog" : "All Changelogs"}
-          prevLabel={prevSlug ? "Previous Changelog" : "All Changelogs"}
+          nextHref={`/changelog/${nextSlug || ''}`}
+          prevHref={`/changelog/${prevSlug || ''}`}
+          nextLabel={nextSlug ? 'Next Changelog' : 'All Changelogs'}
+          prevLabel={prevSlug ? 'Previous Changelog' : 'All Changelogs'}
         />
       </main>
     </DefaultLayout>

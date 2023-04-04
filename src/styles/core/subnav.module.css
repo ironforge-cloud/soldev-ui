@@ -25,9 +25,9 @@
   @apply border-b-2 border-transparent;
 
   /* hover/active style*/
-  @apply hover:text-violet-600 hover:border-violet-600;
+  @apply hover:border-violet-600 hover:text-violet-600;
 }
 .subnav a.active,
 .subnav .activeButton {
-  @apply text-violet-600 border-violet-600;
+  @apply border-violet-600 text-violet-600;
 }

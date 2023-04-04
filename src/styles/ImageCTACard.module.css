@@ -6,11 +6,11 @@
   @apply flex flex-col;
 }
 .scrollContainer {
-  @apply lg:gap-6 md:flex-none md:grid !important;
-  @apply p-5 xl:p-0 md:grid-cols-3;
+  @apply md:grid md:flex-none lg:gap-6 !important;
+  @apply p-5 md:grid-cols-3 xl:p-0;
 
   /* styles for the horizontal scrolling on mobile */
-  @apply snap-mandatory snap-x;
+  @apply snap-x snap-mandatory;
   @apply flex flex-row space-x-6 lg:space-x-0;
   @apply overflow-x-scroll md:overflow-auto;
 }
@@ -21,18 +21,18 @@
   @apply relative block !important;
 
   /* styles for the horizontal scrolling on mobile */
-  @apply snap-center snap-mandatory;
-  @apply flex-shrink-0 md:max-w-full max-w-[90%] w-80 md:w-auto;
+  @apply snap-mandatory snap-center;
+  @apply w-80 max-w-[90%] flex-shrink-0 md:w-auto md:max-w-full;
 }
 .coverImage {
   @apply object-cover object-center;
-  @apply w-full h-full;
+  @apply h-full w-full;
 }
 
 .metaArea {
   @apply absolute bottom-0 left-0 block w-full;
-  @apply p-5 space-y-2;
-  @apply text-white bg-gray-800 bg-opacity-50;
+  @apply space-y-2 p-5;
+  @apply bg-gray-800 bg-opacity-50 text-white;
 }
 .metaArea h3 {
   @apply text-xl lg:text-2xl;

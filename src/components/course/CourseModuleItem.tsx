@@ -1,13 +1,10 @@
-import styles from "@/styles/CourseModule.module.css";
-import Link from "next/link";
-import clsx from "clsx";
+import styles from '@/styles/CourseModule.module.css';
+import Link from 'next/link';
+import clsx from 'clsx';
 
-import { ArrowUpRightIcon, CheckIcon } from "@heroicons/react/24/solid";
-import { useEffect, useState } from "react";
-import {
-  getCourseLessonProgress,
-  saveCourseLessonProgress,
-} from "@/utils/course";
+import { ArrowUpRightIcon, CheckIcon } from '@heroicons/react/24/solid';
+import { useEffect, useState } from 'react';
+import { getCourseLessonProgress, saveCourseLessonProgress } from '@/utils/course';
 
 type ComponentProps = {
   className?: string;
@@ -28,7 +25,7 @@ export default function CourseModuleItem({
   href,
   lessonNumber,
   minuteCounter,
-  isHidden,
+  isHidden
 }: ComponentProps) {
   // track the completion state of the checkmark for the ui
   const [isComplete, setIsComplete] = useState(false);
@@ -44,14 +41,11 @@ export default function CourseModuleItem({
       className={clsx(
         isSmall ? styles.lineItemSmall : styles.lineItem,
         isActive && styles.lessonActive,
-        isHidden === true && "blur-sm",
+        isHidden === true && 'blur-sm'
       )}
     >
       <button
-        className={clsx(
-          styles.lessonStatus,
-          isComplete && styles.lessonComplete,
-        )}
+        className={clsx(styles.lessonStatus, isComplete && styles.lessonComplete)}
         onMouseLeave={() => setIsHovered(false)}
         onMouseEnter={() => setIsHovered(true)}
         onClick={() => {
@@ -59,16 +53,12 @@ export default function CourseModuleItem({
           setIsComplete(saveCourseLessonProgress(href, !isComplete));
         }}
       >
-        {isComplete || isHovered ? (
-          <CheckIcon className="w-5 h-5" />
-        ) : (
-          <span>{lessonNumber}</span>
-        )}
+        {isComplete || isHovered ? <CheckIcon className="h-5 w-5" /> : <span>{lessonNumber}</span>}
       </button>
 
       <div className={styles.lineItemMetaArea}>
         <h3>
-          <Link href={isHidden === true ? "/course" : href}>
+          <Link href={isHidden === true ? '/course' : href}>
             <span>{title}</span>
             <span>
               <ArrowUpRightIcon />

@@ -7,15 +7,15 @@
 }
 
 .moduleHeader {
-  @apply w-full py-3 border-b border-gray-300 md:flex;
-  @apply px-3 space-y-1;
+  @apply w-full border-b border-gray-300 py-3 md:flex;
+  @apply space-y-1 px-3;
 }
 .moduleHeader h2 {
-  @apply text-xl md:text-2xl md:px-5;
+  @apply text-xl md:px-5 md:text-2xl;
 }
 .moduleNumber {
-  @apply flex-shrink block pr-5 text-base font-light tracking-tight uppercase md:text-xl;
-  @apply text-gray-500 border-gray-300 md:border-r md:text-black;
+  @apply block flex-shrink pr-5 text-base font-light uppercase tracking-tight md:text-xl;
+  @apply border-gray-300 text-gray-500 md:border-r md:text-black;
 }
 
 /* .moduleListing {
@@ -27,27 +27,27 @@
 */
 .lineItem {
   @apply flex;
-  @apply p-4 space-x-3 md:space-x-5;
+  @apply space-x-3 p-4 md:space-x-5;
   @apply rounded-2xl;
   @apply md:-mx-4;
 }
 .lessonStatus {
   @apply relative cursor-pointer rounded-xl;
-  @apply p-3 text-xl w-14 h-14;
-  @apply inline-flex items-center text-center justify-self-center place-items-center;
+  @apply h-14 w-14 p-3 text-xl;
+  @apply inline-flex place-items-center items-center justify-self-center text-center;
   /* style the active state */
-  @apply bg-white border border-gray-300;
+  @apply border border-gray-300 bg-white;
   /* @apply hover:bg-green-600 hover:text-white hover:border-transparent; */
 }
 .lessonStatus span,
 .lessonStatus svg {
   @apply block;
   /* @apply block w-12 text-xl h-14; */
-  @apply justify-center mx-auto text-center place-items-center justify-self-center !important;
+  @apply mx-auto place-items-center justify-center justify-self-center text-center !important;
 }
 .lessonComplete {
   /* @apply p-2 !important; */
-  @apply text-white bg-green-600 border-transparent;
+  @apply border-transparent bg-green-600 text-white;
 }
 /* .lessonComplete svg {
   @apply w-5 h-5 !important;
@@ -71,10 +71,10 @@
 }
 .lineItemMetaArea h3 a {
   @apply hover:underline;
-  @apply flex md:items-center justify-between md:justify-start w-full !important;
+  @apply flex w-full justify-between md:items-center md:justify-start !important;
 }
 .lineItemMetaArea h3 a svg {
-  @apply w-5 h-5 mx-2;
+  @apply mx-2 h-5 w-5;
 }
 
 /* Style the small specific line item */
@@ -104,13 +104,13 @@
 
 .lineItemSmall .lessonStatus {
   @apply rounded-lg;
-  @apply w-8 h-8 text-sm;
+  @apply h-8 w-8 text-sm;
   @apply p-2;
 }
 
 .lineItemSmall .lessonStatus span,
 .lineItemSmall .lessonStatus svg {
-  @apply w-8 h-8 !important;
-  @apply justify-center block mx-auto text-center place-items-center justify-self-center !important;
+  @apply h-8 w-8 !important;
+  @apply mx-auto block place-items-center justify-center justify-self-center text-center !important;
   @apply leading-[2.3];
 }

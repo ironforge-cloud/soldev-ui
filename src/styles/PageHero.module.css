@@ -3,7 +3,7 @@
 */
 
 .hero {
-  @apply bg-black bg-center bg-no-repeat bg-cover !important;
+  @apply bg-black bg-cover bg-center bg-no-repeat !important;
 }
 .hero p {
   @apply mx-auto text-center;
@@ -17,13 +17,13 @@
 } */
 
 .inner {
-  @apply min-h-[24rem] pt-20 pb-0 lg:pt-20 lg:pb-0;
+  @apply min-h-[24rem] pb-0 pt-20 lg:pb-0 lg:pt-20;
   @apply flex items-center justify-center text-center;
   @apply text-white;
 }
 
 .ctaSection {
-  @apply justify-center max-w-xs py-5 mx-auto space-x-0 space-y-2 md:max-w-none md:space-x-3 md:space-y-0 md:flex;
+  @apply mx-auto max-w-xs justify-center space-x-0 space-y-2 py-5 md:flex md:max-w-none md:space-x-3 md:space-y-0;
 }
 .ctaSection .ctaBtn {
   @apply flex justify-center text-center;

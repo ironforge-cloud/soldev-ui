@@ -1,18 +1,18 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import PageHero from "@/components/core/PageHero";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import PageHero from '@/components/core/PageHero';
 
-import styles from "@/styles/core/sidebar.module.css";
-import IDLCard from "@/components/registry/IDLCard";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { getIDLRecords } from "@/lib/queries";
-import { useState } from "react";
-import Link from "next/link";
+import styles from '@/styles/core/sidebar.module.css';
+import IDLCard from '@/components/registry/IDLCard';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { getIDLRecords } from '@/lib/queries';
+import { useState } from 'react';
+import Link from 'next/link';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
-  title: "IDL Registry",
-  description: "Solana program registry of IDLs.",
+  title: 'IDL Registry',
+  description: 'Solana program registry of IDLs.'
 };
 
 export async function getStaticProps() {
@@ -21,9 +21,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      records,
+      records
     },
-    revalidate: 3600,
+    revalidate: 3600
   };
 }
 
@@ -32,19 +32,18 @@ type PageProps = {
 };
 
 export default function Page({ records }: PageProps) {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
 
   // define the filter props for on page searching
   let filter = {
     start: 0,
-    perPage: 24,
+    perPage: 24
   };
 
   // handler to filter the on page records
   function parseFilters(records: IDLRecord[]) {
-    return records.filter((program) => {
-      if (program.programName.toLowerCase().includes(searchText.toLowerCase()))
-        return true;
+    return records.filter(program => {
+      if (program.programName.toLowerCase().includes(searchText.toLowerCase())) return true;
       else if (program.address.includes(searchText)) return true;
       return false;
     });
@@ -61,12 +60,12 @@ export default function Page({ records }: PageProps) {
     <DefaultLayout seo={seo} className="min-h-screen">
       <PageHero className="container space-y-8">
         <h1>
-          <Link href={"/registry"}>IDL Registry</Link>
+          <Link href={'/registry'}>IDL Registry</Link>
         </h1>
 
         {/* <p className="max-w-lg text-xl">optional minor text</p> */}
 
-        <form onSubmit={(e) => e.preventDefault()} className="max-w-md mx-auto">
+        <form onSubmit={e => e.preventDefault()} className="mx-auto max-w-md">
           <div className="inputWithIcon">
             <label htmlFor="site_search">
               <MagnifyingGlassIcon />
@@ -77,15 +76,15 @@ export default function Page({ records }: PageProps) {
               id="site_search"
               placeholder="Search programs by name or address"
               value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={e => setSearchText(e.target.value)}
             />
           </div>
         </form>
       </PageHero>
 
-      <main className={styles.wrapper + " container grid"}>
+      <main className={styles.wrapper + ' container grid'}>
         {filteredRecords.length > 0 ? (
-          filteredRecords.map((item) => (
+          filteredRecords.map(item => (
             <IDLCard
               key={item.address}
               href={`/registry/${item.address}`}
@@ -95,7 +94,7 @@ export default function Page({ records }: PageProps) {
             />
           ))
         ) : (
-          <p className="my-10 text-center col-span-full">
+          <p className="col-span-full my-10 text-center">
             No results found for &ldquo;
             <span className="italic underline">{searchText}</span>
             &rdquo;

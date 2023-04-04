@@ -1,17 +1,17 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import PageHero from "@/components/core/PageHero";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import PageHero from '@/components/core/PageHero';
 
-import styles from "@/styles/core/sidebar.module.css";
-import ContentCard from "@/components/core/ContentCard";
-import { getNewsletterRecords } from "@/lib/queries";
-import { computeImage } from "@/utils/content";
-import Link from "next/link";
+import styles from '@/styles/core/sidebar.module.css';
+import ContentCard from '@/components/core/ContentCard';
+import { getNewsletterRecords } from '@/lib/queries';
+import { computeImage } from '@/utils/content';
+import Link from 'next/link';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
-  title: "Newsletter",
-  description: "",
+  title: 'Newsletter',
+  description: ''
 };
 
 export async function getStaticProps() {
@@ -23,10 +23,10 @@ export async function getStaticProps() {
 
   return {
     props: {
-      records,
+      records
       // lastNewsletter,
     },
-    revalidate: 60,
+    revalidate: 60
   };
 }
 
@@ -40,15 +40,13 @@ export default function Page({ records }: PageProps) {
     <DefaultLayout seo={seo}>
       <PageHero className="container">
         <h1>
-          <Link href={"/newsletter"}>Newsletter</Link>
+          <Link href={'/newsletter'}>Newsletter</Link>
         </h1>
 
-        <p className="max-w-lg text-xl">
-          The latest news and updates from the Solana Foundation.
-        </p>
+        <p className="max-w-lg text-xl">The latest news and updates from the Solana Foundation.</p>
       </PageHero>
 
-      <main className={styles.wrapper + " container"}>
+      <main className={styles.wrapper + ' container'}>
         {records.map((item, index) => (
           <ContentCard
             key={item.SK}

@@ -11,14 +11,12 @@
 export function saveCourseLessonProgress(key: string, isComplete: boolean) {
   try {
     if (window) {
-      let savedCourseState = JSON.parse(
-        window.localStorage.getItem("course") as string,
-      );
+      let savedCourseState = JSON.parse(window.localStorage.getItem('course') as string);
       if (!savedCourseState) savedCourseState = {};
 
       // Save state for later using LocalStorage
       savedCourseState[key] = isComplete;
-      window.localStorage.setItem("course", JSON.stringify(savedCourseState));
+      window.localStorage.setItem('course', JSON.stringify(savedCourseState));
 
       return isComplete;
     }
@@ -31,13 +29,10 @@ export function saveCourseLessonProgress(key: string, isComplete: boolean) {
 export function getCourseLessonProgress(key: string) {
   try {
     if (window) {
-      let savedCourseState = JSON.parse(
-        window.localStorage.getItem("course") as string,
-      );
+      let savedCourseState = JSON.parse(window.localStorage.getItem('course') as string);
       if (!savedCourseState) savedCourseState = {};
 
-      if (savedCourseState.hasOwnProperty(key) && savedCourseState[key])
-        return true;
+      if (savedCourseState.hasOwnProperty(key) && savedCourseState[key]) return true;
     }
   } catch (error) {
     console.error(error);

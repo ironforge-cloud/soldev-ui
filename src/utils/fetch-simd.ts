@@ -1,20 +1,16 @@
-import { computeSlugForSIMD } from "@/utils/helpers";
-import { fetchContent, fetchPulls, fetchRaw } from "./fetch-github";
+import { computeSlugForSIMD } from '@/utils/helpers';
+import { fetchContent, fetchPulls, fetchRaw } from './fetch-github';
 
 /**
  * fetch all SIMDs from the repository
  * @returns {Promise<Object>}
  */
 export const fetchRepoSIMD = async () => {
-  return await fetchContent(
-    "solana-foundation",
-    "solana-improvement-documents",
-    "proposals",
-  )
-    .then((res) => res.json())
+  return await fetchContent('solana-foundation', 'solana-improvement-documents', 'proposals')
+    .then(res => res.json())
     .then((response: RawGitHubPullContent[]) =>
       response
-        .filter((item) => item.type === "file")
+        .filter(item => item.type === 'file')
         .map(
           ({ sha, name, download_url, html_url }) =>
             ({
@@ -22,9 +18,9 @@ export const fetchRepoSIMD = async () => {
               name, // file name
               download_url, // raw url
               html_url, // github url
-              metadata: {}, // initialize the metadata record
-            } as ParsedGitHubPullContent),
-        ),
+              metadata: {} // initialize the metadata record
+            } as ParsedGitHubPullContent)
+        )
     );
 };
 
@@ -40,13 +36,13 @@ export function parseMetadata<ParsedGitHubMetaData>(data: string) {
     return {};
   }
   const metadata = match[1];
-  const lines = metadata.split("\n");
+  const lines = metadata.split('\n');
   const result: any = {};
 
   for (const line of lines) {
-    if (line.trim().startsWith("-")) {
+    if (line.trim().startsWith('-')) {
       const cleanedLine = line.trim().slice(1).trim();
-      const [name, org] = cleanedLine.split("(");
+      const [name, org] = cleanedLine.split('(');
       const orgTrim = org ? org.slice(0, -1).trim() : null;
       if (result.authors) {
         result.authors.push({ name: name.trim(), org: orgTrim });
@@ -54,9 +50,9 @@ export function parseMetadata<ParsedGitHubMetaData>(data: string) {
         result.authors = [{ name: name.trim(), org: orgTrim }];
       }
     } else {
-      const [key, value] = line.split(": ");
-      if (key === "simd") {
-        result[key] = value.replace(/'/g, "");
+      const [key, value] = line.split(': ');
+      if (key === 'simd') {
+        result[key] = value.replace(/'/g, '');
       } else {
         result[key] = value;
       }
@@ -71,51 +67,44 @@ export function parseMetadata<ParsedGitHubMetaData>(data: string) {
  */
 export async function fetchAllSIMD() {
   const [pullRequests, repo] = await Promise.all([
-    fetchPulls("solana-foundation", "solana-improvement-documents"),
-    fetchRepoSIMD(),
+    fetchPulls('solana-foundation', 'solana-improvement-documents'),
+    fetchRepoSIMD()
   ]);
 
   const records = await Promise.all(
-    [...pullRequests, ...repo].map(async (item) => {
+    [...pullRequests, ...repo].map(async item => {
       if (!Array.isArray(item.download_url)) {
         item.download_url = [item.download_url];
       }
       const dataArray = await Promise.all(
         item.download_url.map(async (url: string) => {
           return await fetchRaw(url);
-        }),
+        })
       );
 
       try {
-        item.metadata = JSON.parse(
-          JSON.stringify(parseMetadata(dataArray.join(""))),
-        );
+        item.metadata = JSON.parse(JSON.stringify(parseMetadata(dataArray.join(''))));
 
         // always convert simd to uppercase
         item.metadata.simd = item?.metadata?.simd?.toUpperCase();
 
         // attempt to compute the local route
-        const slug = computeSlugForSIMD(
-          item.metadata.simd,
-          item.metadata.title,
-        );
+        const slug = computeSlugForSIMD(item.metadata.simd, item.metadata.title);
         if (slug) item.metadata.href = `/simd/${slug}`;
       } catch (err) {
-        console.error("Failed to parse metadata");
+        console.error('Failed to parse metadata');
         console.error(err);
       }
       return item as ParsedGitHubPullContent;
-    }),
+    })
   )
-    .then((res) =>
+    .then(res =>
       // auto filter out records by their computed SIMD proposal number
       // (i.e. no `simd` value => invalid proposal/not a real proposal)
-      res.filter((record) => record?.metadata?.simd),
+      res.filter(record => record?.metadata?.simd)
     )
     // sort from higher to lower SIMD number
-    .then((res) =>
-      res.sort((a, b) => parseInt(b.metadata.simd) - parseInt(a.metadata.simd)),
-    );
+    .then(res => res.sort((a, b) => parseInt(b.metadata.simd) - parseInt(a.metadata.simd)));
 
   return records;
 }

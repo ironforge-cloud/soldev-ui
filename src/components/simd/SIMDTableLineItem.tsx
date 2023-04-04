@@ -1,11 +1,8 @@
-import dataTableStyles from "@/styles/core/dataTable.module.css";
-import Link from "next/link";
+import dataTableStyles from '@/styles/core/dataTable.module.css';
+import Link from 'next/link';
 
-import {
-  ArrowTopRightOnSquareIcon,
-  ArrowUpRightIcon,
-} from "@heroicons/react/24/solid";
-import { computeSlugForSIMD } from "@/utils/helpers";
+import { ArrowTopRightOnSquareIcon, ArrowUpRightIcon } from '@heroicons/react/24/solid';
+import { computeSlugForSIMD } from '@/utils/helpers';
 
 type AuthorDetails = {
   name: string;
@@ -18,7 +15,7 @@ export type SIMDTableLineItemProps = {
   href?: string;
   githubLink: string;
   title: string;
-  status: "draft" | string;
+  status: 'draft' | string;
   type: string;
   date?: string;
   authors?: Array<string | AuthorDetails>;
@@ -26,7 +23,7 @@ export type SIMDTableLineItemProps = {
 };
 
 export default function SIMDTableLineItem({
-  simd = "????",
+  simd = '????',
   title,
   href,
   githubLink,
@@ -34,15 +31,14 @@ export default function SIMDTableLineItem({
   date,
   type,
   status,
-  description,
+  description
 }: SIMDTableLineItemProps) {
   // compute the href, if none is provided
-  if (!href)
-    href = `/simd/${encodeURIComponent(computeSlugForSIMD(simd, title))}`;
+  if (!href) href = `/simd/${encodeURIComponent(computeSlugForSIMD(simd, title))}`;
 
   return (
     <tr>
-      <td className="uppercase">{("000" + simd.toString()).slice(-4)}</td>
+      <td className="uppercase">{('000' + simd.toString()).slice(-4)}</td>
       <td>
         <Link href={href} className="font-semibold underline">
           {title}
@@ -52,20 +48,15 @@ export default function SIMDTableLineItem({
       <td className="lowercase">{status}</td>
       <td>
         <ul className={dataTableStyles.dataList}>
-          {authors?.map((author, id) => (
-            <SIMDAuthorLineItem key={id} author={author} />
-          )) || <li>[no authors found]</li>}
+          {authors?.map((author, id) => <SIMDAuthorLineItem key={id} author={author} />) || (
+            <li>[no authors found]</li>
+          )}
         </ul>
       </td>
       <td className="whitespace-nowrap">{date}</td>
       <td>
         <div className="flex space-x-2">
-          <Link
-            href={githubLink}
-            target="_blank"
-            className=""
-            title="View on GitHub"
-          >
+          <Link href={githubLink} target="_blank" className="" title="View on GitHub">
             <ArrowTopRightOnSquareIcon className="icon-md" />
           </Link>
           <Link href={href} className="" title="Read more">
@@ -77,23 +68,15 @@ export default function SIMDTableLineItem({
   );
 }
 
-export function SIMDAuthorLineItem({
-  author,
-}: {
-  author: string | AuthorDetails;
-}) {
+export function SIMDAuthorLineItem({ author }: { author: string | AuthorDetails }) {
   // console.log(author);
-  if (typeof author == "object")
+  if (typeof author == 'object')
     return (
       <li>
         {author?.link ? (
-          <Link
-            href={author.link}
-            target="_blank"
-            className="inline-flex hover:underline"
-          >
+          <Link href={author.link} target="_blank" className="inline-flex hover:underline">
             {author.name}
-            <ArrowTopRightOnSquareIcon className="mx-1 icon-sm" />
+            <ArrowTopRightOnSquareIcon className="icon-sm mx-1" />
           </Link>
         ) : (
           <span>

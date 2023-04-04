@@ -1,9 +1,6 @@
-import styles from "@/styles/DataCard.module.css";
-import Link from "next/link";
-import {
-  ArrowTopRightOnSquareIcon,
-  ArrowUpRightIcon,
-} from "@heroicons/react/24/solid";
+import styles from '@/styles/DataCard.module.css';
+import Link from 'next/link';
+import { ArrowTopRightOnSquareIcon, ArrowUpRightIcon } from '@heroicons/react/24/solid';
 
 type ComponentProps = {
   className?: string;
@@ -11,8 +8,8 @@ type ComponentProps = {
   href: string;
   githubLink: string;
   title: string;
-  status: "draft";
-  type: "core";
+  status: 'draft';
+  type: 'core';
   date?: string;
   authors?: string;
   description?: string;
@@ -28,7 +25,7 @@ export default function SIMDCard({
   date,
   type,
   status,
-  description,
+  description
 }: ComponentProps) {
   return (
     <section className={styles.card}>
@@ -38,9 +35,7 @@ export default function SIMDCard({
             <Link href={href}>{title}</Link>
           </h4>
 
-          <span className={styles.statusIndicator + " " + styles[status]}>
-            {status}
-          </span>
+          <span className={styles.statusIndicator + ' ' + styles[status]}>{status}</span>
         </section>
 
         <p className={styles.description}>{authors}</p>

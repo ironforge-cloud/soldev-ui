@@ -1,34 +1,33 @@
-import { NextSeoProps } from "next-seo";
-import DefaultLayout from "@/layouts/default";
-import Link from "next/link";
-import heroStyles from "@/styles/PageHero.module.css";
-import PageHero from "@/components/core/PageHero";
+import { NextSeoProps } from 'next-seo';
+import DefaultLayout from '@/layouts/default';
+import Link from 'next/link';
+import heroStyles from '@/styles/PageHero.module.css';
+import PageHero from '@/components/core/PageHero';
 
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import NextPrevButtons from "@/components/core/NextPrevButtons";
-import { getNewsletterRecords } from "@/lib/queries";
-import markdownToHtml from "@/utils/markdownToHtml";
-import { shareOnTwitterUrl } from "@/utils/helpers";
+import NextPrevButtons from '@/components/core/NextPrevButtons';
+import { getNewsletterRecords } from '@/lib/queries';
+import markdownToHtml from '@/utils/markdownToHtml';
+import { shareOnTwitterUrl } from '@/utils/helpers';
 
 // define the placeholder on-page seo metadata
 const placeholderSEO: NextSeoProps = {
-  title: "Read the newsletter",
-  description: "",
+  title: 'Read the newsletter',
+  description: ''
 };
 
 export async function getStaticPaths() {
   const records = await getNewsletterRecords();
 
-  const paths = records.map((item) => {
+  const paths = records.map(item => {
     return {
       params: {
-        slug: item.SK,
-      },
+        slug: item.SK
+      }
     };
   });
 
   // All missing paths are going to be server-side rendered and cached
-  return { paths, fallback: "blocking" };
+  return { paths, fallback: 'blocking' };
 }
 
 type StaticProps = {
@@ -59,10 +58,11 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     // TODO: handle the h1 element from the markdown
 
     // auto convert the `PublishedAt` to a usable date
-    record.PublishedAt = new Date(record.PublishedAt).toLocaleDateString(
-      "en-US",
-      { year: "numeric", month: "long", day: "numeric" },
-    );
+    record.PublishedAt = new Date(record.PublishedAt).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
 
     // stop the loop
     break;
@@ -74,7 +74,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
   // define the on-page seo metadata
   const seo: NextSeoProps = {
     title: record.Title,
-    description: record.Description,
+    description: record.Description
   };
 
   return {
@@ -82,9 +82,9 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
       record,
       seo,
       nextSlug,
-      prevSlug,
+      prevSlug
     },
-    revalidate: 60,
+    revalidate: 60
   };
 }
 
@@ -104,10 +104,7 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
         </h1>
 
         <section className={heroStyles.ctaSection}>
-          <Link
-            href={"/newsletter"}
-            className={`btn btn-default ${heroStyles.ctaBtn}`}
-          >
+          <Link href={'/newsletter'} className={`btn btn-default ${heroStyles.ctaBtn}`}>
             {/* <ArrowLeftIcon className="icon" /> */}
             Back to Newsletter
           </Link>
@@ -115,7 +112,7 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
             target="_blank"
             href={shareOnTwitterUrl({
               href: `/newsletter/${record.SK}`,
-              message: `Checkout the @solana newsletter from ${record.PublishedAt}`,
+              message: `Checkout the @solana newsletter from ${record.PublishedAt}`
             })}
             className={`btn btn-dark ${heroStyles.ctaBtn}`}
           >
@@ -125,10 +122,8 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
         </section>
       </PageHero>
 
-      <main className={"max-w-4xl container"}>
-        <p className="text-gray-500 md:text-sm">
-          Published {record.PublishedAt}
-        </p>
+      <main className={'container max-w-4xl'}>
+        <p className="text-gray-500 md:text-sm">Published {record.PublishedAt}</p>
 
         <article
           className="prose"
@@ -136,10 +131,10 @@ export default function Page({ record, seo, nextSlug, prevSlug }: PageProps) {
         ></article>
 
         <NextPrevButtons
-          nextHref={`/newsletter/${nextSlug || ""}`}
-          prevHref={`/newsletter/${prevSlug || ""}`}
-          nextLabel={nextSlug ? "Next Newsletter" : "All Newsletters"}
-          prevLabel={prevSlug ? "Previous Newsletter" : "All Newsletters"}
+          nextHref={`/newsletter/${nextSlug || ''}`}
+          prevHref={`/newsletter/${prevSlug || ''}`}
+          nextLabel={nextSlug ? 'Next Newsletter' : 'All Newsletters'}
+          prevLabel={prevSlug ? 'Previous Newsletter' : 'All Newsletters'}
         />
       </main>
     </DefaultLayout>

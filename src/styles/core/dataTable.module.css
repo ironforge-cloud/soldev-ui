@@ -13,7 +13,7 @@
   @apply mx-5 lg:mx-0 lg:px-5;
 }
 .dataTable thead {
-  @apply text-base font-semibold text-left text-gray-600;
+  @apply text-left text-base font-semibold text-gray-600;
 }
 .dataTable thead th {
   @apply whitespace-nowrap;
@@ -22,7 +22,7 @@
   @apply min-w-52;
 }
 .smallTh {
-  @apply min-w-0 w-min whitespace-nowrap !important;
+  @apply w-min min-w-0 whitespace-nowrap !important;
 }
 
 /* .dataTable tbody tr {
