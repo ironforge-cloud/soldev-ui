@@ -1,6 +1,6 @@
-import { NextSeo, NextSeoProps } from "next-seo";
-import AppHeader from "@/components/core/AppHeader";
-import AppFooter from "@/components/core/AppFooter";
+import { NextSeo, NextSeoProps } from 'next-seo';
+import AppHeader from '@/components/core/AppHeader';
+import AppFooter from '@/components/core/AppFooter';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -8,11 +8,7 @@ type LayoutProps = {
   className?: string;
 };
 
-export default function DefaultLayout({
-  children,
-  seo,
-  className,
-}: LayoutProps) {
+export default function DefaultLayout({ children, seo, className }: LayoutProps) {
   return (
     <>
       <NextSeo {...seo} />

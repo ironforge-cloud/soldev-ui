@@ -1,9 +1,9 @@
-import styles from "@/styles/core/dropdown.module.css";
-import clsx from "clsx";
+import styles from '@/styles/core/dropdown.module.css';
+import clsx from 'clsx';
 
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
+import { Fragment } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import { ChevronDownIcon, CheckIcon } from '@heroicons/react/24/solid';
 
 type DropdownOption = {
   label: string;
@@ -29,26 +29,17 @@ export default function DropdownFilterItem({
   name,
   selected,
   checkedState,
-  handleCheckChange,
+  handleCheckChange
 }: ComponentProps) {
   return (
-    <Listbox
-      value={selected}
-      onChange={handleCheckChange as any}
-      name={name || undefined}
-      multiple
-    >
+    <Listbox value={selected} onChange={handleCheckChange as any} name={name || undefined} multiple>
       <div className={`${styles.container} ${className}`}>
         <Listbox.Button className={styles.actionButton}>
           <span className={styles.actionLabel}>
             {selected.length > 0 ? (
-              <>
-                {selected.length == 1
-                  ? selected
-                  : `Multiple (${selected.length})`}
-              </>
+              <>{selected.length == 1 ? selected : `Multiple (${selected.length})`}</>
             ) : (
-              "None selected"
+              'None selected'
             )}
           </span>
           <span className={styles.actionIcon}>
@@ -62,34 +53,28 @@ export default function DropdownFilterItem({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options static className={clsx(styles.dropdownOptions, "")}>
+          <Listbox.Options static className={clsx(styles.dropdownOptions, '')}>
             {items.map((item, index) => (
               <Listbox.Option
                 key={index}
                 className={({ active }) =>
                   clsx(active ? styles.optionActive : styles.optionInactive)
                 }
-                value={
-                  typeof item != "string" ? item?.value || item.label : item
-                }
+                value={typeof item != 'string' ? item?.value || item.label : item}
                 as="label"
-                htmlFor={`${name}_${
-                  typeof item != "string" ? item.label : item
-                }`}
+                htmlFor={`${name}_${typeof item != 'string' ? item.label : item}`}
               >
                 {({ selected }) => (
                   <>
                     <input
                       type="checkbox"
-                      id={`${name}_${
-                        typeof item != "string" ? item.label : item
-                      }`}
+                      id={`${name}_${typeof item != 'string' ? item.label : item}`}
                       checked={checkedState[index]}
                       onChange={() => handleCheckChange(index)}
                       className="hidden"
                     />
-                    <span className={selected ? styles.selectedOption : ""}>
-                      {typeof item != "string" ? item.label : item}
+                    <span className={selected ? styles.selectedOption : ''}>
+                      {typeof item != 'string' ? item.label : item}
                     </span>
                     {selected ? (
                       <span className={styles.selectedIcon}>

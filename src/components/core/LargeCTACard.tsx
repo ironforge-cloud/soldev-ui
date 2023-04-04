@@ -1,6 +1,6 @@
-import styles from "@/styles/LargeCTACard.module.css";
-import clsx from "clsx";
-import Link from "next/link";
+import styles from '@/styles/LargeCTACard.module.css';
+import clsx from 'clsx';
+import Link from 'next/link';
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -18,25 +18,21 @@ export default function LargeCTACard({
   text,
   ctaHref,
   ctaLabel,
-  backgroundImage,
+  backgroundImage
 }: ComponentProps) {
   return (
     <section className={styles.container}>
       <section
-        className={clsx(styles.inner, "container-inner", className)}
-        style={
-          backgroundImage
-            ? { backgroundImage: `url('${backgroundImage}')` }
-            : {}
-        }
+        className={clsx(styles.inner, 'container-inner', className)}
+        style={backgroundImage ? { backgroundImage: `url('${backgroundImage}')` } : {}}
       >
         <h2>{title}</h2>
 
         {text && <p>{text}</p>}
 
         {ctaHref && (
-          <Link href={ctaHref} className="inline-flex btn btn-default">
-            {ctaLabel || "Get started"}
+          <Link href={ctaHref} className="btn btn-default inline-flex">
+            {ctaLabel || 'Get started'}
           </Link>
         )}
       </section>

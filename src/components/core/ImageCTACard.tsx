@@ -1,8 +1,8 @@
-import styles from "@/styles/ImageCTACard.module.css";
-import Link from "next/link";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import styles from '@/styles/ImageCTACard.module.css';
+import Link from 'next/link';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid';
 
-const DEFAULT_IMG_SRC = "/img/cta/0.jpg";
+const DEFAULT_IMG_SRC = '/img/cta/0.jpg';
 
 type ComponentProps = {
   className?: string;
@@ -19,14 +19,10 @@ export default function ImageCTACard({
   href,
   text,
   isExternal,
-  imageSrc = DEFAULT_IMG_SRC,
+  imageSrc = DEFAULT_IMG_SRC
 }: ComponentProps) {
   return (
-    <Link
-      href={href}
-      target={isExternal ? "_blank" : ""}
-      className={styles.card}
-    >
+    <Link href={href} target={isExternal ? '_blank' : ''} className={styles.card}>
       <img className={styles.coverImage} src={imageSrc} alt={title} />
       <span className={styles.metaArea}>
         <h3>

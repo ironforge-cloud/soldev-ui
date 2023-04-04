@@ -3,14 +3,14 @@
 */
 
 .wrapper {
-  @apply gap-6 mx-auto sm:grid;
+  @apply mx-auto gap-6 sm:grid;
   @apply sm:grid-cols-2 lg:grid-cols-4;
   @apply sm:space-x-0 sm:space-y-0 !important;
   @apply relative justify-center;
 }
 
 .largeContainer {
-  @apply p-5 space-y-8 md:p-8 col-span-full md:col-span-3;
+  @apply col-span-full space-y-8 p-5 md:col-span-3 md:p-8;
   @apply w-full;
 }
 .smallContainer {
@@ -57,7 +57,7 @@
   Style the general sections of a sidebar, usually the small sidebar
 */
 .section {
-  @apply w-full py-6 space-y-5 !important;
+  @apply w-full space-y-5 py-6 !important;
 }
 .rightSideSmall .section {
   @apply pl-8;
@@ -71,7 +71,7 @@
   @apply text-xl md:text-lg;
 }
 .section h3 svg {
-  @apply w-4 h-4 ml-2;
+  @apply ml-2 h-4 w-4;
   /* @apply text-gray-500; */
 }
 .minorText {
@@ -93,8 +93,8 @@
 .floatingMenuInner {
   @apply max-h-[80vh];
   @apply overflow-y-scroll;
-  @apply p-5 mx-6;
-  @apply bg-white border border-gray-300 rounded-md shadow-xl;
+  @apply mx-6 p-5;
+  @apply rounded-md border border-gray-300 bg-white shadow-xl;
   @apply ring-1 ring-black ring-opacity-5 focus:outline-none;
 }
 .floatingMenuInner > * {

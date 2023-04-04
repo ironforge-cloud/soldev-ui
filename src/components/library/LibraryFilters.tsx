@@ -1,10 +1,6 @@
-import {
-  CONTENT_LEVELS,
-  CONTENT_TYPES,
-  CONTENT_TAGS,
-} from "@/lib/constants/content";
+import { CONTENT_LEVELS, CONTENT_TYPES, CONTENT_TAGS } from '@/lib/constants/content';
 
-import LibraryFilterItem from "./LibraryFilterItem";
+import LibraryFilterItem from './LibraryFilterItem';
 
 type ComponentProps = {
   className?: string;

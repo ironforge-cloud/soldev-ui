@@ -1,11 +1,6 @@
-import dataTableStyles from "@/styles/core/dataTable.module.css";
-import Link from "next/link";
+import Link from 'next/link';
 
-import {
-  ArrowTopRightOnSquareIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/24/solid";
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 
 type ComponentProps = {
   className?: string;
@@ -20,25 +15,23 @@ export default function NextPrevButtons({
   nextHref,
   nextLabel,
   prevHref,
-  prevLabel,
+  prevLabel
 }: ComponentProps) {
   return (
-    <section
-      className={`grid w-full gap-y-4 lg:gap-8 lg:grid-cols-2 ${className}`}
-    >
+    <section className={`grid w-full gap-y-4 lg:grid-cols-2 lg:gap-8 ${className}`}>
       <Link
         href={prevHref}
-        className="flex justify-between order-2 w-full space-x-5 lg:justify-start lg:order-1 btn btn-lg btn-light"
+        className="btn btn-lg btn-light order-2 flex w-full justify-between space-x-5 lg:order-1 lg:justify-start"
       >
-        <ArrowLeftIcon className="w-5 h-5" />
-        <span>{prevLabel || "Previous"}</span>
+        <ArrowLeftIcon className="h-5 w-5" />
+        <span>{prevLabel || 'Previous'}</span>
       </Link>
       <Link
         href={nextHref}
-        className="flex justify-between order-1 w-full space-x-5 font-semibold text-gray-700 lg:justify-end lg:order-2 btn-lg btn btn-light"
+        className="btn-lg btn btn-light order-1 flex w-full justify-between space-x-5 font-semibold text-gray-700 lg:order-2 lg:justify-end"
       >
-        <span>{nextLabel || "Next"}</span>
-        <ArrowRightIcon className="w-5 h-5" />
+        <span>{nextLabel || 'Next'}</span>
+        <ArrowRightIcon className="h-5 w-5" />
       </Link>
     </section>
   );

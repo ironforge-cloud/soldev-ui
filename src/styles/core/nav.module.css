@@ -3,7 +3,7 @@
 */
 
 .linkArea {
-  @apply flex flex-col items-center justify-start list-none lg:flex-row;
+  @apply flex list-none flex-col items-center justify-start lg:flex-row;
 }
 .linkArea li .linkItemContainer {
   @apply w-full;
@@ -26,7 +26,7 @@
 .dropdown {
   @apply z-30 transform;
   @apply lg:absolute lg:px-4;
-  @apply w-screen max-w-xl -mt-1 min-w-56 sm:px-0;
+  @apply -mt-1 w-screen min-w-56 max-w-xl sm:px-0;
 }
 .dropdownInner {
   @apply lg:inline-flex;
@@ -46,10 +46,10 @@
   @apply;
 } */
 .primaryList .link {
-  @apply flex items-center cursor-pointer;
+  @apply flex cursor-pointer items-center;
   @apply transition duration-150 ease-in-out;
   @apply hover:bg-gray-100;
-  @apply p-2 ml-3 lg:ml-auto lg:rounded-lg;
+  @apply ml-3 p-2 lg:ml-auto lg:rounded-lg;
   @apply border-l border-gray-300 lg:border-none;
 }
 .primaryList .link .metaArea {
@@ -65,37 +65,37 @@
 }
 
 .primaryList .link .iconArea svg {
-  @apply w-full h-full;
+  @apply h-full w-full;
 }
 .primaryList .link .iconArea {
   @apply flex items-center justify-center;
-  @apply w-10 h-10 p-3 rounded-lg shrink-0 sm:h-12 sm:w-12;
+  @apply h-10 w-10 shrink-0 rounded-lg p-3 sm:h-12 sm:w-12;
   @apply hidden lg:block;
 }
 .primaryList .link .black {
-  @apply text-black bg-gray-100;
+  @apply bg-gray-100 text-black;
 }
 .primaryList .link .purple {
-  @apply text-purple-600 bg-purple-100;
+  @apply bg-purple-100 text-purple-600;
 }
 .primaryList .link .green {
-  @apply text-green-600 bg-green-100;
+  @apply bg-green-100 text-green-600;
 }
 .primaryList .link .blue {
-  @apply text-blue-600 bg-blue-100;
+  @apply bg-blue-100 text-blue-600;
 }
 .primaryList .link .red {
-  @apply text-red-600 bg-red-100;
+  @apply bg-red-100 text-red-600;
 }
 .primaryList .link .yellow {
-  @apply text-yellow-600 bg-yellow-100;
+  @apply bg-yellow-100 text-yellow-600;
 }
 
 /*
   Style the secondary list for the dropdown navigation
 */
 .dropdown .secondaryList {
-  @apply py-6 pl-6 pr-10 bg-gray-200;
+  @apply bg-gray-200 py-6 pl-6 pr-10;
   @apply space-y-2;
   @apply hidden lg:block;
 }
@@ -104,7 +104,7 @@
 }
 
 .dropdown .secondaryList .link {
-  @apply flex items-center transition duration-150 ease-in-out rounded-md cursor-pointer;
+  @apply flex cursor-pointer items-center rounded-md transition duration-150 ease-in-out;
   @apply hover:text-black;
   @apply text-sm font-normal text-gray-500;
   @apply focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50;

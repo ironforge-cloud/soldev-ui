@@ -1,4 +1,4 @@
-import badge from "@/styles/core/badge.module.css";
+import badge from '@/styles/core/badge.module.css';
 
 /*
     Parse and render the `accounts` of an Anchor IDL
@@ -11,13 +11,9 @@ export function renderAccounts(accounts: IdlAccountItem[]) {
       <li key={accounts[i].name}>
         <span>{accounts[i].name}</span>
 
-        {(accounts[i] as IdlAccount)?.isSigner && (
-          <span className={badge.red}>isSigner</span>
-        )}
-        {(accounts[i] as IdlAccount)?.isMut && (
-          <span className={badge.green}>isMut</span>
-        )}
-      </li>,
+        {(accounts[i] as IdlAccount)?.isSigner && <span className={badge.red}>isSigner</span>}
+        {(accounts[i] as IdlAccount)?.isMut && <span className={badge.green}>isMut</span>}
+      </li>
     );
   }
 
@@ -31,10 +27,10 @@ export function renderArguments(args: any[]) {
   let components: React.ReactNode[] = [];
 
   for (let i = 0; i < args?.length; i++) {
-    let type = "";
+    let type = '';
 
     // string constants
-    if (typeof args[i].type === "string") type = args[i].type.toString();
+    if (typeof args[i].type === 'string') type = args[i].type.toString();
     // IdlTypeArray
     else if ((args[i].type as IdlTypeArray)?.array) {
       type = `[${(args[i].type as IdlTypeArray).array[0]}; ${
@@ -47,7 +43,7 @@ export function renderArguments(args: any[]) {
       const vec: any = args[i].type;
 
       // IdlTypeDefined
-      if (vec?.["defined"]) {
+      if (vec?.['defined']) {
         type = `Vec<${vec.defined}>`;
       }
       // IdlTypeArray
@@ -79,7 +75,7 @@ export function renderArguments(args: any[]) {
       <li key={args[i].name}>
         <span>{args[i].name}</span>
         <span className={badge.default}>{type}</span>
-      </li>,
+      </li>
     );
   }
 

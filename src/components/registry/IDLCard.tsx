@@ -1,14 +1,14 @@
-import styles from "@/styles/DataCard.module.css";
-import Link from "next/link";
-import { ArrowDownTrayIcon, ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import { downloadIDL } from "@/utils/registry";
+import styles from '@/styles/DataCard.module.css';
+import Link from 'next/link';
+import { ArrowDownTrayIcon, ArrowUpRightIcon } from '@heroicons/react/24/solid';
+import { downloadIDL } from '@/utils/registry';
 
 type ComponentProps = {
   className?: string;
   href: string;
   title: string;
   address: string;
-  network: "mainnet" | "testnet" | "devnet";
+  network: 'mainnet' | 'testnet' | 'devnet';
   description?: string;
 };
 
@@ -18,7 +18,7 @@ export default function IDLCard({
   title,
   network,
   address,
-  description,
+  description
 }: ComponentProps) {
   return (
     <section className={styles.card}>
@@ -28,9 +28,7 @@ export default function IDLCard({
             <Link href={href}>{title}</Link>
           </h4>
 
-          <span className={styles.statusIndicator + " " + styles[network]}>
-            {network}
-          </span>
+          <span className={styles.statusIndicator + ' ' + styles[network]}>{network}</span>
         </section>
 
         <p className={styles.address}>{address}</p>

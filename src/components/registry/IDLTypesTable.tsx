@@ -1,6 +1,6 @@
-import styles from "@/styles/core/dataTable.module.css";
-import badge from "@/styles/core/badge.module.css";
-import { renderArguments } from "@/utils/registry/render-idl";
+import styles from '@/styles/core/dataTable.module.css';
+import badge from '@/styles/core/badge.module.css';
+import { renderArguments } from '@/utils/registry/render-idl';
 
 type ComponentProps = {
   data?: IdlTypeDef[];
@@ -9,10 +9,8 @@ type ComponentProps = {
 export default function IDLTypesTable({ data }: ComponentProps) {
   if (!data) <></>;
   return (
-    <main
-      className={`container-inner ${styles.scrollContainer} hide-scroll-bar`}
-    >
-      <table className={`${styles.dataTable} font-mono hide-scroll-bar`}>
+    <main className={`container-inner ${styles.scrollContainer} hide-scroll-bar`}>
+      <table className={`${styles.dataTable} hide-scroll-bar font-mono`}>
         <thead>
           <tr>
             <th>Name</th>
@@ -32,7 +30,7 @@ export default function IDLTypesTable({ data }: ComponentProps) {
                 <ul className={styles.dataList}>
                   {renderArguments(
                     (item.type as IdlTypeDefTyStruct)?.fields ||
-                      (item.type as IdlTypeDefTyEnum)?.variants,
+                      (item.type as IdlTypeDefTyEnum)?.variants
                   )}
                 </ul>
               </td>
