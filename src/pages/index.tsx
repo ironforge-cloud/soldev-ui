@@ -112,7 +112,7 @@ export default function Page({latestPosts}: PageProps) {
                     text="A free, intensive, 8-week coding bootcamp to learn about Rust and building on Solana."
                     ctaLabel="Register now!"
                     ctaHref=" https://www.encode.club/solana-summer-bootcamp"
-                    backgroundImage="/img/cta/encode-banner.png"
+
                 />
 
                 <FeaturedContentCards title="Featured">

@@ -23,7 +23,11 @@ export default function LargeCTACard({
   return (
     <section className={styles.container}>
       <section
-        className={clsx(styles.inner, 'container-inner', className)}
+        className={clsx(
+          styles.inner,
+          'container-inner to-[#9945FF]] bg-gradient-to-r from-[#14F195]',
+          className
+        )}
         style={backgroundImage ? { backgroundImage: `url('${backgroundImage}')` } : {}}
       >
         <h2>{title}</h2>
@@ -31,7 +35,7 @@ export default function LargeCTACard({
         {text && <p>{text}</p>}
 
         {ctaHref && (
-          <Link href={ctaHref} className="btn btn-default inline-flex">
+          <Link target="_blank" href={ctaHref} className="btn btn-default inline-flex">
             {ctaLabel || 'Get started'}
           </Link>
         )}

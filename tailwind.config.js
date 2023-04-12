@@ -1,12 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const {fontFamily} = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   plugins: [
-    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/typography"),
-    // require("tailwind-scrollbar"),
     require("@tailwindcss/forms"),
   ],
   theme: {
@@ -88,7 +86,7 @@ module.exports = {
       90: "90deg",
       180: "180deg",
     },
-    inset: (theme, { negative }) => ({
+    inset: (theme, {negative}) => ({
       ...theme("spacing"),
       ...negative(theme("spacing")),
       0: "0",
