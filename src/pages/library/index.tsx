@@ -9,12 +9,12 @@ import { getContentTypes, getRecordsFromSlug } from '@/lib/queries';
 import styles from '@/styles/core/sidebar.module.css';
 import ContentCard from '@/components/core/ContentCard';
 import LibraryFilters from '@/components/library/LibraryFilters';
-import { FunnelIcon } from '@heroicons/react/24/outline';
 import { computeImage } from '@/utils/content';
 import { computeFilterFromUrlParam } from '@/utils/helpers';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { CONTENT_TAGS } from '@/lib/constants/content';
 import Link from 'next/link';
+import { FunnelIcon } from '@heroicons/react/24/outline';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -139,6 +139,13 @@ export default function Page({ records }: PageProps) {
         </p>
       </PageHero>
 
+      <section className="col-span-full mt-6 flex justify-end px-6 lg:hidden">
+        <button className="btn-dark space-x-2" onClick={() => setShowFilters(!showFilters)}>
+          <FunnelIcon className={clsx('icon', showFilters && 'rotate-180')} />
+          <span>Filters</span>
+        </button>
+      </section>
+
       <section className={styles.wrapper + ' container-inner'}>
         <aside
           className={clsx(
@@ -146,13 +153,6 @@ export default function Page({ records }: PageProps) {
             // !showFilters && styles.stickySidebar,
           )}
         >
-          <section className="col-span-full mt-6 flex justify-end px-6 lg:hidden">
-            <button className="btn-dark space-x-2" onClick={() => setShowFilters(!showFilters)}>
-              <FunnelIcon className={clsx('icon', showFilters && 'rotate-180')} />
-              <span>Filters</span>
-            </button>
-          </section>
-
           <div className={showFilters ? styles.floatingMenu : 'hidden lg:block'}>
             <LibraryFilters className={showFilters ? styles.floatingMenuInner : 'divide-y'} />
           </div>
