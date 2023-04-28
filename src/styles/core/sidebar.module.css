@@ -17,6 +17,7 @@
   @apply col-span-full md:col-span-1;
   @apply divide-gray-300 lg:divide-y;
   @apply w-full;
+  @apply lg:ml-4;
 }
 .gridContainer {
   @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
