@@ -110,7 +110,7 @@ export default function Page({ latestPosts }: PageProps) {
           title="Announcing Ironforge"
           text="Your Gateway to Serverless Solana Development"
           ctaLabel="Register now!"
-          ctaHref=" https://www.ironforge.cloud"
+          ctaHref="https://www.ironforge.cloud"
         />
 
         <FeaturedContentCards title="Featured">

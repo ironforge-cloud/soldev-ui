@@ -29,7 +29,7 @@ export default function AppHeader({ children }: ComponentProps) {
             // navbarOpen && "bg-black",
           )}
         >
-          <Link href={'/'} className={styles.logoArea}>
+          <Link href="/" className={styles.logoArea}>
             <Image src={'/logo-light.svg'} alt="Logo" width={124} height={0} />
           </Link>
 
