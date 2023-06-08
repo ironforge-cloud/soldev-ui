@@ -47,7 +47,7 @@ export default function AppFooter({ children }: ComponentProps) {
         <LibraryFooterLinks />
         <UpdatesFooterLinks />
         <ResourcesFooterLinks />
-        <TeamFooterLinks />
+        {/*<TeamFooterLinks />*/}
 
         <section className={styles.copyright}>
           &copy; {new Date().getFullYear()} Ironforge, Inc. All rights reserved.
@@ -134,9 +134,6 @@ function ResourcesFooterLinks() {
     <ul className={styles.linkArea}>
       <li>
         <h4>Resources</h4>
-      </li>
-      <li>
-        <Link href={'/registry'}>IDL Registry</Link>
       </li>
       <li>
         <Link href={'/simd'}>SIMD</Link>

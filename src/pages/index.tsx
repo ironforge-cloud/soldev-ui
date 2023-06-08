@@ -12,125 +12,123 @@ import { FEATURED_CONTENT_CARDS } from '@/lib/constants/home';
 import { PLAYLIST_KEYS } from '@/lib/constants/playlists';
 import { getChangelogRecords, getNewsletterRecords, getRecordsFromSlug } from '@/lib/queries';
 import { computeImage } from '@/utils/content';
-import AnnauncementBanner from "@/components/annauncement-banner";
+import AnnauncementBanner from '@/components/annauncement-banner';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
-    title: undefined,
-    description: ''
+  title: undefined,
+  description: ''
 };
 
 export async function getStaticProps() {
-    // init an array of posts to display in the "Latest" section
-    const latestPosts: ContentRecord[] = [];
+  // init an array of posts to display in the "Latest" section
+  const latestPosts: ContentRecord[] = [];
 
-    // fetch all the latest content from each of the major content sections
-    const [
-        newsletters,
-        changelog,
-        coreCommunityCalls,
-        superteamEcosystemCalls,
-        validatorCommunityCalls
-    ] = await Promise.all([
-        await getNewsletterRecords(),
-        await getChangelogRecords(),
-        await getRecordsFromSlug(PLAYLIST_KEYS.coreCommunityCalls),
-        await getRecordsFromSlug(PLAYLIST_KEYS.superteamEcosystemCalls),
-        await getRecordsFromSlug(PLAYLIST_KEYS.validatorCommunityCalls)
-    ]);
-    // TODO: update API to allow for better filtering and pagination
+  // fetch all the latest content from each of the major content sections
+  const [
+    newsletters,
+    changelog,
+    coreCommunityCalls,
+    superteamEcosystemCalls,
+    validatorCommunityCalls
+  ] = await Promise.all([
+    await getNewsletterRecords(),
+    await getChangelogRecords(),
+    await getRecordsFromSlug(PLAYLIST_KEYS.coreCommunityCalls),
+    await getRecordsFromSlug(PLAYLIST_KEYS.superteamEcosystemCalls),
+    await getRecordsFromSlug(PLAYLIST_KEYS.validatorCommunityCalls)
+  ]);
+  // TODO: update API to allow for better filtering and pagination
 
-    // force update the `Url` to be local urls for the desired pages
-    changelog[0].Url = `/changelog/${changelog[0].SK}`;
-    newsletters[0].Url = `/newsletter/${newsletters[0].SK}`;
-    coreCommunityCalls[0].Url = `/library/playlist/${'core-community-calls'}/${
-        coreCommunityCalls[0].SK
-    }`;
-    superteamEcosystemCalls[0].Url = `/library/playlist/${'superteam-ecosystem-calls'}/${
-        superteamEcosystemCalls[0].SK
-    }`;
-    validatorCommunityCalls[0].Url = `/library/playlist/${'validator-community-discussions'}/${
-        validatorCommunityCalls[0].SK
-    }`;
+  // force update the `Url` to be local urls for the desired pages
+  changelog[0].Url = `/changelog/${changelog[0].SK}`;
+  newsletters[0].Url = `/newsletter/${newsletters[0].SK}`;
+  coreCommunityCalls[0].Url = `/library/playlist/${'core-community-calls'}/${
+    coreCommunityCalls[0].SK
+  }`;
+  superteamEcosystemCalls[0].Url = `/library/playlist/${'superteam-ecosystem-calls'}/${
+    superteamEcosystemCalls[0].SK
+  }`;
+  validatorCommunityCalls[0].Url = `/library/playlist/${'validator-community-discussions'}/${
+    validatorCommunityCalls[0].SK
+  }`;
 
-    // extract the latest record from each of the datasets
-    // NOTE: the order of these will be the order they will be displayed on the page
-    latestPosts.push(
-        changelog[0],
-        coreCommunityCalls[0],
-        validatorCommunityCalls[0],
-        superteamEcosystemCalls[0]
-    );
+  // extract the latest record from each of the datasets
+  // NOTE: the order of these will be the order they will be displayed on the page
+  latestPosts.push(
+    changelog[0],
+    coreCommunityCalls[0],
+    validatorCommunityCalls[0],
+    superteamEcosystemCalls[0]
+  );
 
-    return {
-        props: {
-            latestPosts
-        },
-        revalidate: 300
-    };
+  return {
+    props: {
+      latestPosts
+    },
+    revalidate: 300
+  };
 }
 
 type PageProps = {
-    latestPosts: ContentRecord[];
+  latestPosts: ContentRecord[];
 };
 
-export default function Page({latestPosts}: PageProps) {
-    return (
-        <DefaultLayout seo={seo}>
-            <PageHero className="container mb-16 py-10 mb:py-20" heroSize="lg">
-                <AnnauncementBanner/>
-                <h1>
-                    Your <span className="gradient-solana">Solana</span> homepage
-                </h1>
+export default function Page({ latestPosts }: PageProps) {
+  return (
+    <DefaultLayout seo={seo}>
+      <PageHero className="mb:py-20 container mb-16 py-10" heroSize="lg">
+        <AnnauncementBanner />
+        <h1>
+          Your <span className="gradient-solana">Solana</span> homepage
+        </h1>
 
-                <p className="max-w-lg text-lg md:text-xl">
-                    Stay up-to-date with the latest updates, learning, and happenings in the Solana
-                    ecosystem.
-                </p>
-            </PageHero>
+        <p className="max-w-lg text-lg md:text-xl">
+          Stay up-to-date with the latest updates, learning, and happenings in the Solana ecosystem.
+        </p>
+      </PageHero>
 
-            <section className="space-y-8 py-8">
-                <HomeCategoryCards className="-mt-24"/>
+      <section className="space-y-8 py-8">
+        <HomeCategoryCards className="-mt-24" />
 
-                <FeaturedContentCards title="Latest" className="lg:grid-cols-5">
-                    {latestPosts.length > 0 &&
-                        latestPosts.map((post, id: number) => (
-                            <ContentCard
-                                key={id}
-                                className="w-72 max-w-[70%] lg:max-w-full"
-                                href={post.Url}
-                                title={post.Title}
-                                authorLabel={post.Author}
-                                imageSrc={computeImage(post)}
-                                description={post.Description}
-                            />
-                        ))}
-                </FeaturedContentCards>
+        <FeaturedContentCards title="Latest" className="lg:grid-cols-5">
+          {latestPosts.length > 0 &&
+            latestPosts.map((post, id: number) => (
+              <ContentCard
+                key={id}
+                className="w-72 max-w-[70%] lg:max-w-full"
+                href={post.Url}
+                title={post.Title}
+                authorLabel={post.Author}
+                imageSrc={computeImage(post)}
+                description={post.Description}
+              />
+            ))}
+        </FeaturedContentCards>
 
-                <LargeCTACard
-                    title="Encode Summer Bootcamp Sponsored by the Solana Foundation"
-                    text="A free, intensive, 8-week coding bootcamp to learn about Rust and building on Solana."
-                    ctaLabel="Register now!"
-                    ctaHref=" https://www.encode.club/solana-summer-bootcamp"
+        <LargeCTACard
+          title="Announcing Ironforge"
+          text="Your Gateway to Serverless Solana Development"
+          ctaLabel="Register now!"
+          ctaHref=" https://www.ironforge.cloud"
+        />
 
-                />
+        <FeaturedContentCards title="Featured">
+          {FEATURED_CONTENT_CARDS.map((item, id) => (
+            <ContentCard
+              key={id}
+              className="w-72 max-w-[70%] lg:max-w-full"
+              href={item.href}
+              title={item.title}
+              authorLabel={item.authorLabel}
+              imageSrc={item.imageSrc}
+              description={item.description}
+            />
+          ))}
+        </FeaturedContentCards>
 
-                <FeaturedContentCards title="Featured">
-                    {FEATURED_CONTENT_CARDS.map((item, id) => (
-                        <ContentCard
-                            key={id}
-                            className="w-72 max-w-[70%] lg:max-w-full"
-                            href={item.href}
-                            title={item.title}
-                            authorLabel={item.authorLabel}
-                            imageSrc={item.imageSrc}
-                            description={item.description}
-                        />
-                    ))}
-                </FeaturedContentCards>
-
-                <HomeResourceCards className=""/>
-            </section>
-        </DefaultLayout>
-    );
+        <HomeResourceCards className="" />
+      </section>
+    </DefaultLayout>
+  );
 }

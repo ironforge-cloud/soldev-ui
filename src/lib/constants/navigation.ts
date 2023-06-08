@@ -14,7 +14,6 @@ import {
   CurrencyDollarIcon,
   DocumentPlusIcon,
   EnvelopeIcon,
-  MagnifyingGlassIcon,
   MegaphoneIcon,
   MicrophoneIcon,
   NewspaperIcon,
@@ -190,13 +189,6 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
     label: 'Resources',
     // href: "/resources",
     links: [
-      {
-        label: 'IDL Registry',
-        href: '/registry',
-        description: 'Contract explorer for Solana',
-        icon: MagnifyingGlassIcon,
-        className: styles.purple
-      },
       {
         label: 'SIMD',
         href: '/simd',
