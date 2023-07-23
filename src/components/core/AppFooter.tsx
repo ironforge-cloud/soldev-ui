@@ -144,17 +144,17 @@ function ResourcesFooterLinks() {
         </Link>
       </li>
       <li>
-        <Link target="_blank" href={'https://earn.superteam.fun/opportunities/category/jobs'}>
+        <Link target="_blank" href={'https://earn.superteam.fun/jobs'}>
           Jobs
         </Link>
       </li>
       <li>
-        <Link target="_blank" href={'https://earn.superteam.fun/opportunities/category/bounties'}>
+        <Link target="_blank" href={'https://earn.superteam.fun/bounties'}>
           Bounties
         </Link>
       </li>
       <li>
-        <Link target="_blank" href={'https://earn.superteam.fun/opportunities/category/grants'}>
+        <Link target="_blank" href={'https://earn.superteam.fun/grants'}>
           Grants
         </Link>
       </li>

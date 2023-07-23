@@ -206,7 +206,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       },
       {
         label: 'Jobs',
-        href: 'https://earn.superteam.fun/opportunities/category/jobs',
+        href: 'https://earn.superteam.fun/jobs',
         description: 'Find a job in the Solana ecosystem',
         icon: BriefcaseIcon,
         className: styles.red,
@@ -214,7 +214,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       },
       {
         label: 'Bounties',
-        href: 'https://earn.superteam.fun/opportunities/category/bounties',
+        href: 'https://earn.superteam.fun/bounties',
         description: 'Find a bounty in the Solana ecosystem',
         icon: CurrencyDollarIcon,
         className: styles.yellow,
@@ -222,7 +222,7 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
       },
       {
         label: 'Grants',
-        href: 'https://earn.superteam.fun/opportunities/category/grants',
+        href: 'https://earn.superteam.fun/grants',
         description: 'Find a grant in the Solana ecosystem',
         icon: BuildingLibraryIcon,
         className: styles.purple,
