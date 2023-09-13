@@ -43,9 +43,9 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
     // href: "/learn",
     links: [
       {
-        label: 'Intro to Solana',
+        label: 'Solana Development Course',
         href: '/course',
-        description: 'The best starting point for Web3 basics',
+        description: 'The best starting point for learning Web3 development',
         icon: MegaphoneIcon,
         isExternal: false,
         className: styles.purple
