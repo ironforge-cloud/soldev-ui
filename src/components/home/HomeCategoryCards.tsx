@@ -16,10 +16,10 @@ export default function HomeCategoryCards({className}: ComponentProps) {
                     text="Checkout the latest and greatest, tutorials, articles, podcasts, and more"
                 />
                 <ImageCTACard
-                    title="Intro to Solana"
+                    title="Solana Development Course"
                     href="/course"
                     imageSrc="/img/cta/course.jpg"
-                    text="The absolute best starting point for Web Developers looking to learn Web3 development"
+                    text="The best starting point for learning Web3 development"
                 />
                 <ImageCTACard
                     title="SIMD"
