@@ -24,7 +24,8 @@ export async function getStaticProps() {
   return {
     props: {
       courseModules
-    }
+    },
+    revalidate: 60 * 60 // 1 hour in seconds
   };
 }
 
