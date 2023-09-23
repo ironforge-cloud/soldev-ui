@@ -8,7 +8,8 @@ import { fetchCourseStructure } from '@/utils/fetch-course';
 import Unit from '@/components/course/Unit';
 import { CourseStructure } from '@/lib/types';
 import { Fragment } from 'react';
-import { log, stringify } from '@/utils/helpers';
+
+import LanguagePicker from '@/components/core/LanguagePicker';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -64,6 +65,8 @@ export default function Page({ CourseStructure: CourseStructure }: PageProps) {
           Solana&apos;s high speed, low cost, and energy efficiency make it the ideal network to
           build on.
         </p>
+
+        <LanguagePicker />
       </PageHero>
 
       <section className="container max-w-4xl">

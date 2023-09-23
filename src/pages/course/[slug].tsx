@@ -37,7 +37,7 @@ const placeholderSEO: NextSeoProps = {
   description: ''
 };
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }: { locales: string }) {
   const courseStructure = await fetchCourseStructure();
 
   // handle the 404 when course modules were not found
@@ -52,12 +52,17 @@ export async function getStaticPaths() {
     .flat()
     .filter(fileName => fileName !== '');
 
-  const paths = fileNames.map(fileName => {
-    return {
-      params: {
-        slug: fileName.replace(/\.md$/, '')
-      }
-    };
+  const paths: { params: { slug: string }; locale: string }[] = [];
+
+  fileNames.map(fileName => {
+    for (const locale of locales) {
+      paths.push({
+        params: {
+          slug: fileName.replace(/\.md$/, '')
+        },
+        locale
+      });
+    }
   });
 
   return {
@@ -68,12 +73,31 @@ export async function getStaticPaths() {
 
 type StaticProps = {
   params: { slug: string };
+  locale?: string;
 };
 
-export async function getStaticProps({ params: { slug } }: StaticProps) {
+export async function getStaticProps({ params: { slug }, locale }: StaticProps) {
   const courseStructure = await fetchCourseStructure();
 
-  const lessonText = await fetchLessonText(slug);
+  const lessonText = await fetchLessonText(slug, locale);
+
+  if (locale && locale != 'en' && lessonText === undefined) {
+    // Show warning about page not being translated
+    const seo: NextSeoProps = {
+      title: 'Lesson not translated',
+      description: 'Lesson not translated'
+    };
+
+    return {
+      props: {
+        markdown: 'No translated content yet',
+        metadata: 'No translated content yet',
+        slug,
+        seo
+      },
+      revalidate: 60
+    };
+  }
 
   // handle the 404 when no lesson or course module was found
   if (lessonText === undefined || courseStructure === undefined) return { notFound: true };

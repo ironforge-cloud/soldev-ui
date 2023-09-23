@@ -4,8 +4,10 @@ import { log, stringify } from '../utils/helpers';
 
 const BRANCH: 'main' | 'draft' = 'draft';
 
-export const fetchLessonText = async (slug: string): Promise<string> => {
-  const url = `https://raw.githubusercontent.com/Unboxed-Software/solana-course/${BRANCH}/content/${slug}.md`;
+export const fetchLessonText = async (slug: string, locale?: string): Promise<string> => {
+  const url = `https://raw.githubusercontent.com/Unboxed-Software/solana-course/${BRANCH}/content${
+    locale && locale != 'en' ? '/' + locale : ''
+  }/${slug}.md`;
   const response = await get(url, null, 'text/plain');
 
   if (response.status !== 'OK') {
