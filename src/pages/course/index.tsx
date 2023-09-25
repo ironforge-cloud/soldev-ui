@@ -24,7 +24,8 @@ export async function getStaticProps() {
   return {
     props: {
       courseModules
-    }
+    },
+    revalidate: 60 * 60 // 1 hour in seconds
   };
 }
 
@@ -33,7 +34,7 @@ export default function Page({ courseModules }: PageProps) {
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
         <h1>
-          <Link href={'/course'}>Intro to Solana</Link>
+          <Link href={'/course'}>Solana Development Course</Link>
         </h1>
 
         <p className="text-base text-gray-500">
