@@ -14,6 +14,8 @@ import { getChangelogRecords, getNewsletterRecords, getRecordsFromSlug } from '@
 import { computeImage } from '@/utils/content';
 import AnnauncementBanner from '@/components/annauncement-banner';
 
+import Image from 'next/image';
+
 // define the on-page seo metadata
 const seo: NextSeoProps = {
   title: undefined,
@@ -107,9 +109,9 @@ export default function Page({ latestPosts }: PageProps) {
         </FeaturedContentCards>
 
         <LargeCTACard
-          title="Announcing Ironforge"
-          text="Your Gateway to Serverless Solana Development"
-          ctaLabel="Register now!"
+          title="Ironforge"
+          text="Accelerate your Solana development."
+          ctaLabel="Get Started!"
           ctaHref="https://www.ironforge.cloud"
         />
 

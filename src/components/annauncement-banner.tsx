@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AnnauncementBanner() {
   return (
@@ -28,7 +29,8 @@ export default function AnnauncementBanner() {
         />
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p className="text-sm leading-6 text-gray-900">
+        <p className="flex flex-row gap-2 text-sm leading-6 text-gray-900">
+          <Image src="/ironforge.svg" width={24} height={24} alt="Ironforge logo" />
           <strong className="font-semibold">Ironforge</strong>
           <svg
             viewBox="0 0 2 2"
@@ -37,7 +39,7 @@ export default function AnnauncementBanner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          Accelerate your Solana development with Ironforge
+          Accelerate your Solana development.
         </p>
         <Link
           href="https://www.ironforge.cloud"
