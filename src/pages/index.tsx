@@ -14,8 +14,6 @@ import { getChangelogRecords, getNewsletterRecords, getRecordsFromSlug } from '@
 import { computeImage } from '@/utils/content';
 import AnnauncementBanner from '@/components/annauncement-banner';
 
-import Image from 'next/image';
-
 // define the on-page seo metadata
 const seo: NextSeoProps = {
   title: undefined,
@@ -55,13 +53,22 @@ export async function getStaticProps() {
     validatorCommunityCalls[0].SK
   }`;
 
+  const mikeHaleLastNewsletter = {
+    Title: 'Issue #25: New Solana Education and Wallet Features',
+    Url: 'https://mikehale.beehiiv.com/p/freecodecamp-solana-cirriculum-phantom-shortcuts',
+    Author: 'Mike Hale',
+    Description:
+      'freeCodeCamp Solana curriculum, Unboxed advanced lessons, Phantom Shortcuts, MetaMask Snaps, Buildhive, SOAR, and DePIN Networks',
+    Img: 'https://media.beehiiv.com/cdn-cgi/image/format=auto,width=800,height=421,fit=scale-down,onerror=redirect/uploads/asset/file/cff629cb-ac7c-4846-9c8a-c32843a4a3d8/advanced-solana-cirriculum.jpg'
+  } as ContentRecord;
+
   // extract the latest record from each of the datasets
   // NOTE: the order of these will be the order they will be displayed on the page
   latestPosts.push(
     changelog[0],
     coreCommunityCalls[0],
-    validatorCommunityCalls[0],
-    superteamEcosystemCalls[0]
+    superteamEcosystemCalls[0],
+    mikeHaleLastNewsletter
   );
 
   return {
