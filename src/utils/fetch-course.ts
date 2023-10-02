@@ -5,14 +5,26 @@ interface Result<T> {
   error?: string;
 }
 
+type TranslationsByLanguage = Record<
+  // ISO 639-1 language code, eg 'es' for Spanish, 'cz' for Czech, etc.
+  // https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+  string,
+  {
+    title: string;
+    objectives: Array<string>;
+  }
+>;
+
 /**
  * Defines the type of single course module/lesson item.
  */
-type CourseModuleItem = {
+type Lesson = {
   title: string;
   slug: string;
+  objectives: Array<string>;
   number: number;
-  hidden?: boolean;
+  hidden: boolean;
+  translations: TranslationsByLanguage;
 };
 
 /**
@@ -21,7 +33,7 @@ type CourseModuleItem = {
 export type CourseModule = {
   number: number;
   title: string;
-  lessons: CourseModuleItem[];
+  lessons: Array<Lesson>;
 };
 
 /**

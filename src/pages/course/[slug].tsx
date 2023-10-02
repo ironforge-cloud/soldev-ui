@@ -4,8 +4,6 @@ import dynamic from 'next/dynamic';
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 
-import matter from 'gray-matter';
-
 import Link from 'next/link';
 import styles from '@/styles/core/sidebar.module.css';
 import subnavStyles from '@/styles/core/subnav.module.css';
@@ -70,13 +68,22 @@ type StaticProps = {
 export async function getStaticProps({ params: { slug } }: StaticProps) {
   const courseModules = await fetchModuleMap().then(res => res.data);
 
-  const lesson = await fetchLesson(slug.concat('.md'));
+  if (courseModules === undefined) return { notFound: true };
+
+  const module = courseModules.find(module => {
+    return module.lessons.find(lesson => lesson.slug === slug);
+  });
+
+  if (module === undefined) return { notFound: true };
+
+  const LessonMetadata = module.lessons.find(lesson => lesson.slug === slug);
+
+  if (LessonMetadata === undefined) return { notFound: true };
+
+  const lessonContent = await fetchLesson(slug.concat('.md'));
 
   // handle the 404 when no lesson or course module was found
-  if (lesson.data === undefined || courseModules === undefined) return { notFound: true };
-
-  // load the lesson's markdown file, with YAML front matter support
-  const lessonContent = matter(lesson.data);
+  if (lessonContent === undefined || courseModules === undefined) return { notFound: true };
 
   // determine the next/prev lessons
   let nextSlug: string | null = null;
@@ -94,15 +101,17 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 
   // define the on-page seo metadata
   const seo: NextSeoProps = {
-    title: lessonContent.data.title || 'Learn Solana Development',
+    title: LessonMetadata.title || 'Learn Solana Development',
+    // TODO: this once used to reference the 'description', however
+    // lessons never had a 'description' property, in either the frontmatter or the course-structure
+    // so this was always the fallback string below.
     description:
-      lessonContent.data.description ||
       'This course is designed to be the absolute best starting point for Web Developers looking to learn Web3 Development. Solana is the ideal network for starting your Web3 journey because of its high speed, low cost, energy efficiency, and more.'
   };
 
   return {
     props: {
-      markdown: lessonContent.content,
+      markdown: lessonContent,
       metadata: lessonContent.data,
       slug,
       seo,
