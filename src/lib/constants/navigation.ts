@@ -4,7 +4,6 @@
 import styles from '@/styles/core/nav.module.css';
 import {
   AcademicCapIcon,
-  BoltIcon,
   BookOpenIcon,
   BriefcaseIcon,
   BuildingLibraryIcon,
@@ -18,7 +17,8 @@ import {
   MicrophoneIcon,
   NewspaperIcon,
   Square3Stack3DIcon,
-  UserGroupIcon
+  UserGroupIcon,
+  VideoCameraIcon
 } from '@heroicons/react/24/outline';
 
 type NavigationSection = {
@@ -40,7 +40,6 @@ type NavigationLink = {
 export const NAVIGATION_ITEMS: NavigationSection[] = [
   {
     label: 'Learn',
-    // href: "/learn",
     links: [
       {
         label: 'Solana Development Course',
@@ -51,10 +50,18 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
         className: styles.purple
       },
       {
-        label: 'Solana Bootcamp',
-        href: '/library/playlist/solana-bootcamp',
-        description: 'Intro bootcamp on Solana with Jarry Xiao',
-        icon: BoltIcon,
+        label: 'Solana Bootcamp - Basics',
+        href: '/library/playlist/solana-bootcamp-basics',
+        description: 'Introductory bootcamp on Solana with Nick Frostbutter.',
+        icon: VideoCameraIcon,
+        // isExternal: true,
+        className: styles.green
+      },
+      {
+        label: 'Solana Bootcamp - Advanced',
+        href: '/library/playlist/solana-bootcamp-advanced',
+        description: 'Advanced bootcamp on Solana with Jarry Xiao.',
+        icon: VideoCameraIcon,
         // isExternal: true,
         className: styles.green
       },
@@ -146,12 +153,12 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
   },
   {
     label: 'Updates',
-    // href: "/updates",
     links: [
       {
-        label: 'Newsletter',
-        href: '/newsletter',
-        description: 'The latest from the Solana Foundation',
+        label: 'Mike Hale Newsletter',
+        href: 'https://mikehale.beehiiv.com/',
+        isExternal: true,
+        description: 'News, tools, and resources for Solana developers',
         icon: EnvelopeIcon,
         className: styles.purple
       },
@@ -187,7 +194,6 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
   },
   {
     label: 'Resources',
-    // href: "/resources",
     links: [
       {
         label: 'SIMD',

@@ -6,7 +6,9 @@
 export const PLAYLIST_KEYS = {
   coreCommunityCalls: 'PLilwLeBwGuK7e_mH_sFwTytYQxalh7xd5',
   validatorCommunityCalls: 'PLilwLeBwGuK78yjGBZwYhTf7rao0t13Zw',
-  superteamEcosystemCalls: 'PL3lU6B-N55SorbjvAYTFL6svTu6hfjKH8'
+  superteamEcosystemCalls: 'PL3lU6B-N55SorbjvAYTFL6svTu6hfjKH8',
+  solanaBootcamp: 'PLilwLeBwGuK6NsYMPP_BlVkeQgff0NwvU',
+  solanaBootcampJarry: 'PLilwLeBwGuK7Z2dXft_pmLZ675fuPgkA0'
 };
 
 // hard code a listing of the important playlists to use within the `library/playlist/[slug]` page
@@ -39,9 +41,18 @@ export const PLAYLIST_LISTING: PlaylistItem[] = [
     titleFilter: 'solana ecosystem call - '
   },
   {
-    key: 'PLilwLeBwGuK7Z2dXft_pmLZ675fuPgkA0',
-    slug: 'solana-bootcamp',
-    title: 'Solana Bootcamp',
+    key: PLAYLIST_KEYS.solanaBootcamp,
+    slug: 'solana-bootcamp-basics',
+    title: 'Solana Bootcamp Basics',
+    description:
+      'Want to understand Solana? This bootcamp breaks down Solana for developers that want to understand architecture, concepts, and build smart contracts.',
+    authorOverride: 'Nick Frostbutter'
+    // titleFilter: "solana community",
+  },
+  {
+    key: PLAYLIST_KEYS.solanaBootcampJarry,
+    slug: 'solana-bootcamp-advanced',
+    title: 'Solana Bootcamp - Advanced',
     description:
       'Learn the fundamentals of building with the complete introductory Solana bootcamp.',
     authorOverride: 'Jarry Xiao'
