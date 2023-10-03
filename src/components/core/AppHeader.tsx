@@ -42,21 +42,6 @@ export default function AppHeader({ children }: ComponentProps) {
           <AppNavigation />
 
           <section className={styles.form}>
-            {/* <form onSubmit={(e) => e.preventDefault()}>
-              <div className="inputWithIcon">
-                <label htmlFor="site_search">
-                  <MagnifyingGlassIcon />
-                </label>
-                <input
-                  type="text"
-                  id="site_search"
-                  name="k"
-                  placeholder="Search"
-                  className={navbarOpen ? styles.formInput : "input-dark"}
-                />
-              </div>
-            </form> */}
-
             <Link
               href={'/content'}
               className={clsx(
