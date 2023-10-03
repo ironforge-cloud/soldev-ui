@@ -45,12 +45,12 @@ export async function getStaticProps() {
     validatorCommunityCalls[0].SK
   }`;
   const mikeHaleLastNewsletter = {
-    Title: 'Issue #25: New Solana Education and Wallet Features',
-    Url: 'https://mikehale.beehiiv.com/p/freecodecamp-solana-cirriculum-phantom-shortcuts',
+    Title: 'Issue #26: Encode Club Solana Accelerator and DAGGER Testnet',
+    Url: 'https://mikehale.beehiiv.com/p/ancode-solana-accelerator-dagger-testnet',
     Author: 'Mike Hale',
     Description:
-      'freeCodeCamp Solana curriculum, Unboxed advanced lessons, Phantom Shortcuts, MetaMask Snaps, Buildhive, SOAR, and DePIN Networks',
-    Img: 'https://media.beehiiv.com/cdn-cgi/image/format=auto,width=800,height=421,fit=scale-down,onerror=redirect/uploads/asset/file/cff629cb-ac7c-4846-9c8a-c32843a4a3d8/advanced-solana-cirriculum.jpg'
+      'Solana Accelerator, DAGGER Testnet, Rome Protocol, Game Starter Kits, Chewing Glass podcast',
+    Img: 'https://media.beehiiv.com/cdn-cgi/image/format=auto,width=800,height=421,fit=scale-down,onerror=redirect/uploads/asset/file/68ce9340-85e1-4724-bc3f-fb03aa971eb0/encode-accelerator.jpeg'
   } as ContentRecord;
 
   // NOTE: the order of these will be the order they will be displayed on the page
