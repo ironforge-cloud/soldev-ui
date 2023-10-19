@@ -66,13 +66,13 @@ export function parseMetadata<ParsedGitHubMetaData>(data: string) {
  * @returns {Promise<Awaited<Response>[]>}
  */
 export async function fetchAllSIMD() {
-  const [pullRequests, repo] = await Promise.all([
-    fetchPulls('solana-foundation', 'solana-improvement-documents'),
-    fetchRepoSIMD()
+  const [pullRequests, SIMDs] = await Promise.all([
+    fetchPullRequests('solana-foundation', 'solana-improvement-documents'),
+    fetchSIMDs()
   ]);
 
   const records = await Promise.all(
-    [...pullRequests, ...repo].map(async item => {
+    [...pullRequests, ...SIMDs].map(async item => {
       if (!Array.isArray(item.download_url)) {
         item.download_url = [item.download_url];
       }

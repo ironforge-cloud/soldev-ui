@@ -1,6 +1,8 @@
 # SolDev UI
 
-Learn to Develop using Solana. Tutorials, SDK's, Frameworks, Developer Tools, Security, Scaffolds, and Projects implementations!
+The UI used to display the Solana Course at https://soldev.app
+
+Note the main [Solana Course repo](https://github.com/Unboxed-Software/solana-course) now has a smaller version of this UI included, so this repo isn't necessary for local development or production deployment on other domains.
 
 ## :hammer_and_wrench: Installation Steps
 
@@ -12,7 +14,11 @@ npm install
 yarn install
 ```
 
-2. create a file called `.env.local` to setup the environment and paste following into that:
+2. create a file called `.env.local` to setup the environment.
+
+Since the `.env.local` file contains secrets, you will have to ask a colleague - Nick Frostbutter or Mike MacCana both have working copies of this file.
+
+`.env.example` has a version of what it should look like.
 
 3. Finally, run the development server:
 
