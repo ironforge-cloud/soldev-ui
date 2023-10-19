@@ -62,7 +62,7 @@ export const fetchRaw: (url: string) => Promise<string> = async (url: string) =>
  * @param repo
  * @returns {Promise<Response>}
  */
-export const fetchPulls = async (owner: string, repo: string) => {
+export const fetchPullRequests = async (owner: string, repo: string) => {
   const pullRequests = await fetch(`https://api.github.com/repos/${owner}/${repo}/pulls`, {
     headers: {
       authorization: `TOKEN ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`

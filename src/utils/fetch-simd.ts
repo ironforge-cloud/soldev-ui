@@ -1,11 +1,11 @@
 import { computeSlugForSIMD } from '@/utils/helpers';
-import { fetchContent, fetchPulls, fetchRaw } from './fetch-github';
+import { fetchContent, fetchPullRequests, fetchRaw } from './fetch-github';
 
 /**
  * fetch all SIMDs from the repository
  * @returns {Promise<Object>}
  */
-export const fetchRepoSIMD = async () => {
+export const fetchSIMDs = async () => {
   return await fetchContent('solana-foundation', 'solana-improvement-documents', 'proposals')
     .then(res => res.json())
     .then((response: RawGitHubPullContent[]) =>
@@ -66,13 +66,13 @@ export function parseMetadata<ParsedGitHubMetaData>(data: string) {
  * @returns {Promise<Awaited<Response>[]>}
  */
 export async function fetchAllSIMD() {
-  const [pullRequests, repo] = await Promise.all([
-    fetchPulls('solana-foundation', 'solana-improvement-documents'),
-    fetchRepoSIMD()
+  const [pullRequests, SIMDs] = await Promise.all([
+    fetchPullRequests('solana-foundation', 'solana-improvement-documents'),
+    fetchSIMDs()
   ]);
 
   const records = await Promise.all(
-    [...pullRequests, ...repo].map(async item => {
+    [...pullRequests, ...SIMDs].map(async item => {
       if (!Array.isArray(item.download_url)) {
         item.download_url = [item.download_url];
       }

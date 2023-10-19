@@ -28,6 +28,7 @@ export async function getNewsletterRecords() {
 
 // fetch all `changelog` records from the API
 export async function getChangelogRecords() {
+  // TODO: document magic string below (PLilwLeBwGuK5-Qri7Pg9zd-Vvhz9kX2-R)
   let records: ContentRecord[] = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/content/Solana/PLilwLeBwGuK5-Qri7Pg9zd-Vvhz9kX2-R`
   )
