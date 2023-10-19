@@ -1,4 +1,4 @@
-import styles from '@/styles/CourseModule.module.css';
+import styles from '@/styles/Unit.module.css';
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -7,7 +7,7 @@ type ComponentProps = {
   moduleNumber: number;
 };
 
-export default function CourseModule({ children, className, title, moduleNumber }: ComponentProps) {
+export default function Unit({ children, className, title, moduleNumber }: ComponentProps) {
   return (
     <section className={` ${styles.card} ${className}`}>
       <section className={styles.moduleHeader}>
