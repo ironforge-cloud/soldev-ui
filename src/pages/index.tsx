@@ -10,9 +10,8 @@ import ContentCard from '@/components/core/ContentCard';
 
 import { FEATURED_CONTENT_CARDS } from '@/lib/constants/home';
 import { PLAYLIST_KEYS } from '@/lib/constants/playlists';
-import { getChangelogRecords, getNewsletterRecords, getRecordsFromSlug } from '@/lib/queries';
+import { getChangelogRecords, getRecordsFromSlug } from '@/lib/queries';
 import { computeImage } from '@/utils/content';
-import AnnauncementBanner from '@/components/annauncement-banner';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -25,24 +24,17 @@ export async function getStaticProps() {
   const latestPosts: ContentRecord[] = [];
 
   // fetch all the latest content from each of the major content sections
-  const [
-    newsletters,
-    changelog,
-    coreCommunityCalls,
-    superteamEcosystemCalls,
-    validatorCommunityCalls
-  ] = await Promise.all([
-    await getNewsletterRecords(),
-    await getChangelogRecords(),
-    await getRecordsFromSlug(PLAYLIST_KEYS.coreCommunityCalls),
-    await getRecordsFromSlug(PLAYLIST_KEYS.superteamEcosystemCalls),
-    await getRecordsFromSlug(PLAYLIST_KEYS.validatorCommunityCalls)
-  ]);
+  const [changelog, coreCommunityCalls, superteamEcosystemCalls, validatorCommunityCalls] =
+    await Promise.all([
+      await getChangelogRecords(),
+      await getRecordsFromSlug(PLAYLIST_KEYS.coreCommunityCalls),
+      await getRecordsFromSlug(PLAYLIST_KEYS.superteamEcosystemCalls),
+      await getRecordsFromSlug(PLAYLIST_KEYS.validatorCommunityCalls)
+    ]);
   // TODO: update API to allow for better filtering and pagination
 
   // force update the `Url` to be local urls for the desired pages
   changelog[0].Url = `/changelog/${changelog[0].SK}`;
-  newsletters[0].Url = `/newsletter/${newsletters[0].SK}`;
   coreCommunityCalls[0].Url = `/library/playlist/${'core-community-calls'}/${
     coreCommunityCalls[0].SK
   }`;
@@ -52,14 +44,21 @@ export async function getStaticProps() {
   validatorCommunityCalls[0].Url = `/library/playlist/${'validator-community-discussions'}/${
     validatorCommunityCalls[0].SK
   }`;
+  const mikeHaleLastNewsletter = {
+    Title: 'Issue #27: Retroactive Public Goods Funding and Solana\'s Future',
+    Url: 'https://mikehale.beehiiv.com/p/retroactive-public-goods-funding-solana-future',
+    Author: 'Mike Hale',
+    Description:
+      'Public Goods Funding, Content Hackathon, Helius Mint API, Star Atlas Tools, Squads v4, Soda, Kotlin SDK',
+    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/37575aad-0aa5-46fe-8de4-fb4196e0a0a3/public-goods.png'
+  } as ContentRecord;
 
-  // extract the latest record from each of the datasets
   // NOTE: the order of these will be the order they will be displayed on the page
   latestPosts.push(
     changelog[0],
-    coreCommunityCalls[0],
-    validatorCommunityCalls[0],
-    superteamEcosystemCalls[0]
+    superteamEcosystemCalls[0],
+    mikeHaleLastNewsletter,
+    validatorCommunityCalls[0]
   );
 
   return {
@@ -77,8 +76,9 @@ type PageProps = {
 export default function Page({ latestPosts }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
-      <PageHero className="mb:py-20 container mb-16 py-10" heroSize="lg">
-        <AnnauncementBanner />
+      <PageHero className="mb:py-20 container mb-16 py-20" heroSize="lg">
+        {/*<AnnauncementBanner />*/}
+
         <h1>
           Your <span className="gradient-solana">Solana</span> homepage
         </h1>
@@ -107,9 +107,9 @@ export default function Page({ latestPosts }: PageProps) {
         </FeaturedContentCards>
 
         <LargeCTACard
-          title="Announcing Ironforge"
-          text="Your Gateway to Serverless Solana Development"
-          ctaLabel="Register now!"
+          title="Ironforge"
+          text="Accelerate your Solana development."
+          ctaLabel="Get Started!"
           ctaHref="https://www.ironforge.cloud"
         />
 

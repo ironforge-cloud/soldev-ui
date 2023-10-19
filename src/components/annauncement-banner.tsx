@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AnnauncementBanner() {
   return (
@@ -28,8 +29,9 @@ export default function AnnauncementBanner() {
         />
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p className="text-sm leading-6 text-gray-900">
-          <strong className="font-semibold">Announcing Ironforge</strong>
+        <p className="flex flex-row gap-2 text-sm leading-6 text-gray-900">
+          <Image src="/ironforge.svg" width={24} height={24} alt="Ironforge logo" />
+          <strong className="font-semibold">Ironforge</strong>
           <svg
             viewBox="0 0 2 2"
             className="mx-2 inline h-0.5 w-0.5 fill-current"
@@ -37,14 +39,13 @@ export default function AnnauncementBanner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          Your Gateway to Serverless Solana Development
+          Accelerate your Solana development.
         </p>
         <Link
-          href="https://www.ironforge.cloud/blog/ironforge-your-gateway-to-serverless-solana-development"
-          target="_blank"
+          href="https://www.ironforge.cloud"
           className="mx-auto flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
-          Read <span aria-hidden="true">&rarr;</span>
+          Get Started <span aria-hidden="true">&rarr;</span>
         </Link>
       </div>
     </div>

@@ -13,20 +13,20 @@ export const FEATURED_CONTENT_CARDS = [
     description: 'The essential concepts and references for building applications on Solana.'
   },
   {
-    href: 'https://docs.solana.com',
-    title: 'Solana Core Docs',
+    href: 'https://docs.solana.com/developers',
+    title: 'Solana Developer Docs',
     authorLabel: 'Solana Foundation',
     // authorHref: "#",
     imageSrc: 'https://solana.com/social/solana.jpg',
     description: 'The official Solana core documentation for developers, validators, and users.'
   },
   {
-    href: 'https://buildspace.so/solana-core',
-    title: 'Buildspace | Solana core',
-    authorLabel: 'Buildspace',
+    href: '/library/playlist/solana-bootcamp-basics',
+    title: 'Introductory Solana Bootcamp',
+    authorLabel: 'Solana Foundation',
     // authorHref: "#",
-    imageSrc: 'https://framerusercontent.com/images/EgEsdgKvTuRhCd1fHoZO6IejwU.jpg',
-    description: 'Become a Solana builder in 4 weeks. Build your own staking app with loot crates.'
+    imageSrc: 'https://i.ytimg.com/vi/0P8JeL3TURU/maxresdefault.jpg',
+    description: 'Introductory bootcamp on Solana with Nick Frostbutter.'
   },
   {
     href: '/library/playlist/solana-bootcamp',
@@ -34,7 +34,6 @@ export const FEATURED_CONTENT_CARDS = [
     authorLabel: 'Jarry Xiao',
     // authorHref: "#",
     imageSrc: 'https://i.ytimg.com/vi/O0uhZEfVPt8/hqdefault.jpg',
-    description:
-      'Learn the fundamentals of building with the complete introductory Solana bootcamp.'
+    description: 'Advanced bootcamp on Solana with Jarry Xiao.'
   }
 ];
