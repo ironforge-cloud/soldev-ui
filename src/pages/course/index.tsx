@@ -3,10 +3,12 @@ import DefaultLayout from '@/layouts/default';
 
 import Link from 'next/link';
 import PageHero from '@/components/core/PageHero';
-import CourseModuleItem from '@/components/course/CourseModuleItem';
-import { fetchModuleMap } from '@/utils/fetch-course';
-import CourseModule from '@/components/course/CourseModule';
-import { CourseModule as CourseModuleType } from '@/utils/fetch-course';
+import Lesson from '@/components/course/Lesson';
+import { fetchCourseStructure } from '@/utils/fetch-course';
+import Unit from '@/components/course/Unit';
+import { CourseStructure } from '@/lib/types';
+import { Fragment } from 'react';
+import { log, stringify } from '@/utils/helpers';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -15,21 +17,20 @@ const seo: NextSeoProps = {
 };
 
 type PageProps = {
-  courseModules: CourseModuleType[];
+  CourseStructure: CourseStructure;
 };
 
 export async function getStaticProps() {
-  const courseModules = await fetchModuleMap().then(res => res.data);
-
+  const courseStructure = await fetchCourseStructure();
   return {
     props: {
-      courseModules
+      CourseStructure: courseStructure
     },
     revalidate: 60 * 60 // 1 hour in seconds
   };
 }
 
-export default function Page({ courseModules }: PageProps) {
+export default function Page({ CourseStructure: CourseStructure }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
@@ -59,26 +60,31 @@ export default function Page({ courseModules }: PageProps) {
         </p>
 
         <p className="max-w-2xl md:text-xl">
-          Welcome to the best starting point for Web Developers looking to learn Web3 Development.
+          Welcome to the best place for Web Developers looking to learn Web3 development.
           Solana&apos;s high speed, low cost, and energy efficiency make it the ideal network to
-          learn on.
+          build on.
         </p>
       </PageHero>
 
       <section className="container max-w-4xl">
-        {courseModules.map((module, id) => (
-          <CourseModule key={id} moduleNumber={module.number} title={module.title}>
-            {module.lessons.map((lesson, id) => (
-              <CourseModuleItem
-                key={id}
-                title={lesson.title}
-                href={`/course/${lesson.slug}`}
-                lessonNumber={lesson?.number && lesson.number > 0 ? lesson.number : id + 1}
-                isHidden={lesson?.hidden}
-                // minuteCounter={2}
-              />
+        {CourseStructure.tracks.map((track, trackIndex) => (
+          <Fragment key={trackIndex}>
+            <h2 className="text-4xl">{track.title}</h2>
+            {track.units.map((unit, unitIndex) => (
+              <Unit key={unitIndex} moduleNumber={unitIndex + 1} title={unit.title}>
+                {unit.lessons.map((lesson, lessonIndex) => (
+                  <Lesson
+                    key={lessonIndex}
+                    title={lesson.title}
+                    href={`/course/${lesson.slug}`}
+                    lessonNumber={lessonIndex + 1}
+                    lab={lesson?.lab}
+                    isHidden={lesson?.hidden}
+                  />
+                ))}
+              </Unit>
             ))}
-          </CourseModule>
+          </Fragment>
         ))}
       </section>
     </DefaultLayout>

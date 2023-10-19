@@ -1,27 +1,47 @@
 import { computeSlugForSIMD } from '@/utils/helpers';
-import { fetchContent, fetchPullRequests, fetchRaw } from './fetch-github';
+import { fetchRaw, fetchPullRequests } from '@/utils/fetch-github';
+import { get } from 'fetch-unfucked';
 
-/**
- * fetch all SIMDs from the repository
- * @returns {Promise<Object>}
- */
-export const fetchSIMDs = async () => {
-  return await fetchContent('solana-foundation', 'solana-improvement-documents', 'proposals')
-    .then(res => res.json())
-    .then((response: RawGitHubPullContent[]) =>
-      response
-        .filter(item => item.type === 'file')
-        .map(
-          ({ sha, name, download_url, html_url }) =>
-            ({
-              id: sha, // use sha hash as id
-              name, // file name
-              download_url, // raw url
-              html_url, // github url
-              metadata: {} // initialize the metadata record
-            } as ParsedGitHubPullContent)
-        )
+type GitHubProposal = {
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  url: string;
+  html_url: string;
+  git_url: string;
+  download_url: string;
+  type: string;
+  _links: {
+    self: string;
+    git: string;
+    html: string;
+  };
+};
+
+export const fetchSIMDs = async (): Promise<Array<ParsedGitHubPullContent>> => {
+  const url =
+    'https://api.github.com/repos/solana-foundation/solana-improvement-documents/contents/proposals';
+  const response = await get(url);
+
+  if (response.status !== 'OK') {
+    throw new Error(`Error ${response.status} from ${url}`);
+  }
+
+  const fileMap = (response.body as Array<GitHubProposal>)
+    .filter(item => item.type === 'file')
+    .map(
+      ({ sha, name, download_url, html_url }) =>
+        ({
+          id: sha, // use sha hash as id
+          name, // file name
+          download_url, // raw url
+          html_url, // github url
+          metadata: {} // initialize the metadata record
+        } as ParsedGitHubPullContent)
     );
+
+  return fileMap;
 };
 
 /**
