@@ -1,11 +1,11 @@
 import { computeSlugForSIMD } from '@/utils/helpers';
-import { fetchContent, fetchPulls, fetchRaw } from './fetch-github';
+import { fetchContent, fetchPullRequests, fetchRaw } from './fetch-github';
 
 /**
  * fetch all SIMDs from the repository
  * @returns {Promise<Object>}
  */
-export const fetchRepoSIMD = async () => {
+export const fetchSIMDs = async () => {
   return await fetchContent('solana-foundation', 'solana-improvement-documents', 'proposals')
     .then(res => res.json())
     .then((response: RawGitHubPullContent[]) =>
