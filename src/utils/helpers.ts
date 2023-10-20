@@ -4,6 +4,10 @@ Collection of helper function to standardize certain tasks
 
 import { SITE_ADDR, SITE_TWITTER_HANDLE } from '@/lib/constants/general';
 
+export const log = console.log;
+
+export const stringify = (object: any) => JSON.stringify(object, null, 2);
+
 /**
  * Compute the standard slug format used for SIMD proposals
  * @param simd record item

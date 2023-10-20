@@ -10,8 +10,9 @@ import Link from 'next/link';
 import styles from '@/styles/core/sidebar.module.css';
 import subnavStyles from '@/styles/core/subnav.module.css';
 import NextPrevButtons from '@/components/core/NextPrevButtons';
-import { CourseModule, fetchLesson, fetchModuleMap } from '@/utils/fetch-course';
-import CourseModuleItem from '@/components/course/CourseModuleItem';
+import { fetchLessonText, fetchCourseStructure } from '@/utils/fetch-course';
+import { Unit } from '@/lib/types';
+import Lesson from '@/components/course/Lesson';
 
 const ArticleContent = dynamic(() => import('@/components/ArticleContent'), {
   ssr: false
@@ -37,15 +38,17 @@ const placeholderSEO: NextSeoProps = {
 };
 
 export async function getStaticPaths() {
-  const courseModules = await fetchModuleMap().then(res => res.data);
+  const courseStructure = await fetchCourseStructure();
 
   // handle the 404 when course modules were not found
-  if (courseModules === undefined) return { notFound: true };
+  if (courseStructure === undefined) return { notFound: true };
 
-  const fileNames = courseModules
-    .map(module => {
-      return module.lessons.map(lesson => lesson.slug);
-    })
+  const allLessons = courseStructure.tracks.flatMap(track =>
+    track.units.flatMap(module => module.lessons)
+  );
+
+  const fileNames = allLessons
+    .map(lesson => lesson.slug)
     .flat()
     .filter(fileName => fileName !== '');
 
@@ -68,28 +71,32 @@ type StaticProps = {
 };
 
 export async function getStaticProps({ params: { slug } }: StaticProps) {
-  const courseModules = await fetchModuleMap().then(res => res.data);
+  const courseStructure = await fetchCourseStructure();
 
-  const lesson = await fetchLesson(slug.concat('.md'));
+  const lessonText = await fetchLessonText(slug);
 
   // handle the 404 when no lesson or course module was found
-  if (lesson.data === undefined || courseModules === undefined) return { notFound: true };
+  if (lessonText === undefined || courseStructure === undefined) return { notFound: true };
 
   // load the lesson's markdown file, with YAML front matter support
-  const lessonContent = matter(lesson.data);
+  const lessonContent = matter(lessonText);
 
   // determine the next/prev lessons
   let nextSlug: string | null = null;
   let prevSlug: string | null = null;
 
-  const lessonListing = courseModules.flatMap(item => item.lessons.flat());
+  const allUnits = courseStructure.tracks.flatMap(track => track.units);
 
-  for (let i = 0; i < lessonListing.length; i++) {
-    if (slug !== lessonListing[i].slug) continue;
+  const allLessons = allUnits.flatMap(module => module.lessons);
+
+  const lesson = allLessons.filter(lesson => lesson.slug === slug)[0];
+
+  for (let i = 0; i < allLessons.length; i++) {
+    if (slug !== allLessons[i].slug) continue;
 
     // extract the next/prev records
-    if (i > 0) prevSlug = lessonListing[i - 1].slug;
-    if (lessonListing.length > i + 1) nextSlug = lessonListing[i + 1].slug;
+    if (i > 0) prevSlug = allLessons[i - 1].slug;
+    if (allLessons.length > i + 1) nextSlug = allLessons[i + 1].slug;
   }
 
   // define the on-page seo metadata
@@ -108,7 +115,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
       seo,
       nextSlug,
       prevSlug,
-      courseModules
+      units: allUnits
     },
     revalidate: 60
   };
@@ -121,7 +128,7 @@ type PageProps = {
   seo: NextSeoProps;
   nextSlug?: string;
   prevSlug?: string;
-  courseModules: CourseModule[];
+  units: Array<Unit>;
 };
 
 export default function Page({
@@ -131,16 +138,17 @@ export default function Page({
   slug,
   nextSlug,
   prevSlug,
-  courseModules
+  units: Units
 }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
 
-  // memo-ize the current module
-  const currentModule = useMemo(() => {
-    return courseModules.filter(
-      item => item.lessons.flat().filter(item => item.slug.toLowerCase() == slug).length > 0
+  // memo-ize the current unit
+  const currentUnit = useMemo(() => {
+    // TODO: not sure if type-unsafe comparison here is deliberate or not
+    return Units.filter(
+      unit => unit.lessons.flat().filter(item => item.slug.toLowerCase() == slug).length > 0
     )?.[0];
-  }, [courseModules, slug]);
+  }, [Units, slug]);
 
   return (
     <LessonLayout
@@ -233,15 +241,15 @@ export default function Page({
           >
             <h3>Progress</h3>
 
-            {currentModule?.lessons?.map((item, id) => (
-              <CourseModuleItem
-                key={id}
+            {currentUnit?.lessons?.map((lesson, lessonIndex) => (
+              <Lesson
+                key={lessonIndex}
                 isSmall={true}
-                isActive={slug == item.slug}
-                title={item.title}
-                href={`/course/${item.slug}`}
-                lessonNumber={item.number || id + 1}
-                // minuteCounter={2}
+                isActive={slug == lesson.slug}
+                title={lesson.title}
+                href={`/course/${lesson.slug}`}
+                lessonNumber={lessonIndex + 1}
+                lab={lesson.lab}
               />
             ))}
           </section>

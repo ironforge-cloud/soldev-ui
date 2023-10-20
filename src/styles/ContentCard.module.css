@@ -3,6 +3,10 @@
     (e.g. cards in the Library)
 */
 
+/* TODO: none of these files are CSS, hence all the 'Unknown at rule @apply' warnings in VScode
+They are PostCSS which is what tailwind uses. Fix all the broken file names.
+*/
+
 .heading {
   @apply text-4xl;
   @apply mx-5 py-5;
