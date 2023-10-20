@@ -45,12 +45,12 @@ export async function getStaticProps() {
     validatorCommunityCalls[0].SK
   }`;
   const mikeHaleLastNewsletter = {
-    Title: 'Issue #27: Retroactive Public Goods Funding and Solana\'s Future',
-    Url: 'https://mikehale.beehiiv.com/p/retroactive-public-goods-funding-solana-future',
+    Title: "Issue #28: Solana's Off Button and Hyperdrive Projects",
+    Url: 'https://mikehale.beehiiv.com/p/solana-off-button-hyperdrive',
     Author: 'Mike Hale',
     Description:
-      'Public Goods Funding, Content Hackathon, Helius Mint API, Star Atlas Tools, Squads v4, Soda, Kotlin SDK',
-    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/37575aad-0aa5-46fe-8de4-fb4196e0a0a3/public-goods.png'
+      "Solana's Off Button, Ethereum AND Solana, Hyperdrive projects, WBA Q4 Cohort, Calyptus Curriculum, and Toly on Validated Podcast",
+    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/76bd4c31-28b3-49c1-bd98-eb38ce257aaa/solana-off-button.png'
   } as ContentRecord;
 
   // NOTE: the order of these will be the order they will be displayed on the page
