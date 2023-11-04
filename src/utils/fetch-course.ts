@@ -1,6 +1,5 @@
-import { CourseStructure } from '../lib/types';
+import { CourseStructure, Translations } from '../lib/types';
 import { get } from 'fetch-unfucked';
-import { log, stringify } from '../utils/helpers';
 
 const BRANCH: 'main' | 'draft' = 'draft';
 
@@ -28,29 +27,22 @@ export const fetchCourseStructure: () => Promise<CourseStructure> = async () => 
   return response.body;
 };
 
-// /**
-//  * Fetches a list of global UI messages from a remote JSON file.
-//  * @returns {Promise<Result<string | undefined>>}
-//  */
-// export const fetchMessages: (locale?: string) => Promise<Result<any>> = async (locale = 'en') => {
-//   const response = await fetchFile<Result<ParsedGitHubContent>>(
-//     'Unboxed-Software',
-//     'solana-course',
-//     `translations/${locale}/messages.json`
-//   );
+export const fetchCourseTranslations: (locale?: string) => Promise<Translations> = async (
+  locale = 'en'
+) => {
+  const url = `https://raw.githubusercontent.com/Unboxed-Software/solana-course/${BRANCH}/translations/${locale}/titles.json`;
+  const response = await get(url, null, 'application/json');
 
-//   const { data, error } = response;
+  const { body } = response;
 
-//   if (data === undefined) {
-//     return {
-//       data: undefined,
-//       error: response.error
-//     };
-//   }
+  return body;
+};
 
-//   const messages = JSON.parse(await fetchRaw(data.download_url));
+export const fetchMessages: (locale?: string) => Promise<Translations> = async (locale = 'en') => {
+  const url = `https://raw.githubusercontent.com/Unboxed-Software/solana-course/${BRANCH}/translations/${locale}/messages.json`;
+  const response = await get(url, null, 'application/json');
 
-//   return {
-//     data: messages
-//   };
-// };
+  const { body } = response;
+
+  return body;
+};

@@ -4,9 +4,9 @@ import DefaultLayout from '@/layouts/default';
 import Link from 'next/link';
 import PageHero from '@/components/core/PageHero';
 import Lesson from '@/components/course/Lesson';
-import { fetchCourseStructure } from '@/utils/fetch-course';
+import { fetchCourseStructure, fetchCourseTranslations } from '@/utils/fetch-course';
 import Unit from '@/components/course/Unit';
-import { CourseStructure } from '@/lib/types';
+import { CourseStructure, Translations } from '@/lib/types';
 import { Fragment } from 'react';
 
 import LanguagePicker from '@/components/core/LanguagePicker';
@@ -19,19 +19,27 @@ const seo: NextSeoProps = {
 
 type PageProps = {
   CourseStructure: CourseStructure;
+  courseTranslations: Translations;
 };
 
-export async function getStaticProps() {
+type StaticProps = {
+  locale?: string;
+};
+
+export async function getStaticProps({ locale }: StaticProps) {
   const courseStructure = await fetchCourseStructure();
+  const courseTranslations = await fetchCourseTranslations(locale);
+
   return {
     props: {
-      CourseStructure: courseStructure
+      CourseStructure: courseStructure,
+      courseTranslations
     },
     revalidate: 60 * 60 // 1 hour in seconds
   };
 }
 
-export default function Page({ CourseStructure: CourseStructure }: PageProps) {
+export default function Page({ CourseStructure: CourseStructure, courseTranslations }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
@@ -72,13 +80,17 @@ export default function Page({ CourseStructure: CourseStructure }: PageProps) {
       <section className="container max-w-4xl">
         {CourseStructure.tracks.map((track, trackIndex) => (
           <Fragment key={trackIndex}>
-            <h2 className="text-4xl">{track.title}</h2>
+            <h2 className="text-4xl">{courseTranslations[track.slug]}</h2>
             {track.units.map((unit, unitIndex) => (
-              <Unit key={unitIndex} moduleNumber={unitIndex + 1} title={unit.title}>
+              <Unit
+                key={unitIndex}
+                moduleNumber={unitIndex + 1}
+                title={courseTranslations[unit.slug]}
+              >
                 {unit.lessons.map((lesson, lessonIndex) => (
                   <Lesson
                     key={lessonIndex}
-                    title={lesson.title}
+                    title={courseTranslations[lesson.slug]}
                     href={`/course/${lesson.slug}`}
                     lessonNumber={lessonIndex + 1}
                     lab={lesson?.lab}
