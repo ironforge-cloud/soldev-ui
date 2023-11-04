@@ -81,24 +81,6 @@ export async function getStaticProps({ params: { slug }, locale }: StaticProps) 
 
   const lessonText = await fetchLessonText(slug, locale);
 
-  if (locale && locale != 'en' && lessonText === undefined) {
-    // Show warning about page not being translated
-    const seo: NextSeoProps = {
-      title: 'Lesson not translated',
-      description: 'Lesson not translated'
-    };
-
-    return {
-      props: {
-        markdown: 'No translated content yet',
-        metadata: 'No translated content yet',
-        slug,
-        seo
-      },
-      revalidate: 60
-    };
-  }
-
   // handle the 404 when no lesson or course module was found
   if (lessonText === undefined || courseStructure === undefined) return { notFound: true };
 

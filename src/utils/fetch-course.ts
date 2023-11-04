@@ -27,3 +27,30 @@ export const fetchCourseStructure: () => Promise<CourseStructure> = async () => 
 
   return response.body;
 };
+
+// /**
+//  * Fetches a list of global UI messages from a remote JSON file.
+//  * @returns {Promise<Result<string | undefined>>}
+//  */
+// export const fetchMessages: (locale?: string) => Promise<Result<any>> = async (locale = 'en') => {
+//   const response = await fetchFile<Result<ParsedGitHubContent>>(
+//     'Unboxed-Software',
+//     'solana-course',
+//     `translations/${locale}/messages.json`
+//   );
+
+//   const { data, error } = response;
+
+//   if (data === undefined) {
+//     return {
+//       data: undefined,
+//       error: response.error
+//     };
+//   }
+
+//   const messages = JSON.parse(await fetchRaw(data.download_url));
+
+//   return {
+//     data: messages
+//   };
+// };
