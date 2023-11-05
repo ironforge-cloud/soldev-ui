@@ -53,6 +53,7 @@ export async function getStaticPaths({ locales }: { locales: string }) {
   );
 
   const fileNames = allLessons
+    .filter(lesson => lesson.hidden !== true)
     .map(lesson => lesson.slug)
     .flat()
     .filter(fileName => fileName !== '');
