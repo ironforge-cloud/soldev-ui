@@ -1,10 +1,10 @@
 import { get } from 'fetch-unfucked';
 
-const authorization = `TOKEN ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`;
+const authorization = `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`;
 
 export const fetchRaw: (url: string) => Promise<string> = async (url: string) => {
   const response = await get(url, {
-    authorization
+    Authorization: authorization
   });
 
   if (response.status !== 'OK') {
@@ -19,7 +19,7 @@ export const fetchPullRequests = async (
 ): Promise<Array<ParsedGitHubSIMDData>> => {
   const url = `https://api.github.com/repos/${owner}/${repo}/pulls`;
   const response = await get(url, {
-    authorization
+    Authorization: authorization
   });
 
   if (response.status !== 'OK') {
@@ -53,7 +53,7 @@ export const fetchFilesFromPullRequest = async (pullRequestNumber: number) => {
   const response = await get(
     `https://api.github.com/repos/solana-foundation/solana-improvement-documents/pulls/${pullRequestNumber}/files`,
     {
-      authorization
+      Authorization: authorization
     }
   );
 
