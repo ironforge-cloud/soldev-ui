@@ -44,9 +44,16 @@ export async function getStaticPaths() {
 
 type StaticProps = {
   params: { slug: string };
+  locale: string;
 };
 
-export async function getStaticProps({ params: { slug } }: StaticProps) {
+export async function getStaticProps({ params: { slug }, locale }: StaticProps) {
+  if (locale != 'en') {
+    return {
+      notFound: true
+    };
+  }
+
   // fetch all the SIMD records from GitHub
   const records = await fetchAllSIMD();
 

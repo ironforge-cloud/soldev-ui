@@ -13,7 +13,17 @@ const seo: NextSeoProps = {
     'The Solana Improvement Documents (SIMD) describe proposed and accepted changes to the Solana protocol.'
 };
 
-export async function getStaticProps() {
+type StaticProps = {
+  locale?: string;
+};
+
+export async function getStaticProps({ locale }: StaticProps) {
+  if (locale != 'en') {
+    return {
+      notFound: true
+    };
+  }
+
   const records = await fetchAllSIMD();
 
   return {
