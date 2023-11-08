@@ -6,6 +6,7 @@ import Link from 'next/link';
 import heroStyles from '@/styles/PageHero.module.css';
 import PageHero from '@/components/core/PageHero';
 import { shareOnTwitterUrl } from '@/utils/helpers';
+import LanguagePicker from '@/components/core/LanguagePicker';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -50,6 +51,8 @@ export default function LessonLayout({ children, seo, className, title, href }: 
               Share on twitter
               {/* <ArrowTopRightOnSquareIcon className="icon" /> */}
             </Link>
+
+            <LanguagePicker />
           </section>
         </PageHero>
 

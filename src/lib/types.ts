@@ -6,12 +6,14 @@ export type CourseStructure = {
 
 type Track = {
   title: string;
+  slug: string;
   units: Array<Unit>;
 };
 
 // Formerly called 'Module' or 'CourseModule'
 export type Unit = {
   title: string;
+  slug: string;
   lessons: Array<Lesson>;
 };
 
@@ -21,4 +23,8 @@ type Lesson = {
   slug: string;
   lab?: string;
   hidden?: boolean;
+};
+
+export type Translations = {
+  [key: string]: string;
 };

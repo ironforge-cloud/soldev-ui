@@ -22,7 +22,9 @@ type GitHubProposal = {
 export const fetchSIMDs = async (): Promise<Array<ParsedGitHubPullContent>> => {
   const url =
     'https://api.github.com/repos/solana-foundation/solana-improvement-documents/contents/proposals';
-  const response = await get(url);
+  const response = await get(url, {
+    Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_GITHUB_TOKEN
+  });
 
   if (response.status !== 'OK') {
     throw new Error(`Error ${response.status} from ${url}`);
