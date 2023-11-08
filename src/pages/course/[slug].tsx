@@ -10,8 +10,13 @@ import Link from 'next/link';
 import styles from '@/styles/core/sidebar.module.css';
 import subnavStyles from '@/styles/core/subnav.module.css';
 import NextPrevButtons from '@/components/core/NextPrevButtons';
-import { fetchLessonText, fetchCourseStructure } from '@/utils/fetch-course';
-import { Unit } from '@/lib/types';
+import {
+  fetchLessonText,
+  fetchMessages,
+  fetchCourseStructure,
+  fetchCourseTranslations
+} from '@/utils/fetch-course';
+import { Translations, Unit } from '@/lib/types';
 import Lesson from '@/components/course/Lesson';
 
 const ArticleContent = dynamic(() => import('@/components/ArticleContent'), {
@@ -37,7 +42,7 @@ const placeholderSEO: NextSeoProps = {
   description: ''
 };
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }: { locales: string }) {
   const courseStructure = await fetchCourseStructure();
 
   // handle the 404 when course modules were not found
@@ -48,16 +53,22 @@ export async function getStaticPaths() {
   );
 
   const fileNames = allLessons
+    .filter(lesson => lesson.hidden !== true)
     .map(lesson => lesson.slug)
     .flat()
     .filter(fileName => fileName !== '');
 
-  const paths = fileNames.map(fileName => {
-    return {
-      params: {
-        slug: fileName.replace(/\.md$/, '')
-      }
-    };
+  const paths: { params: { slug: string }; locale: string }[] = [];
+
+  fileNames.map(fileName => {
+    for (const locale of locales) {
+      paths.push({
+        params: {
+          slug: fileName.replace(/\.md$/, '')
+        },
+        locale
+      });
+    }
   });
 
   return {
@@ -68,12 +79,24 @@ export async function getStaticPaths() {
 
 type StaticProps = {
   params: { slug: string };
+  locale?: string;
 };
 
-export async function getStaticProps({ params: { slug } }: StaticProps) {
+export async function getStaticProps({ params: { slug }, locale }: StaticProps) {
   const courseStructure = await fetchCourseStructure();
+  const courseTranslations = await fetchCourseTranslations(locale);
 
-  const lessonText = await fetchLessonText(slug);
+  let lessonText = '';
+  let warning = null;
+
+  try {
+    lessonText = await fetchLessonText(slug, locale);
+  } catch {
+    lessonText = await fetchLessonText(slug, 'en');
+
+    const messages = await fetchMessages(locale);
+    warning = messages['missing_translation'];
+  }
 
   // handle the 404 when no lesson or course module was found
   if (lessonText === undefined || courseStructure === undefined) return { notFound: true };
@@ -111,10 +134,12 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
     props: {
       markdown: lessonContent.content,
       metadata: lessonContent.data,
+      courseTranslations,
       slug,
       seo,
       nextSlug,
       prevSlug,
+      warning,
       units: allUnits
     },
     revalidate: 60
@@ -124,20 +149,24 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
 type PageProps = {
   markdown: string;
   metadata: LessonMetadata;
+  courseTranslations: Translations;
   slug: string;
   seo: NextSeoProps;
   nextSlug?: string;
   prevSlug?: string;
+  warning?: string;
   units: Array<Unit>;
 };
 
 export default function Page({
   markdown,
   metadata,
+  courseTranslations,
   seo,
   slug,
   nextSlug,
   prevSlug,
+  warning,
   units: Units
 }: PageProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.content);
@@ -196,6 +225,12 @@ export default function Page({
             selectedTab === TABS.content ? subnavStyles.activeTab : subnavStyles.inActiveTab
           )}
         >
+          {warning && (
+            <div className="mb-4 rounded-lg bg-yellow-50 p-4 text-sm text-yellow-800" role="alert">
+              {warning}
+            </div>
+          )}
+
           <ArticleContent markdown={markdown} className="prose" />
 
           {/* TODO: make the next button mark the current module as completed? */}
@@ -246,7 +281,7 @@ export default function Page({
                 key={lessonIndex}
                 isSmall={true}
                 isActive={slug == lesson.slug}
-                title={lesson.title}
+                title={courseTranslations[lesson.slug]}
                 href={`/course/${lesson.slug}`}
                 lessonNumber={lessonIndex + 1}
                 lab={lesson.lab}
