@@ -1,6 +1,5 @@
 import { computeSlugForSIMD } from '@/utils/helpers';
 import { fetchRaw, fetchPullRequests } from '@/utils/fetch-github';
-import { get } from 'fetch-unfucked';
 
 type GitHubProposal = {
   name: string;
@@ -22,15 +21,14 @@ type GitHubProposal = {
 export const fetchSIMDs = async (): Promise<Array<ParsedGitHubPullContent>> => {
   const url =
     'https://api.github.com/repos/solana-foundation/solana-improvement-documents/contents/proposals';
-  const response = await get(url, {
-    Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_GITHUB_TOKEN
-  });
+  const response = await (
+    await fetch(url, {
+      headers: { Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_GITHUB_TOKEN },
+      cache: 'force-cache'
+    })
+  ).json();
 
-  if (response.status !== 'OK') {
-    throw new Error(`Error ${response.status} from ${url}`);
-  }
-
-  const fileMap = (response.body as Array<GitHubProposal>)
+  const fileMap = (response as Array<GitHubProposal>)
     .filter(item => item.type === 'file')
     .map(
       ({ sha, name, download_url, html_url }) =>
