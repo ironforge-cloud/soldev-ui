@@ -1,10 +1,10 @@
 import { get } from 'fetch-unfucked';
 
-const authorization = `TOKEN ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`;
+const authorization = `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`;
 
 export const fetchRaw: (url: string) => Promise<string> = async (url: string) => {
   const response = await get(url, {
-    authorization
+    Authorization: authorization
   });
 
   if (response.status !== 'OK') {
@@ -18,15 +18,14 @@ export const fetchPullRequests = async (
   repo: string
 ): Promise<Array<ParsedGitHubSIMDData>> => {
   const url = `https://api.github.com/repos/${owner}/${repo}/pulls`;
-  const response = await get(url, {
-    authorization
-  });
+  const response = await (
+    await fetch(url, {
+      headers: { Authorization: authorization },
+      cache: 'force-cache'
+    })
+  ).json();
 
-  if (response.status !== 'OK') {
-    throw new Error(`Error ${response.status} GETting ${url}`);
-  }
-
-  const pullRequestsRaw = response.body as RawGitHubResponseData[];
+  const pullRequestsRaw = response as RawGitHubResponseData[];
 
   const pullRequests = pullRequestsRaw.map(
     ({ id, html_url, number, title, user: { html_url: userHtmlUrl } }) => ({
@@ -50,13 +49,16 @@ export const fetchPullRequests = async (
 };
 
 export const fetchFilesFromPullRequest = async (pullRequestNumber: number) => {
-  const response = await get(
-    `https://api.github.com/repos/solana-foundation/solana-improvement-documents/pulls/${pullRequestNumber}/files`,
-    {
-      authorization
-    }
-  );
+  const response = await (
+    await fetch(
+      `https://api.github.com/repos/solana-foundation/solana-improvement-documents/pulls/${pullRequestNumber}/files`,
+      {
+        headers: { Authorization: authorization },
+        cache: 'force-cache'
+      }
+    )
+  ).json();
 
-  const data = response.body;
+  const data = response;
   return data.map(({ raw_url }: { raw_url: string }) => raw_url);
 };
