@@ -45,12 +45,12 @@ export async function getStaticProps() {
     validatorCommunityCalls[0].SK
   }`;
   const mikeHaleLastNewsletter = {
-    Title: "Issue #28: Solana's Off Button and Hyperdrive Projects",
-    Url: 'https://mikehale.beehiiv.com/p/solana-off-button-hyperdrive',
+    Title: 'Issue #31: GameShift Beta, Breakpoint, and Hyperdrive Hackathon Winners',
+    Url: 'https://mikehale.beehiiv.com/p/breakpoint-hyperdrive-gameshift-bigquery',
     Author: 'Mike Hale',
     Description:
-      "Solana's Off Button, Ethereum AND Solana, Hyperdrive projects, WBA Q4 Cohort, Calyptus Curriculum, and Toly on Validated Podcast",
-    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/76bd4c31-28b3-49c1-bd98-eb38ce257aaa/solana-off-button.png'
+      'Breakpoint Recap, Gameshift Beta, Google BigQuery, Hyperdrive Winners, RIP Holaplex',
+    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/960f4838-fb68-4070-aa61-1bc1b77ccfc0/gameshift-beta.png'
   } as ContentRecord;
 
   // NOTE: the order of these will be the order they will be displayed on the page
