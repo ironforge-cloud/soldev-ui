@@ -45,12 +45,12 @@ export async function getStaticProps() {
     validatorCommunityCalls[0].SK
   }`;
   const mikeHaleLastNewsletter = {
-    Title: 'Issue #31: GameShift Beta, Breakpoint, and Hyperdrive Hackathon Winners',
-    Url: 'https://mikehale.beehiiv.com/p/breakpoint-hyperdrive-gameshift-bigquery',
+    Title: 'Issue #32: Ironforge RPC Gateway and Breakpoint Video Summaries',
+    Url: 'https://mikehale.beehiiv.com/p/ironforge-rpc-gateway-breakpoint-videos',
     Author: 'Mike Hale',
     Description:
-      'Breakpoint Recap, Gameshift Beta, Google BigQuery, Hyperdrive Winners, RIP Holaplex',
-    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/960f4838-fb68-4070-aa61-1bc1b77ccfc0/gameshift-beta.png'
+      "Ironforge RPC Gateway, David Hoffman's Take on Breakpoint, Helius SecureRPC, Austin Federa on The Scoop Podcast",
+    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/86add10f-1394-46e4-916b-02b51bd88737/ironforge-rpc-gateway.png'
   } as ContentRecord;
 
   // NOTE: the order of these will be the order they will be displayed on the page
