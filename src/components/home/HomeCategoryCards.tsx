@@ -23,11 +23,11 @@ export default function HomeCategoryCards({ className }: ComponentProps) {
           text="The best starting point for learning Web3 development"
         />
         <ImageCTACard
-          title="Mike Hale Newsletter"
-          href="https://mikehale.beehiiv.com"
-          imageSrc="/img/cta/library.jpg"
-          text="News, tools, and resources for Solana developers"
+          title="Jobs"
           isExternal={true}
+          href="https://jobs.solana.com/jobs"
+          imageSrc="/img/cta/jobs.jpg"
+          text="By Solana Foundation"
         />
       </section>
     </section>

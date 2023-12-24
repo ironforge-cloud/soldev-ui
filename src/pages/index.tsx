@@ -12,6 +12,7 @@ import { FEATURED_CONTENT_CARDS } from '@/lib/constants/home';
 import { PLAYLIST_KEYS } from '@/lib/constants/playlists';
 import { getChangelogRecords, getRecordsFromSlug } from '@/lib/queries';
 import { computeImage } from '@/utils/content';
+import AnnauncementBanner from '@/components/annauncement-banner';
 
 // define the on-page seo metadata
 const seo: NextSeoProps = {
@@ -77,7 +78,7 @@ export default function Page({ latestPosts }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="mb:py-20 container mb-16 py-20" heroSize="lg">
-        {/*<AnnauncementBanner />*/}
+        <AnnauncementBanner />
 
         <h1>
           Your <span className="gradient-solana">Solana</span> homepage
@@ -106,12 +107,12 @@ export default function Page({ latestPosts }: PageProps) {
             ))}
         </FeaturedContentCards>
 
-        <LargeCTACard
+        {/* <LargeCTACard
           title="Ironforge"
           text="Accelerate your Solana development."
           ctaLabel="Get Started!"
           ctaHref="https://www.ironforge.cloud"
-        />
+        /> */}
 
         <FeaturedContentCards title="Featured">
           {FEATURED_CONTENT_CARDS.map((item, id) => (

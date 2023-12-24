@@ -30,7 +30,7 @@ export default function AnnauncementBanner() {
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="flex flex-row gap-2 text-sm leading-6 text-gray-900">
-          <Image src="/ironforge.svg" width={24} height={24} alt="Ironforge logo" />
+          <Image src="/ironforge-dark.svg" width={24} height={24} alt="Ironforge logo" />
           <strong className="font-semibold">Ironforge</strong>
           <svg
             viewBox="0 0 2 2"
@@ -39,13 +39,13 @@ export default function AnnauncementBanner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          Accelerate your Solana development.
+          Ironforge's Renewed Mission
         </p>
         <Link
-          href="https://www.ironforge.cloud"
+          href="https://www.ironforge.cloud/blog/ironforge-renewed-mission"
           className="mx-auto flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
-          Get Started <span aria-hidden="true">&rarr;</span>
+          Read more <span aria-hidden="true">&rarr;</span>
         </Link>
       </div>
     </div>

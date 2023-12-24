@@ -12,9 +12,9 @@ export default function HomeResourceCards({ className }: ComponentProps) {
         <ImageCTACard
           title="Jobs"
           isExternal={true}
-          href="https://earn.superteam.fun/jobs"
+          href="https://jobs.solana.com/jobs"
           imageSrc="/img/cta/jobs.jpg"
-          text="By Superteam"
+          text="By Solana Foundation"
         />
         <ImageCTACard
           title="Bounties"
