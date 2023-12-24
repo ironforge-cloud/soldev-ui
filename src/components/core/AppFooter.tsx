@@ -136,7 +136,12 @@ function ResourcesFooterLinks() {
         <h4>Resources</h4>
       </li>
       <li>
-        <Link href={'/simd'}>SIMD</Link>
+        <Link
+          target="_blank"
+          href={'https://github.com/solana-foundation/solana-improvement-documents'}
+        >
+          SIMD
+        </Link>
       </li>
       <li>
         <Link target="_blank" href={'https://solana.stackexchange.com/'}>

@@ -197,10 +197,11 @@ export const NAVIGATION_ITEMS: NavigationSection[] = [
     links: [
       {
         label: 'SIMD',
-        href: '/simd',
+        href: 'https://github.com/solana-foundation/solana-improvement-documents',
         description: 'Protocol changes proposed & accepted here',
         icon: DocumentPlusIcon,
-        className: styles.green
+        className: styles.green,
+        isExternal: true
       },
       {
         label: 'Stack Exchange',
