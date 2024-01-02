@@ -33,7 +33,7 @@ export default function Page() {
             target="_blank"
             rel="noreferrer"
           >
-            Italo Casas
+            @italoacasas
           </Link>
         </p>
       </PageHero>
@@ -72,14 +72,7 @@ export default function Page() {
               <Link target="_blank" href="https://solflare.com/access-wallet">
                 Solflare
               </Link>{' '}
-              or using staking pools like{' '}
-              <Link
-                target="_blank"
-                href="https://marinade.finance/app/stake/?input=SOL&stakeTo=9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
-              >
-                Marinade
-              </Link>{' '}
-              or{' '}
+              or using staking pools like Marinade(soon) or{' '}
               <Link
                 target="_blank"
                 href="https://stake.solblaze.org/app/?validator=9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
