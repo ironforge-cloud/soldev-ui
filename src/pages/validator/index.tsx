@@ -16,7 +16,16 @@ export default function Page() {
           <Link href={'/validator'}>SolDev Validator</Link>
         </h1>
 
-        <p className="max-w-2xl text-gray-500 md:text-xl">
+        <p className="text-base text-gray-500">
+          <Link
+            target="_blank"
+            href="https://www.validators.app/validators/SDEVqCDyc3YzjrDn375SMWKpZo1m7tbZ12fsenF48x1?locale=en&network=mainnet"
+          >
+            SDEVqCDyc3YzjrDn375SMWKpZo1m7tbZ12fsenF48x1
+          </Link>
+        </p>
+
+        <p className="max-w-2xl md:text-xl">
           by{' '}
           <Link
             className="underline"
@@ -37,17 +46,17 @@ export default function Page() {
             <div className="mt-3 max-w-2xl">
               The SolDev Validator's mission is to support developers' journey into the Solana
               Ecosystem by providing grants to developers who are contributing to open source or
-              creating high-quality content.
+              creating high-quality developer content.
             </div>
           </div>
 
           <div className="flex-1">
-            <h2 className="text-2xl font-bold">When the grants will start?</h2>
+            <h2 className="text-2xl font-bold">Grants, How and When</h2>
 
             <div className="mt-3 max-w-2xl">
               The SolDev Validator will start giving grants when it reaches profitability. More
-              information about the SolDev Validator's journey into profitability will be made
-              public soon.
+              information will be shared soon on this page about the grant process and validator
+              profitability status.
             </div>
           </div>
 
