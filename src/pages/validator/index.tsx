@@ -72,7 +72,7 @@ export default function Page() {
               <Link target="_blank" href="https://solflare.com/access-wallet">
                 Solflare
               </Link>{' '}
-              or using staking pools like Marinade(soon) or{' '}
+              or using staking pools like Marinade(soon) and{' '}
               <Link
                 target="_blank"
                 href="https://stake.solblaze.org/app/?validator=9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
