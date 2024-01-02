@@ -83,6 +83,19 @@ export default function Page() {
           </div>
 
           <div className="flex-1">
+            <h2 className="text-2xl font-bold">Commission</h2>
+
+            <div className="mt-3 max-w-2xl">
+              Our validator server is well-equipped to handle heavy loads and spam attacks that
+              affect lesser systems.
+              <ul role="list" className="list-disc space-y-3 pl-5">
+                <li>Regular: 3%</li>
+                <li>Jito: 8%</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="flex-1">
             <h2 className="text-2xl font-bold">Specification</h2>
 
             <div className="mt-3 max-w-2xl">
