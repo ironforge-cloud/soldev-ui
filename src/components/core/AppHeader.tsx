@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import AppNavigation from './AppNavigation';
 import { useRouter } from 'next/router';
+import { ScaleIcon } from '@heroicons/react/24/outline';
 
 type ComponentProps = {
   children?: React.ReactNode;
@@ -43,13 +44,11 @@ export default function AppHeader({ children }: ComponentProps) {
 
           <section className={styles.form}>
             <Link
-              href={'/content'}
-              className={clsx(
-                'btn whitespace-nowrap',
-                navbarOpen ? styles.formButton : 'btn-default'
-              )}
+              href={'/validator'}
+              className="inline-flex items-center gap-x-2 rounded-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm"
             >
-              Submit Content
+              <ScaleIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+              Stake SOL
             </Link>
           </section>
         </nav>

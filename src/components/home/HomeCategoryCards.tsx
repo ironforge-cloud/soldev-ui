@@ -12,7 +12,7 @@ export default function HomeCategoryCards({ className }: ComponentProps) {
         <ImageCTACard
           title="Ironforge"
           href="https://www.ironforge.cloud?utm_source=soldev"
-          imageSrc="/img/cta/newsletter.jpg"
+          imageSrc="/img/cta/jobs.jpg"
           text="Accelerate your Solana development with Ironforge"
           isExternal={true}
         />
@@ -23,11 +23,10 @@ export default function HomeCategoryCards({ className }: ComponentProps) {
           text="The best starting point for learning Web3 development"
         />
         <ImageCTACard
-          title="Jobs"
-          isExternal={true}
-          href="https://jobs.solana.com/jobs"
-          imageSrc="/img/cta/jobs.jpg"
-          text="By Solana Foundation"
+          title="SolDev Validator"
+          href="/validator"
+          imageSrc="/img/cta/newsletter.jpg"
+          text="Supporting developers' journey into the Solana Ecosystem"
         />
       </section>
     </section>
