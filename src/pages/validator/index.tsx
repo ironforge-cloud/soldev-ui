@@ -86,7 +86,8 @@ export default function Page() {
             <h2 className="text-2xl font-bold">Commission</h2>
 
             <div className="mt-3 max-w-2xl">
-              Our validator fees are as follows
+              The SolDev Validator's fees will be used to cover the server and vote costs and to pay
+              for grants.
               <ul role="list" className="list-disc space-y-3 pl-5">
                 <li>Regular: 3%</li>
                 <li>Jito: 8%</li>
