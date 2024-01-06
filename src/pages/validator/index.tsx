@@ -56,7 +56,33 @@ export default function Page() {
             <div className="mt-3 max-w-2xl">
               The SolDev Validator will start giving grants when it reaches profitability. More
               information will be shared on this page about the grant process and validator
-              profitability status.
+              profitability status soon.
+            </div>
+
+            <div className="mt-3 max-w-2xl">
+              <h3 className="text-lg font-medium">Grant Recipients</h3>
+              <ul className="list-disc space-y-3 pl-5">
+                <li>
+                  <Link href="https://github.com/coral-xyz/anchor" target="_blank">
+                    Anchor
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://github.com/jito-foundation/stakenet" target="_blank">
+                    Stakenet
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://github.com/ironforge-cloud/soldev-ui" target="_blank">
+                    SolDev
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://github.com/Unboxed-Software/solana-course" target="_blank">
+                    Solana Development Course
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
 
