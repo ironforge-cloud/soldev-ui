@@ -98,14 +98,14 @@ export default function Page() {
               <Link target="_blank" href="https://solflare.com/access-wallet">
                 Solflare
               </Link>{' '}
-              or using staking pools like
-              <Link
+              or using staking pools like{' '}
+              {/* <Link
                 target="_blank"
                 href="https://marinade.finance/app/?stakeTo=9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
               >
                 Marinade
               </Link>{' '}
-              and{' '}
+              and{' '} */}
               <Link
                 target="_blank"
                 href="https://stake.solblaze.org/app/?validator=9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
