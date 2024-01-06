@@ -55,7 +55,7 @@ export default function Page() {
 
             <div className="mt-3 max-w-2xl">
               The SolDev Validator will start giving grants when it reaches profitability. More
-              information will be shared soon on this page about the grant process and validator
+              information will be shared on this page about the grant process and validator
               profitability status.
             </div>
           </div>
@@ -86,11 +86,16 @@ export default function Page() {
             <h2 className="text-2xl font-bold">Commission</h2>
 
             <div className="mt-3 max-w-2xl">
-              The SolDev Validator's fees will be used to cover the server and vote costs and to pay
-              for grants.
-              <ul role="list" className="list-disc space-y-3 pl-5">
-                <li>Regular: 3%</li>
-                <li>Jito: 8%</li>
+              The SolDev Validator's fees will be used to cover the server and voting costs and to
+              pay for grants.
+              <br />
+              <br />
+              To start, the Validator will have a 0% commission. This will be updated in the future
+              once enough delegators are on board. The expected commission will be 3% and 8% for
+              Jito.
+              <ul className="list-disc space-y-3 pl-5">
+                <li>Regular: 0%</li>
+                <li>Jito: 0%</li>
               </ul>
             </div>
           </div>
@@ -101,7 +106,7 @@ export default function Page() {
             <div className="mt-3 max-w-2xl">
               Our validator server is well-equipped to handle heavy loads and spam attacks that
               affect lesser systems.
-              <ul role="list" className="list-disc space-y-3 pl-5">
+              <ul className="list-disc space-y-3 pl-5">
                 <li>Client: Jito</li>
                 <li>Datacenter Partner: Latitude.sh</li>
                 <li>Location: NYC</li>
