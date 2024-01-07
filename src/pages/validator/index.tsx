@@ -60,7 +60,7 @@ export default function Page() {
             </div>
 
             <div className="mt-3 max-w-2xl">
-              <h3 className="text-lg font-medium">Grant Recipients</h3>
+              <h3 className="text-lg font-medium">Projects</h3>
               <ul className="list-disc space-y-3 pl-5">
                 <li>
                   <Link href="https://github.com/coral-xyz/anchor" target="_blank">
