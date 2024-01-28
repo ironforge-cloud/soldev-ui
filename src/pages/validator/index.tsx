@@ -99,13 +99,13 @@ export default function Page() {
                 Solflare
               </Link>{' '}
               or using staking pools like{' '}
-              {/* <Link
+              <Link
                 target="_blank"
-                href="https://marinade.finance/app/?stakeTo=9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
+                href="https://marinade.finance/app/validators/details/9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
               >
                 Marinade
               </Link>{' '}
-              and{' '} */}
+              and{' '}
               <Link
                 target="_blank"
                 href="https://stake.solblaze.org/app/?validator=9jYFwBfbjYmvasFbJyES9apLJDTkwtbgSDRWanHEvcRw"
@@ -141,8 +141,7 @@ export default function Page() {
               affect lesser systems.
               <ul className="list-disc space-y-3 pl-5">
                 <li>Client: Jito</li>
-                <li>Datacenter Partner: Latitude.sh</li>
-                <li>Location: NYC</li>
+                <li>Location: Prague</li>
                 <li>CPU: AMD EPYC 7443P processor</li>
                 <li>RAM: 256 GB of RAM</li>
                 <li>Disk: 2 X 2 TB NVMe</li>
