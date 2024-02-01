@@ -29,7 +29,7 @@ export const FEATURED_CONTENT_CARDS = [
     description: 'Introductory bootcamp on Solana with Nick Frostbutter.'
   },
   {
-    href: '/library/playlist/solana-bootcamp',
+    href: '/library/playlist/solana-bootcamp-advanced',
     title: 'Solana Bootcamp',
     authorLabel: 'Jarry Xiao',
     // authorHref: "#",
