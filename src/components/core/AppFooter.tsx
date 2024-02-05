@@ -72,7 +72,7 @@ function LearnFooterLinks() {
         </Link>
       </li>
       <li>
-        <Link href={'/library/playlist/solana-bootcamp'}>Solana Bootcamp</Link>
+        <Link href={'/library/playlist/solana-bootcamp-basics'}>Solana Bootcamp</Link>
       </li>
       <li>
         <Link target="_blank" href={'https://buildspace.so/solana-core'}>

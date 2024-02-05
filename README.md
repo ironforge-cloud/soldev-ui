@@ -34,7 +34,7 @@ yarn dev
 
 ### Bug / Feature Request
 
-If you find a bug in the website, kindly open an issue [here](https://github.com/https://github.com/ironforge-cloud/soldev-ui/issues/new) by
+If you find a bug in the website, kindly open an issue [here](https://github.com/ironforge-cloud/soldev-ui/issues/new/choose) by
 including a proper description about the bug and the expected result. Similarly, we would be glad to hear about new features to add in the project, kindly follow same procedure for it too.
 Additionally, feel free to look at the [current milestone](https://github.com/ironforge-cloud/soldev-ui/milestone/) to get a better sense of the project's future.
 
