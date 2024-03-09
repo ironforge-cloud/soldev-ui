@@ -11,6 +11,9 @@ dependencies:
   add:
     specifier: ^2.0.6
     version: 2.0.6
+  classnames:
+    specifier: ^2.5.1
+    version: 2.5.1
   fetch-unfucked:
     specifier: ^1.2.8
     version: 1.2.8
