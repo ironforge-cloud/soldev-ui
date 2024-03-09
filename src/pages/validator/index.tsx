@@ -139,9 +139,6 @@ export default function Page() {
 							voting costs and to pay for grants.
 							<br />
 							<br />
-							To start, the Validator will have a 0% commission. This will be
-							updated in the future once enough delegators are on board. The
-							expected commission will be 3% and 8% for Jito.
 							<ul className="list-disc space-y-3 pl-5">
 								<li>Regular: 3%</li>
 								<li>Jito: 5%</li>
