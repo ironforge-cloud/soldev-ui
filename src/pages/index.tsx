@@ -46,12 +46,12 @@ export async function getStaticProps() {
     validatorCommunityCalls[0].SK
   }`;
   const mikeHaleLastNewsletter = {
-    Title: 'Issue #32: Ironforge RPC Gateway and Breakpoint Video Summaries',
-    Url: 'https://mikehale.beehiiv.com/p/ironforge-rpc-gateway-breakpoint-videos',
+    Title: 'Issue #39: Solana Developer Report and Vetted Developer Lists',
+    Url: 'https://mikehale.beehiiv.com/p/2023-developer-report-devlist-devnet-directory',
     Author: 'Mike Hale',
     Description:
-      "Ironforge RPC Gateway, David Hoffman's Take on Breakpoint, Helius SecureRPC, Austin Federa on The Scoop Podcast",
-    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/86add10f-1394-46e4-916b-02b51bd88737/ironforge-rpc-gateway.png'
+      "2023 Developer Report, Solfate DevList, Devnet.directory, Bonkathon, Rise In Course, Priority Fee API, and State of DePIN Report",
+    Img: 'https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/564d2af0-9d5e-4f07-a1a8-9eb235b23c82/2023-developer-report.png?t=1704997983'
   } as ContentRecord;
 
   // NOTE: the order of these will be the order they will be displayed on the page
