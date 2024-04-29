@@ -39,10 +39,10 @@ export default function AnnauncementBanner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          Ironforge's Renewed Mission
+          Ironforge Changelog: April 29, 2024
         </p>
         <Link
-          href="https://www.ironforge.cloud/blog/ironforge-renewed-mission"
+          href="https://www.ironforge.cloud/blog/changelog-april-29-2024"
           className="mx-auto flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
           Read more <span aria-hidden="true">&rarr;</span>
