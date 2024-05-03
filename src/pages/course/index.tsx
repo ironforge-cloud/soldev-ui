@@ -39,7 +39,7 @@ export async function getStaticProps({ locale }: StaticProps) {
   };
 }
 
-export default function Page({ CourseStructure: CourseStructure, courseTranslations }: PageProps) {
+export default function Page({ CourseStructure, courseTranslations }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
@@ -80,17 +80,17 @@ export default function Page({ CourseStructure: CourseStructure, courseTranslati
       <section className="container max-w-4xl">
         {CourseStructure.tracks.map((track, trackIndex) => (
           <Fragment key={trackIndex}>
-            <h2 className="text-4xl">{courseTranslations[track.slug]}</h2>
+            <h2 className="text-4xl">{courseTranslations[track.slug] || track.title} </h2>
             {track.units.map((unit, unitIndex) => (
               <Unit
                 key={unitIndex}
                 moduleNumber={unitIndex + 1}
-                title={courseTranslations[unit.slug]}
+                title={courseTranslations[unit.slug] || unit.title}
               >
                 {unit.lessons.map((lesson, lessonIndex) => (
                   <Lesson
                     key={lessonIndex}
-                    title={courseTranslations[lesson.slug]}
+                    title={courseTranslations[lesson.slug] || lesson.title}
                     href={`/course/${lesson.slug}`}
                     lessonNumber={lessonIndex + 1}
                     lab={lesson?.lab}
