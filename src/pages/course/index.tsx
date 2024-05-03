@@ -39,7 +39,7 @@ export async function getStaticProps({ locale }: StaticProps) {
   };
 }
 
-export default function Page({ CourseStructure: CourseStructure, courseTranslations }: PageProps) {
+export default function Page({ CourseStructure, courseTranslations }: PageProps) {
   return (
     <DefaultLayout seo={seo}>
       <PageHero className="container space-y-3 text-center">
