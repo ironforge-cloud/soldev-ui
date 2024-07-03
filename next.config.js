@@ -15,7 +15,7 @@ const nextConfig = withPlausibleProxy()({
     ],
   },
   i18n: {
-    locales: ['en', 'es'],
+    locales: ['en', 'es', 'fr'],
     defaultLocale: 'en',
   },
   experimental: {
